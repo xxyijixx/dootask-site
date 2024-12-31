@@ -17,9 +17,7 @@ const changeImageSrc = (img, src) => {
     const url = window.location.href; // 获取当前浏览器 URL
     if (imgDom.length > 0) {
         imgDom.forEach((item) => {
-            item.src = url.includes("site/i")
-                ? `./img/${src}`
-                : `../img/${src}`;
+            item.src = `../img/${src}`;
         });
     }
 };
@@ -231,17 +229,9 @@ const changeLanguage = (type) => {
     const newStr = str.slice(index + 1);
     const lang = localStorage.getItem("lang");
     if (type != lang) {
-        if (str.includes("site")) {
-            window.location.href = `/site/${type}/${newStr}`;
-        } else {
-            window.location.href = `/site/${type}/index.html`;
-        }
+        window.location.href = `/${type}/${newStr}`;
     } else {
-        if (str.includes("site")) {
-            window.location.href = `/site/${lang}/${newStr}`;
-        } else {
-            window.location.href = `/site/${lang}/index.html`;
-        }
+        window.location.href = `/${lang}/${newStr}`;
     }
     langPopDom.style.display = "none";
     localStorage.setItem("lang", type);
