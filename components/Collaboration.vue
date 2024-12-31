@@ -1,0 +1,28 @@
+<template>
+  <article class="collaboration">
+    <img
+      id="home_pic7"
+      class="home_pic7"
+      src="/img/light/home_pic7.svg"
+      alt="开启您的DooTask团队协作"
+    />
+    <img
+      id="home_pic7_768"
+      class="home_pic7_768"
+      src="/img/light/home_pic7_768.svg"
+      alt="开启您的DooTask团队协作"
+    />
+    <div class="collaboration-content collaboration-content-zh">
+      <h1 class="collaboration-txt txt-5002835 mb-32">
+        开启您的DooTask团队协作
+      </h1>
+      <div style="display: flex">
+        <span class="mr-24 get-started">
+          <NuxtLink to="/price">
+            <button class="btn btn-gw mr-20">开始使用</button>
+          </NuxtLink>
+        </span>
+      </div>
+    </div>
+  </article>
+</template>
