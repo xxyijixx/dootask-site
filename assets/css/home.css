@@ -1,7 +1,7 @@
 /* 头部样式 */
 .head {
   text-align: center;
-  background: var(--bg-1-url) top left no-repeat;
+  background: var(--bg-1-url) center left no-repeat;
   background-size: cover;
 }
 section {

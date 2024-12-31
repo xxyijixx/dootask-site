@@ -1,3 +1,4 @@
+<!-- 主页头部 -->
 <template>
   <header class="head">
     <div class="nav">

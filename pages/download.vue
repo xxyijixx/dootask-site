@@ -1,6 +1,10 @@
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <DownloadHeaderBar></DownloadHeaderBar>
+    <main>
+      <div></div>
+    </main>
+    <FooterBar></FooterBar>
   </div>
 </template>
 

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <AboutHeaderBar></AboutHeaderBar>
+    <main>
+      <div></div>
+    </main>
+    <FooterBar></FooterBar>
   </div>
 </template>
 

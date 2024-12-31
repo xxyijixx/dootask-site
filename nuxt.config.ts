@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
+export default defineNuxtConfig(
+  {
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   plugins: [
@@ -7,6 +8,22 @@ export default defineNuxtConfig({
     '~/plugins/toolbar.ts',
     '~/plugins/theme.ts',
   ],
+  app: {
+    head: {
+      title: 'DooTask - 协作项目管理工具',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: 'DooTask - 简单高效的团队协作与项目管理平台，助力企业提升工作效率' },
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'theme-color', content: '#ffffff' },
+        { name: 'keywords', content: '项目管理, 团队协作, 工作流, 效率工具' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
+      ]
+    }
+  },
   modules: ['@nuxtjs/i18n'],
   i18n: {
     // 语言选项
@@ -35,4 +52,6 @@ export default defineNuxtConfig({
     './assets/css/side_nav.css',
     './assets/css/solution.css',
   ],
-});
+},
+
+);

@@ -1,7 +1,12 @@
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <SoluHeaderBar></SoluHeaderBar>
+    <main>
+      <section>
+        <SoluApply></SoluApply>
+        <Solusence></Solusence>
+      </section>
+    </main>
+    <FooterBar></FooterBar>
   </div>
 </template>
-
-<script setup></script>
