@@ -7,7 +7,7 @@
           <!-- <a href="../zh/index.html" class="logo"> -->
           <img
             id="logo"
-            :src="useImage('logo.svg', (useTheme = true), (useLang = false))"
+            :src="useImage('logo.svg', true, false)"
             alt="DooTask,Logo"
           />
           <i class="dootask txt-7002027">DooTask</i>
@@ -44,17 +44,17 @@
               id="submenu-pop"
               :style="isMenuPopVisisble ? 'display: block' : ''"
             >
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink class="txt-4001418 txt-sub" to="/download"
                   >下载中心</NuxtLink
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink class="txt-4001418 txt-sub" to="/help"
                   >帮助中心</NuxtLink
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink
                   class="txt-4001418 txt-sub"
                   to="/privacy"
@@ -62,7 +62,7 @@
                   >隐私政策</NuxtLink
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <a
                   class="txt-4001418 txt-sub"
                   href="https://www.dootask.com/docs/index.html"
@@ -194,7 +194,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 
-const { setLocale, locale } = useI18n();
+const {  locale } = useI18n();
 const { $setTheme } = useNuxtApp();
 
 // 语言选择
@@ -203,6 +203,13 @@ const isLangPopVisisble = ref(false);
 const showLangPopHandle = () => {
   isLangPopVisisble.value = true;
 };
+
+
+const setLocale = (newLocale: 'zh' | 'en') => {
+  locale.value = newLocale
+  isLangPopVisisble.value = false
+}
+
 
 // 导航下拉菜单
 const isMenuPopVisisble = ref(false);
@@ -224,8 +231,9 @@ const useImage = (
   useTheme: boolean = true,
   useLang: boolean = true,
 ) => {
-  const lang = locale.value;
+  const lang = locale.value || 'zh';
   const theme = 'light';
+
   if (useTheme && useLang) {
     return `/img/${theme}/${lang}_${src}`;
   }

@@ -1,8 +1,13 @@
+import { Aboutintro } from '../.nuxt/components';
 <template>
   <div>
-    <AboutHeaderBar></AboutHeaderBar>
+    <HeaderBar></HeaderBar>
     <main>
-      <div></div>
+      <section>
+        <Aboutintro></Aboutintro>
+        <Aboutapply></Aboutapply>
+        <Aboutsuggest></Aboutsuggest>
+      </section>
     </main>
     <FooterBar></FooterBar>
   </div>

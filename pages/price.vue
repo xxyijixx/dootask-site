@@ -1,8 +1,11 @@
 <template>
   <div>
-    <PriceHeaderBar></PriceHeaderBar>
+    <HeaderBar></HeaderBar>
     <main>
-      <div></div>
+        <section>
+          <Priceway></Priceway>
+          <Pricecompare></Pricecompare>
+        </section>
     </main>
     <FooterBar></FooterBar>
   </div>

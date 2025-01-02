@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SoluHeaderBar></SoluHeaderBar>
+    <HeaderBar></HeaderBar>
     <main>
       <section>
         <SoluApply></SoluApply>

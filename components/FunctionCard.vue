@@ -114,12 +114,17 @@ const scenarioItems = [
 
 const mobileScenarioItems = scenarioItems
 
-// 新增计算属性，根据activeCardIndex动态获取图片
+
+// 修改计算属性，添加默认值处理
 const currentPicSrc = computed(() => {
-  return scenarioItems[activeCardIndex.value].picSrc
+  // 如果 activeCardIndex 为 -1，默认使用第一个图片
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
+  return scenarioItems[index].picSrc
 })
 
 const currentPicAlt = computed(() => {
-  return scenarioItems[activeCardIndex.value].picAlt
+  // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
+  return scenarioItems[index].picAlt
 })
 </script>

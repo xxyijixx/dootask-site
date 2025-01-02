@@ -1,7 +1,9 @@
 <template>
   <div>
-    <ProductHeaderBar></ProductHeaderBar>
+    <HeaderBar></HeaderBar>
     <main>
+      <Prochoose></Prochoose>
+      <Promanage></Promanage>
       <Prodigit></Prodigit>
     </main>
     <FooterBar></FooterBar>

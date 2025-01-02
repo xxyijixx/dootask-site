@@ -1,5 +1,28 @@
 <!-- 解决方案-场景应用 -->
 <template>
+    <div>
+    <div class="topics">
+      <div class="topics-con">
+        <div class="topics-layout">
+          <div class="topics-tit mb-32" style="width: auto !important">
+            <span class="txt-6007290 topics-h1">帮助您更好地进行协作</span>
+          </div>
+          <h4 class="txt-4001830 topics-h4 mb-32">
+            DooTask提供了一系列基于不同场景的解决方案，以便您可以快速开始与您的团队或部门合作
+          </h4>
+          <div class="flex-cc topics-btn">
+            <span class="mr-24 get-started">
+              <!-- <a href="./price.html"> -->
+              <NuxtLink to="/price">
+                <button class="btn btn-primary mr-20">开始使用</button>
+              </NuxtLink>
+
+              <!-- </a> -->
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
     <article class="app">
         <div class="bg-style">
             <div class="app-con">
@@ -33,6 +56,7 @@
             </div>
         </div>
     </article>
+</div>
 </template>  
 <script setup>
     const sceneApplications = [

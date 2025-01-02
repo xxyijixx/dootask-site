@@ -1,6 +1,8 @@
 export default defineI18nConfig(() => ({
   legacy: false,
   locale: 'en',
+  fallbackLocale: 'en',
+  availableLocales: ['zh', 'en'],
   messages: {
     en: {
       dootask: 'DooTask',

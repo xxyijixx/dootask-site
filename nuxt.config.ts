@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig(
   {
+  ssr: true,
+  components: {
+      dirs: ['~/components']
+    },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   plugins: [
@@ -21,7 +25,10 @@ export default defineNuxtConfig(
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
-      ]
+      ],
+      htmlAttrs: {
+        lang: 'zh', // 设置默认语言
+      },
     }
   },
   modules: ['@nuxtjs/i18n'],
@@ -51,6 +58,7 @@ export default defineNuxtConfig(
     './assets/css/rem.css',
     './assets/css/side_nav.css',
     './assets/css/solution.css',
+    './assets/css/product.css', // 添加 product.css
   ],
 },
 

@@ -1,8 +1,13 @@
 <template>
   <div>
-    <DownloadHeaderBar></DownloadHeaderBar>
+    <HeaderBar></HeaderBar>
     <main>
-      <div></div>
+      <div>
+        <section>
+          <Downloadpart></Downloadpart>
+          <Downloadlog></Downloadlog>
+        </section>
+      </div>
     </main>
     <FooterBar></FooterBar>
   </div>

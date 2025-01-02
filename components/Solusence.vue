@@ -1,14 +1,16 @@
 <!-- 解决方案-团队运营 -->
 <template>
     <article class="team solutions">
+
         <div class="team-con">
             <h1 class="txt-5004455 team-tit">团队运营</h1>
             <ul class="team-ul mt-80">
                 <li 
                     v-for="(item, index) in teamOperations" 
-                    :key="index"
-                    class="team-ul-item team-ul-item-zh solutions-animate-box" 
+                    :key="item.title"
+                    class="team-ul-item team-ul-item-zh" 
                     :style="{ '--delay': `${index * 0.1}s` }"
+                    v-show="item.icon && item.title && item.description"
                 >
                     <img 
                         class="team-icon mb-24" 
@@ -20,10 +22,16 @@
                 </li>
             </ul>
         </div>
+
     </article>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+
+
+// 创建响应式的调试信息
+const debugInfo = ref('')
 const teamOperations = [
     {
         icon: '/img/solution_icon1.svg',
@@ -41,4 +49,38 @@ const teamOperations = [
         description: '通过数据可视化统计报表获取多维度企业数据，全面了解员工表现，让绩效评价更客观、公正；使用公告发布通知，安排公司活动，传递企业决策，便于塑造企业文化，让员工更有参与感。'
     }
 ]
+
+// 图片加载错误处理
+const handleImageError = (event) => {
+    console.error('图片加载失败:', event.target.src)
+    event.target.style.display = 'none'
+}
+
+onMounted(() => {
+    try {
+        // 详细的调试信息
+        debugInfo.value = JSON.stringify({
+            teamOperationsType: typeof teamOperations,
+            teamOperationsLength: teamOperations.length,
+            firstItem: teamOperations[0],
+            windowWidth: window.innerWidth
+        }, null, 2)
+
+        console.log('团队运营调试信息:', debugInfo.value)
+
+        // 检查 DOM 元素
+        const listItems = document.querySelectorAll('.team-ul-item')
+        console.log('列表项数量:', listItems.length)
+        listItems.forEach((item, index) => {
+            console.log(`项目 ${index} 样式:`, {
+                display: window.getComputedStyle(item).display,
+                visibility: window.getComputedStyle(item).visibility
+            })
+        })
+    } catch (error) {
+        debugInfo.value = `错误: ${error.message}`
+        console.error('初始化错误:', error)
+    }
+})
+
 </script>
