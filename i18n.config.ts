@@ -1,4 +1,31 @@
 export default defineI18nConfig(() => ({
+
+  i18n: {
+    // 语言选项
+    locales: [
+      { 
+        code: 'en', 
+        iso: 'en-US', 
+        name: 'English',
+        file: 'en.json'
+      },
+      { 
+        code: 'zh', 
+        iso: 'zh-CN', 
+        name: '中文',
+        file: 'zh.json'
+      },
+    ],
+    lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    vueI18n: {
+      fallbackLocale: 'en',
+      legacy: false,
+    }
+  },
+
   legacy: false,
   locale: 'en',
   fallbackLocale: 'en',
@@ -21,4 +48,6 @@ export default defineI18nConfig(() => ({
       nav_about_us: '关于我们',
     },
   },
-}));
+}
+)
+);

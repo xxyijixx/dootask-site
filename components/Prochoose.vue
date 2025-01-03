@@ -23,7 +23,6 @@
       </div>
     </div>
     <div class="prooduct-con">
-      <div>当前索引: {{ currentIndex }}</div>
       <ul class="prooduct-list">
         <li>
           <i class="prev" @click="prevHandle">
@@ -57,11 +56,11 @@
           :key="index"
           class="details"
           :class="{ 'active': index === currentIndex }"
-          style="display: none;"
+          :style="{ display: index === currentIndex ? 'block' : 'none' }"
         >
           <div class="details-con" :class="`details-con-item${detail.items ? detail.items.length : 1}`">
-            <img class="pic theme_light" :src="`/img/light/product_pic${index + 1}.svg`" :alt="detail.alt" />
-            <img class="pic theme_dark" :src="`/img/dark/product_pic${index + 1}.svg`" :alt="detail.alt" />
+            <img v-show="theme === 'light'" class="pic theme_light" :src="`/img/light/product_pic${index + 1}.svg`" :alt="detail.alt" />
+            <img v-show="theme === 'dark'" class="pic theme_dark" :src="`/img/dark/product_pic${index + 1}.svg`" :alt="detail.alt" />
             <ul class="details-ul" :class="detail.ulClass">
               <li 
                 v-for="(item, itemIndex) in detail.items" 
@@ -88,10 +87,58 @@
 </template>
   
   <script setup>
-  import { ref, watch, onMounted } from 'vue'
+  import { ref, watch, onMounted, onUnmounted } from 'vue'
 
     const currentIndex = ref(0)
-  
+
+    const theme = ref('light')
+
+    const getInitialTheme = () => {
+    // 首先检查系统主题
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+    if (prefersDarkScheme.matches) return 'dark'
+
+    // 其次检查 document.documentElement 上的 data-theme 属性
+    const htmlTheme = document.documentElement.getAttribute('data-theme')
+    if (htmlTheme) return htmlTheme
+
+    // 再检查 localStorage
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) return savedTheme
+
+    // 默认为 light
+    return 'light'
+}
+
+    const handleThemeChange = (event) => {
+        theme.value = event.detail
+    }
+
+    watch(currentIndex, (newIndex) => {
+      const detailsItems = document.querySelectorAll('.details')
+      detailsItems.forEach((item, index) => {
+        if (index === newIndex) {
+          item.style.display = 'block'
+        } else {
+          item.style.display = 'none'
+        }
+      })
+    }, { immediate: true })
+
+
+    onMounted(() => {
+        // 获取初始主题
+        theme.value = getInitialTheme()
+
+        // 监听主题变化事件
+        window.addEventListener('theme-change', handleThemeChange)
+    })
+
+    onUnmounted(() => {
+        // 清理事件监听器
+        window.removeEventListener('theme-change', handleThemeChange)
+    })
+      
   const productItems = [
     { icon: '/img/product_icons0_h.svg', title: '协同创作' },
     { icon: '/img/product_icons1.svg', title: '即时沟通' },

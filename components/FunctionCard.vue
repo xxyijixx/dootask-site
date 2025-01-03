@@ -68,7 +68,10 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
 const activeCardIndex = ref(0)
+
 
 const toggleCard = (index) => {
   activeCardIndex.value = activeCardIndex.value === index ? -1 : index

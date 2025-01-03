@@ -26,9 +26,6 @@ export default defineNuxtConfig(
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
       ],
-      htmlAttrs: {
-        lang: 'zh', // 设置默认语言
-      },
     }
   },
   modules: ['@nuxtjs/i18n'],

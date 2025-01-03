@@ -50,37 +50,6 @@ const teamOperations = [
     }
 ]
 
-// 图片加载错误处理
-const handleImageError = (event) => {
-    console.error('图片加载失败:', event.target.src)
-    event.target.style.display = 'none'
-}
 
-onMounted(() => {
-    try {
-        // 详细的调试信息
-        debugInfo.value = JSON.stringify({
-            teamOperationsType: typeof teamOperations,
-            teamOperationsLength: teamOperations.length,
-            firstItem: teamOperations[0],
-            windowWidth: window.innerWidth
-        }, null, 2)
-
-        console.log('团队运营调试信息:', debugInfo.value)
-
-        // 检查 DOM 元素
-        const listItems = document.querySelectorAll('.team-ul-item')
-        console.log('列表项数量:', listItems.length)
-        listItems.forEach((item, index) => {
-            console.log(`项目 ${index} 样式:`, {
-                display: window.getComputedStyle(item).display,
-                visibility: window.getComputedStyle(item).visibility
-            })
-        })
-    } catch (error) {
-        debugInfo.value = `错误: ${error.message}`
-        console.error('初始化错误:', error)
-    }
-})
 
 </script>

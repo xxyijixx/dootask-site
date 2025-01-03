@@ -12,7 +12,7 @@
             </div>
             <div class="manage-b mt-80">
                 <ul class="manage-ul">
-                    <li v-for="(item, index) in manageItems" :key="index"
+                    <li v-for="(item, index) in manageItems.slice(0, 2)" :key="index"
                         class="manage-ul-item mb-32 " :style="{ '--delay': `${index * 0.1}s` }">
                         <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
                         <div class="manage-tit">
@@ -25,9 +25,23 @@
                         </div>
                     </li>
                 </ul>
-                <div class="manage-svg product-animate-box" :style="{ '--delay': '0.2s' }">
-                    <img class="manage-bg theme_light" src="/img/light/product_pic10.svg" alt="顺利打卡上班" />
-                    <img class="manage-bg theme_dark" src="/img/dark/product_pic10.svg" alt="顺利打卡上班" />
+                <ul class="manage-ul">
+                    <li v-for="(item, index) in manageItems.slice(2)" :key="index"
+                        class="manage-ul-item mb-32 " :style="{ '--delay': `${index * 0.1}s` }">
+                        <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
+                        <div class="manage-tit">
+                            <h3 class="txt-5002025 manage-h3 mb-16">
+                                {{ item.title }}
+                            </h3>
+                            <h6 class="txt-4001624 manage-h6">
+                                {{ item.description }}
+                            </h6>
+                        </div>
+                    </li>
+                </ul>
+                <div class="manage-svg " :style="{ '--delay': '0.2s' }">
+                    <img v-show="theme === 'light'" class="manage-bg theme_light" src="/img/light/product_pic10.svg" alt="顺利打卡上班" />
+                    <img v-show="theme === 'dark'" class="manage-bg theme_dark" src="/img/dark/product_pic10.svg" alt="顺利打卡上班" />
                     <div class="manage-tips">
                         <img src="/img/product_icon1.svg" alt="出勤签到" />
                         <i class="manage-tips-txt txt-4001822">顺利打卡上班</i>
@@ -42,6 +56,44 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const theme = ref('light')
+
+const getInitialTheme = () => {
+    // 首先检查系统主题
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+    if (prefersDarkScheme.matches) return 'dark'
+
+    // 其次检查 document.documentElement 上的 data-theme 属性
+    const htmlTheme = document.documentElement.getAttribute('data-theme')
+    if (htmlTheme) return htmlTheme
+
+    // 再检查 localStorage
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) return savedTheme
+
+    // 默认为 light
+    return 'light'
+}
+
+const handleThemeChange = (event) => {
+    theme.value = event.detail
+}
+
+onMounted(() => {
+    // 获取初始主题
+    theme.value = getInitialTheme()
+
+    // 监听主题变化事件
+    window.addEventListener('theme-change', handleThemeChange)
+})
+
+onUnmounted(() => {
+    // 清理事件监听器
+    window.removeEventListener('theme-change', handleThemeChange)
+})
+
 const manageItems = [
     {
         icon: '/img/product_subtract.svg',

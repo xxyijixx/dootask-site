@@ -28,20 +28,36 @@
         </li>
 
         <li 
-          v-for="(item, index) in chooseItems" 
-          :key="index"
-          class="choose-con-item "
-          :style="{ '--delay': `${index * 0.1}s` }"
-        >
-          <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
-          <h5 class="txt-5002025 mb-16 choose-con-item-h5">
-            {{ item.title }}
-          </h5>
-          <h6 class="txt-4001624 choose-con-item-h6">
-            {{ item.description }}
-          </h6>
-        </li>
+            v-for="(item, index) in chooseItems.slice(0, 2)" 
+            :key="index"
+            class="choose-con-item hover home-animate"
+            :style="{ '--delay': `${index * 0.1}s` }"
+          >
+            <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
+            <h5 class="txt-5002025 mb-16 choose-con-item-h5">
+              {{ item.title }}
+            </h5>
+            <h6 class="txt-4001624 choose-con-item-h6">
+              {{ item.description }}
+            </h6>
+          </li>
       </ul>
+      <ul class="choose-con-ul mb-32">
+          <li 
+            v-for="(item, index) in chooseItems.slice(2)" 
+            :key="index"
+            class="choose-con-item hover home-animate"
+            :style="{ '--delay': `${(index + 2) * 0.1}s` }"
+          >
+            <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
+            <h5 class="txt-5002025 mb-16 choose-con-item-h5">
+              {{ item.title }}
+            </h5>
+            <h6 class="txt-4001624 choose-con-item-h6">
+              {{ item.description }}
+            </h6>
+          </li>
+        </ul>
     </div>
 
     <div class="choose-con-768">
@@ -56,7 +72,7 @@
       <div class="choose-con-768-box">
         <ul class="choose-con-768-ul">
           <li 
-            v-for="(item, index) in chooseItems.value" 
+            v-for="(item, index) in chooseItems" 
             :key="index"
             class="choose-con-768-item"
           >
@@ -72,7 +88,7 @@
       </div>
       <ul id="card-indicators">
         <li 
-          v-for="(_, index) in chooseItems.value" 
+          v-for="(_, index) in chooseItems" 
           :key="index"
           class="card-indicators-item"
           :class="{ 'active': activeIndex === index }"
@@ -121,9 +137,6 @@ const chooseItems = ref<ChooseItem[]>([
     description: '多平台应用支持，随时随地追踪项目进度，同时让你在工作中每一个步骤都能拥有更高效愉悦的体验。'
   }
 ])
-
-console.log('chooseItems:', chooseItems.value)
-console.log('chooseItemsju:', chooseItems.value[0].title)
 
 const changeActiveItem = (index: number) => {
   activeIndex.value = index

@@ -1,25 +1,27 @@
 <template>
-    <article class="prodigit">
-        <div class="prodigit-con">
-            <h1 class="txt-5004455 prodigit-h1">数字化绩效</h1>
-            <div class="prodigit-pic">
+    <article class="performance">
+        <div class="performance-con">
+            <h1 class="txt-5004455 performance-h1">数字化绩效</h1>
+            <div class="theme-images">
                 <img 
-                class="pic mt-80 theme_light" 
-                src="/img/light/zh_product_pic11.png" 
-                alt="数字化绩效" 
+                    v-show="theme === 'light'"
+                    class="pic mt-80 theme_light" 
+                    src="/img/light/zh_product_pic11.png" 
+                    alt="数字化绩效" 
                 />
                 <img 
-                class="pic mt-80 theme_dark" 
-                src="/img/dark/zh_product_pic11.png" 
-                alt="数字化绩效" 
+                    v-show="theme === 'dark'"
+                    class="pic mt-80 theme_dark" 
+                    src="/img/dark/zh_product_pic11.png" 
+                    alt="数字化绩效" 
                 />
             </div>
-            <div class="prodigit-layout">
-            <ul class="prodigit-ul">
+            
+            <ul class="performance-ul">
                 <li 
                 v-for="(item, index) in performanceItems" 
                 :key="index"
-                class="prodigit-ul-item"
+                class="performance-ul-item "
                 :style="{ '--delay': `${index * 0.1}s` }"
                 >
                 <i class="icon mb-24"></i>
@@ -34,12 +36,49 @@
                 </h6>
                 </li>
             </ul>
-            </div>
         </div>
     </article>
 </template>
 
 <script setup>
+
+    import { ref, onMounted, onUnmounted } from 'vue'
+
+    const theme = ref('light')
+
+    const getInitialTheme = () => {
+    // 首先检查系统主题
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+    if (prefersDarkScheme.matches) return 'dark'
+
+    // 其次检查 document.documentElement 上的 data-theme 属性
+    const htmlTheme = document.documentElement.getAttribute('data-theme')
+    if (htmlTheme) return htmlTheme
+
+    // 再检查 localStorage
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) return savedTheme
+
+    // 默认为 light
+    return 'light'
+}
+
+    const handleThemeChange = (event) => {
+        theme.value = event.detail
+    }
+
+    onMounted(() => {
+        // 获取初始主题
+        theme.value = getInitialTheme()
+
+        // 监听主题变化事件
+        window.addEventListener('theme-change', handleThemeChange)
+    })
+
+    onUnmounted(() => {
+        // 清理事件监听器
+        window.removeEventListener('theme-change', handleThemeChange)
+    })
     const performanceItems = [
         {
         titleFirst: '目标设定和跟踪，',

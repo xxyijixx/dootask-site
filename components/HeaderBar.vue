@@ -50,8 +50,8 @@
                 >
               </li>
               <li class="submenu-pop-item" onclick="changeMenu()">
-                <NuxtLink class="txt-4001418 txt-sub" to="/help"
-                  >帮助中心</NuxtLink
+                <a class="txt-4001418 txt-sub" href="http://localhost:5173/"
+                  >帮助中心</a
                 >
               </li>
               <li class="submenu-pop-item" onclick="changeMenu()">
@@ -134,10 +134,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const { setLocale, locale } = useI18n();
 const { $setTheme } = useNuxtApp();
+
+// 创建响应式主题变量
+const theme = ref(localStorage.getItem('theme') || 'light');
+
+// 监听主题变化事件
+const handleThemeChange = (event: CustomEvent) => {
+  theme.value = event.detail;
+};
+
+onMounted(() => {
+  // 添加事件监听器
+  window.addEventListener('theme-change', handleThemeChange as EventListener);
+});
+
+onUnmounted(() => {
+  // 移除事件监听器
+  window.removeEventListener('theme-change', handleThemeChange as EventListener);
+});
 
 // 语言选择
 const isLangPopVisisble = ref(false);
@@ -145,7 +163,6 @@ const isLangPopVisisble = ref(false);
 const showLangPopHandle = () => {
   isLangPopVisisble.value = true;
 };
-
 // 导航下拉菜单
 const isMenuPopVisisble = ref(false);
 
@@ -167,7 +184,7 @@ const useImage = (
   useLang: boolean = true,
 ) => {
   const lang = locale.value;
-  const theme = 'light';
+  const theme = localStorage.getItem('theme') || 'light';
   if (useTheme && useLang) {
     return `/img/${theme}/${lang}_${src}`;
   }
@@ -180,4 +197,6 @@ const useImage = (
 
   return `/img/${src}`;
 };
+
+
 </script>

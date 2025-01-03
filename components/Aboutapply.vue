@@ -12,7 +12,7 @@
             <li 
               v-for="(scenario, index) in scenarios" 
               :key="index" 
-              class="scenario-app-ul-item mb-32 about-animate-box" 
+              class="scenario-app-ul-item mb-32" 
               :style="`--delay: ${index * 0.1}s`"
             >
               <i class="scenario-app-icon-bg mb-24">
