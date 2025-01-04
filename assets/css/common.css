@@ -736,6 +736,7 @@ img {
 .drawer .drawer-item {
   cursor: pointer;
   position: relative;
+  text-align: left;
 }
 
 .drawer .drawer-item > a {

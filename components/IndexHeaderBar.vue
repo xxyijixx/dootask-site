@@ -188,195 +188,90 @@
         </div>
       </div>
     </div>
-    <!-- 抽屉导航 -->
-    <div 
-      v-if="isDrawerVisible" 
-      ref="drawerRef"
-      class="drawer-container"
-      :class="{ 
-        'drawer-dark-mode': isDarkMode,
-        'drawer-enter': isDrawerVisible,
-        'drawer-leave': !isDrawerVisible
-        }"
-    >
-      <div class="drawer-header">
-        <NuxtLink to="/" class="drawer-logo-container">
+      <!-- 抽屉导航 -->
+      <div class="drawer" :class="{ 'drawer-open': isDrawerVisible }">
+      <div class="drawer-t mb-36">
+        <a href="/" class="logo">
           <img
             id="logo"
             :src="useImage('logo.svg', true, false)"
             alt="DooTaskLogo"
-            class="drawer-logo"
           />
           <i class="dootask txt-7002027">DooTask</i>
-        </NuxtLink>
-        <i  class="close-drawer" @click="closeDrawer">✕</i>
+        </a>
+        <i class="close-drawer" @click="closeDrawer">✕</i>
       </div>
-      
       <ul class="drawer-ul">
-        <li style="border-bottom: 1px solid #eee; padding-bottom: 10px">
-          <div 
-            v-for="item in mainMenuItems.slice(0,2)" 
-            :key="item.text"
-            class="drawer-menu-item"
-            @click="closeDrawer"
-          >
-            <NuxtLink 
-              :to="item.link" 
-              class="txt-4001620 txt"
-            >
-              {{ item.text }}
-            </NuxtLink>
+        <li class="drawer-item-t mb-16">
+          <div class="drawer-item" v-for="(item, index) in mainMenuItems.slice(0,2)" :key="index">
+              <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{ item.text }}</a>
           </div>
-
-          <div 
-            class="drawer-menu-item drawer-submenu-toggle" 
-            @click="toggleSubMenu('support')"          
-            >
-            <span class="txt-4001620 txt">支持</span>
-            <img 
-              src="/img/vector.svg" 
-              class="nav-vector" 
-              alt="支持" 
-              :class="{ 'nav-vector-rotated': activeSubMenu === 'support' }"
-            />
+          <div class="drawer-item" @click.stop="expandMenuHandle('support')">
+            <i class="txt-4001620 txt">
+              支持
+              <img
+                src="/img/vector.svg"
+                class="nav-vector"
+                alt="支持"
+                id="drawer-down-support-svg"
+                :style="isSupportMenuOpen ? 'transform: rotate(180deg)' : ''"
+              />
+            </i>
           </div>
-          <ol 
-            v-if="activeSubMenu === 'support'"
-            class="drawer-active support-submenu"
-          >
-            <li 
-              v-for="supportItem in supportItems" 
-              :key="supportItem.text"
-              class="drawer-item support-item"
-              @click="closeDrawer"
-            >
-              <NuxtLink 
-                :to="supportItem.link" 
-                class="txt-4001620 txt"
-                :target="supportItem.target"
-              >
-                {{ supportItem.text }}
-              </NuxtLink>
-            </li>
-          </ol>
-          <div 
-            v-for="item in mainMenuItems.slice(2,5)" 
-            :key="item.text"
-            class="drawer-item" 
-            style="
-              padding: 15px 20px;
-              cursor: pointer;
-              text-align: left;
-            "
-            @click="closeDrawer"
-          >
-            <NuxtLink 
-              :to="item.link" 
-              class="txt-4001620 txt"
-            >
-              {{ item.text }}
-            </NuxtLink>
+            <ol class="drawer-active" v-show="isSupportMenuOpen" id="support">
+              <div class="drawer-item" v-for="(item, index) in supportItems" :key="index">
+                <a class="txt-4001620 txt" :href="item.link" target="_blank" @click="closeDrawer">{{ item.text }}</a>
+              </div>
+            </ol>
+          <div class="drawer-item" v-for="(item, index) in mainMenuItems.slice(2,5)" :key="index">
+              <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{ item.text }}</a>
           </div>
-          
         </li>
+        <li class="drawer-item-c">
+            <div class="drawer-item" @click.stop="expandMenuHandle('theme')">
+              <i class="txt-4001620 txt">
+                主题
+                <img 
+                  src="/img/vector.svg" 
+                  alt="主题" 
+                  class="nav-vector"
+                  :style="isThemeMenuOpen ? 'transform: rotate(180deg)' : ''"
+                  />
+              </i>
+            </div>
+            <ol class="drawer-active" v-show="isThemeMenuOpen" id="theme">
+              <div class="drawer-item" v-for="(item, index) in themeItems" :key="index">
+                <a class="txt-4001620 txt" @click="setTheme(item.value)">{{ item.text }}</a>
+              </div>
+            </ol>
+          </li>
 
-        <li  style="margin-top: 20px;">
-          <div 
-            class="drawer-item" 
-            @click="toggleSubMenu('theme')"
-            style="
-              padding: 15px 20px;
-              cursor: pointer;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            "
-          >
-            <span class="txt-4001620 txt">主题</span>
-            <img 
-              src="/img/vector.svg" 
-              class="nav-vector" 
-              alt="主题" 
-              :style="{ transform: activeSubMenu === 'theme' ? 'rotate(180deg)' : 'rotate(0)' }"
-            />
-          </div>
-          
-          <ol 
-            v-if="activeSubMenu === 'theme'"
-            class="drawer-active support-submenu"
-          >
-            <li 
-              v-for="themeItem in themeItems" 
-              :key="themeItem.value"
-              class="drawer-item support-item"
-              @click="setTheme(themeItem.value)"
-            >
-              <span class="txt-4001620 txt">{{ themeItem.text }}</span>
-            </li>
-          </ol>
-        </li>
+          <li class="drawer-item-c">
+            <div class="drawer-item" @click.stop="expandMenuHandle('language')">
+              <i class="txt-4001620 txt">
+                语言
+                <img 
+                  src="/img/vector.svg" 
+                  alt="语言" 
+                  class="nav-vector"
+                  :style="isLanguageMenuOpen ? 'transform: rotate(180deg)' : ''"
+                  />
+              </i>
+            </div>
+            <ol class="drawer-active" v-show="isLanguageMenuOpen" id="language">
+              <div class="drawer-item" v-for="(item, index) in languageItems" :key="index">
+                <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{ item.text }}</a>
+              </div>
+            </ol>
+          </li>
 
-        <li>
-          <div 
-            class="drawer-item" 
-            @click="toggleSubMenu('language')"
-            style="
-              padding: 10px 20px;
-              cursor: pointer;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            "
-          >
-            <span class="txt-4001620 txt">语言</span>
-            <img 
-              src="/img/vector.svg" 
-              class="nav-vector" 
-              alt="语言" 
-              :style="{ transform: activeSubMenu === 'language' ? 'rotate(180deg)' : 'rotate(0)' }"
-            />
-          </div>
-          
-          <ol 
-            v-if="activeSubMenu === 'language'"
-            class="drawer-active"
-            style="
-              list-style: none;
-              padding: 0 50px;
-              text-align: left;
-            "
-          >
-            <li 
-              v-for="langItem in languageItems" 
-              :key="langItem.value"
-              class="drawer-item"
-              style="
-                padding: 10px 20px;
-                cursor: pointer;
-              "
-              @click="setLocale(langItem.value)"
-            >
-              <span class="txt-4001620 txt">{{ langItem.text }}</span>
-            </li>
-          </ol>
-        </li>
 
-        <li>
-          <div 
-            class="drawer-item"
-            style="
-              padding: 10px 20px;
-              cursor: pointer;
-              text-align: left;
-            "
-          >
-            <a 
-              href="https://www.dootask.com/manage/dashboard" 
-              class="txt-4001620 txt"
-            >
-              立即体验
-            </a>
-          </div>
+        <!-- <li class="drawer-item" v-for="(item, index) in languageItems" :key="index">
+          <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{ item.text }}</a>
+        </li> -->
+
+        <li class="drawer-item">
+          <a class="txt-4001620 txt" href="https://www.dootak.com/manage/dashboard" @click="closeDrawer">立即体验</a>
         </li>
       </ul>
     </div>
@@ -468,23 +363,7 @@ const languageItems = [
   { text: "English", value: "en" }
 ]
 
-// 打开抽屉
-const openDrawer = () => {
-  isDrawerVisible.value = true
-}
 
-// 关闭抽屉
-const closeDrawer = () => {
-  isDrawerVisible.value = false
-  activeSubMenu.value = null
-}
-
-// 切换子菜单
-const toggleSubMenu = (menu: string) => {
-  activeSubMenu.value = activeSubMenu.value === menu ? null : menu
-}
-
-// 设置主题
 // 设置主题
 const setTheme = (newTheme: 'light' | 'dark') => {
   try {
@@ -507,139 +386,54 @@ const setTheme = (newTheme: 'light' | 'dark') => {
     // 切换 HTML 根元素的 dark 类
     document.documentElement.classList.toggle('dark', newTheme === 'dark')
     console.log('是否添加 dark 类:', document.documentElement.classList.contains('dark'))
-    
-    closeDrawer()
   } catch (error) {
     console.error('设置主题时出错:', error)
   }
 }
 
+//控制菜单三个选项的展开
+const isSupportMenuOpen = ref(false);
+const isThemeMenuOpen = ref(false);
+const isLanguageMenuOpen = ref(false);
 
-// 添加点击外部关闭抽屉的功能
-onMounted(() => {
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (
-      isDrawerVisible.value && 
-      drawerRef.value && 
-      !drawerRef.value.contains(event.target as Node)
-    ) {
-      closeDrawer()
-    }
+const openDrawer = () => {
+  isDrawerVisible.value = true;
+};
+
+const closeDrawer = () => {
+  isDrawerVisible.value = false;
+};
+
+const expandMenuHandle = (val: string) => {
+  if (val === 'support') {
+    isSupportMenuOpen.value = !isSupportMenuOpen.value;
+  } else if (val === 'language') {
+      isLanguageMenuOpen.value = !isLanguageMenuOpen.value; // 切换语言菜单的显示状态
+  }else if (val === 'theme') {
+    isThemeMenuOpen.value = !isThemeMenuOpen.value; // 切换主题菜单的显示状态
   }
+};
 
-  // // 阻止菜单按钮的点击事件冒泡
-  const menuBtn = document.querySelector('.menuBtn')
-  menuBtn?.addEventListener('click', (e) => e.stopPropagation())
 
-  document.addEventListener('click', handleOutsideClick)
 
-  // 组件卸载时移除事件监听器
-  onUnmounted(() => {
-    document.removeEventListener('click', handleOutsideClick)
-  })
-})
+
+onMounted(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.querySelector('.drawer');
+
+  // 为小屏幕下的抽屉添加显示与关闭逻辑
+  menuBtn?.addEventListener('click', () => {
+    drawer?.classList.add('open-drawer');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (!drawer?.contains(e.target as Node) && e.target !== menuBtn) {
+      drawer?.classList.remove('open-drawer');
+    }
+  });
+});
+
 
 
 </script>
 
-
-<style scoped>
-.drawer-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 100%;
-  z-index: 1000;
-  overflow-y: auto;
-  background: white;
-  color: #202124;
-  box-shadow: 5px 0 15px -5px rgba(0, 0, 0, 0.1); /* Add shadow effect */
-  transition: 
-    transform 0.3s ease-out, 
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.drawer-enter {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.drawer-leave {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.drawer-dark-mode {
-  background: #1e1e1e;
-  color: white;
-  box-shadow: -10px 0 15px -5px rgba(0, 0, 0, 0.3); /* Slightly darker shadow for dark mode */
-}
-
-.drawer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
-
-.drawer-logo-container {
-  display: flex; 
-  align-items: center;
-}
-
-.drawer-logo {
-  height: 33px; 
-  margin-right: 10px;
-}
-
-.close-drawer {
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.drawer-ul{
-  padding: 10px;
-}
-
-.drawer-menu-item {
-  padding: 10px 20px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.drawer-submenu-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-vector {
-  transition: transform 0.3s ease;
-}
-
-.nav-vector-rotated {
-  transform: rotate(180deg);
-}
-
-.support-submenu {
-  text-align: left;
-  list-style: none;
-  padding: 0 12px;
-}
-
-.support-item {
-  padding: 10px 58px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.drawer-menu-experience {
-  padding: 10px 66px;
-  cursor: pointer;
-  text-align: left;
-}
-</style>
