@@ -121,7 +121,7 @@
             </a>
           </span>
         </div>
-        <div class="menuBtn">
+        <div class="menuBtn" @click="toggleDrawer">
           <img
             id="menuBtn"
             :src="useImage('menu.svg', false, false)"
@@ -141,6 +141,10 @@ const { $setTheme } = useNuxtApp();
 
 // 创建响应式主题变量
 const theme = ref(localStorage.getItem('theme') || 'light');
+
+// 抽屉相关状态和方法
+const isDrawerOpen = ref(false)
+const activeSubMenu = ref<string | null>(null)
 
 // 监听主题变化事件
 const handleThemeChange = (event: CustomEvent) => {
@@ -199,4 +203,38 @@ const useImage = (
 };
 
 
+// 抽屉方法
+const toggleDrawer = () => {
+  isDrawerOpen.value = !isDrawerOpen.value
+}
+
+const closeDrawer = () => {
+  isDrawerOpen.value = false
+  activeSubMenu.value = null
+}
+
+const toggleSubMenu = (menu: string) => {
+  activeSubMenu.value = activeSubMenu.value === menu ? null : menu
+}
+
+const handleSubMenuItem = (item: any) => {
+  closeDrawer()
+}
+
+const supportItems = [
+  { label: '下载中心', to: '/download' },
+  { label: '帮助中心', href: 'http://localhost:5173/' },
+  { label: '隐私政策', to: '/privacy', target: '_blank' },
+  { label: 'API 文档', href: 'https://www.dootask.com/docs/index.html', target: '_blank' }
+]
+
+const themeOptions = [
+  { label: 'Light', value: 'light' },
+  { label: 'Dark', value: 'dark' }
+]
+
+const languageOptions = [
+  { label: '简体中文', value: 'zh' },
+  { label: 'English', value: 'en' }
+]
 </script>

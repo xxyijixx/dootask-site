@@ -37,7 +37,7 @@
                       {{ plan.buttonText }}
                     </button>
                   </a>
-                  <button v-else class="btn btn-primary" @click="handlePlanAction(plan)">
+                  <button v-else class="btn btn-primary" @click="handlePlanSelect(plan)">
                     {{ plan.buttonText }}
                   </button>
                 </span>
@@ -79,30 +79,72 @@
       </div>
   
       <!-- 联系我们模态框 -->
-      <div v-if="showContactModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" @click="showContactModal = false">&times;</span>
-          <h2>{{ modalTitle }}</h2>
-          <form @submit.prevent="submitContactForm">
-            <input 
-              type="text" 
-              v-model="contactForm.name" 
-              placeholder="姓名" 
-              required 
-            />
-            <input 
-              type="email" 
-              v-model="contactForm.email" 
-              placeholder="邮箱" 
-              required 
-            />
-            <textarea 
-              v-model="contactForm.message" 
-              placeholder="您的需求" 
-              required
-            ></textarea>
-            <button type="submit" class="btn btn-primary">提交</button>
-          </form>
+    <div 
+      v-if="showContactModal" 
+      class="modal-overlay" 
+      @click.self="closeModal"
+      style="
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background-color: rgba(0,0,0,0.5); 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        z-index: 1000;
+      "
+    >
+    <div 
+      class="modal-content" 
+      style="
+        background-color: white; 
+        padding: 25px; 
+        border-radius: 12px; 
+        max-width: 430px; 
+        width: 80%; 
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      "
+    >
+      <button 
+        @click="closeModal" 
+        style="
+          position: absolute; 
+          top: 10px; 
+          right: 10px; 
+          background: none; 
+          border: none; 
+          font-size: 24px; 
+          cursor: pointer;
+        "
+      >
+        &times;
+      </button>
+      
+      <h3>{{ modalTitle }}</h3>
+      <br>
+        <div>
+              <p>如果有任何问题，欢迎使用以下方式与我们联系。</p>
+              <p>座机电话：0771-3164099</p>
+              <p>邮箱地址：service@hitosea.com</p>
+        </div>
+      <div class="modal-actions" style="text-align: right; margin-top: 20px;">
+        <button 
+          @click="closeModal"
+          style="
+            padding: 10px 20px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer;
+          "
+        >
+          确定
+        </button>
+          </div>
         </div>
       </div>
     </section>
@@ -276,12 +318,20 @@
     }
   }
   
-  function submitContactForm() {
-    console.log('提交表单:', contactForm.value)
-    
-    alert('感谢您的咨询，我们将尽快与您联系！')
-    
-    contactForm.value = { name: '', email: '', message: '' }
-    showContactModal.value = false
+  function handlePlanSelect(plan) {
+  // 如果有直接链接，打开链接
+  if (plan.buttonLink) {
+    window.open(plan.buttonLink, '_blank')
+    return
   }
+
+  // 打开联系模态框
+  modalTitle.value = plan.buttonText
+  showContactModal.value = true
+}
+
+// 改进 closeModal 函数
+function closeModal() {
+  showContactModal.value = false
+}
   </script>

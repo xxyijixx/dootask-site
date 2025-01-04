@@ -1,3 +1,4 @@
+//nuxt.config.ts
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig(
   {
@@ -57,6 +58,11 @@ export default defineNuxtConfig(
     './assets/css/solution.css',
     './assets/css/product.css', // 添加 product.css
   ],
+  router: {
+    options: {
+      strict: false  // 允许更灵活的路由匹配
+    }
+  }
 },
 
 );

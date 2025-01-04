@@ -68,10 +68,44 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed,onMounted, onUnmounted } from 'vue'
 
 const activeCardIndex = ref(0)
 
+// 使用响应式方式检测主题
+const isDarkMode = ref(false)
+
+// 监听主题变化
+const updateTheme = () => {
+  const htmlElement = document.documentElement
+  const darkClass = htmlElement.classList.contains('dark')
+  
+  console.log('当前主题状态:', darkClass ? '深色' : '浅色')
+  
+  isDarkMode.value = darkClass
+}
+
+onMounted(() => {
+  // 初始化主题
+  updateTheme()
+  
+  // 添加主题变化监听器
+  const observer = new MutationObserver(updateTheme)
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
+  })
+
+  // 存储观察器以便后续卸载
+  window.themeObserver = observer
+})
+
+onUnmounted(() => {
+  // 卸载观察器
+  if (window.themeObserver) {
+    window.themeObserver.disconnect()
+  }
+})
 
 const toggleCard = (index) => {
   activeCardIndex.value = activeCardIndex.value === index ? -1 : index
@@ -83,28 +117,40 @@ const scenarioItems = [
     title: '项目管理', 
     description: '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
     picAlt: '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
-    picSrc: '/img/light/zh_home_pic2.png'
+    picSrc: {
+      light: '/img/light/zh_home_pic2.png',
+      dark: '/img/dark/zh_home_pic2.png'
+    }
   },
   { 
     icon: '/img/home_icon2.svg', 
     title: '团队协作', 
     description: '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
     picAlt: '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
-    picSrc: '/img/light/zh_home_pic3.png'
+    picSrc: {
+      light: '/img/light/zh_home_pic3.png',
+      dark: '/img/dark/zh_home_pic3.png'
+    }
   },
   { 
     icon: '/img/home_icon3.svg', 
     title: '任务协同', 
     description: '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
     picAlt: '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
-    picSrc: '/img/light/zh_home_pic4.png'
+    picSrc: {
+      light: '/img/light/zh_home_pic4.png',
+      dark: '/img/dark/zh_home_pic4.png'
+    }
   },
   { 
     icon: '/img/home_icon4.svg', 
     title: '绩效衡量', 
     description: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picAlt: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
-    picSrc: '/img/light/zh_home_pic5.png'
+    picSrc: {
+      light: '/light/zh_home_pic5.png',
+      dark: '/dark/zh_home_pic5.png'
+    }
   },
   { 
     icon: '/img/home_icon5.svg', 
@@ -122,7 +168,7 @@ const mobileScenarioItems = scenarioItems
 const currentPicSrc = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
-  return scenarioItems[index].picSrc
+  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light']
 })
 
 const currentPicAlt = computed(() => {
