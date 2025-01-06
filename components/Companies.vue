@@ -1,4 +1,5 @@
 <template>
+ 
   <!-- 合作公司区域 -->
   <article class="companies">
     <div class="companies-con">
@@ -19,4 +20,8 @@
       </ul>
     </div>
   </article>
+
 </template>
+
+
+

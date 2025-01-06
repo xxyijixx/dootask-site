@@ -1,7 +1,7 @@
 // plugins/theme.ts
 import { defineNuxtPlugin } from '#app';
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin((nuxtApp) => {    //通过 defineNuxtPlugin 定义的插件会在 Nuxt 应用启动时被调用。
   // Function to change the image source dynamically
   function changeImageSrc(selector: string, src: string): void {
     const element = document.querySelector(selector) as HTMLImageElement;

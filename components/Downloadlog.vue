@@ -47,6 +47,10 @@
   import axios from 'axios'
   
   const releases = ref([])
+
+  // 主题状态
+const isDarkMode = ref(false)
+
   
   const getLocalStorageItem = (key) => {
     const record = JSON.parse(localStorage.getItem(key))
@@ -90,16 +94,51 @@
       console.error('Failed to fetch releases:', error)
     }
   }
+
+// 切换主题，获取图片路径
+const currentPicSrc = computed(() => {
+  return isDarkMode.value
+    ? '/img/dark/zh_dow_pic1.png'
+    : '/img/light/zh_dow_pic1.png'
+})
+
+// 监听主题变化
+const updateTheme = () => {
+  const htmlElement = document.documentElement
+  const darkClass = htmlElement.classList.contains('dark')
+  isDarkMode.value = darkClass
+}
+
   
-  onMounted(() => {
-    const cachedReleases = getLocalStorageItem('logs_dowmload_zh')
-    
-    if (cachedReleases) {
-      releases.value = cachedReleases
-    } else {
-      fetchReleases()
-    }
+// 初始化并监听主题变化
+onMounted(() => {
+  const cachedReleases = getLocalStorageItem('logs_dowmload_zh')
+  
+  if (cachedReleases) {
+    releases.value = cachedReleases
+  } else {
+    fetchReleases()
+  }
+
+  // 初始化主题
+  updateTheme()
+
+  // 监听主题变化
+  const observer = new MutationObserver(updateTheme)
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
   })
+
+  // 存储观察器以便后续卸载
+  window.themeObserver = observer
+})
+
+onUnmounted(() => {
+  if (window.themeObserver) {
+    window.themeObserver.disconnect()
+  }
+})
   </script>
   
   <style scoped>

@@ -2,26 +2,26 @@ export default defineI18nConfig(() => ({
 
   i18n: {
     // 语言选项
-    locales: [
-      { 
-        code: 'en', 
-        iso: 'en-US', 
-        name: 'English',
-        file: 'en.json'
-      },
-      { 
-        code: 'zh', 
-        iso: 'zh-CN', 
-        name: '中文',
-        file: 'zh.json'
-      },
-    ],
+    // locales: [
+    //   { 
+    //     code: 'en', 
+    //     iso: 'en-US', 
+    //     name: 'English',
+    //     file: 'en.json'
+    //   },
+    //   { 
+    //     code: 'zh', 
+    //     iso: 'zh-CN', 
+    //     name: '中文',
+    //     file: 'zh.json'
+    //   },
+    // ],
     lazy: true,
     langDir: 'locales',
-    defaultLocale: 'en',
-    strategy: 'prefix_except_default',
+    defaultLocale: 'zh',
+    // strategy: 'prefix_except_default',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: 'zh',
       legacy: false,
     }
   },
@@ -31,6 +31,7 @@ export default defineI18nConfig(() => ({
   fallbackLocale: 'en',
   availableLocales: ['zh', 'en'],
   messages: {
+    
     en: {
       dootask: 'DooTask',
       nav_product: 'Product',
@@ -48,6 +49,7 @@ export default defineI18nConfig(() => ({
       nav_about_us: '关于我们',
     },
   },
+  
 }
 )
 );

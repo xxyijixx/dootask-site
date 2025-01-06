@@ -1,10 +1,11 @@
 <template>
   <div>
-    <IndexHeaderBar></IndexHeaderBar>
+    <HeaderBar></HeaderBar>
     <!-- 内容区域 -->
     <main>
       <!-- 主要区域划分 -->
       <section>
+        <Indexmain></Indexmain>
         <!-- 合作公司区域 -->
         <Companies></Companies>
         <!-- 功能卡片区域 -->
@@ -19,7 +20,7 @@
 </template>
 
 <script setup>
-import IndexHeaderBar from '~/components/IndexHeaderBar.vue'
+import Indexmain from '~/components/Indexmain.vue'
 import Companies from '~/components/Companies.vue'
 import FunctionCard from '~/components/FunctionCard.vue'
 import WhyChoose from '~/components/WhyChoose.vue'

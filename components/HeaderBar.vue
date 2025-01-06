@@ -7,7 +7,7 @@
           <!-- <a href="../zh/index.html" class="logo"> -->
           <img
             id="logo"
-            :src="useImage('logo.svg', (useTheme = true), (useLang = false))"
+            :src="useImage('logo.svg', true, false)"
             alt="DooTask,Logo"
           />
           <i class="dootask txt-7002027">DooTask</i>
@@ -15,12 +15,12 @@
         </NuxtLink>
         <ul class="nav-ul">
           <li class="nav-ul-item">
-            <NuxtLink class="txt-4001620 txt nav-product" to="/product"
+            <NuxtLink class="txt-4001620 txt nav-product" to="/product" :class="{ 'active': route.path === '/product' }" 
               >产品</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
-            <NuxtLink class="txt-4001620 txt nav-solutions" to="/solutions"
+            <NuxtLink class="txt-4001620 txt nav-solutions" to="/solutions" :class="{ 'active': route.path === '/solutions' }"
               >解决方案</NuxtLink
             >
           </li>
@@ -44,17 +44,17 @@
               id="submenu-pop"
               :style="isMenuPopVisisble ? 'display: block' : ''"
             >
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink class="txt-4001418 txt-sub" to="/download"
                   >下载中心</NuxtLink
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item" @click="changeMenu()">
                 <a class="txt-4001418 txt-sub" href="http://localhost:5173/"
                   >帮助中心</a
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item"  @click="changeMenu()">
                 <NuxtLink
                   class="txt-4001418 txt-sub"
                   to="/privacy"
@@ -62,7 +62,7 @@
                   >隐私政策</NuxtLink
                 >
               </li>
-              <li class="submenu-pop-item" onclick="changeMenu()">
+              <li class="submenu-pop-item"  @click="changeMenu()">
                 <a
                   class="txt-4001418 txt-sub"
                   href="https://www.dootask.com/docs/index.html"
@@ -73,12 +73,12 @@
             </ol>
           </li>
           <li class="nav-ul-item">
-            <NuxtLink class="txt-4001620 txt nav-price" to="/price"
+            <NuxtLink class="txt-4001620 txt nav-price" to="/price" :class="{ 'active': route.path === '/price' }"
               >服务价格</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
-            <NuxtLink class="txt-4001620 txt nav-about" to="/about"
+            <NuxtLink class="txt-4001620 txt nav-about" to="/about" :class="{ 'active': route.path === '/about' }"
               >关于我们</NuxtLink
             >
           </li>
@@ -121,7 +121,7 @@
             </a>
           </span>
         </div>
-        <div class="menuBtn" @click="toggleDrawer">
+        <div class="menuBtn" @click="openDrawer">
           <img
             id="menuBtn"
             :src="useImage('menu.svg', false, false)"
@@ -130,43 +130,174 @@
         </div>
       </div>
     </div>
+    <!-- 抽屉导航 -->
+    <div class="drawer" :class="{ 'drawer-open': isDrawerVisible }">
+      <div class="drawer-t mb-36">
+        <a href="/" class="logo">
+          <img
+            id="logo"
+            :src="useImage('logo.svg', true, false)"
+            alt="DooTaskLogo"
+          />
+          <i class="dootask txt-7002027">DooTask</i>
+        </a>
+        <i class="close-drawer" @click="closeDrawer">✕</i>
+      </div>
+      <ul class="drawer-ul">
+        <li class="drawer-item-t mb-16">
+          <div class="drawer-item" v-for="(item, index) in mainMenuItems.slice(0,2)" :key="index">
+              <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{ item.text }}</a>
+          </div>
+          <div class="drawer-item" @click.stop="expandMenuHandle('support')">
+            <i class="txt-4001620 txt">
+              支持
+              <img
+                src="/img/vector.svg"
+                class="nav-vector"
+                alt="支持"
+                id="drawer-down-support-svg"
+                :style="isSupportMenuOpen ? 'transform: rotate(180deg)' : ''"
+              />
+            </i>
+          </div>
+            <ol class="drawer-active" v-show="isSupportMenuOpen" id="support">
+              <div class="drawer-item" v-for="(item, index) in supportItems" :key="index">
+                <a class="txt-4001620 txt" :href="item.link" target="_blank" @click="closeDrawer">{{ item.text }}</a>
+              </div>
+            </ol>
+          <div class="drawer-item" v-for="(item, index) in mainMenuItems.slice(2,5)" :key="index">
+              <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{ item.text }}</a>
+          </div>
+        </li>
+        <li class="drawer-item-c">
+            <div class="drawer-item" @click.stop="expandMenuHandle('theme')">
+              <i class="txt-4001620 txt">
+                主题
+                <img 
+                  src="/img/vector.svg" 
+                  alt="主题" 
+                  class="nav-vector"
+                  :style="isThemeMenuOpen ? 'transform: rotate(180deg)' : ''"
+                  />
+              </i>
+            </div>
+            <ol class="drawer-active" v-show="isThemeMenuOpen" id="theme">
+              <div class="drawer-item" v-for="(item, index) in themeItems" :key="index">
+                <a class="txt-4001620 txt" @click="setTheme(item.value)">{{ item.text }}</a>
+              </div>
+            </ol>
+          </li>
+
+          <li class="drawer-item-c">
+            <div class="drawer-item" @click.stop="expandMenuHandle('language')">
+              <i class="txt-4001620 txt">
+                语言
+                <img 
+                  src="/img/vector.svg" 
+                  alt="语言" 
+                  class="nav-vector"
+                  :style="isLanguageMenuOpen ? 'transform: rotate(180deg)' : ''"
+                  />
+              </i>
+            </div>
+            <ol class="drawer-active" v-show="isLanguageMenuOpen" id="language">
+              <div class="drawer-item" v-for="(item, index) in languageItems" :key="index">
+                <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{ item.text }}</a>
+              </div>
+            </ol>
+          </li>
+
+
+        <!-- <li class="drawer-item" v-for="(item, index) in languageItems" :key="index">
+          <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{ item.text }}</a>
+        </li> -->
+
+        <li class="drawer-item">
+          <a class="txt-4001620 txt" href="https://www.dootak.com/manage/dashboard" @click="closeDrawer">立即体验</a>
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useRoute } from 'vue-router'; 
 
+// 获取当前路由信息
+const route = useRoute();
 const { setLocale, locale } = useI18n();
 const { $setTheme } = useNuxtApp();
 
-// 创建响应式主题变量
-const theme = ref(localStorage.getItem('theme') || 'light');
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false)
-const activeSubMenu = ref<string | null>(null)
 
-// 监听主题变化事件
-const handleThemeChange = (event: CustomEvent) => {
-  theme.value = event.detail;
-};
+//控制菜单三个选项的展开
+const isSupportMenuOpen = ref(false);
+const isThemeMenuOpen = ref(false);
+const isLanguageMenuOpen = ref(false);
+
+
+
 
 onMounted(() => {
-  // 添加事件监听器
-  window.addEventListener('theme-change', handleThemeChange as EventListener);
+  const savedTheme = localStorage.getItem('theme') || 'light'; // 从 localStorage 获取主题
+  setTheme(savedTheme); // 初始化主题
+
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.querySelector('.drawer');
+
+  // 为小屏幕下的抽屉添加显示与关闭逻辑
+  menuBtn?.addEventListener('click', () => {
+    drawer?.classList.add('open-drawer');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (!drawer?.contains(e.target as Node) && e.target !== menuBtn) {
+      drawer?.classList.remove('open-drawer');
+    }
+  });
 });
 
-onUnmounted(() => {
-  // 移除事件监听器
-  window.removeEventListener('theme-change', handleThemeChange as EventListener);
-});
+
 
 // 语言选择
 const isLangPopVisisble = ref(false);
 
 const showLangPopHandle = () => {
-  isLangPopVisisble.value = true;
-};
+  isLangPopVisisble.value = true
+}
+
+
+// 设置主题
+const setTheme = (newTheme: 'light' | 'dark') => {
+  try {
+    console.log('当前主题:', newTheme)
+    
+    // 使用 Nuxt 提供的 $setTheme 方法
+    $setTheme(newTheme)
+    
+    // 使用 useState 管理主题
+    const theme = useState('theme', () => newTheme)
+    console.log('useState 初始值:', theme.value)
+    
+    theme.value = newTheme
+    console.log('useState 更新后:', theme.value)
+
+    // 更新 localStorage
+    localStorage.setItem('theme', newTheme)
+    console.log('localStorage 主题:', localStorage.getItem('theme'))
+    
+    // 切换 HTML 根元素的 dark 类
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+    console.log('是否添加 dark 类:', document.documentElement.classList.contains('dark'))
+  } catch (error) {
+    console.error('设置主题时出错:', error)
+  }
+}
+
+
 // 导航下拉菜单
 const isMenuPopVisisble = ref(false);
 
@@ -178,17 +309,20 @@ const changeMenu = (type?: string) => {
   isMenuPopVisisble.value = false;
 };
 
-const setTheme = (newTheme: 'dark' | 'light') => {
-  $setTheme(newTheme);
-};
+
+//抽屉导航
+const isDarkMode = computed(() => {
+  return document.documentElement.classList.contains('dark')
+})
 
 const useImage = (
   src: string,
   useTheme: boolean = true,
   useLang: boolean = true,
 ) => {
-  const lang = locale.value;
-  const theme = localStorage.getItem('theme') || 'light';
+  const lang = locale.value || 'zh';
+  const theme = 'light';
+
   if (useTheme && useLang) {
     return `/img/${theme}/${lang}_${src}`;
   }
@@ -202,39 +336,59 @@ const useImage = (
   return `/img/${src}`;
 };
 
+ // 状态管理
+const isDrawerVisible = ref(false)
+const drawerRef = ref<HTMLElement | null>(null)
+const activeSubMenu = ref<string | null>(null)
 
-// 抽屉方法
-const toggleDrawer = () => {
-  isDrawerOpen.value = !isDrawerOpen.value
-}
-
-const closeDrawer = () => {
-  isDrawerOpen.value = false
-  activeSubMenu.value = null
-}
-
-const toggleSubMenu = (menu: string) => {
-  activeSubMenu.value = activeSubMenu.value === menu ? null : menu
-}
-
-const handleSubMenuItem = (item: any) => {
-  closeDrawer()
-}
+// 菜单项数据
+const mainMenuItems = [
+  { text: "产品", link: "/product" },
+  { text: "解决方案", link: "/solutions" },
+  { text: "服务价格", link: "/price" },
+  { text: "关于我们", link: "/about" }
+]
 
 const supportItems = [
-  { label: '下载中心', to: '/download' },
-  { label: '帮助中心', href: 'http://localhost:5173/' },
-  { label: '隐私政策', to: '/privacy', target: '_blank' },
-  { label: 'API 文档', href: 'https://www.dootask.com/docs/index.html', target: '_blank' }
+  { text: "下载中心", link: "/download" },
+  { text: "帮助中心", link: "/help" },
+  { text: "隐私政策", link: "/privacy", target: "_blank" },
+  { text: "API 文档", link: "https://www.dootask.com/docs/index.html", target: "_blank" }
 ]
 
-const themeOptions = [
-  { label: 'Light', value: 'light' },
-  { label: 'Dark', value: 'dark' }
+const themeItems = [
+  { text: "Light", value: "light" },
+  { text: "Dark", value: "dark" }
 ]
 
-const languageOptions = [
-  { label: '简体中文', value: 'zh' },
-  { label: 'English', value: 'en' }
+const languageItems = [
+  { text: "简体中文", value: "zh" },
+  { text: "English", value: "en" }
 ]
+
+
+const openDrawer = () => {
+  isDrawerVisible.value = true;
+};
+
+const closeDrawer = () => {
+  isDrawerVisible.value = false;
+};
+
+const expandMenuHandle = (val: string) => {
+  if (val === 'support') {
+    isSupportMenuOpen.value = !isSupportMenuOpen.value;
+  } else if (val === 'language') {
+      isLanguageMenuOpen.value = !isLanguageMenuOpen.value; // 切换语言菜单的显示状态
+  }else if (val === 'theme') {
+    isThemeMenuOpen.value = !isThemeMenuOpen.value; // 切换主题菜单的显示状态
+  }
+};
+
+//语言选择
+const handleSetLocale = (newLocale: 'zh' | 'en') => {
+  setLocale(newLocale)
+  isLangPopVisisble.value = false
+}
+
 </script>

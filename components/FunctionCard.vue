@@ -56,9 +56,9 @@
             <i class="txt-4001524 card-ul-item-txt mb-16">{{ item.description }}</i>
             <img
               class="card-pic mb-40"
-              :id="`home_pic${index + 2}`"
-              :src="item.picSrc"
-              :alt="item.picAlt"
+              :id="home_pic2"
+              :src="currentPicSrc"
+              :alt="currentPicAlt"
             />
           </li>
         </ul>
@@ -68,22 +68,39 @@
 </template>
 
 <script setup>
-import { ref, computed,onMounted, onUnmounted } from 'vue'
+import { ref, computed,onMounted, onUnmounted, watch } from 'vue'
 
 const activeCardIndex = ref(0)
+const { $setTheme } = useNuxtApp();
 
 // 使用响应式方式检测主题
 const isDarkMode = ref(false)
+
+const home_pic2 = 'home_pic2';
+
+
+// 修改计算属性，添加默认值处理
+const currentPicSrc = computed(() => {
+  // 如果 activeCardIndex 为 -1，默认使用第一个图片
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
+  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light']
+})
+
+const currentPicAlt = computed(() => {
+  // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
+  return scenarioItems[index].picAlt
+})
+
+
 
 // 监听主题变化
 const updateTheme = () => {
   const htmlElement = document.documentElement
   const darkClass = htmlElement.classList.contains('dark')
-  
-  console.log('当前主题状态:', darkClass ? '深色' : '浅色')
-  
-  isDarkMode.value = darkClass
+  isDarkMode.value = darkClass;
 }
+
 
 onMounted(() => {
   // 初始化主题
@@ -96,8 +113,22 @@ onMounted(() => {
     attributeFilter: ['class']
   })
 
-  // 存储观察器以便后续卸载
+  // // 存储观察器以便后续卸载
   window.themeObserver = observer
+
+  if (import.meta.client) {
+    const theme = localStorage.getItem('theme');
+    // 你的其他与 theme 相关的代码
+    if (theme) {
+    // 根据存储的主题设置样式
+    $setTheme(theme); // 调用你的设置主题函数
+  } else {
+    // 如果没有存储主题，可以设置默认主题
+    $setTheme('light'); // 设置默认主题为 'light'
+  }
+    
+  }
+
 })
 
 onUnmounted(() => {
@@ -148,8 +179,8 @@ const scenarioItems = [
     description: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picAlt: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picSrc: {
-      light: '/light/zh_home_pic5.png',
-      dark: '/dark/zh_home_pic5.png'
+      light: '/img/light/zh_home_pic5.png',
+      dark: '/img/dark/zh_home_pic5.png'
     }
   },
   { 
@@ -157,23 +188,15 @@ const scenarioItems = [
     title: '沟通汇报', 
     description: '基于工作场景的即时通讯及共享，实现更好的团队沟通。',
     picAlt: '基于工作场景的即时通讯和分享，以实现更好的团队沟通。',
-    picSrc: '/img/light/zh_home_pic6.png'
+    picSrc: {
+      light: '/img/light/zh_home_pic6.png',
+      dark: '/img/dark/zh_home_pic6.png'
+    }
   }
 ]
 
 const mobileScenarioItems = scenarioItems
 
 
-// 修改计算属性，添加默认值处理
-const currentPicSrc = computed(() => {
-  // 如果 activeCardIndex 为 -1，默认使用第一个图片
-  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
-  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light']
-})
 
-const currentPicAlt = computed(() => {
-  // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
-  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
-  return scenarioItems[index].picAlt
-})
 </script>
