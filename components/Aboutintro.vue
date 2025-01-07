@@ -129,3 +129,12 @@
   <style scoped>
   /* You can add any specific scoped styles here if needed */
   </style>
+
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-11-url) top right no-repeat;
+    background-size: cover;
+}
+
+</style>

@@ -277,3 +277,11 @@ function closeModal() {
 </script>
 
 
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-10-url) top left no-repeat;
+    background-size: cover;
+}
+
+</style>

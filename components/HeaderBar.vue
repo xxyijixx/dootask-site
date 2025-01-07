@@ -1,6 +1,13 @@
 <!-- 关于我们头部 -->
 <template>
-  <header class="head">
+  <header 
+    class="head"
+    :style="headerBackgroundStyle"
+    :class="{ 
+      'head-background': showBackground, 
+      'head-scrolled': !showBackground 
+    }"
+    >
     <div class="nav">
       <div class="nav-layout">
         <NuxtLink to="/" class="logo">
@@ -238,6 +245,43 @@ const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
 const isLanguageMenuOpen = ref(false);
 
+// 背景映射
+const backgroundMap = {
+  '/': 'var(--bg-1-url)',
+  '/product': 'var(--bg-3-url)',
+  '/download': 'var(--bg-8-url)',
+  '/about': 'var(--bg-11-url)',
+  '/solutions': 'var(--bg-5-url)',
+  '/price': 'var(--bg-10-url)'
+};
+
+// 背景显示状态
+const showBackground = ref(true);
+
+// 计算当前页面的背景
+const headerBackgroundStyle = computed(() => {
+  const backgroundUrl = backgroundMap[route.path] || backgroundMap['/'];
+  return {
+    background: `${backgroundUrl} center left no-repeat`,
+    backgroundSize: 'cover',
+    opacity: showBackground.value ? '1' : '0'
+  };
+});
+
+// 优化后的滚动处理逻辑
+let scrollTimeout: number | null = null;
+
+// 滚动状态
+const handleScroll = () => {
+  if (scrollTimeout) {
+    cancelAnimationFrame(scrollTimeout);  // 如果存在之前的延迟更新，取消它
+  }
+
+  scrollTimeout = requestAnimationFrame(() => {
+    showBackground.value = window.scrollY <= 100;
+  });
+};
+
 
 
 
@@ -258,6 +302,13 @@ onMounted(() => {
       drawer?.classList.remove('open-drawer');
     }
   });
+
+  showBackground.value = true;
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
 });
 
 
@@ -392,3 +443,21 @@ const handleSetLocale = (newLocale: 'zh' | 'en') => {
 }
 
 </script>
+
+<style scoped>
+.head {
+  position: relative;
+  transition: opacity 0.3s ease; /* 只处理 opacity，避免影响其它属性 */
+}
+
+.head-background {
+  background: var(--current-page-bg) center left no-repeat;
+  background-size: cover;
+  opacity: 1; /* 背景完全显示 */
+}
+
+.head-scrolled {
+  background: transparent !important;  /* 滚动时背景透明 */
+  opacity: 0; /* 背景完全隐藏 */
+}
+</style>

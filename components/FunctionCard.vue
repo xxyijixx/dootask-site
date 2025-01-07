@@ -56,9 +56,8 @@
             <i class="txt-4001524 card-ul-item-txt mb-16">{{ item.description }}</i>
             <img
               class="card-pic mb-40"
-              :id="home_pic2"
-              :src="currentPicSrc"
-              :alt="currentPicAlt"
+              :src="item.picSrc[isDarkMode ? 'dark' : 'light']"
+              :alt="item.picAlt"
             />
           </li>
         </ul>

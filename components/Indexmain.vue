@@ -38,16 +38,24 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 const { $setTheme } = useNuxtApp();
 const { locale } = useI18n();
 
 // 主题控制，默认值为从 localStorage 中读取
-const storedTheme = localStorage.getItem('theme') || 'light';
-const isDarkMode = ref(storedTheme === 'dark');
-
+// const storedTheme = localStorage.getItem('theme') || 'light';
+// const isDarkMode = ref(storedTheme === 'dark');
 // 初始化主题
-$setTheme(storedTheme);
+// $setTheme(storedTheme);
+
+const isDarkMode = ref(false);
+
+// 延迟获取主题和初始化
+onMounted(() => {
+  const storedTheme = localStorage.getItem('theme') || 'light';
+  isDarkMode.value = storedTheme === 'dark';
+  $setTheme(storedTheme);
+});
 
 // 切换主题
 const toggleTheme = () => {
@@ -75,3 +83,12 @@ const useImage = (src: string, useTheme: boolean = true, useLang: boolean = true
     return `/img/${src}`;
 };
 </script>
+
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-1-url) center left no-repeat;
+    background-size: cover;
+}
+
+</style>

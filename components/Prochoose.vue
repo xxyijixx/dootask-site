@@ -58,7 +58,7 @@
           :class="{ 'active': index === currentIndex }"
           :style="{ display: index === currentIndex ? 'block' : 'none' }"
         >
-          <div class="details-con" :class="`details-con-item${detail.items ? detail.items.length : 1}`">
+          <div class="details-con" :class="`${detail.items ? detail.items.length : 1}`">
             <img v-show="theme === 'light'" class="pic theme_light" :src="`/img/light/product_pic${index + 1}.svg`" :alt="detail.alt" />
             <img v-show="theme === 'dark'" class="pic theme_dark" :src="`/img/dark/product_pic${index + 1}.svg`" :alt="detail.alt" />
             <ul class="details-ul" :class="detail.ulClass">
@@ -114,16 +114,20 @@
         theme.value = event.detail
     }
 
-    watch(currentIndex, (newIndex) => {
-      const detailsItems = document.querySelectorAll('.details')
-      detailsItems.forEach((item, index) => {
-        if (index === newIndex) {
-          item.style.display = 'block'
-        } else {
-          item.style.display = 'none'
-        }
-      })
-    }, { immediate: true })
+// 监听 currentIndex 更新后，确保 DOM 渲染完成
+watch(currentIndex, async (newIndex) => {
+  // 等待 DOM 渲染完成
+  await nextTick()
+
+  const detailsItems = document.querySelectorAll('.details')
+  detailsItems.forEach((item, index) => {
+    if (index === newIndex) {
+      item.style.display = 'block'
+    } else {
+      item.style.display = 'none'
+    }
+  })
+}, { immediate: true })
 
 
     onMounted(() => {
@@ -140,7 +144,7 @@
     })
       
   const productItems = [
-    { icon: '/img/product_icons0_h.svg', title: '协同创作' },
+    { icon: '/img/product_icons0_h.svg', title: '机器人助理' },
     { icon: '/img/product_icons1.svg', title: '即时沟通' },
     { icon: '/img/product_icons2.svg', title: '项目管理' },
     { icon: '/img/product_icons3.svg', title: '任务仪表盘' },
@@ -304,4 +308,16 @@ watch(currentIndex, (newIndex) => {
     }
   })
 }, { immediate: true })
+
+
+
 </script>
+
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-3-url) top left no-repeat;
+    background-size: cover;
+}
+
+</style>

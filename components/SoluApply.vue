@@ -133,3 +133,12 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-5-url) top center no-repeat;
+    background-size: cover;
+}
+
+</style>

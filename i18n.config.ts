@@ -27,8 +27,8 @@ export default defineI18nConfig(() => ({
   },
 
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'zh',
+  fallbackLocale: 'zh',
   availableLocales: ['zh', 'en'],
   messages: {
     

@@ -204,3 +204,13 @@
     transform: translateY(0);
   }
   </style>
+
+
+<style scoped>
+.topics {
+    text-align: center;
+    background: var(--bg-8-url) top left no-repeat;
+    background-size: cover;
+}
+
+</style>
