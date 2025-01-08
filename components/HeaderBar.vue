@@ -116,7 +116,7 @@
           </a>
           <i class="line-1"></i>
           <span class="get-started">
-            <a href="https://www.dootak.com/manage/dashboard">
+            <a href="https://www.dootask.com/manage/dashboard">
               <button class="btn btn-primary">立即体验</button>
             </a>
           </span>
@@ -206,12 +206,6 @@
               </div>
             </ol>
           </li>
-
-
-        <!-- <li class="drawer-item" v-for="(item, index) in languageItems" :key="index">
-          <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{ item.text }}</a>
-        </li> -->
-
         <li class="drawer-item">
           <a class="txt-4001620 txt" href="https://www.dootak.com/manage/dashboard" @click="closeDrawer">立即体验</a>
         </li>

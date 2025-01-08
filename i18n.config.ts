@@ -2,24 +2,22 @@ export default defineI18nConfig(() => ({
 
   i18n: {
     // 语言选项
-    // locales: [
-    //   { 
-    //     code: 'en', 
-    //     iso: 'en-US', 
-    //     name: 'English',
-    //     file: 'en.json'
-    //   },
-    //   { 
-    //     code: 'zh', 
-    //     iso: 'zh-CN', 
-    //     name: '中文',
-    //     file: 'zh.json'
-    //   },
-    // ],
+    locales: [
+      { 
+        code: 'en', 
+        iso: 'en-US', 
+        name: 'English',
+
+      },
+      { 
+        code: 'zh', 
+        iso: 'zh-CN', 
+        name: '中文',
+      },
+    ],
     lazy: true,
-    langDir: 'locales',
     defaultLocale: 'zh',
-    // strategy: 'prefix_except_default',
+    strategy: 'prefix_except_default',
     vueI18n: {
       fallbackLocale: 'zh',
       legacy: false,

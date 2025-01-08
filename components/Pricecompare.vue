@@ -75,6 +75,66 @@
               </li>
             </template>
           </ul>
+          <!-- 小屏幕下的对比计划 -->
+          <ul class="plans-ul-768">
+            <li v-for="(plan, planIndex) in plans" :key="planIndex" class="plans-ul-768-item mb-36">
+              <h5 class="txt-5001822 help-h5 mb-16">
+                {{ plan.name }}
+              </h5>
+              <ol class="plans-ol-768">
+                <template v-for="(section, sectionIndex) in compareSections" :key="sectionIndex">
+                  <li class="plans-ol-768-item">
+                    <div class="plans-ol-768-content">
+                      <h6 class="txt-5001616 plans-ol-item-h4">
+                        {{ section.title }}
+                      </h6>
+                    </div>
+                    <div v-for="(item, itemIndex) in section.items" :key="itemIndex" class="plans-ol-768-content">
+                      <h6 class="txt-4001516 plans-ol-item-h6">
+                        {{ item.name }}
+                      </h6>
+                      <span v-if="typeof item.support[planIndex] === 'string'">
+                         {{ item.support[planIndex] }}
+                    </span>
+                    
+                      <img 
+                        v-else
+                        class="plans-ol-item-icon" 
+                        src="/img/price_icon1.svg" 
+                        :alt="item.name" 
+                      />
+                      <img 
+                        v-else 
+                        class="plans-ol-item-icon2" 
+                        src="/img/price_icon2.svg" 
+                        :alt="item.name" 
+                      />
+                    </div>
+                    
+                  </li>
+                </template>
+                
+                <li class="price-card-money mb-16">
+                  <h2 class="txt-6002430 price-card-h2">
+                    {{ plan.price }}
+                  </h2>
+                  <i v-if="plan.priceUnit" class="txt-5001528 price-card-unit">{{ plan.priceUnit }}</i>
+                </li>
+                <li>
+                  <span style="display: inline-block; width: 100%;">
+                    <a v-if="plan.buttonLink" :href="plan.buttonLink" target="_blank" class="start_a">
+                      <button class="btn btn-primary">
+                        {{ plan.buttonText }}
+                      </button>
+                    </a>
+                    <button v-else class="btn btn-primary" @click="handlePlanSelect(plan)">
+                      {{ plan.buttonText }}
+                    </button>
+                  </span>
+                </li>
+              </ol>
+            </li>
+          </ul>
         </div>
       </div>
   
@@ -194,19 +254,19 @@
     items: [
       { 
         name: '用户数量', 
-        support: [true, true, true, true] 
+        support: ['无限制', '≤3', '无限制', '可定制']  
       },
       { 
         name: '项目数量', 
-        support: [true, true, true, true] 
+        support: ['无限制', '无限制', '无限制', '无限制'] 
       },
       { 
         name: '任务数量', 
-        support: [true, true, true, true] 
+        support: ['无限制', '无限制', '无限制', '无限制'] 
       },
       { 
         name: '离线部署', 
-        support: [true, true, true, true] 
+        support: ['支持', '支持', '官方支持', '官方支持']  
       }
     ]
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="privacy-page">
-    <HeaderBar />
+    <!-- <HeaderBar /> -->
     <div class="privacy-content">
       <div id="markdown-content" v-html="privacyHtml"></div>
     </div>
