@@ -1,14 +1,7 @@
 <!-- 关于我们头部 -->
 <template>
-  <header 
-    class="head"
-    :style="headerBackgroundStyle"
-    :class="{ 
-      'head-background': showBackground, 
-      'head-scrolled': !showBackground 
-    }"
-    >
-    <div class="nav">
+  <header  class="head" ref="header">
+    <div class="nav"  ref="nav">
       <div class="nav-layout">
         <NuxtLink to="/" class="logo">
           <!-- <a href="../zh/index.html" class="logo"> -->
@@ -258,34 +251,59 @@ const backgroundMap = {
 // 背景显示状态
 const showBackground = ref(true);
 
-// 计算当前页面的背景
-const headerBackgroundStyle = computed(() => {
-  const backgroundUrl = backgroundMap[route.path] || backgroundMap['/'];
-  return {
-    background: `${backgroundUrl} center left no-repeat`,
-    backgroundSize: 'cover',
-    opacity: showBackground.value ? '1' : '0'
-  };
-});
+// 新增状态管理
+const isScrolled = ref(false);
 
-// 优化后的滚动处理逻辑
-let scrollTimeout: number | null = null;
 
 // 滚动状态
+// 滚动处理逻辑
 const handleScroll = () => {
-  if (scrollTimeout) {
-    cancelAnimationFrame(scrollTimeout);  // 如果存在之前的延迟更新，取消它
-  }
-
-  scrollTimeout = requestAnimationFrame(() => {
-    showBackground.value = window.scrollY <= 100;
-  });
+  const scrollPosition = window.scrollY;
+  isScrolled.value = scrollPosition > 50;  // 滚动超过50px时，变为不透明背景
+  updateHeaderStyle();
 };
 
 
+// 更新header和nav的背景色
+const updateHeaderStyle = () => {
+  const headerElement = document.querySelector('header');
+  const navElement = document.querySelector('.nav');
+  
+  if (headerElement && navElement) {
+    if (isScrolled.value) {
+      // 如果是暗黑模式，滚动后背景设置为黑色，否则为白色
+      if (isDarkMode.value) {
+        headerElement.style.background = 'rgba(32, 33, 36)';
+        navElement.style.background = 'rgba(32, 33, 36)';
+      } else {
+        headerElement.style.background = 'rgba(255, 255, 255)';
+        navElement.style.background = 'rgba(255, 255, 255)';
+      }
+    } else {
+      // 页面顶部时透明
+      headerElement.style.background = 'transparent';
+      navElement.style.background = 'transparent';
+    }
+  }
+};
+
+// 初始化页面时背景透明
+const setInitialBackground = () => {
+  
+  const headerElement = document.querySelector('header');
+  const navElement = document.querySelector('.nav');
+  
+  if (headerElement && navElement) {
+    headerElement.style.background = 'transparent';
+    navElement.style.background = 'transparent';
+  }
+};
 
 
 onMounted(() => {
+  //初始加载页面背景
+  setInitialBackground();  // 页面加载时初始化背景色
+
   const savedTheme = localStorage.getItem('theme') || 'light'; // 从 localStorage 获取主题
   setTheme(savedTheme); // 初始化主题
 
@@ -444,20 +462,4 @@ const handleSetLocale = (newLocale: 'zh' | 'en') => {
 
 </script>
 
-<style scoped>
-.head {
-  position: relative;
-  transition: opacity 0.3s ease; /* 只处理 opacity，避免影响其它属性 */
-}
 
-.head-background {
-  background: var(--current-page-bg) center left no-repeat;
-  background-size: cover;
-  opacity: 1; /* 背景完全显示 */
-}
-
-.head-scrolled {
-  background: transparent !important;  /* 滚动时背景透明 */
-  opacity: 0; /* 背景完全隐藏 */
-}
-</style>
