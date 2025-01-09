@@ -96,9 +96,13 @@
 }
 .update-item:hover .update-h5 {
   color: var(--txt-theme-color);
+  transform: translateX(10px);
+  transition: all 0.3s ease;
 }
 .update-item:hover .time {
   color: var(--txt-theme-color);
+  transform: translateX(10px);
+  transition: all 0.3s ease;
 }
 .update-h5 {
   color: var(--txt-gray-color);

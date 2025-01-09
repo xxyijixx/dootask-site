@@ -1,6 +1,5 @@
 <template>
   <div class="privacy-page">
-    <!-- <HeaderBar /> -->
     <div class="privacy-content">
       <div id="markdown-content" v-html="privacyHtml"></div>
     </div>
@@ -15,7 +14,12 @@ const privacyHtml = ref('')
 
 onMounted(async () => {
   try {
-    const md = new MarkdownIt()
+    const md = new MarkdownIt({
+      html: true,  // 允许渲染 HTML 标签
+      breaks: true,  // 转换换行符
+      linkify: true,  // 自动转换链接
+      typographer: true   // 启用 typographer 模式
+    })
     const response = await fetch('/privacy.md')
     const markdownText = await response.text()
     privacyHtml.value = md.render(markdownText)

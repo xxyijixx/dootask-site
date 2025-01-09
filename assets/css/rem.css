@@ -583,6 +583,12 @@
   .price-card-h6 {
       font-size: 15px !important;
   }
+  .details-ul {
+    flex-direction: column; /* 小屏时竖直排列 */
+  }
+  .details-con .details-ul.item4 .details-ul-item {
+    width: calc(100vw - 90px) !important;
+  }
   .details-ul-item {
       margin-bottom: 32px !important;
   }

@@ -325,13 +325,5 @@ watch(currentIndex, (newIndex) => {
     background: var(--bg-3-url) top left no-repeat;
     background-size: cover;
 }
-@media (max-width: 768px) {
-  .details-ul {
-    flex-direction: column; /* 小屏时竖直排列 */
-  }
-  .details-con .details-ul.item4 .details-ul-item {
-    width: calc(100vw - 90px) !important;
-  }
-}
 
 </style>

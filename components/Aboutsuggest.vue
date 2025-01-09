@@ -147,10 +147,3 @@
   }
   </script>
   
-  <style scoped>
-  /* 可以添加一些额外的样式 */
-  .from-submit button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  </style>

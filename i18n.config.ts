@@ -1,5 +1,4 @@
 export default defineI18nConfig(() => ({
-
   i18n: {
     // 语言选项
     locales: [

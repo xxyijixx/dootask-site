@@ -75,8 +75,6 @@ const { $setTheme } = useNuxtApp();
 // 使用响应式方式检测主题
 const isDarkMode = ref(false)
 
-const home_pic2 = 'home_pic2';
-
 
 // 修改计算属性，添加默认值处理
 const currentPicSrc = computed(() => {

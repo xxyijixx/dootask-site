@@ -4,25 +4,21 @@
     <div class="nav"  ref="nav">
       <div class="nav-layout">
         <NuxtLink to="/" class="logo">
-          <!-- <a href="../zh/index.html" class="logo"> -->
           <img
             id="logo"
             :src="useImage('logo.svg', true, false)"
             alt="DooTask,Logo"
           />
           <i class="dootask txt-7002027">DooTask</i>
-          <!-- </a> -->
         </NuxtLink>
         <ul class="nav-ul">
           <li class="nav-ul-item">
             <NuxtLink class="txt-4001620 txt nav-product" to="/product" :class="{ 'active': route.path === '/product' }" 
-              >产品</NuxtLink
-            >
+              >产品</NuxtLink>
           </li>
           <li class="nav-ul-item">
             <NuxtLink class="txt-4001620 txt nav-solutions" to="/solutions" :class="{ 'active': route.path === '/solutions' }"
-              >解决方案</NuxtLink
-            >
+              >解决方案</NuxtLink>
           </li>
           <li class="nav-ul-item">
             <i
@@ -46,41 +42,35 @@
             >
               <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink class="txt-4001418 txt-sub" to="/download"
-                  >下载中心</NuxtLink
-                >
+                  >下载中心</NuxtLink>
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
                 <a class="txt-4001418 txt-sub" href="http://localhost:5173/"
-                  >帮助中心</a
-                >
+                  >帮助中心</a>
               </li>
               <li class="submenu-pop-item"  @click="changeMenu()">
                 <NuxtLink
                   class="txt-4001418 txt-sub"
                   to="/privacy"
                   target="_blank"
-                  >隐私政策</NuxtLink
-                >
+                  >隐私政策</NuxtLink>
               </li>
               <li class="submenu-pop-item"  @click="changeMenu()">
                 <a
                   class="txt-4001418 txt-sub"
                   href="https://www.dootask.com/docs/index.html"
                   target="_blank"
-                  >API 文档</a
-                >
+                  >API 文档</a>
               </li>
             </ol>
           </li>
           <li class="nav-ul-item">
             <NuxtLink class="txt-4001620 txt nav-price" to="/price" :class="{ 'active': route.path === '/price' }"
-              >服务价格</NuxtLink
-            >
+              >服务价格</NuxtLink>
           </li>
           <li class="nav-ul-item">
             <NuxtLink class="txt-4001620 txt nav-about" to="/about" :class="{ 'active': route.path === '/about' }"
-              >关于我们</NuxtLink
-            >
+              >关于我们</NuxtLink>
           </li>
         </ul>
         <div class="nav-r">
@@ -299,7 +289,7 @@ onMounted(() => {
   setInitialBackground();  // 页面加载时初始化背景色
 
   const savedTheme = localStorage.getItem('theme') || 'light'; // 从 localStorage 获取主题
-  setTheme(savedTheme); // 初始化主题
+  setTheme(savedTheme  as 'light' | 'dark'); // 初始化主题
 
   const menuBtn = document.getElementById('menuBtn');
   const drawer = document.querySelector('.drawer');

@@ -141,14 +141,3 @@ onUnmounted(() => {
 })
   </script>
   
-  <style scoped>
-  .update-item {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .update-item:hover {
-    transform: translateX(10px);
-    color: var(--primary-color);
-  }
-  </style>
