@@ -57,18 +57,11 @@
                       {{ item.name }}
                     </h6>
                     <template v-for="(plan, planIndex) in plans" :key="planIndex">
-                      <img 
-                        v-if="item.support[planIndex]" 
-                        class="plans-ol-item-icon" 
-                        src="/img/price_icon1.svg" 
-                        :alt="item.name" 
-                      />
-                      <img 
-                        v-else 
-                        class="plans-ol-item-icon2" 
-                        src="/img/price_icon2.svg" 
-                        :alt="item.name" 
-                      />
+                      <span v-if="typeof item.support[planIndex] === 'string'">
+                        {{ item.support[planIndex] }}
+                      </span>
+                      <img v-else-if="item.support[planIndex]" class="plans-ol-item-icon" src="/img/price_icon1.svg" :alt="item.name" />
+                      <img v-else class="plans-ol-item-icon2" src="/img/price_icon2.svg" :alt="item.name" />
                     </template>
                   </li>
                 </ol>
@@ -94,11 +87,11 @@
                         {{ item.name }}
                       </h6>
                       <span v-if="typeof item.support[planIndex] === 'string'">
-                         {{ item.support[planIndex] }}
+                          {{ item.support[planIndex] }}
                     </span>
                     
                       <img 
-                        v-else
+                        v-else-if="item.support[planIndex]"
                         class="plans-ol-item-icon" 
                         src="/img/price_icon1.svg" 
                         :alt="item.name" 
@@ -141,69 +134,21 @@
       <!-- 联系我们模态框 -->
     <div 
       v-if="showContactModal" 
+      @click.stop 
       class="modal-overlay" 
-      @click.self="closeModal"
-      style="
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%; 
-        background-color: rgba(0,0,0,0.5); 
-        display: flex; 
-        justify-content: center; 
-        align-items: center;
-        z-index: 1000;
-      "
     >
-    <div 
-      class="modal-content" 
-      style="
-        background-color: white; 
-        padding: 25px; 
-        border-radius: 12px; 
-        max-width: 430px; 
-        width: 80%; 
-        position: relative;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      "
-    >
-      <button 
-        @click="closeModal" 
-        style="
-          position: absolute; 
-          top: 10px; 
-          right: 10px; 
-          background: none; 
-          border: none; 
-          font-size: 24px; 
-          cursor: pointer;
-        "
-      >
-        &times;
-      </button>
-      
+    <div class="modal-content"  >
       <h3>{{ modalTitle }}</h3>
       <br>
-        <div>
-              <p>如果有任何问题，欢迎使用以下方式与我们联系。</p>
-              <p>座机电话：0771-3164099</p>
-              <p>邮箱地址：service@hitosea.com</p>
-        </div>
-      <div class="modal-actions" style="text-align: right; margin-top: 20px;">
-        <button 
-          @click="closeModal"
-          style="
-            padding: 10px 20px; 
-            background-color: #4CAF50; 
-            color: white; 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer;
-          "
-        >
-          确定
-        </button>
+          <div class="modal-body">
+                <p>如果有任何问题，欢迎使用以下方式与我们联系。</p>
+                <p>座机电话：0771-3164099</p>
+                <p>邮箱地址：service@hitosea.com</p>
+          </div>
+          <div class="modal-actions">
+            <button  @click="closeModal" class="btn-confirm" >
+              确定
+            </button>
           </div>
         </div>
       </div>
@@ -213,6 +158,8 @@
   <script setup>
   import { ref } from 'vue'
   
+  const darkTheme = ref(false);  // 或者根据用户的设置来动态改变
+
   const showContactModal = ref(false)
   const modalTitle = ref('')
   const contactForm = ref({
@@ -394,4 +341,6 @@
 function closeModal() {
   showContactModal.value = false
 }
+
+
   </script>

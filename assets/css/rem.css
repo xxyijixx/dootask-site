@@ -307,7 +307,7 @@
   .logs-con,
   .help-con,
   .plans-con,
-  .prooduct-con,
+  /* .prooduct-con, */
   .scenario-app-con,
   .footer-t-con,
   .nav-layout,
@@ -316,6 +316,11 @@
       width: calc(100vw - 40px) !important;
       padding: 0 20px !important;
   }
+  .prooduct-con{
+    width: calc(100vw - 20px) !important;
+    padding: 20px 20px !important;
+  }
+  
   .company-profile-r {
       width: 100% !important;
       margin-top: 0 !important;
@@ -514,6 +519,9 @@
   .prooduct-list .prooduct-list-item.top {
       width: 100% !important;
   }
+  .prooduct-list .prooduct-list-item.bot {
+    width: 100% !important;
+}
   .prooduct-list .prooduct-list-item {
       display: none;
       padding: 16px !important;
@@ -578,7 +586,7 @@
   .details-ul-item {
       margin-bottom: 32px !important;
   }
-  .details-ul-item:last-child {
+  :last-child {
       margin-bottom: 0 !important;
   }
   .serial-number {
@@ -840,9 +848,7 @@
       font-size: 28px !important;
       line-height: 40px !important;
   }
-  .prooduct-list .prooduct-list-item.bot {
-      width: auto !important;
-  }
+ 
   .head.product {
       background-size: contain !important;
   }

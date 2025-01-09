@@ -41,7 +41,7 @@
           :style="{ '--delay': `${index * 0.1}s` }"
           @click="selectProductItem(index)"
         >
-          <img class="icon" :src="item.icon" :alt="item.title" />
+          <img class="icon" :src="getProductIcon(index)" :alt="item.title" />
           <h3 class="txt-4002025 txt">{{ item.title }}</h3>
         </li>
         <li>
@@ -85,8 +85,8 @@
     </div>
 </div>
 </template>
-  
-  <script setup>
+
+<script setup>
   import { ref, watch, onMounted, onUnmounted } from 'vue'
 
     const currentIndex = ref(0)
@@ -296,6 +296,14 @@ watch(currentIndex, async (newIndex) => {
   function nextHandle() {
     currentIndex.value = (currentIndex.value + 1) % productDetails.length
   }
+
+  // 动态更改当前激活项的图标
+function getProductIcon(index) {
+  return index === currentIndex.value
+    ? `/img/product_icons${index}_h.svg`  // 激活状态下的图标
+    : `/img/product_icons${index}.svg`    // 普通状态下的图标
+}
+
   
   // 监听 currentIndex 变化
 watch(currentIndex, (newIndex) => {
@@ -309,8 +317,6 @@ watch(currentIndex, (newIndex) => {
   })
 }, { immediate: true })
 
-
-
 </script>
 
 <style scoped>
@@ -318,6 +324,14 @@ watch(currentIndex, (newIndex) => {
     text-align: center;
     background: var(--bg-3-url) top left no-repeat;
     background-size: cover;
+}
+@media (max-width: 768px) {
+  .details-ul {
+    flex-direction: column; /* 小屏时竖直排列 */
+  }
+  .details-con .details-ul.item4 .details-ul-item {
+    width: calc(100vw - 90px) !important;
+  }
 }
 
 </style>

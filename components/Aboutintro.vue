@@ -112,11 +112,11 @@
   onMounted(() => {
     const isMobile = window.matchMedia("only screen and (max-width: 768px)").matches
   
-    if (!isMobile) {
+    
       yearTimerId = setInterval(updateYearNumber, 1)
       areaTimerId = setInterval(updateAreaNumber, 1)
       sizeTimerId = setInterval(updateSizeNumber, 1)
-    }
+   
   })
   
   onUnmounted(() => {
