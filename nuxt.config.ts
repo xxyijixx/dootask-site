@@ -29,7 +29,8 @@ export default defineNuxtConfig(
       ],
     }
   },
-  modules: ['@nuxtjs/i18n'],
+  
+  modules: ['@nuxtjs/i18n', '@nuxt/content'],
   i18n: {
     vueI18n: './i18n.config.ts',
   },
@@ -54,7 +55,8 @@ export default defineNuxtConfig(
     options: {
       strict: false  // 允许更灵活的路由匹配
     }
-  }
+  },
+  buildModules: ['@nuxt/content'],
 },
 
 );

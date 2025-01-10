@@ -593,7 +593,7 @@
       margin-bottom: 32px !important;
   }
   :last-child {
-      margin-bottom: 0 !important;
+      /* margin-bottom: 0 !important; */
   }
   .serial-number {
       font-size: 32px !important;

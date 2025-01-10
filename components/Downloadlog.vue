@@ -20,7 +20,7 @@
                 </template>
               </li>
               <li>
-                <a href="../zh/log.html" class="more-item">
+                <a @click="navigateTo('/download')" class="more-item">
                   <h5 class="txt-4001624 more">
                     更多日志
                   </h5>
@@ -45,6 +45,7 @@
   <script setup>
   import { ref, onMounted } from 'vue'
   import axios from 'axios'
+  import { navigateTo } from '#app'
   
   const releases = ref([])
 
@@ -64,7 +65,7 @@ const isDarkMode = ref(false)
   
   const handleReleaseClick = (index) => {
     localStorage.setItem('update_log_num', index + 1)
-    window.location.href = '../zh/log.html'
+    navigateTo('/log')
   }
   
   const fetchReleases = async () => {
