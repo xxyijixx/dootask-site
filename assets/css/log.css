@@ -33,6 +33,10 @@
 .logs-l-ul {
   width: 240px;
 }
+.active .txt {
+  color: var(--txt-theme-color) !important;
+}
+
 .l-ul-item.active .txt {
   color: var(--txt-theme-color);
 }
@@ -66,16 +70,20 @@
   line-height: 30px;
   color: var(--text-color);
   padding-top: 15px;
+  margin-bottom: 24px;
   box-sizing: border-box;
 }
 .r-ol-item {
   color: var(--txt-gray-color);
-  position: relative;
+  position: relative; 
+  margin-bottom: 10px;
+  padding-left: 15px;
+  line-height: 1.5;
 }
 .r-ul-item:last-child {
   margin-bottom: 0 !important;
 }
-.dots {
+/* .dots {
   background: url(/img/dots.svg) no-repeat;
   width: 4px;
   height: 4px;
@@ -83,6 +91,17 @@
   position: absolute;
   left: 10px;
   top: 10px;
+} */
+.dots {
+  background: url(/img/dots.svg) no-repeat center;
+  width: 4px;
+  height: 4px;
+  display: inline-block;
+  position: relative;
+  margin-right: 15px;
+  top: -2px;
+  vertical-align: middle;
+  background-size: contain;
 }
 .logs-t-768 {
   display: flex;
@@ -104,6 +123,7 @@
   font-size: 16px;
   line-height: 20px;
   color: var(--txt-theme-color);
+  
 }
 .logs-drawer {
   position: fixed;
@@ -112,14 +132,17 @@
   width: 75vw;
   height: 100%;
   padding: 22px 24px;
-  background-color: var(--pop-bg-color);
+  background-color: var(--pop-bg-color); /* 恢复原有的背景色 */
   border: 1px solid var(--box-shadow-color);
   box-shadow: var(--pop-box-shadow);
   transition: all 0.5s ease-in-out;
-  z-index: 999;
+  z-index: 1000; /* 提高 z-index */
+
 }
+
 .open-logs-drawer {
   left: 0;
+  opacity: 1; /* 确保完全不透明 */
 }
 .logs-t-768 {
   display: none;

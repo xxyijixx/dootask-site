@@ -79,9 +79,9 @@
 .prooduct-list .next {
   margin-left: 16px;
 }
-.active .txt {
+/* .active .txt {
   color: var(--text-color) !important;
-}
+} */
 .details {
   display: none;
   width: 100%;
