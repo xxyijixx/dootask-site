@@ -1,5 +1,6 @@
 <template>
   <article class="choose">
+    <!-- 大屏幕版本 -->
     <div class="choose-con">
       <ul class="choose-con-ul mb-32">
         <li class="choose-con-item">
@@ -59,7 +60,7 @@
           </li>
         </ul>
     </div>
-
+      <!-- 移动端版本 -->
     <div class="choose-con-768">
       <h1 class="txt-5004455 choose-con-tit">
         为什么选择我们
@@ -75,6 +76,7 @@
             v-for="(item, index) in chooseItems" 
             :key="index"
             class="choose-con-768-item"
+            :class="{ 'active': activeIndex === index }"
           >
             <h1 class="txt-7003240 serial-number mb-24">{{ item.number }}</h1>
             <h5 class="txt-5002025 mb-16 choose-con-item-h5">
@@ -100,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 
 interface ChooseItem {
   number: string;
@@ -109,6 +111,7 @@ interface ChooseItem {
 }
 
 const activeIndex = ref(0)
+const isMobile = ref(false)
 
 const chooseItems = ref<ChooseItem[]>([
   {
@@ -142,4 +145,49 @@ const changeActiveItem = (index: number) => {
   activeIndex.value = index
 }
 
+// 检查屏幕尺寸
+const checkMobileView = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+// 自动轮播功能
+let autoPlayTimer: number | null = null
+const startAutoPlay = () => {
+  if (isMobile.value) {
+    autoPlayTimer = window.setInterval(() => {
+      activeIndex.value = (activeIndex.value + 1) % chooseItems.value.length
+    }, 3000)
+  }
+}
+
+const stopAutoPlay = () => {
+  if (autoPlayTimer) {
+    clearInterval(autoPlayTimer)
+    autoPlayTimer = null
+  }
+}
+
+onMounted(() => {
+  checkMobileView()
+  window.addEventListener('resize', checkMobileView)
+  
+  // 如果是移动端，启动自动轮播
+  if (isMobile.value) {
+    startAutoPlay()
+  }
+
+  // 监听移动端状态变化
+  watch(isMobile, (newValue) => {
+    if (newValue) {
+      startAutoPlay()
+    } else {
+      stopAutoPlay()
+    }
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobileView)
+  stopAutoPlay()
+})
 </script>

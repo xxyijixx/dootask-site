@@ -124,6 +124,7 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
 }
 
 const renderLogs = (html) => {
+  
   nextTick(() => {
   const logsContainer = document.querySelector('.logs-r-ul') // 右侧日志区域
   const rlog = document.querySelector('.logs-l-1920') // 左侧导航区域

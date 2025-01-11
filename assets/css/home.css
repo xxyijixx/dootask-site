@@ -237,7 +237,7 @@ section {
 }
 .zh_choose_768,
 .en_choose_768 {
-  /* min-height: 257px; */
+  min-height: 257px;
 }
 .choose-con-768-ul {
   z-index: 99;
