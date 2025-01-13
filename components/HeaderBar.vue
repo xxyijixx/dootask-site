@@ -276,11 +276,13 @@ const setInitialBackground = () => {
   
   const headerElement = document.querySelector('header');
   const navElement = document.querySelector('.nav');
+ 
   
   if (headerElement && navElement) {
     headerElement.style.background = 'transparent';
     navElement.style.background = 'transparent';
   }
+
 };
 
 

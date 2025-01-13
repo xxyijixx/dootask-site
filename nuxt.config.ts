@@ -56,7 +56,6 @@ export default defineNuxtConfig(
       strict: false  // 允许更灵活的路由匹配
     }
   },
-  buildModules: ['@nuxt/content'],
 },
 
 );
