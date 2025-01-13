@@ -43,7 +43,7 @@
 .prooduct-list .prooduct-list-item:nth-of-type(10) {
   margin-right: 0 !important;
 }
-.prooduct-list .prooduct-list-item.bot{
+.prooduct-list .prooduct-list-item.bot {
   max-width: 246px;
 }
 .prooduct-list .prooduct-list-item:hover {

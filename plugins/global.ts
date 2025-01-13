@@ -7,7 +7,8 @@ export default defineNuxtPlugin(() => {
     const navbar = document.querySelector('.nav') as HTMLElement;
     if (navbar) {
       window.addEventListener('scroll', () => {
-        if (window.scrollY >= 30) {   // 当滚动距离大于30px时，添加navbar-white类，remove后导航栏背景色为白色
+        if (window.scrollY >= 30) {
+          // 当滚动距离大于30px时，添加navbar-white类，remove后导航栏背景色为白色
           navbar.classList.add('navbar-white');
         } else {
           navbar.classList.remove('navbar-white');

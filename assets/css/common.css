@@ -698,7 +698,7 @@ img {
 }
 
 .drawer {
-  position: fixed ;
+  position: fixed;
   top: 0;
   left: -90vw;
   width: 75vw;
@@ -795,8 +795,6 @@ img {
   border-radius: 6px;
   color: #000 !important;
 }
-
-
 
 .nav-vector {
   margin-left: 5px;
@@ -1280,11 +1278,11 @@ footer {
   width: 80%;
   position: relative;
   transition: all 0.3s ease;
-  box-shadow: 
-  4px 4px 8px rgba(151, 151, 151, 0.1),   /* 右下 */
-  -4px -4px 8px rgba(151, 151, 151, 0.1), /* 左上 */
-  4px -4px 8px rgba(151, 151, 151, 0.1),  /* 右上 */
-  -4px 4px 8px rgba(151, 151, 151, 0.1);  /* 左下 */
+  box-shadow:
+    4px 4px 8px rgba(151, 151, 151, 0.1),
+    /* 右下 */ -4px -4px 8px rgba(151, 151, 151, 0.1),
+    /* 左上 */ 4px -4px 8px rgba(151, 151, 151, 0.1),
+    /* 右上 */ -4px 4px 8px rgba(151, 151, 151, 0.1); /* 左下 */
 }
 
 /* 暗黑模式下的模态框样式 */
@@ -1295,24 +1293,22 @@ html.dark .modal-overlay {
 html.dark .modal-content {
   background-color: #1e1e1e;
   color: #cbcbcb;
-  box-shadow: 
-  4px 4px 8px rgba(3, 3, 3, 0.1),   /* 右下 */
-  -4px -4px 8px rgba(3, 3, 3, 0.1), /* 左上 */
-  4px -4px 8px rgba(3, 3, 3, 0.1),  /* 右上 */
-  -4px 4px 8px rgba(3, 3, 3, 0.1);  /* 左下 */
+  box-shadow:
+    4px 4px 8px rgba(3, 3, 3, 0.1),
+    /* 右下 */ -4px -4px 8px rgba(3, 3, 3, 0.1),
+    /* 左上 */ 4px -4px 8px rgba(3, 3, 3, 0.1),
+    /* 右上 */ -4px 4px 8px rgba(3, 3, 3, 0.1); /* 左下 */
 }
-.modal-actions{
+.modal-actions {
   text-align: right;
 }
-.btn-confirm{
+.btn-confirm {
   padding: 6px 16px;
   border-radius: 8px;
   border: 1px solid transparent;
   font-size: 16px;
-  background:#8bd070 ;
+  background: #8bd070;
   color: #fffffe;
   text-align: right;
   cursor: pointer;
 }
-
-

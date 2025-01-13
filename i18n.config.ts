@@ -2,15 +2,14 @@ export default defineI18nConfig(() => ({
   i18n: {
     // 语言选项
     locales: [
-      { 
-        code: 'en', 
-        iso: 'en-US', 
+      {
+        code: 'en',
+        iso: 'en-US',
         name: 'English',
-
       },
-      { 
-        code: 'zh', 
-        iso: 'zh-CN', 
+      {
+        code: 'zh',
+        iso: 'zh-CN',
         name: '中文',
       },
     ],
@@ -20,7 +19,7 @@ export default defineI18nConfig(() => ({
     vueI18n: {
       fallbackLocale: 'zh',
       legacy: false,
-    }
+    },
   },
 
   legacy: false,
@@ -28,7 +27,6 @@ export default defineI18nConfig(() => ({
   fallbackLocale: 'zh',
   availableLocales: ['zh', 'en'],
   messages: {
-    
     en: {
       dootask: 'DooTask',
       nav_product: 'Product',
@@ -46,7 +44,4 @@ export default defineI18nConfig(() => ({
       nav_about_us: '关于我们',
     },
   },
-  
-}
-)
-);
+}));

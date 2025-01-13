@@ -7,34 +7,33 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 
 // 动态加载 Markdown 文件并渲染为 HTML
 onMounted(() => {
   // 异步加载 markdown-it 库
   import('markdown-it').then(({ default: MarkdownIt }) => {
     const md = new MarkdownIt({
-      html: true,       // 允许渲染 HTML 标签
-      breaks: true,     // 转换换行符为 <br>
-      linkify: true,    // 自动识别链接
-      typographer: true // 启用 typographer 模式
-    })
+      html: true, // 允许渲染 HTML 标签
+      breaks: true, // 转换换行符为 <br>
+      linkify: true, // 自动识别链接
+      typographer: true, // 启用 typographer 模式
+    });
 
     // 加载 Markdown 文件并渲染
     fetch('./privacy.md')
-      .then(response => response.text())
-      .then(markdownText => {
-        const htmlText = md.render(markdownText)
-        document.getElementById('markdown-content').innerHTML = htmlText
-        
+      .then((response) => response.text())
+      .then((markdownText) => {
+        const htmlText = md.render(markdownText);
+        document.getElementById('markdown-content').innerHTML = htmlText;
       })
-      .catch(error => {
-        console.error('加载隐私政策失败:', error)
+      .catch((error) => {
+        console.error('加载隐私政策失败:', error);
         document.getElementById('markdown-content').innerHTML =
-          '<p>加载隐私政策时出错</p>'
-      })
-  })
-})
+          '<p>加载隐私政策时出错</p>';
+      });
+  });
+});
 
 // 设置页面元数据
 useHead({
@@ -43,15 +42,15 @@ useHead({
     {
       name: 'description',
       content:
-        'DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。'
+        'DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。',
     },
     {
       name: 'keywords',
       content:
-        '中国 DooTask 开源在线项目 任务管理工具 任务管理 轻量级 海豚有海 团队协作'
-    }
-  ]
-})
+        '中国 DooTask 开源在线项目 任务管理工具 任务管理 轻量级 海豚有海 团队协作',
+    },
+  ],
+});
 </script>
 
 <style>
@@ -59,7 +58,8 @@ useHead({
   padding: 0 20px;
 }
 .privacy-page .privacy-content .markdown-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif !important;
   line-height: 2.5 !important;
   word-wrap: break-word !important;
   background-color: transparent !important;

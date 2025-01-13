@@ -2,10 +2,10 @@
   <div>
     <HeaderBar></HeaderBar>
     <main>
-        <section>
-          <Priceway></Priceway>
-          <Pricecompare></Pricecompare>
-        </section>
+      <section>
+        <Priceway></Priceway>
+        <Pricecompare></Pricecompare>
+      </section>
     </main>
     <FooterBar></FooterBar>
   </div>

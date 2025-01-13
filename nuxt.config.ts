@@ -1,11 +1,10 @@
 //nuxt.config.ts
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig(
-  {
+export default defineNuxtConfig({
   ssr: false,
   components: {
-      dirs: ['~/components']
-    },
+    dirs: ['~/components'],
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   plugins: [
@@ -19,17 +18,20 @@ export default defineNuxtConfig(
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: 'DooTask - 简单高效的团队协作与项目管理平台，助力企业提升工作效率' },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'DooTask - 简单高效的团队协作与项目管理平台，助力企业提升工作效率',
+        },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#ffffff' },
-        { name: 'keywords', content: '项目管理, 团队协作, 工作流, 效率工具' }
+        { name: 'keywords', content: '项目管理, 团队协作, 工作流, 效率工具' },
       ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
-      ],
-    }
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }],
+    },
   },
-  
+
   modules: ['@nuxtjs/i18n', '@nuxt/content'],
   i18n: {
     vueI18n: './i18n.config.ts',
@@ -53,9 +55,7 @@ export default defineNuxtConfig(
   ],
   router: {
     options: {
-      strict: false  // 允许更灵活的路由匹配
-    }
+      strict: false, // 允许更灵活的路由匹配
+    },
   },
-},
-
-);
+});

@@ -75,7 +75,7 @@
 }
 .r-ol-item {
   color: var(--txt-gray-color);
-  position: relative; 
+  position: relative;
   margin-bottom: 10px;
   padding-left: 15px;
   line-height: 1.5;
@@ -123,7 +123,6 @@
   font-size: 16px;
   line-height: 20px;
   color: var(--txt-theme-color);
-  
 }
 .logs-drawer {
   position: fixed;
@@ -137,7 +136,6 @@
   box-shadow: var(--pop-box-shadow);
   transition: all 0.5s ease-in-out;
   z-index: 1000; /* 提高 z-index */
-
 }
 
 .open-logs-drawer {

@@ -6,10 +6,10 @@
       <h1 class="txt-5004455 card-h1 mb-80">使用场景</h1>
       <div class="card-con-layout">
         <ul class="card-ul">
-          <li 
-            v-for="(item, index) in scenarioItems" 
+          <li
+            v-for="(item, index) in scenarioItems"
             :key="index"
-            :class="['card-ul-item', { 'active': activeCardIndex === index }]"
+            :class="['card-ul-item', { active: activeCardIndex === index }]"
             @click="toggleCard(index)"
           >
             <img class="icon" :src="item.icon" :alt="item.title" />
@@ -26,7 +26,10 @@
                   :alt="item.description"
                 />
               </div>
-              <i class="txt-4001624 card-ul-item-txt" :style="{ '--delay': '0.3s' }">
+              <i
+                class="txt-4001624 card-ul-item-txt"
+                :style="{ '--delay': '0.3s' }"
+              >
                 {{ item.description }}
               </i>
             </div>
@@ -40,20 +43,22 @@
         />
       </div>
     </div>
-    
+
     <!-- 移动端版本 -->
     <div class="card-con-768">
       <h1 class="txt-5002228 card-h1 mb-32">使用场景</h1>
       <div class="card-con-layout">
         <ul class="card-768-ul">
-          <li 
-            v-for="(item, index) in mobileScenarioItems" 
-            :key="index" 
+          <li
+            v-for="(item, index) in mobileScenarioItems"
+            :key="index"
             style="width: 100%"
           >
             <img class="icon" :src="item.icon" :alt="item.title" />
             <h3 class="txt-5001822 card-ul-item-h3 mb-12">{{ item.title }}</h3>
-            <i class="txt-4001524 card-ul-item-txt mb-16">{{ item.description }}</i>
+            <i class="txt-4001524 card-ul-item-txt mb-16">{{
+              item.description
+            }}</i>
             <img
               class="card-pic mb-40"
               :src="item.picSrc[isDarkMode ? 'dark' : 'light']"
@@ -67,133 +72,130 @@
 </template>
 
 <script setup>
-import { ref, computed,onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 
-const activeCardIndex = ref(0)
+const activeCardIndex = ref(0);
 const { $setTheme } = useNuxtApp();
 
 // 使用响应式方式检测主题
-const isDarkMode = ref(false)
-
+const isDarkMode = ref(false);
 
 // 修改计算属性，添加默认值处理
 const currentPicSrc = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
-  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
-  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light']
-})
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
+  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light'];
+});
 
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
-  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value
-  return scenarioItems[index].picAlt
-})
-
-
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
+  return scenarioItems[index].picAlt;
+});
 
 // 监听主题变化
 const updateTheme = () => {
-  const htmlElement = document.documentElement
-  const darkClass = htmlElement.classList.contains('dark')
+  const htmlElement = document.documentElement;
+  const darkClass = htmlElement.classList.contains('dark');
   isDarkMode.value = darkClass;
-}
-
+};
 
 onMounted(() => {
   // 初始化主题
-  updateTheme()
-  
+  updateTheme();
+
   // 添加主题变化监听器
-  const observer = new MutationObserver(updateTheme)
+  const observer = new MutationObserver(updateTheme);
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ['class']
-  })
+    attributeFilter: ['class'],
+  });
 
   // // 存储观察器以便后续卸载
-  window.themeObserver = observer
+  window.themeObserver = observer;
 
   if (import.meta.client) {
     const theme = localStorage.getItem('theme');
     // 你的其他与 theme 相关的代码
     if (theme) {
-    // 根据存储的主题设置样式
-    $setTheme(theme); // 调用你的设置主题函数
-  } else {
-    // 如果没有存储主题，可以设置默认主题
-    $setTheme('light'); // 设置默认主题为 'light'
+      // 根据存储的主题设置样式
+      $setTheme(theme); // 调用你的设置主题函数
+    } else {
+      // 如果没有存储主题，可以设置默认主题
+      $setTheme('light'); // 设置默认主题为 'light'
+    }
   }
-    
-  }
-
-})
+});
 
 onUnmounted(() => {
   // 卸载观察器
   if (window.themeObserver) {
-    window.themeObserver.disconnect()
+    window.themeObserver.disconnect();
   }
-})
+});
 
 const toggleCard = (index) => {
-  activeCardIndex.value = activeCardIndex.value === index ? -1 : index
-}
+  activeCardIndex.value = activeCardIndex.value === index ? -1 : index;
+};
 
 const scenarioItems = [
-  { 
-    icon: '/img/home_icon1.svg', 
-    title: '项目管理', 
-    description: '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
-    picAlt: '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
+  {
+    icon: '/img/home_icon1.svg',
+    title: '项目管理',
+    description:
+      '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
+    picAlt:
+      '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
     picSrc: {
       light: '/img/light/zh_home_pic2.png',
-      dark: '/img/dark/zh_home_pic2.png'
-    }
+      dark: '/img/dark/zh_home_pic2.png',
+    },
   },
-  { 
-    icon: '/img/home_icon2.svg', 
-    title: '团队协作', 
-    description: '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
-    picAlt: '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
+  {
+    icon: '/img/home_icon2.svg',
+    title: '团队协作',
+    description:
+      '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
+    picAlt:
+      '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
     picSrc: {
       light: '/img/light/zh_home_pic3.png',
-      dark: '/img/dark/zh_home_pic3.png'
-    }
+      dark: '/img/dark/zh_home_pic3.png',
+    },
   },
-  { 
-    icon: '/img/home_icon3.svg', 
-    title: '任务协同', 
-    description: '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
-    picAlt: '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
+  {
+    icon: '/img/home_icon3.svg',
+    title: '任务协同',
+    description:
+      '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
+    picAlt:
+      '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
     picSrc: {
       light: '/img/light/zh_home_pic4.png',
-      dark: '/img/dark/zh_home_pic4.png'
-    }
+      dark: '/img/dark/zh_home_pic4.png',
+    },
   },
-  { 
-    icon: '/img/home_icon4.svg', 
-    title: '绩效衡量', 
+  {
+    icon: '/img/home_icon4.svg',
+    title: '绩效衡量',
     description: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picAlt: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picSrc: {
       light: '/img/light/zh_home_pic5.png',
-      dark: '/img/dark/zh_home_pic5.png'
-    }
+      dark: '/img/dark/zh_home_pic5.png',
+    },
   },
-  { 
-    icon: '/img/home_icon5.svg', 
-    title: '沟通汇报', 
+  {
+    icon: '/img/home_icon5.svg',
+    title: '沟通汇报',
     description: '基于工作场景的即时通讯及共享，实现更好的团队沟通。',
     picAlt: '基于工作场景的即时通讯和分享，以实现更好的团队沟通。',
     picSrc: {
       light: '/img/light/zh_home_pic6.png',
-      dark: '/img/dark/zh_home_pic6.png'
-    }
-  }
-]
+      dark: '/img/dark/zh_home_pic6.png',
+    },
+  },
+];
 
-const mobileScenarioItems = scenarioItems
-
-
-
+const mobileScenarioItems = scenarioItems;
 </script>

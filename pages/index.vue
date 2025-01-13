@@ -18,6 +18,3 @@
     <FooterBar></FooterBar>
   </div>
 </template>
-
-
-

@@ -7,7 +7,8 @@ export default defineNuxtPlugin(() => {
   }
 });
 
-function handleDocumentClick(event: MouseEvent): void {      //侧边小小内容提示栏
+function handleDocumentClick(event: MouseEvent): void {
+  //侧边小小内容提示栏
   const toolbarPhone = document.getElementById(
     'side_toolbar_item_phone',
   ) as HTMLElement;
