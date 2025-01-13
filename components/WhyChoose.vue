@@ -71,7 +71,15 @@
         />
       </h1>
       <div class="choose-con-768-box">
-        <ul class="choose-con-768-ul">
+        <ul class="choose-con-768-ul"
+          :style="{
+            display: 'flex',
+            width: `${chooseItems.length * 100}%`,
+            transform: `translateX(-${activeIndex * (100 / chooseItems.length)}%)`,
+            transition: isTransitioning ? 'transform 0.5s ease' : 'none',
+            willChange: 'transform'
+          }"
+        >
           <li 
             v-for="(item, index) in chooseItems" 
             :key="index"
@@ -102,7 +110,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, nextTick } from 'vue'
 
 interface ChooseItem {
   number: string;
@@ -112,6 +120,7 @@ interface ChooseItem {
 
 const activeIndex = ref(0)
 const isMobile = ref(false)
+const isTransitioning = ref(true)
 
 const chooseItems = ref<ChooseItem[]>([
   {
@@ -141,9 +150,14 @@ const chooseItems = ref<ChooseItem[]>([
   }
 ])
 
-const changeActiveItem = (index: number) => {
-  activeIndex.value = index
-}
+
+// 创建包含首尾克隆的轮播数组
+const carouselItems = computed(() => {
+  const firstItem = chooseItems.value[0]
+  const lastItem = chooseItems.value[chooseItems.value.length - 1]
+  return [lastItem, ...chooseItems.value, firstItem]
+})
+
 
 // 检查屏幕尺寸
 const checkMobileView = () => {
@@ -154,10 +168,30 @@ const checkMobileView = () => {
 let autoPlayTimer: number | null = null
 const startAutoPlay = () => {
   if (isMobile.value) {
+    stopAutoPlay() // 清除任何现有的定时器
     autoPlayTimer = window.setInterval(() => {
-      activeIndex.value = (activeIndex.value + 1) % chooseItems.value.length
+      // 当到达最后一张时，瞬间跳转到第一张
+      if (activeIndex.value === chooseItems.value.length - 1) {
+        // 禁用过渡
+        isTransitioning.value = false
+        
+         // 立即跳转到第一张
+        activeIndex.value = 0
+        
+        // 使用 setTimeout 模拟微任务
+        setTimeout(() => {
+          // 重新启用过渡
+          isTransitioning.value = true
+        }, 50)
+      } else {
+        activeIndex.value++
+      }
     }, 3000)
   }
+}
+
+const changeActiveItem = (index: number) => {
+  activeIndex.value = index
 }
 
 const stopAutoPlay = () => {
@@ -169,21 +203,14 @@ const stopAutoPlay = () => {
 
 onMounted(() => {
   checkMobileView()
-  window.addEventListener('resize', checkMobileView)
+  window.addEventListener('resize', () => {
+    checkMobileView()
+    // 屏幕尺寸变化时重新启动自动轮播
+    startAutoPlay()
+  })
   
   // 如果是移动端，启动自动轮播
-  if (isMobile.value) {
-    startAutoPlay()
-  }
-
-  // 监听移动端状态变化
-  watch(isMobile, (newValue) => {
-    if (newValue) {
-      startAutoPlay()
-    } else {
-      stopAutoPlay()
-    }
-  })
+  startAutoPlay()
 })
 
 onUnmounted(() => {
@@ -191,3 +218,9 @@ onUnmounted(() => {
   stopAutoPlay()
 })
 </script>
+
+<style scoped>
+.choose-con-768-ul {
+  will-change: transform;
+}
+</style>

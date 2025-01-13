@@ -233,7 +233,8 @@ section {
 .choose-con-768-box {
   position: relative;
   width: calc(100vw);
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 300px;
 }
 .zh_choose_768,
 .en_choose_768 {
