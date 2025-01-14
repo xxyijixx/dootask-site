@@ -4,13 +4,13 @@
       <h1 class="txt-5004455 performance-h1">数字化绩效</h1>
       <div class="theme-images">
         <img
-          v-show="theme === 'light'"
+          v-if="theme === 'light'"
           class="pic mt-80 theme_light"
           src="/img/light/zh_product_pic11.png"
           alt="数字化绩效"
         />
         <img
-          v-show="theme === 'dark'"
+          v-if="theme === 'dark'"
           class="pic mt-80 theme_dark"
           src="/img/dark/zh_product_pic11.png"
           alt="数字化绩效"
@@ -43,41 +43,15 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
+const nuxtApp = useNuxtApp();
+
 const theme = ref('light');
-
-const getInitialTheme = () => {
-  // 首先检查系统主题
-  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  if (prefersDarkScheme.matches) return 'dark';
-
-  // 其次检查 document.documentElement 上的 data-theme 属性
-  const htmlTheme = document.documentElement.getAttribute('data-theme');
-  if (htmlTheme) return htmlTheme;
-
-  // 再检查 localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) return savedTheme;
-
-  // 默认为 light
-  return 'light';
-};
-
-const handleThemeChange = (event) => {
-  theme.value = event.detail;
-};
 
 onMounted(() => {
   // 获取初始主题
-  theme.value = getInitialTheme();
-
-  // 监听主题变化事件
-  window.addEventListener('theme-change', handleThemeChange);
+  theme.value = nuxtApp.$getTheme();
 });
 
-onUnmounted(() => {
-  // 清理事件监听器
-  window.removeEventListener('theme-change', handleThemeChange);
-});
 const performanceItems = [
   {
     titleFirst: '目标设定和跟踪，',

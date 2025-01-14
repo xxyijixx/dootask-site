@@ -1,13 +1,12 @@
 <template>
-  <main>
-    <section>
-      <SoluApply></SoluApply>
-      <Solusence></Solusence>
-    </section>
-  </main>
+  <div>
+    <HeaderBar />
+    <slot />
+    <FooterBar />
+  </div>
 </template>
 
-<script lang="ts" steup>
+<script lang="ts" setup>
 import { onMounted } from 'vue';
 const nuxtApp = useNuxtApp();
 
@@ -15,3 +14,5 @@ onMounted(() => {
   nuxtApp.$loadTheme();
 });
 </script>
+
+<style></style>

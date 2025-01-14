@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <HeaderBar></HeaderBar>
-    <main>
-      <section>
-        <Priceway></Priceway>
-        <Pricecompare></Pricecompare>
-      </section>
-    </main>
-    <FooterBar></FooterBar>
-  </div>
+  <main>
+    <section>
+      <Priceway></Priceway>
+      <Pricecompare></Pricecompare>
+    </section>
+  </main>
 </template>
 
 <script setup></script>

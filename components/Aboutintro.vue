@@ -22,7 +22,7 @@
                   ref="areaEl"
                   class="txt-5003636 company-h2 mb-8 company-area"
                 >
-                  {{ companyArea }}
+                  {{ companyAreaText }}
                 </h2>
                 <i class="company-sup">+</i>
               </div>
@@ -94,6 +94,8 @@ const companyYear = ref(999);
 const companyArea = ref(0);
 const companySize = ref(0);
 
+const companyAreaText = ref("0")
+
 const yearEl = ref(null);
 const areaEl = ref(null);
 const sizeEl = ref(null);
@@ -117,6 +119,7 @@ const updateAreaNumber = () => {
     clearInterval(areaTimerId);
     companyArea.value = 10;
   }
+  companyAreaText.value = Number(companyArea.value.toFixed(1)).toString()
 };
 
 const updateSizeNumber = () => {

@@ -16,7 +16,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-product"
               to="/product"
-              :class="{ active: route.path === '/product' }"
+              :style="route.path === '/product' ? getTabStyles() : {}"
               >产品</NuxtLink
             >
           </li>
@@ -24,8 +24,8 @@
             <NuxtLink
               class="txt-4001620 txt nav-solutions"
               to="/solutions"
-              :class="{ active: route.path === '/solutions' }"
-              >解决方案</NuxtLink
+              :style="route.path === '/solutions' ? getTabStyles() : {}"
+              >解决问题</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
@@ -80,7 +80,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-price"
               to="/price"
-              :class="{ active: route.path === '/price' }"
+              :style="route.path === '/price' ? getTabStyles() : {}"
               >服务价格</NuxtLink
             >
           </li>
@@ -88,7 +88,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-about"
               to="/about"
-              :class="{ active: route.path === '/about' }"
+              :style="route.path === '/about' ? getTabStyles() : {}"
               >关于我们</NuxtLink
             >
           </li>
@@ -105,10 +105,10 @@
               id="lang-pop"
               :style="{ display: isLangPopVisisble ? 'block' : 'none' }"
             >
-              <li class="lang-pop-item" @click="setLocale('zh')">
+              <li class="lang-pop-item" @click="switchLanguage('zh')">
                 <i class="lang-txt">简体中文</i>
               </li>
-              <li class="lang-pop-item" @click="setLocale('en')">
+              <li class="lang-pop-item" @click="switchLanguage('en')">
                 <i class="lang-txt">English</i>
               </li>
             </ul>
@@ -164,7 +164,7 @@
               item.text
             }}</a>
           </div>
-          <div class="drawer-item" @click.stop="expandMenuHandle('support')">
+          <div class="drawer-item" @click="expandMenuHandle('support')">
             <i class="txt-4001620 txt">
               支持
               <img
@@ -219,29 +219,34 @@
               v-for="(item, index) in themeItems"
               :key="index"
             >
-              <a class="txt-4001620 txt" @click="setTheme(item.value)">{{item.text}}</a>
+              <a class="txt-4001620 txt" @click="setTheme(item.value)">{{
+                item.text
+              }}</a>
             </div>
           </ol>
         </li>
+
         <li class="drawer-item-c">
-          <div class="drawer-item" @click.stop="expandMenuHandle('language')">
+          <div class="drawer-item" @click="expandMenuHandle('language')">
             <i class="txt-4001620 txt">
               语言
               <img
                 src="/img/vector.svg"
                 alt="语言"
                 class="nav-vector"
-                :style="isLanguageMenuOpen ? 'transform: rotate(180deg)' : ''"
+                :style="isLangPopVisisble ? 'transform: rotate(180deg)' : ''"
               />
             </i>
           </div>
-          <ol class="drawer-active" v-show="isLanguageMenuOpen" id="language">
+          <ol class="drawer-active" :style="{ display: isLangPopVisisble ? 'block' : 'none' }" id="language">
             <div
               class="drawer-item"
               v-for="(item, index) in languageItems"
               :key="index"
             >
-              <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{item.text}}</a>
+              <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{
+                item.text
+              }}</a>
             </div>
           </ol>
         </li>
@@ -259,15 +264,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, nextTick} from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
+
 
 // 获取当前路由信息
 const route = useRoute();
 const { setLocale, locale } = useI18n();
-const { $setTheme } = useNuxtApp();
+const nuxtApp = useNuxtApp();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -275,7 +280,16 @@ const isDrawerOpen = ref(false);
 //控制菜单三个选项的展开
 const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
-const isLanguageMenuOpen = ref(false);
+
+
+//语言设置
+const switchLanguage = (lang: string) => {
+  // 使用 nextTick 确保语言切换在下一个渲染周期
+  nextTick(() => {
+    setLocale(lang);
+  });
+};
+
 
 // 背景映射
 const backgroundMap = {
@@ -290,60 +304,35 @@ const backgroundMap = {
 // 背景显示状态
 const showBackground = ref(true);
 
-// 新增状态管理
-const isScrolled = ref(false);
-
-// 滚动状态
-// 滚动处理逻辑
-const handleScroll = () => {
-  const scrollPosition = window.scrollY;
-  isScrolled.value = scrollPosition > 50; // 滚动超过50px时，变为不透明背景
-  updateHeaderStyle();
-};
-
-// 更新header和nav的背景色
-const updateHeaderStyle = () => {
-  const headerElement = document.querySelector('header');
-  const navElement = document.querySelector('.nav');
-
-  if (headerElement && navElement) {
-    if (isScrolled.value) {
-      // 如果是暗黑模式，滚动后背景设置为黑色，否则为白色
-      if (isDarkMode.value) {
-        headerElement.style.background = 'rgba(32, 33, 36)';
-        navElement.style.background = 'rgba(32, 33, 36)';
-      } else {
-        headerElement.style.background = 'rgba(255, 255, 255)';
-        navElement.style.background = 'rgba(255, 255, 255)';
-      }
-    } else {
-      // 页面顶部时透明
-      headerElement.style.background = 'transparent';
-      navElement.style.background = 'transparent';
-    }
-  }
-};
-
-// 初始化页面时背景透明
-const setInitialBackground = () => {
-  const headerElement = document.querySelector('header');
-  const navElement = document.querySelector('.nav');
-
-  if (headerElement && navElement) {
-    headerElement.style.background = 'transparent';
-    navElement.style.background = 'transparent';
-  }
+const getTabStyles = () => {
+  return {
+    backgroundColor: 'var(--bg-hover-color)', // 设置背景色
+    color: 'var(--text-color)', // 设置文本颜色
+    borderRadius: '6px', // 设置圆角
+  };
 };
 
 onMounted(() => {
-  //初始加载页面背景
-  setInitialBackground(); // 页面加载时初始化背景色
-
-  const savedTheme = localStorage.getItem('theme') || 'light'; // 从 localStorage 获取主题
-  setTheme(savedTheme as 'light' | 'dark'); // 初始化主题
-
   const menuBtn = document.getElementById('menuBtn');
   const drawer = document.querySelector('.drawer');
+  const supportTxt = document.getElementById('support-txt');
+  const submenuPop = document.getElementById('submenu-pop');
+  const langImg = document.getElementById('lang-img');
+  const langPop = document.getElementById('lang-pop');
+
+  // 点击菜单外部关闭各种弹出菜单
+  window.addEventListener('click', (e) => {
+    // 关闭支持菜单弹窗
+    if (submenuPop && !submenuPop.contains(e.target as Node) && e.target !== supportTxt) {
+      isMenuPopVisisble.value = false;
+    }
+
+    // 关闭语言选择弹窗
+    if (langPop && !langPop.contains(e.target as Node) && e.target !== langImg) {
+      isLangPopVisisble.value = false;
+    }
+  });
+
 
   // 为小屏幕下的抽屉添加显示与关闭逻辑
   menuBtn?.addEventListener('click', () => {
@@ -357,46 +346,38 @@ onMounted(() => {
   });
 
   showBackground.value = true;
-  window.addEventListener('scroll', handleScroll);
+
+  const navbar = document.querySelector('.nav') as HTMLElement;
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 30) {
+        // 当滚动距离大于30px时，添加navbar-white类，remove后导航栏背景色为白色
+        navbar.classList.add('navbar-white');
+      } else {
+        navbar.classList.remove('navbar-white');
+      }
+    });
+  }
 });
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+onUnmounted(() => {});
 
 // 语言选择
 const isLangPopVisisble = ref(false);
 
-const showLangPopHandle = () => {
-  isLangPopVisisble.value = true;
+const showLangPopHandle = (e: Event) => {
+  // 阻止事件冒泡
+  e.stopPropagation();
+  // 切换语言弹窗的可见性
+  isLangPopVisisble.value = !isLangPopVisisble.value;
 };
 
 // 设置主题
 const setTheme = (newTheme: 'light' | 'dark') => {
   try {
-    // console.log('当前主题:', newTheme);
-    // 使用 Nuxt 提供的 $setTheme 方法
-    $setTheme(newTheme);
-
-    // 使用 useState 管理主题
-    const theme = useState('theme', () => newTheme);
-    // console.log('useState 初始值:', theme.value);
-
-    theme.value = newTheme;
-    // console.log('useState 更新后:', theme.value);
-
-    // 更新 localStorage
-    localStorage.setItem('theme', newTheme);
-    // console.log('localStorage 主题:', localStorage.getItem('theme'));
-
-    // 切换 HTML 根元素的 dark 类
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    // console.log(
-    //   '是否添加 dark 类:',
-    //   document.documentElement.classList.contains('dark'),
-    // );
+    nuxtApp.$setTheme(newTheme);
   } catch (error) {
-    console.error('设置主题时出错:', error);
+    console.error('切换主题时出错:', error);
   }
 };
 
@@ -440,7 +421,6 @@ const useImage = (
 // 状态管理
 const isDrawerVisible = ref(false);
 const drawerRef = ref<HTMLElement | null>(null);
-const activeSubMenu = ref<string | null>(null);
 
 // 菜单项数据
 const mainMenuItems = [
@@ -461,12 +441,22 @@ const supportItems = [
   },
 ];
 
-const themeItems = [
+interface ThemeItem {
+  text: string;
+  value: 'light' | 'dark';
+}
+
+const themeItems: ThemeItem[] = [
   { text: 'Light', value: 'light' },
   { text: 'Dark', value: 'dark' },
 ];
 
-const languageItems = [
+interface LanguageItem {
+  text: string;
+  value: 'zh' | 'en';
+}
+
+const languageItems: LanguageItem[] = [
   { text: '简体中文', value: 'zh' },
   { text: 'English', value: 'en' },
 ];
@@ -482,8 +472,6 @@ const closeDrawer = () => {
 const expandMenuHandle = (val: string) => {
   if (val === 'support') {
     isSupportMenuOpen.value = !isSupportMenuOpen.value;
-  } else if (val === 'language') {
-    isLanguageMenuOpen.value = !isLanguageMenuOpen.value; // 切换语言菜单的显示状态
   } else if (val === 'theme') {
     isThemeMenuOpen.value = !isThemeMenuOpen.value; // 切换主题菜单的显示状态
   }
@@ -494,6 +482,4 @@ const handleSetLocale = (newLocale: 'zh' | 'en') => {
   setLocale(newLocale);
   isLangPopVisisble.value = false;
 };
-
-
 </script>

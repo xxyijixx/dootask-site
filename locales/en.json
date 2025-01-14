@@ -1,4 +1,23 @@
 {
-
-    
+    "nav_product": "Product",
+    "nav_solution": "Solutions",
+    "nav_support": "Support",
+    "nav_price": "Service Pricing", 
+    "nav_about_us": "About Us",
+    "download_center": "Download Center",
+    "help_center": "Help Center",
+    "privacy_policy": "Privacy Policy",
+    "api_docs": "API Documentation",
+    "get_started": "Get Started",
+    "private_deployment": "Private Deployment",
+    "try_now": "Try Now",
+    "lightweight_task_tool": "Lightweight Task Management Tool",
+    "dootask_description": "DooTask is a lightweight open-source online project task management tool that provides various document collaboration tools, online mind maps, online flowcharts, project management, task distribution, instant IM, file management, and other tools. It helps teams efficiently advance projects and makes work simpler.",
+    "trusted_by_companies": "Trusted by Many Companies",
+    "use_scenarios": "Use Scenarios",
+    "project_management": "Project Management",
+    "team_collaboration": "Team Collaboration", 
+    "task_coordination": "Task Coordination",
+    "performance_measurement": "Performance Measurement",
+    "communication_reporting": "Communication and Reporting"
 }

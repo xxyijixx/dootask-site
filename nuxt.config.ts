@@ -42,10 +42,10 @@ export default defineNuxtConfig({
     './assets/css/animate.min.css',
     './assets/css/common.css',
     './assets/css/distribution.css',
-    './assets/css/download.css',
-    './assets/css/help.css',
+    // './assets/css/download.css',
+    // './assets/css/help.css',
     './assets/css/home.css',
-    './assets/css/log.css',
+    // './assets/css/log.css',
     './assets/css/price.css',
     './assets/css/privacy.css',
     './assets/css/rem.css',
@@ -58,8 +58,7 @@ export default defineNuxtConfig({
       strict: false, // 允许更灵活的路由匹配
     },
   },
-
   generate: {
-    routes: ['/en', '/zh'], // 生成多语言页面的路由
+    routes: ['/en', '/zh'],  // 生成的语言版本页面
   },
 });

@@ -15,10 +15,10 @@ export default defineI18nConfig(() => ({
       },
     ],
     langDir: 'locales/',
-    defaultLocale: 'zh',
+    defaultLocale: 'en',
     strategy: 'prefix_except_default',
     vueI18n: {
-      fallbackLocale: 'zh',
+      fallbackLocale: 'en',
       legacy: false,
       messages: {
         en: {
@@ -30,6 +30,11 @@ export default defineI18nConfig(() => ({
           nav_support: 'Support',
           nav_price: 'Pricing',
           nav_about_us: 'About Us',
+          download_center: 'Download Center',
+          help_center: 'Help Center',
+          privacy_policy: 'Privacy Policy',
+          api_docs: 'API Documentation',
+          try_now: 'Try Now',
         },
         zh: {
           lang_zh: '简体中文',
@@ -40,14 +45,19 @@ export default defineI18nConfig(() => ({
           nav_support: '支持',
           nav_price: '服务价格',
           nav_about_us: '关于我们',
+          download_center: '下载中心',
+          help_center: '帮助中心',
+          privacy_policy: '隐私政策',
+          api_docs: 'API文档',
+          try_now: '立即体验',
         },
       },
     },
   },
 
   lazy: true,
-  locale: 'zh',
-  fallbackLocale: 'zh',
+  locale: 'en',
+  fallbackLocale: 'en',
   availableLocales: ['zh', 'en'],
   
 }));

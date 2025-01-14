@@ -61,6 +61,8 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
 
+const nuxtApp = useNuxtApp();
+
 const isDarkMode = ref(false);
 
 // 场景应用列表
@@ -105,37 +107,16 @@ const sceneApplications = [
 
 // 获取当前主题下的图片路径
 const getPicSrc = (picSrc) => {
-  return picSrc[isDarkMode.value ? 'dark' : 'light'];
-};
-
-// 监听主题变化
-const updateTheme = () => {
-  const htmlElement = document.documentElement;
-  const darkClass = htmlElement.classList.contains('dark');
-  isDarkMode.value = darkClass;
-};
-
-// 初始化主题
-onMounted(() => {
-  updateTheme();
-
-  // 监听主题变化
-  const observer = new MutationObserver(updateTheme);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['class'],
-  });
-
-  // 存储观察器以便后续卸载
-  window.themeObserver = observer;
-});
-
-// 卸载主题监听器
-onUnmounted(() => {
-  if (window.themeObserver) {
-    window.themeObserver.disconnect();
+  const theme = nuxtApp.$getTheme();
+  if (!theme) {
+    return picSrc['light'];
   }
-});
+  if (theme == 'dark') {
+    return picSrc['dark'];
+  } else {
+    return picSrc['light'];
+  }
+};
 </script>
 
 <style scoped>

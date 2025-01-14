@@ -62,6 +62,7 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 import markdownIt from 'markdown-it';
+import '@/assets/css/log.css';
 
 // 响应式状态
 const logsData = ref([]);
@@ -377,3 +378,5 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
 </script>
+
+<style></style>

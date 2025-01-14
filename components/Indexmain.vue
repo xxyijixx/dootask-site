@@ -54,32 +54,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-const { $setTheme } = useNuxtApp();
+import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
 
-// 主题控制，默认值为从 localStorage 中读取
-// const storedTheme = localStorage.getItem('theme') || 'light';
-// const isDarkMode = ref(storedTheme === 'dark');
-// 初始化主题
-// $setTheme(storedTheme);
-
-const isDarkMode = ref(false);
-
-// 延迟获取主题和初始化
-onMounted(() => {
-  const storedTheme = localStorage.getItem('theme') || 'light';
-  isDarkMode.value = storedTheme === 'dark';
-  $setTheme(storedTheme);
-});
-
-// 切换主题
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value;
-  const newTheme = isDarkMode.value ? 'dark' : 'light';
-  localStorage.setItem('theme', newTheme);
-  $setTheme(newTheme);
-};
+const nuxtApp = useNuxtApp();
 
 // 图片路径处理函数，根据主题和语言动态返回不同图片
 const useImage = (
@@ -88,7 +66,7 @@ const useImage = (
   useLang: boolean = true,
 ) => {
   const lang = locale.value || 'zh';
-  const theme = isDarkMode.value ? 'dark' : 'light';
+  const theme = nuxtApp.$getTheme();
 
   if (useTheme && useLang) {
     return `/img/${theme}/${lang}_${src}`;

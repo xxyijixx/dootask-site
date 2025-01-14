@@ -1,16 +1,11 @@
-import { Aboutintro } from '../.nuxt/components';
 <template>
-  <div>
-    <HeaderBar></HeaderBar>
-    <main>
-      <section>
-        <Aboutintro></Aboutintro>
-        <Aboutapply></Aboutapply>
-        <Aboutsuggest></Aboutsuggest>
-      </section>
-    </main>
-    <FooterBar></FooterBar>
-  </div>
+  <main>
+    <section>
+      <Aboutintro></Aboutintro>
+      <Aboutapply></Aboutapply>
+      <Aboutsuggest></Aboutsuggest>
+    </section>
+  </main>
 </template>
 
 <script setup></script>
