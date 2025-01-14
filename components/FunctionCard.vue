@@ -61,7 +61,7 @@
             }}</i>
             <img
               class="card-pic mb-40"
-              :src="item.picSrc[nuxtApp.$getTheme()]"
+              :src="item.picSrc[currentTheme()]"
               :alt="item.picAlt"
             />
           </li>
@@ -84,6 +84,10 @@ const currentPicSrc = computed(() => {
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
   return scenarioItems[index].picSrc[theme];
 });
+
+const currentTheme = () => {
+  return nuxtApp.$getTheme()
+}
 
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
