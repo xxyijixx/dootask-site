@@ -47,13 +47,13 @@
         </ul>
         <div class="manage-svg" :style="{ '--delay': '0.2s' }">
           <img
-            v-show="theme === 'light'"
+            v-if="theme === 'light'"
             class="manage-bg theme_light"
             src="/img/light/product_pic10.svg"
             alt="顺利打卡上班"
           />
           <img
-            v-show="theme === 'dark'"
+            v-if="theme === 'dark'"
             class="manage-bg theme_dark"
             src="/img/dark/product_pic10.svg"
             alt="顺利打卡上班"
@@ -70,42 +70,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+
+const nuxtApp = useNuxtApp();
 
 const theme = ref('light');
 
-const getInitialTheme = () => {
-  // 首先检查系统主题
-  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  if (prefersDarkScheme.matches) return 'dark';
-
-  // 其次检查 document.documentElement 上的 data-theme 属性
-  const htmlTheme = document.documentElement.getAttribute('data-theme');
-  if (htmlTheme) return htmlTheme;
-
-  // 再检查 localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) return savedTheme;
-
-  // 默认为 light
-  return 'light';
-};
-
-const handleThemeChange = (event) => {
-  theme.value = event.detail;
-};
-
 onMounted(() => {
   // 获取初始主题
-  theme.value = getInitialTheme();
-
-  // 监听主题变化事件
-  window.addEventListener('theme-change', handleThemeChange);
-});
-
-onUnmounted(() => {
-  // 清理事件监听器
-  window.removeEventListener('theme-change', handleThemeChange);
+  theme.value = nuxtApp.$getTheme();
 });
 
 const manageItems = [

@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <HeaderBar></HeaderBar>
-    <main>
-      <div>
-        <section>
-          <Downloadpart></Downloadpart>
-          <Downloadlog></Downloadlog>
-        </section>
-      </div>
-    </main>
-    <FooterBar></FooterBar>
-  </div>
+  <main>
+    <div>
+      <section>
+        <Downloadpart></Downloadpart>
+        <Downloadlog></Downloadlog>
+      </section>
+    </div>
+  </main>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import '@/assets/css/download.css';
+</script>

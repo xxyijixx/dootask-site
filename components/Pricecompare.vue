@@ -202,8 +202,6 @@
 <script setup>
 import { ref } from 'vue';
 
-const darkTheme = ref(false); // 或者根据用户的设置来动态改变
-
 const showContactModal = ref(false);
 const modalTitle = ref('');
 const contactForm = ref({

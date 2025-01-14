@@ -61,7 +61,7 @@
             }}</i>
             <img
               class="card-pic mb-40"
-              :src="item.picSrc[isDarkMode ? 'dark' : 'light']"
+              :src="item.picSrc[nuxtApp.$getTheme()]"
               :alt="item.picAlt"
             />
           </li>
@@ -72,66 +72,23 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed } from 'vue';
 
 const activeCardIndex = ref(0);
-const { $setTheme } = useNuxtApp();
-
-// 使用响应式方式检测主题
-const isDarkMode = ref(false);
+const nuxtApp = useNuxtApp();
 
 // 修改计算属性，添加默认值处理
 const currentPicSrc = computed(() => {
+  const theme = nuxtApp.$getTheme();
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
-  return scenarioItems[index].picSrc[isDarkMode.value ? 'dark' : 'light'];
+  return scenarioItems[index].picSrc[theme];
 });
 
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
   return scenarioItems[index].picAlt;
-});
-
-// 监听主题变化
-const updateTheme = () => {
-  const htmlElement = document.documentElement;
-  const darkClass = htmlElement.classList.contains('dark');
-  isDarkMode.value = darkClass;
-};
-
-onMounted(() => {
-  // 初始化主题
-  updateTheme();
-
-  // 添加主题变化监听器
-  const observer = new MutationObserver(updateTheme);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['class'],
-  });
-
-  // // 存储观察器以便后续卸载
-  window.themeObserver = observer;
-
-  if (import.meta.client) {
-    const theme = localStorage.getItem('theme');
-    // 你的其他与 theme 相关的代码
-    if (theme) {
-      // 根据存储的主题设置样式
-      $setTheme(theme); // 调用你的设置主题函数
-    } else {
-      // 如果没有存储主题，可以设置默认主题
-      $setTheme('light'); // 设置默认主题为 'light'
-    }
-  }
-});
-
-onUnmounted(() => {
-  // 卸载观察器
-  if (window.themeObserver) {
-    window.themeObserver.disconnect();
-  }
 });
 
 const toggleCard = (index) => {

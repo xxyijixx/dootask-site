@@ -29,6 +29,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   function setTheme(theme: string): void {
     const root = document.documentElement;
     const lang = localStorage.getItem('lang') || 'en';
+    console.log('设置主题', theme);
 
     // Change images dynamically
     changeImageSrc('#logo', `/img/${theme}/logo.svg`);
@@ -157,8 +158,25 @@ export default defineNuxtPlugin((nuxtApp) => {
     localStorage.setItem('theme', theme);
   }
 
+  function getTheme(): string {
+    const localStorageTheme = localStorage.getItem('theme');
+
+    if (!localStorageTheme || localStorageTheme === 'light') {
+      return 'light';
+    } else {
+      return 'dark';
+    }
+  }
+
+  function loadTheme(): void {
+    const theme = getTheme();
+    setTheme(theme);
+  }
+
   // Make the setTheme function globally accessible
   nuxtApp.provide('setTheme', setTheme);
+  nuxtApp.provide('getTheme', getTheme);
+  nuxtApp.provide('loadTheme', loadTheme);
 
   /* 设置默认主题 */
   if (import.meta.client) {

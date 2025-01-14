@@ -16,7 +16,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-product"
               to="/product"
-              :class="{ active: route.path === '/product' }"
+              :style="route.path === '/product' ? getTabStyles() : {}"
               >产品</NuxtLink
             >
           </li>
@@ -24,7 +24,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-solutions"
               to="/solutions"
-              :class="{ active: route.path === '/solutions' }"
+              :style="route.path === '/solutions' ? getTabStyles() : {}"
               >解决方案</NuxtLink
             >
           </li>
@@ -80,7 +80,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-price"
               to="/price"
-              :class="{ active: route.path === '/price' }"
+              :style="route.path === '/price' ? getTabStyles() : {}"
               >服务价格</NuxtLink
             >
           </li>
@@ -88,7 +88,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-about"
               to="/about"
-              :class="{ active: route.path === '/about' }"
+              :style="route.path === '/about' ? getTabStyles() : {}"
               >关于我们</NuxtLink
             >
           </li>
@@ -266,11 +266,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
-
+import { useI18n } from 'vue-i18n';
 // 获取当前路由信息
 const route = useRoute();
 const { setLocale, locale } = useI18n();
-const { $setTheme } = useNuxtApp();
+const nuxtApp = useNuxtApp();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -293,58 +293,15 @@ const backgroundMap = {
 // 背景显示状态
 const showBackground = ref(true);
 
-// 新增状态管理
-const isScrolled = ref(false);
-
-// 滚动状态
-// 滚动处理逻辑
-const handleScroll = () => {
-  const scrollPosition = window.scrollY;
-  isScrolled.value = scrollPosition > 50; // 滚动超过50px时，变为不透明背景
-  updateHeaderStyle();
-};
-
-// 更新header和nav的背景色
-const updateHeaderStyle = () => {
-  const headerElement = document.querySelector('header');
-  const navElement = document.querySelector('.nav');
-
-  if (headerElement && navElement) {
-    if (isScrolled.value) {
-      // 如果是暗黑模式，滚动后背景设置为黑色，否则为白色
-      if (isDarkMode.value) {
-        headerElement.style.background = 'rgba(32, 33, 36)';
-        navElement.style.background = 'rgba(32, 33, 36)';
-      } else {
-        headerElement.style.background = 'rgba(255, 255, 255)';
-        navElement.style.background = 'rgba(255, 255, 255)';
-      }
-    } else {
-      // 页面顶部时透明
-      headerElement.style.background = 'transparent';
-      navElement.style.background = 'transparent';
-    }
-  }
-};
-
-// 初始化页面时背景透明
-const setInitialBackground = () => {
-  const headerElement = document.querySelector('header');
-  const navElement = document.querySelector('.nav');
-
-  if (headerElement && navElement) {
-    headerElement.style.background = 'transparent';
-    navElement.style.background = 'transparent';
-  }
+const getTabStyles = () => {
+  return {
+    backgroundColor: 'var(--bg-hover-color)', // 设置背景色
+    color: 'var(--text-color)', // 设置文本颜色
+    borderRadius: '6px', // 设置圆角
+  };
 };
 
 onMounted(() => {
-  //初始加载页面背景
-  setInitialBackground(); // 页面加载时初始化背景色
-
-  const savedTheme = localStorage.getItem('theme') || 'light'; // 从 localStorage 获取主题
-  setTheme(savedTheme as 'light' | 'dark'); // 初始化主题
-
   const menuBtn = document.getElementById('menuBtn');
   const drawer = document.querySelector('.drawer');
 
@@ -360,12 +317,21 @@ onMounted(() => {
   });
 
   showBackground.value = true;
-  window.addEventListener('scroll', handleScroll);
+
+  const navbar = document.querySelector('.nav') as HTMLElement;
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 30) {
+        // 当滚动距离大于30px时，添加navbar-white类，remove后导航栏背景色为白色
+        navbar.classList.add('navbar-white');
+      } else {
+        navbar.classList.remove('navbar-white');
+      }
+    });
+  }
 });
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+onUnmounted(() => {});
 
 // 语言选择
 const isLangPopVisisble = ref(false);
@@ -377,30 +343,9 @@ const showLangPopHandle = () => {
 // 设置主题
 const setTheme = (newTheme: 'light' | 'dark') => {
   try {
-    console.log('当前主题:', newTheme);
-
-    // 使用 Nuxt 提供的 $setTheme 方法
-    $setTheme(newTheme);
-
-    // 使用 useState 管理主题
-    const theme = useState('theme', () => newTheme);
-    console.log('useState 初始值:', theme.value);
-
-    theme.value = newTheme;
-    console.log('useState 更新后:', theme.value);
-
-    // 更新 localStorage
-    localStorage.setItem('theme', newTheme);
-    console.log('localStorage 主题:', localStorage.getItem('theme'));
-
-    // 切换 HTML 根元素的 dark 类
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    console.log(
-      '是否添加 dark 类:',
-      document.documentElement.classList.contains('dark'),
-    );
+    nuxtApp.$setTheme(newTheme);
   } catch (error) {
-    console.error('设置主题时出错:', error);
+    console.error('切换主题时出错:', error);
   }
 };
 
@@ -444,7 +389,6 @@ const useImage = (
 // 状态管理
 const isDrawerVisible = ref(false);
 const drawerRef = ref<HTMLElement | null>(null);
-const activeSubMenu = ref<string | null>(null);
 
 // 菜单项数据
 const mainMenuItems = [
@@ -465,12 +409,22 @@ const supportItems = [
   },
 ];
 
-const themeItems = [
+interface ThemeItem {
+  text: string;
+  value: 'light' | 'dark';
+}
+
+const themeItems: ThemeItem[] = [
   { text: 'Light', value: 'light' },
   { text: 'Dark', value: 'dark' },
 ];
 
-const languageItems = [
+interface LanguageItem {
+  text: string;
+  value: 'zh' | 'en';
+}
+
+const languageItems: LanguageItem[] = [
   { text: '简体中文', value: 'zh' },
   { text: 'English', value: 'en' },
 ];

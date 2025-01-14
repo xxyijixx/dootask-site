@@ -21,10 +21,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-
-// 创建响应式的调试信息
-const debugInfo = ref('');
 const teamOperations = [
   {
     icon: '/img/solution_icon1.svg',
