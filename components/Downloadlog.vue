@@ -26,7 +26,7 @@
           <img
             class="update-r-svg"
             id="dow_pic1"
-            :src="currentPicSrc"
+            :src="`/img/${theme}/${lang}_dow_pic1.png`"
             alt="DooTask,下载中心"
           />
         </div>
@@ -36,14 +36,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, toRefs } from 'vue';
 import axios from 'axios';
 import { navigateTo } from '#app';
 
-const nuxtApp = useNuxtApp();
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
 
 const releases = ref([]);
-
 
 const getLocalStorageItem = (key) => {
   const record = JSON.parse(localStorage.getItem(key));
@@ -87,13 +88,6 @@ const fetchReleases = async () => {
     console.error('Failed to fetch releases:', error);
   }
 };
-
-// 切换主题，获取图片路径
-const currentPicSrc = computed(() => {
-  const theme = nuxtApp.$getTheme();
-  return `/img/${theme}/zh_dow_pic1.png`
-});
-
 
 // 初始化并监听主题变化
 onMounted(() => {

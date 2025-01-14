@@ -50,7 +50,7 @@
         <div class="company-profile-layout">
           <img
             class="company-profile-l"
-            src="/img/light/about_pic1.png"
+            :src="`/img/${theme}/about_pic1.png`"
             alt="广西海豚有海信息科技公司,HITOSEA,海豚有海,广西海豚有海"
           />
           <div class="company-profile-r">
@@ -88,13 +88,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, toRefs } from 'vue';
+
+const themeStore = useThemeStore();
+
+const { theme } = toRefs(themeStore);
 
 const companyYear = ref(999);
 const companyArea = ref(0);
 const companySize = ref(0);
 
-const companyAreaText = ref("0")
+const companyAreaText = ref('0');
 
 const yearEl = ref(null);
 const areaEl = ref(null);
@@ -119,7 +123,7 @@ const updateAreaNumber = () => {
     clearInterval(areaTimerId);
     companyArea.value = 10;
   }
-  companyAreaText.value = Number(companyArea.value.toFixed(1)).toString()
+  companyAreaText.value = Number(companyArea.value.toFixed(1)).toString();
 };
 
 const updateSizeNumber = () => {

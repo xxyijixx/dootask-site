@@ -47,17 +47,12 @@
         </ul>
         <div class="manage-svg" :style="{ '--delay': '0.2s' }">
           <img
-            v-if="theme === 'light'"
-            class="manage-bg theme_light"
-            src="/img/light/product_pic10.svg"
+            class="manage-bg"
+
+            :src="`/img/${theme}/product_pic10.svg`"
             alt="顺利打卡上班"
           />
-          <img
-            v-if="theme === 'dark'"
-            class="manage-bg theme_dark"
-            src="/img/dark/product_pic10.svg"
-            alt="顺利打卡上班"
-          />
+
           <div class="manage-tips">
             <img src="/img/product_icon1.svg" alt="出勤签到" />
             <i class="manage-tips-txt txt-4001822">顺利打卡上班</i>
@@ -70,16 +65,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import {toRefs } from 'vue';
 
-const nuxtApp = useNuxtApp();
+const themeStore = useThemeStore();
 
-const theme = ref('light');
+const { theme } = toRefs(themeStore);
 
-onMounted(() => {
-  // 获取初始主题
-  theme.value = nuxtApp.$getTheme();
-});
 
 const manageItems = [
   {

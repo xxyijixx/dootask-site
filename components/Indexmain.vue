@@ -45,7 +45,7 @@
         <img
           class="home-pic"
           id="home_pic"
-          :src="useImage('home_pic1.png')"
+          :src="`/img/${theme}/${lang}_home_pic1.png`"
           alt="DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。"
         />
       </div>
@@ -54,32 +54,12 @@
 </template>
 
 <script setup lang="ts">
+import { toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
+const themeStore = useThemeStore();
 
-const nuxtApp = useNuxtApp();
-
-// 图片路径处理函数，根据主题和语言动态返回不同图片
-const useImage = (
-  src: string,
-  useTheme: boolean = true,
-  useLang: boolean = true,
-) => {
-  const lang = locale.value || 'zh';
-  const theme = nuxtApp.$getTheme();
-
-  if (useTheme && useLang) {
-    return `/img/${theme}/${lang}_${src}`;
-  }
-  if (useTheme) {
-    return `/img/${theme}/${src}`;
-  }
-  if (useLang) {
-    return `/img/${lang}_${src}`;
-  }
-
-  return `/img/${src}`;
-};
+const { theme, lang } = toRefs(themeStore);
 </script>
 
 <style scoped>

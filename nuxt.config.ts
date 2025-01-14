@@ -8,8 +8,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   plugins: [
-    '~/plugins/global.ts',
-    '~/plugins/toolbar.ts',
+    // '~/plugins/global.ts',
+    // '~/plugins/toolbar.ts',
     '~/plugins/theme.ts',
   ],
   app: {
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/i18n', '@nuxt/content'],
+  modules: ['@nuxtjs/i18n', '@nuxt/content', '@pinia/nuxt'],
   i18n: {
     vueI18n: './i18n.config.ts',
   },
@@ -59,6 +59,6 @@ export default defineNuxtConfig({
     },
   },
   generate: {
-    routes: ['/en', '/zh'],  // 生成的语言版本页面
+    routes: ['/en', '/zh'], // 生成的语言版本页面
   },
 });

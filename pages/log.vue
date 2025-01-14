@@ -6,7 +6,7 @@
     <div class="logs-drawer">
       <div class="drawer-t mb-36">
         <a href="/zh/index.html" class="logo">
-          <img id="logo" src="/img/light/logo.svg" alt="DooTask,Logo" />
+          <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
           <i class="dootask txt-7002027">DooTask</i>
         </a>
         <i class="close-drawer" @click="closeLogsDrawer">✕</i>
@@ -59,10 +59,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick, toRefs } from 'vue';
 import axios from 'axios';
 import markdownIt from 'markdown-it';
 import '@/assets/css/log.css';
+
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
 
 // 响应式状态
 const logsData = ref([]);

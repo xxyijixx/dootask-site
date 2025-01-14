@@ -59,11 +59,7 @@
             <i class="txt-4001524 card-ul-item-txt mb-16">{{
               item.description
             }}</i>
-            <img
-              class="card-pic mb-40"
-              :src="item.picSrc[nuxtApp.$getTheme()]"
-              :alt="item.picAlt"
-            />
+            <img class="card-pic mb-40" :src="item.picSrc" :alt="item.picAlt" />
           </li>
         </ul>
       </div>
@@ -72,17 +68,19 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, toRefs } from 'vue';
+
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
 
 const activeCardIndex = ref(0);
-const nuxtApp = useNuxtApp();
 
 // 修改计算属性，添加默认值处理
 const currentPicSrc = computed(() => {
-  const theme = nuxtApp.$getTheme();
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
-  return scenarioItems[index].picSrc[theme];
+  return scenarioItems[index].picSrc;
 });
 
 const currentPicAlt = computed(() => {
@@ -103,10 +101,7 @@ const scenarioItems = [
       '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
     picAlt:
       '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
-    picSrc: {
-      light: '/img/light/zh_home_pic2.png',
-      dark: '/img/dark/zh_home_pic2.png',
-    },
+    picSrc: `/img/${theme.value}/${lang.value}_home_pic2.png`,
   },
   {
     icon: '/img/home_icon2.svg',
@@ -115,10 +110,7 @@ const scenarioItems = [
       '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
     picAlt:
       '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
-    picSrc: {
-      light: '/img/light/zh_home_pic3.png',
-      dark: '/img/dark/zh_home_pic3.png',
-    },
+    picSrc: `/img/${theme.value}/${lang.value}_home_pic3.png`,
   },
   {
     icon: '/img/home_icon3.svg',
@@ -127,30 +119,21 @@ const scenarioItems = [
       '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
     picAlt:
       '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
-    picSrc: {
-      light: '/img/light/zh_home_pic4.png',
-      dark: '/img/dark/zh_home_pic4.png',
-    },
+    picSrc: `/img/${theme.value}/${lang.value}_home_pic4.png`,
   },
   {
     icon: '/img/home_icon4.svg',
     title: '绩效衡量',
     description: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
     picAlt: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
-    picSrc: {
-      light: '/img/light/zh_home_pic5.png',
-      dark: '/img/dark/zh_home_pic5.png',
-    },
+    picSrc: `/img/${theme.value}/${lang.value}_home_pic5.png`,
   },
   {
     icon: '/img/home_icon5.svg',
     title: '沟通汇报',
     description: '基于工作场景的即时通讯及共享，实现更好的团队沟通。',
     picAlt: '基于工作场景的即时通讯和分享，以实现更好的团队沟通。',
-    picSrc: {
-      light: '/img/light/zh_home_pic6.png',
-      dark: '/img/dark/zh_home_pic6.png',
-    },
+    picSrc: `/img/${theme.value}/${lang.value}_home_pic6.png`,
   },
 ];
 

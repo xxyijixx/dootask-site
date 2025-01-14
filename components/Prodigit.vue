@@ -4,15 +4,9 @@
       <h1 class="txt-5004455 performance-h1">数字化绩效</h1>
       <div class="theme-images">
         <img
-          v-if="theme === 'light'"
-          class="pic mt-80 theme_light"
-          src="/img/light/zh_product_pic11.png"
-          alt="数字化绩效"
-        />
-        <img
-          v-if="theme === 'dark'"
-          class="pic mt-80 theme_dark"
-          src="/img/dark/zh_product_pic11.png"
+          class="pic mt-80"
+
+          :src="`/img/${theme}/${lang}_product_pic11.png`"
           alt="数字化绩效"
         />
       </div>
@@ -41,16 +35,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { toRefs } from 'vue';
 
-const nuxtApp = useNuxtApp();
+const themeStore = useThemeStore();
 
-const theme = ref('light');
-
-onMounted(() => {
-  // 获取初始主题
-  theme.value = nuxtApp.$getTheme();
-});
+const { theme, lang } = toRefs(themeStore);
 
 const performanceItems = [
   {

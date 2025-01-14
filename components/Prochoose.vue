@@ -63,15 +63,8 @@
             :class="`${detail.items ? detail.items.length : 1}`"
           >
             <img
-              v-if="theme === 'light'"
-              class="pic theme_light"
-              :src="`/img/light/product_pic${index + 1}.svg`"
-              :alt="detail.alt"
-            />
-            <img
-              v-if="theme === 'dark'"
-              class="pic theme_dark"
-              :src="`/img/dark/product_pic${index + 1}.svg`"
+              class="pic"
+              :src="`/img/${theme}/product_pic${index + 1}.svg`"
               :alt="detail.alt"
             />
             <ul class="details-ul" :class="detail.ulClass">
@@ -100,13 +93,13 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, toRefs } from 'vue';
 
-const nuxtApp = useNuxtApp();
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
 
 const currentIndex = ref(0);
-
-const theme = ref('light');
 
 // 监听 currentIndex 更新后，确保 DOM 渲染完成
 watch(
@@ -126,11 +119,6 @@ watch(
   },
   { immediate: true },
 );
-
-onMounted(() => {
-  // 获取初始主题
-  theme.value = nuxtApp.$getTheme();
-});
 
 const productItems = [
   { icon: '/img/product_icons0_h.svg', title: '机器人助理' },

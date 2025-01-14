@@ -4,7 +4,7 @@
       <div class="footer-layout">
         <div class="footer-l">
           <NuxtLink to="/" class="logo">
-            <img id="logo" src="/img/light/logo.svg" alt="DooTask,Logo" />
+            <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
             <i class="dootask txt-7002027">DooTask</i>
           </NuxtLink>
           <i class="txt txt-4001624">帮助团队有效地推进项目，使工作更轻松。</i>
@@ -118,3 +118,11 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import { ref, computed, toRefs } from 'vue';
+
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
+</script>

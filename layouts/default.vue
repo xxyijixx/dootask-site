@@ -8,10 +8,11 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-const nuxtApp = useNuxtApp();
+
+const themeStore = useThemeStore();
 
 onMounted(() => {
-  nuxtApp.$loadTheme();
+  themeStore.loadTheme();
 });
 </script>
 

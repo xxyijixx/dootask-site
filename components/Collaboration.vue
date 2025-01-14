@@ -3,13 +3,13 @@
     <img
       id="home_pic7"
       class="home_pic7"
-      src="/img/light/home_pic7.svg"
+      :src="`/img/${theme}/home_pic7.svg`"
       alt="开启您的DooTask团队协作"
     />
     <img
       id="home_pic7_768"
       class="home_pic7_768"
-      src="/img/light/home_pic7_768.svg"
+      :src="`/img/${theme}/home_pic7_768.svg`"
       alt="开启您的DooTask团队协作"
     />
     <div class="collaboration-content collaboration-content-zh">
@@ -26,3 +26,11 @@
     </div>
   </article>
 </template>
+
+<script setup lang="ts">
+import { toRefs } from 'vue';
+
+const themeStore = useThemeStore();
+
+const { theme } = toRefs(themeStore);
+</script>

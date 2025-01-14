@@ -11,26 +11,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   }
 
-  /* 主题切换更换图片 */
-  // Theme switch function to toggle visibility of light and dark theme elements
-  const themeSwitch = (val1: string, val2: string): void => {
-    const themeLightElements = document.querySelectorAll('.theme_light');
-    const themeDarkElements = document.querySelectorAll('.theme_dark');
-
-    themeLightElements.forEach((item: Element) => {
-      (item as HTMLElement).style.display = val1;
-    });
-
-    themeDarkElements.forEach((item: Element) => {
-      (item as HTMLElement).style.display = val2;
-    });
-  };
   // Function to set the theme
   function setTheme(theme: string): void {
     const root = document.documentElement;
     const lang = localStorage.getItem('lang') || 'en';
     console.log('设置主题', theme);
-
     // Change images dynamically
     changeImageSrc('#logo', `/img/${theme}/logo.svg`);
     changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
@@ -149,10 +134,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       theme === 'dark' ? '#2E3533' : '#000',
     );
 
-    // Switch visibility of elements
-    theme === 'dark'
-      ? themeSwitch('none', 'block')
-      : themeSwitch('block', 'none');
 
     // Store the theme in localStorage
     localStorage.setItem('theme', theme);
@@ -179,13 +160,13 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.provide('loadTheme', loadTheme);
 
   /* 设置默认主题 */
-  if (import.meta.client) {
-    const localStorageTheme = localStorage.getItem('theme');
-    if (!localStorageTheme) {
-      setTheme('light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      setTheme(localStorageTheme);
-    }
-  }
+  // if (import.meta.client) {
+  //   const localStorageTheme = localStorage.getItem('theme');
+  //   if (!localStorageTheme) {
+  //     setTheme('light');
+  //     localStorage.setItem('theme', 'light');
+  //   } else {
+  //     setTheme(localStorageTheme);
+  //   }
+  // }
 });

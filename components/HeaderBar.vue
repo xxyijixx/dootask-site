@@ -4,11 +4,7 @@
     <div class="nav" ref="nav">
       <div class="nav-layout">
         <NuxtLink to="/" class="logo">
-          <img
-            id="logo"
-            :src="useImage('logo.svg', true, false)"
-            alt="DooTask,Logo"
-          />
+          <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
           <i class="dootask txt-7002027">DooTask</i>
         </NuxtLink>
         <ul class="nav-ul">
@@ -113,10 +109,10 @@
               </li>
             </ul>
           </div>
-          <i class="nav-r-icon theme_dark" @click="setTheme('light')">
+          <i class="nav-r-icon" v-if="theme === 'dark'" @click="setTheme('light')">
             <img src="/img/light.svg" alt="明亮主题" />
           </i>
-          <i class="nav-r-icon theme_light" @click="setTheme('dark')">
+          <i class="nav-r-icon" v-if="theme === 'light'" @click="setTheme('dark')">
             <img src="/img/drak.svg" alt="暗黑主题" />
           </i>
           <a href="https://github.com/kuaifan/dootask" target="_blank">
@@ -132,11 +128,7 @@
           </span>
         </div>
         <div class="menuBtn" @click="openDrawer">
-          <img
-            id="menuBtn"
-            :src="useImage('menu.svg', false, false)"
-            alt="菜单"
-          />
+          <img id="menuBtn" :src="`/img/menu.svg`" alt="菜单" />
         </div>
       </div>
     </div>
@@ -144,11 +136,7 @@
     <div class="drawer" :class="{ 'drawer-open': isDrawerVisible }">
       <div class="drawer-t mb-36">
         <a href="/" class="logo">
-          <img
-            id="logo"
-            :src="useImage('logo.svg', true, false)"
-            alt="DooTaskLogo"
-          />
+          <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTaskLogo" />
           <i class="dootask txt-7002027">DooTask</i>
         </a>
         <i class="close-drawer" @click="closeDrawer">✕</i>
@@ -238,7 +226,11 @@
               />
             </i>
           </div>
-          <ol class="drawer-active" :style="{ display: isLangPopVisisble ? 'block' : 'none' }" id="language">
+          <ol
+            class="drawer-active"
+            :style="{ display: isLangPopVisisble ? 'block' : 'none' }"
+            id="language"
+          >
             <div
               class="drawer-item"
               v-for="(item, index) in languageItems"
@@ -264,15 +256,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick} from 'vue';
+import { ref, computed, onMounted, onUnmounted, nextTick, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
+const themeStore = useThemeStore();
+
+const { theme, lang } = toRefs(themeStore);
 
 // 获取当前路由信息
 const route = useRoute();
 const { setLocale, locale } = useI18n();
-const nuxtApp = useNuxtApp();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -281,15 +275,14 @@ const isDrawerOpen = ref(false);
 const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
 
-
 //语言设置
 const switchLanguage = (lang: string) => {
+  themeStore.lang = lang
   // 使用 nextTick 确保语言切换在下一个渲染周期
   nextTick(() => {
     setLocale(lang);
   });
 };
-
 
 // 背景映射
 const backgroundMap = {
@@ -323,16 +316,23 @@ onMounted(() => {
   // 点击菜单外部关闭各种弹出菜单
   window.addEventListener('click', (e) => {
     // 关闭支持菜单弹窗
-    if (submenuPop && !submenuPop.contains(e.target as Node) && e.target !== supportTxt) {
+    if (
+      submenuPop &&
+      !submenuPop.contains(e.target as Node) &&
+      e.target !== supportTxt
+    ) {
       isMenuPopVisisble.value = false;
     }
 
     // 关闭语言选择弹窗
-    if (langPop && !langPop.contains(e.target as Node) && e.target !== langImg) {
+    if (
+      langPop &&
+      !langPop.contains(e.target as Node) &&
+      e.target !== langImg
+    ) {
       isLangPopVisisble.value = false;
     }
   });
-
 
   // 为小屏幕下的抽屉添加显示与关闭逻辑
   menuBtn?.addEventListener('click', () => {
@@ -375,7 +375,7 @@ const showLangPopHandle = (e: Event) => {
 // 设置主题
 const setTheme = (newTheme: 'light' | 'dark') => {
   try {
-    nuxtApp.$setTheme(newTheme);
+    themeStore.setTheme(newTheme);
   } catch (error) {
     console.error('切换主题时出错:', error);
   }
@@ -392,31 +392,6 @@ const changeMenu = (type?: string) => {
   isMenuPopVisisble.value = false;
 };
 
-//抽屉导航
-const isDarkMode = computed(() => {
-  return document.documentElement.classList.contains('dark');
-});
-
-const useImage = (
-  src: string,
-  useTheme: boolean = true,
-  useLang: boolean = true,
-) => {
-  const lang = locale.value || 'zh';
-  const theme = 'light';
-
-  if (useTheme && useLang) {
-    return `/img/${theme}/${lang}_${src}`;
-  }
-  if (useTheme) {
-    return `/img/${theme}/${src}`;
-  }
-  if (useLang) {
-    return `/img/${lang}_${src}`;
-  }
-
-  return `/img/${src}`;
-};
 
 // 状态管理
 const isDrawerVisible = ref(false);
@@ -479,7 +454,9 @@ const expandMenuHandle = (val: string) => {
 
 //语言选择
 const handleSetLocale = (newLocale: 'zh' | 'en') => {
-  setLocale(newLocale);
+  // setLocale(newLocale);
+  console.log("选择语言", newLocale)
+  themeStore.lang = newLocale
   isLangPopVisisble.value = false;
 };
 </script>
