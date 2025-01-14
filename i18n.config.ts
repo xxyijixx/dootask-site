@@ -1,3 +1,4 @@
+
 export default defineI18nConfig(() => ({
   i18n: {
     // 语言选项
@@ -13,35 +14,40 @@ export default defineI18nConfig(() => ({
         name: '中文',
       },
     ],
-    lazy: true,
+    langDir: 'locales/',
     defaultLocale: 'zh',
     strategy: 'prefix_except_default',
     vueI18n: {
       fallbackLocale: 'zh',
       legacy: false,
+      messages: {
+        en: {
+          lang_zh: 'Simplified Chinese',
+          lang_en: 'English',
+          dootask: 'DooTask',
+          nav_product: 'Product',
+          nav_solution: 'Solutions',
+          nav_support: 'Support',
+          nav_price: 'Pricing',
+          nav_about_us: 'About Us',
+        },
+        zh: {
+          lang_zh: '简体中文',
+          lang_en: 'English',
+          dootask: 'DooTask',
+          nav_product: '产品',
+          nav_solution: '解决方案',
+          nav_support: '支持',
+          nav_price: '服务价格',
+          nav_about_us: '关于我们',
+        },
+      },
     },
   },
 
-  legacy: false,
+  lazy: true,
   locale: 'zh',
   fallbackLocale: 'zh',
   availableLocales: ['zh', 'en'],
-  messages: {
-    en: {
-      dootask: 'DooTask',
-      nav_product: 'Product',
-      nav_solution: 'Solutions',
-      nav_support: 'Support',
-      nav_price: 'Pricing',
-      nav_about_us: 'About Us',
-    },
-    zh: {
-      dootask: 'DooTask',
-      nav_product: '产品',
-      nav_solution: '解决方案',
-      nav_support: '支持',
-      nav_price: '服务价格',
-      nav_about_us: '关于我们',
-    },
-  },
+  
 }));

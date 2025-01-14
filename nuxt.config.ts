@@ -58,4 +58,8 @@ export default defineNuxtConfig({
       strict: false, // 允许更灵活的路由匹配
     },
   },
+
+  generate: {
+    routes: ['/en', '/zh'], // 生成多语言页面的路由
+  },
 });

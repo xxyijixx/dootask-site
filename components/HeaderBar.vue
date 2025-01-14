@@ -219,13 +219,10 @@
               v-for="(item, index) in themeItems"
               :key="index"
             >
-              <a class="txt-4001620 txt" @click="setTheme(item.value)">{{
-                item.text
-              }}</a>
+              <a class="txt-4001620 txt" @click="setTheme(item.value)">{{item.text}}</a>
             </div>
           </ol>
         </li>
-
         <li class="drawer-item-c">
           <div class="drawer-item" @click.stop="expandMenuHandle('language')">
             <i class="txt-4001620 txt">
@@ -244,9 +241,7 @@
               v-for="(item, index) in languageItems"
               :key="index"
             >
-              <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{
-                item.text
-              }}</a>
+              <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{item.text}}</a>
             </div>
           </ol>
         </li>
@@ -266,6 +261,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 // 获取当前路由信息
 const route = useRoute();
@@ -377,28 +374,27 @@ const showLangPopHandle = () => {
 // 设置主题
 const setTheme = (newTheme: 'light' | 'dark') => {
   try {
-    console.log('当前主题:', newTheme);
-
+    // console.log('当前主题:', newTheme);
     // 使用 Nuxt 提供的 $setTheme 方法
     $setTheme(newTheme);
 
     // 使用 useState 管理主题
     const theme = useState('theme', () => newTheme);
-    console.log('useState 初始值:', theme.value);
+    // console.log('useState 初始值:', theme.value);
 
     theme.value = newTheme;
-    console.log('useState 更新后:', theme.value);
+    // console.log('useState 更新后:', theme.value);
 
     // 更新 localStorage
     localStorage.setItem('theme', newTheme);
-    console.log('localStorage 主题:', localStorage.getItem('theme'));
+    // console.log('localStorage 主题:', localStorage.getItem('theme'));
 
     // 切换 HTML 根元素的 dark 类
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    console.log(
-      '是否添加 dark 类:',
-      document.documentElement.classList.contains('dark'),
-    );
+    // console.log(
+    //   '是否添加 dark 类:',
+    //   document.documentElement.classList.contains('dark'),
+    // );
   } catch (error) {
     console.error('设置主题时出错:', error);
   }
@@ -498,4 +494,6 @@ const handleSetLocale = (newLocale: 'zh' | 'en') => {
   setLocale(newLocale);
   isLangPopVisisble.value = false;
 };
+
+
 </script>
