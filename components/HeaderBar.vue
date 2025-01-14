@@ -13,7 +13,7 @@
               class="txt-4001620 txt nav-product"
               to="/product"
               :style="route.path === '/product' ? getTabStyles() : {}"
-              >产品</NuxtLink
+              >{{ $t('navigation.product') }}</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
@@ -21,7 +21,7 @@
               class="txt-4001620 txt nav-solutions"
               to="/solutions"
               :style="route.path === '/solutions' ? getTabStyles() : {}"
-              >解决问题</NuxtLink
+              >{{ $t('navigation.solution') }}</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
@@ -30,7 +30,7 @@
               id="support-txt"
               @click="toggleMenuPopHandle"
             >
-              支持
+            {{ $t('navigation.support') }}
               <img
                 src="/img/vector.svg"
                 alt="支持"
@@ -46,12 +46,12 @@
             >
               <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink class="txt-4001418 txt-sub" to="/download"
-                  >下载中心</NuxtLink
+                  >{{ $t('navigation.download') }}</NuxtLink
                 >
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
                 <a class="txt-4001418 txt-sub" href="http://localhost:5173/"
-                  >帮助中心</a
+                  >{{ $t('navigation.help_center') }}</a
                 >
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
@@ -59,7 +59,7 @@
                   class="txt-4001418 txt-sub"
                   to="/privacy"
                   target="_blank"
-                  >隐私政策</NuxtLink
+                  >{{ $t('navigation.privacy_policy') }}</NuxtLink
                 >
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
@@ -67,7 +67,7 @@
                   class="txt-4001418 txt-sub"
                   href="https://www.dootask.com/docs/index.html"
                   target="_blank"
-                  >API 文档</a
+                  >{{ $t('navigation.api_docs') }}</a
                 >
               </li>
             </ol>
@@ -266,7 +266,15 @@ const { theme, lang } = toRefs(themeStore);
 
 // 获取当前路由信息
 const route = useRoute();
-const { setLocale, locale } = useI18n();
+
+// 使用更健壮的国际化配置
+// const { t, locale } = useI18n({
+//   fallbackLocale: 'zh', // 设置回退语言
+//   useScope: 'global'    // 使用全局作用域
+// })
+
+const { t, locale } = useI18n()
+
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -276,13 +284,19 @@ const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
 
 //语言设置
-const switchLanguage = (lang: string) => {
+// 语言切换方法
+const switchLanguage = (lang: 'zh' | 'en') => {
   themeStore.lang = lang
-  // 使用 nextTick 确保语言切换在下一个渲染周期
   nextTick(() => {
-    setLocale(lang);
-  });
-};
+    // 使用 locale.value 更新语言
+    locale.value = lang
+    
+    // 保存到 localStorage
+    if (process.client) {
+      localStorage.setItem('language', lang)
+    }
+  })
+}
 
 // 背景映射
 const backgroundMap = {
@@ -432,8 +446,8 @@ interface LanguageItem {
 }
 
 const languageItems: LanguageItem[] = [
-  { text: '简体中文', value: 'zh' },
-  { text: 'English', value: 'en' },
+{ text: t('common.lang_zh'), value: 'zh' },
+{ text: t('common.lang_en'), value: 'en' }
 ];
 
 const openDrawer = () => {
@@ -454,7 +468,7 @@ const expandMenuHandle = (val: string) => {
 
 //语言选择
 const handleSetLocale = (newLocale: 'zh' | 'en') => {
-  // setLocale(newLocale);
+  // switchLanguage(newLocale)
   console.log("选择语言", newLocale)
   themeStore.lang = newLocale
   isLangPopVisisble.value = false;

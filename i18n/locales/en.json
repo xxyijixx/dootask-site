@@ -1,0 +1,121 @@
+{
+    "common": {
+        "lang_zh": "中文",
+    "lang_en": "English",
+        "title": "DooTask - Collaborative Project Management Tool",
+        "description": "Simple and efficient team collaboration and project management platform",
+        "try_now": "Try Now",
+        "get_started": "Get Started",
+        "learn_more": "Learn More",
+        "features": "Features",
+        "solutions": "Solutions"
+    },
+    "navigation": {
+        "home": "Home",
+        "product": "Product",
+        "solution": "Solutions", 
+        "pricing": "Pricing",
+        "about_us": "About Us",
+        "support": "Support",
+        "download": "Download Center",
+        "help_center": "Help Center",
+        "privacy_policy": "Privacy Policy",
+        "api_docs": "API Document",
+        "try_now": "Try Now",
+        "language": "Language",
+        "theme": "Theme"
+    },
+        "theme": {
+        "light": "Light Mode",
+        "dark": "Dark Mode"
+    },
+    "language": {
+        "zh": "中文",
+        "en": "English"
+    },
+    "homepage": {
+        "hero": {
+            "title": "Make Team Collaboration Easier",
+            "subtitle": "Lightweight Open-Source Project Management Tool",
+            "description": "DooTask is a comprehensive collaboration platform that helps teams manage projects, communicate, and execute efficiently"
+        },
+        "features": {
+            "project_management": "Multi-View Project Management",
+            "team_communication": "Instant Team Communication",
+            "task_tracking": "Smart Task Tracking"
+        }
+    },
+    "features": {
+        "project_management": {
+            "title": "Project Management",
+            "description": "Support multiple project management modes, real-time project progress tracking",
+            "details": [
+                "Kanban View",
+                "Gantt Chart",
+                "List View", 
+                "Calendar View"
+            ]
+        },
+        "team_collaboration": {
+            "title": "Team Collaboration",
+            "description": "Provide rich online collaboration tools to improve work efficiency",
+            "details": [
+                "Online Documents",
+                "Real-time Communication",
+                "File Sharing",
+                "Task Assignment"
+            ]
+        }
+    },
+    "pricing": {
+        "title": "Flexible Pricing Plans",
+        "subtitle": "Choose a plan that fits your team",
+        "plans": {
+            "free": {
+                "name": "Free",
+                "price": "0",
+                "features": [
+                    "Basic Project Management",
+                    "Up to 3 Users",
+                    "Limited Storage"
+                ]
+            },
+            "pro": {
+                "name": "Pro",
+                "price": "99",
+                "features": [
+                    "Advanced Project Management",
+                    "Unlimited Users",
+                    "Priority Support"
+                ]
+            },
+            "enterprise": {
+                "name": "Enterprise",
+                "price": "Contact Sales",
+                "features": [
+                    "Full Features",
+                    "Private Deployment",
+                    "Dedicated Account Manager"
+                ]
+            }
+        }
+    },
+    "about": {
+        "company_intro": "About DooTask",
+        "mission": "Our mission is to simplify team collaboration and improve work efficiency",
+        "values": [
+            "User First",
+            "Continuous Innovation",
+            "Open and Transparent"
+        ]
+    },
+    "contact": {
+        "title": "Contact Us",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Submit"
+        }
+    }
+}

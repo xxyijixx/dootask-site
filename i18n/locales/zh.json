@@ -1,0 +1,121 @@
+{
+    "common": {
+        "lang_zh": "中文",
+        "lang_en": "English",
+        "title": "DooTask - 协作项目管理工具",
+        "description": "简单高效的团队协作与项目管理平台",
+        "try_now": "立即体验",
+        "get_started": "开始使用",
+        "learn_more": "了解更多",
+        "features": "功能特性",
+        "solutions": "解决方案"
+    },
+    "navigation": {
+        "home": "首页",
+        "product": "产品",
+        "solution": "解决方案", 
+        "pricing": "服务价格",
+        "about_us": "关于我们",
+        "support": "支持",
+        "download": "下载中心",
+        "help_center": "帮助中心",
+        "privacy_policy": "隐私政策",
+        "api_docs": "API文档",
+        "try_now": "立即体验",
+        "language": "语言",
+        "theme": "主题"
+    },
+    "theme": {
+    "light": "明亮模式",
+    "dark": "暗黑模式"
+  },
+  "language": {
+    "zh": "简体中文",
+    "en": "English"
+  },
+    "homepage": {
+        "hero": {
+            "title": "让团队协作更简单",
+            "subtitle": "轻量级的开源项目管理工具",
+            "description": "DooTask是一款全面的协作平台，帮助团队高效管理项目、沟通和执行"
+        },
+        "features": {
+            "project_management": "多视图项目管理",
+            "team_communication": "即时团队沟通",
+            "task_tracking": "智能任务追踪"
+        }
+    },
+    "features": {
+        "project_management": {
+            "title": "项目管理",
+            "description": "支持多种项目管理模式，实时掌控项目进度",
+            "details": [
+                "看板视图",
+                "甘特图",
+                "列表视图",
+                "日历视图"
+            ]
+        },
+        "team_collaboration": {
+            "title": "团队协作",
+            "description": "提供丰富的在线协作工具，提高工作效率",
+            "details": [
+                "在线文档",
+                "实时沟通",
+                "文件共享",
+                "任务分配"
+            ]
+        }
+    },
+    "pricing": {
+        "title": "灵活的定价方案",
+        "subtitle": "选择适合你团队的方案",
+        "plans": {
+            "free": {
+                "name": "免费版",
+                "price": "0",
+                "features": [
+                    "基础项目管理",
+                    "最多3个用户",
+                    "有限的存储空间"
+                ]
+            },
+            "pro": {
+                "name": "专业版",
+                "price": "99",
+                "features": [
+                    "高级项目管理",
+                    "无限用户",
+                    "优先支持"
+                ]
+            },
+            "enterprise": {
+                "name": "企业版",
+                "price": "联系销售",
+                "features": [
+                    "完整功能",
+                    "私有部署",
+                    "专属客户经理"
+                ]
+            }
+        }
+    },
+    "about": {
+        "company_intro": "关于DooTask",
+        "mission": "我们的使命是简化团队协作，提高工作效率",
+        "values": [
+            "用户至上",
+            "持续创新",
+            "开放透明"
+        ]
+    },
+    "contact": {
+        "title": "联系我们",
+        "form": {
+            "name": "姓名",
+            "email": "邮箱",
+            "message": "留言",
+            "submit": "提交"
+        }
+    }
+}

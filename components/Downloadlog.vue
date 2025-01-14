@@ -14,8 +14,8 @@
                 </li>
               </template>
             </li>
-            <li>
-              <a @click="navigateTo('/download')" class="more-item">
+            <li> 
+              <a @click="navigateTo('/log')" class="more-item">
                 <h5 class="txt-4001624 more">更多日志</h5>
                 <img class="icon" src="/img/dow_arrow.svg" alt="更多日志" />
               </a>
