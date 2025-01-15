@@ -1,7 +1,7 @@
 {
     "common": {
         "lang_zh": "中文",
-    "lang_en": "English",
+        "lang_en": "English",
         "title": "DooTask - Collaborative Project Management Tool",
         "description": "Simple and efficient team collaboration and project management platform",
         "try_now": "Try Now",

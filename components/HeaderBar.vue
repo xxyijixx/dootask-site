@@ -273,7 +273,7 @@ const route = useRoute();
 //   useScope: 'global'    // 使用全局作用域
 // })
 
-const { t, locale } = useI18n()
+const { t, locale, setLocaleMessage } = useI18n()
 
 
 // 抽屉相关状态和方法
@@ -285,17 +285,36 @@ const isThemeMenuOpen = ref(false);
 
 //语言设置
 // 语言切换方法
-const switchLanguage = (lang: 'zh' | 'en') => {
+const switchLanguage = async (lang: 'zh' | 'en') => {
+  console.log("Switching language to:", lang)
   themeStore.lang = lang
-  nextTick(() => {
-    // 使用 locale.value 更新语言
+  try {
+    
+    // 直接设置语言消息
+    const messages = await import(`~/i18n/locales/${lang}.json`)
+    setLocaleMessage(lang, messages.default)
+    
+    // 更新 locale
     locale.value = lang
+    
+    // 更新 themeStore
+    themeStore.lang = lang
     
     // 保存到 localStorage
     if (process.client) {
       localStorage.setItem('language', lang)
     }
-  })
+    
+    // 验证特定的翻译键是否存在
+    console.log("Navigation support translation:", t('navigation.support'))
+    
+    // 强制重新渲染
+    nextTick(() => {
+      // 可以在这里添加一些额外的重新渲染逻辑
+    })
+  } catch (error) {
+    console.error("Error switching language:", error)
+  }
 }
 
 // 背景映射
@@ -468,9 +487,9 @@ const expandMenuHandle = (val: string) => {
 
 //语言选择
 const handleSetLocale = (newLocale: 'zh' | 'en') => {
-  // switchLanguage(newLocale)
-  console.log("选择语言", newLocale)
-  themeStore.lang = newLocale
+  switchLanguage(newLocale)
+  // console.log("选择语言", newLocale)
+  // themeStore.lang = newLocale
   isLangPopVisisble.value = false;
 };
 </script>

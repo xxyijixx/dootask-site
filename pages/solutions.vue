@@ -7,6 +7,6 @@
   </main>
 </template>
 
-<script lang="ts" steup>
+<script lang="ts" setup>
 
 </script>
