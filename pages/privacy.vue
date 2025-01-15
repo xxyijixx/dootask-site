@@ -9,6 +9,10 @@
 <script setup>
 import { onMounted } from 'vue';
 
+definePageMeta({
+  layout: 'blank',
+})
+
 // 动态加载 Markdown 文件并渲染为 HTML
 onMounted(() => {
   // 异步加载 markdown-it 库

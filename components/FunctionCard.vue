@@ -83,6 +83,10 @@ const currentPicSrc = computed(() => {
   return scenarioItems[index].picSrc;
 });
 
+const currentTheme = () => {
+  return nuxtApp.$getTheme()
+}
+
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;

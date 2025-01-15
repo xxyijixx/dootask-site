@@ -105,7 +105,7 @@
         </div>
       </div>
       <div class="txt-4001624 filings footer_copyright">
-        <span> Copyright © 2022-2023 DooTask. All rights reserved. </span>
+        <span> Copyright © 2022-{{year}} DooTask. All rights reserved. </span>
         <div class="footer_beian" style="display: flex">
           <img src="/img/beian.png" alt="" /><span style="padding-left: 3px"
             >桂公网安备 45010802000393号</span
@@ -118,11 +118,12 @@
     </div>
   </footer>
 </template>
-
 <script setup lang="ts">
 import { ref, computed, toRefs } from 'vue';
 
 const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
+
+const year = new Date().getFullYear();
 </script>

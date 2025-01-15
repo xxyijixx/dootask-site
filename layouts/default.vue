@@ -3,6 +3,7 @@
     <HeaderBar />
     <slot />
     <FooterBar />
+    <SideNav />
   </div>
 </template>
 
