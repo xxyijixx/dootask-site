@@ -77,7 +77,7 @@
               class="txt-4001620 txt nav-price"
               to="/price"
               :style="route.path === '/price' ? getTabStyles() : {}"
-              >服务价格</NuxtLink
+              >{{ $t('navigation.pricing') }}</NuxtLink
             >
           </li>
           <li class="nav-ul-item">
@@ -85,7 +85,7 @@
               class="txt-4001620 txt nav-about"
               to="/about"
               :style="route.path === '/about' ? getTabStyles() : {}"
-              >关于我们</NuxtLink
+              >{{ $t('navigation.about_us') }}</NuxtLink
             >
           </li>
         </ul>
@@ -123,7 +123,7 @@
           <i class="line-1"></i>
           <span class="get-started">
             <a href="https://www.dootask.com/manage/dashboard">
-              <button class="btn btn-primary">立即体验</button>
+              <button class="btn btn-primary">{{ $t('common.try_now') }}</button>
             </a>
           </span>
         </div>
@@ -154,7 +154,7 @@
           </div>
           <div class="drawer-item" @click="expandMenuHandle('support')">
             <i class="txt-4001620 txt">
-              支持
+              {{ $t('navigation.support') }}
               <img
                 src="/img/vector.svg"
                 class="nav-vector"
@@ -192,7 +192,7 @@
         <li class="drawer-item-c">
           <div class="drawer-item" @click.stop="expandMenuHandle('theme')">
             <i class="txt-4001620 txt">
-              主题
+              {{ $t('navigation.theme') }}
               <img
                 src="/img/vector.svg"
                 alt="主题"
@@ -217,18 +217,18 @@
         <li class="drawer-item-c">
           <div class="drawer-item" @click="expandMenuHandle('language')">
             <i class="txt-4001620 txt">
-              语言
+              {{ $t('navigation.language') }}
               <img
                 src="/img/vector.svg"
                 alt="语言"
                 class="nav-vector"
-                :style="isLangPopVisisble ? 'transform: rotate(180deg)' : ''"
+                :style="isLanguageMenuOpen ? 'transform: rotate(180deg)' : ''"
               />
             </i>
           </div>
           <ol
             class="drawer-active"
-            :style="{ display: isLangPopVisisble ? 'block' : 'none' }"
+            :style="{ display: isLanguageMenuOpen ? 'block' : 'none' }"
             id="language"
           >
             <div
@@ -247,7 +247,7 @@
             class="txt-4001620 txt"
             href="https://www.dootak.com/manage/dashboard"
             @click="closeDrawer"
-            >立即体验</a
+            >{{ $t('common.try_now') }}</a
           >
         </li>
       </ul>
@@ -267,12 +267,7 @@ const { theme, lang } = toRefs(themeStore);
 // 获取当前路由信息
 const route = useRoute();
 
-// 使用更健壮的国际化配置
-// const { t, locale } = useI18n({
-//   fallbackLocale: 'zh', // 设置回退语言
-//   useScope: 'global'    // 使用全局作用域
-// })
-
+// 在 setup 顶部立即调用 useI18n()
 const { t, locale, setLocaleMessage } = useI18n()
 
 
@@ -282,6 +277,7 @@ const isDrawerOpen = ref(false);
 //控制菜单三个选项的展开
 const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
+const isLanguageMenuOpen = ref(false);
 
 //语言设置
 // 语言切换方法
@@ -480,6 +476,11 @@ const closeDrawer = () => {
 const expandMenuHandle = (val: string) => {
   if (val === 'support') {
     isSupportMenuOpen.value = !isSupportMenuOpen.value;
+  } else if (val === 'language') {
+    isLanguageMenuOpen.value = !isLanguageMenuOpen.value; 
+    // 关闭其他可能打开的菜单
+    isSupportMenuOpen.value = false;
+    isThemeMenuOpen.value = false;
   } else if (val === 'theme') {
     isThemeMenuOpen.value = !isThemeMenuOpen.value; // 切换主题菜单的显示状态
   }
