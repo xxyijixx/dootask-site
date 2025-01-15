@@ -4,16 +4,16 @@
       <div class="topics-con">
         <div class="topics-layout">
           <div class="topics-tit mb-32" style="width: auto !important">
-            <span class="txt-6007290 topics-h1">一个产品，多种强大的工具</span>
+            <span class="txt-6007290 topics-h1">{{ $t('produpage.title') }}</span>
           </div>
           <h4 class="txt-4001830 topics-h4 mb-32">
-            该产品汇集了各种文档协作、在线思维导图、在线流程图、项目管理、任务分配、即时IM、文档管理等功能。
+            {{ $t('produpage.desc') }}
           </h4>
           <div class="flex-cc topics-btn">
             <span class="mr-24 get-started">
               <!-- <a href="./price.html"> -->
               <NuxtLink to="/price">
-                <button class="btn btn-primary mr-20">开始使用</button>
+                <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
               </NuxtLink>
 
               <!-- </a> -->
@@ -94,6 +94,10 @@
 
 <script setup>
 import { ref, watch, onMounted, toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 
 const themeStore = useThemeStore();
 
@@ -120,166 +124,147 @@ watch(
   { immediate: true },
 );
 
-const productItems = [
-  { icon: '/img/product_icons0_h.svg', title: '机器人助理' },
-  { icon: '/img/product_icons1.svg', title: '即时沟通' },
-  { icon: '/img/product_icons2.svg', title: '项目管理' },
-  { icon: '/img/product_icons3.svg', title: '任务仪表盘' },
-  { icon: '/img/product_icons4.svg', title: '任务日历' },
-  { icon: '/img/product_icons5.svg', title: '机器人助手' },
-  { icon: '/img/product_icons6.svg', title: '团队管理' },
-  { icon: '/img/product_icons7.svg', title: '端到端加密' },
-  { icon: '/img/product_icons8.svg', title: '多平台应用' },
-];
+const productItems = computed(() => [
+  { icon: '/img/product_icons0_h.svg', title: t('produpage.choose.cocre') },
+  { icon: '/img/product_icons1.svg', title: t('produpage.choose.im') },
+  { icon: '/img/product_icons2.svg', title: t('produpage.choose.proj') },
+  { icon: '/img/product_icons3.svg', title: t('produpage.choose.dash') },
+  { icon: '/img/product_icons4.svg', title: t('produpage.choose.calendar') },
+  { icon: '/img/product_icons5.svg', title: t('produpage.choose.botass') },
+  { icon: '/img/product_icons6.svg', title: t('produpage.choose.team') },
+  { icon: '/img/product_icons7.svg', title: t('produpage.choose.e2e') },
+  { icon: '/img/product_icons8.svg', title: t('produpage.choose.multi') },
+]);
 
-const productDetails = [
+const productDetails = computed(() =>[
   {
-    alt: '团队协作无界限,不再是文件孤岛',
+    alt: t('produpage.choose.cocre_de.title_one'),
     items: [
       {
-        title: '团队协作无界限',
-        description:
-          '汇集文档、电子表格、思维笔记等多种在线工具，汇聚企业知识资源于一处，支持多人实时协同编辑，让团队协作更便捷。',
+        title: t('produpage.choose.cocre_de.title_one'),
+        description: t('produpage.choose.cocre_de.desc_one'),
       },
       {
-        title: '不再是文件孤岛',
-        description:
-          '具有多种文件格式支持，团队内部文件共享，可控制的文件权限、历史版本追踪等，方便团队成员之间进行文件协作和讨论，提高工作效率。',
+        title: t('produpage.choose.cocre_de.title_two'),
+        description: t('produpage.choose.cocre_de.desc_two'),
       },
     ],
   },
   {
-    alt: '聚焦沟通高效交流,消息必达沟通无阻碍,云端同步查阅历史信息不受限,随时随地参会',
+    alt: t('produpage.choose.im_de.title_one'),
     items: [
       {
-        title: '聚焦沟通，高效交流',
-        description:
-          '针对项目和任务建立群组，即时IM功能可以帮助团队成员之间实时沟通，在任务卡片中添加评论、附件、提醒等，促进团队快速协作，提高团队工作效率。',
+        title: t('produpage.choose.im_de.title_one'),
+        description:t('produpage.choose.im_de.desc_one'),
       },
       {
-        title: '消息必达沟通无阻碍',
-        description:
-          '消息支持查看已读未读，未读消息通过官方邮件通知对方，高效传达。',
+        title: t('produpage.choose.im_de.title_two'),
+        description: t('produpage.choose.im_de.desc_two'),
       },
       {
-        title: '云端同步查阅历史信息不受限',
-        description:
-          '信息多端同步，不丢失。新员工加入组织，支持查看聊天历史消息，无缝融入团队。',
+        title: t('produpage.choose.im_de.title_three'),
+        description: t('produpage.choose.im_de.desc_three'),
       },
       {
-        title: '随时随地参会',
-        description:
-          '使用沟通群组视频会议，项目人员随时随地参会，提升线上会议便捷性，保证会议全程安全可控，有序进行。',
+        title: t('produpage.choose.im_de.title_four'),
+        description:t('produpage.choose.im_de.desc_four'),
       },
     ],
     ulClass: 'item4',
   },
   {
-    alt: '多样式管理模版,关联文件一键归档,项目化办公，行动可视化,动态管理，实时监控',
+    alt: t('produpage.choose.proj_de.title_one'),
     items: [
       {
-        title: '多样式管理模版',
-        description:
-          '模版满足多种团队协作场景，同时支持自定义模版，满足团队个性化场景管理需求，可直观的查看项目的进展情况，团队协作更方便。',
+        title: t('produpage.choose.proj_de.title_one'),
+        description:t('produpage.choose.proj_de.desc_one'),
       },
       {
-        title: '项目化办公，行动可视化',
-        description:
-          '使用看板、表格、列表等多种视图让整体项目一目了然；成员可对任务灵活筛选、排序和分组，让要事优先，并保持专注。',
+        title: t('produpage.choose.proj_de.title_two'),
+        description:t('produpage.choose.proj_de.desc_two'),
       },
       {
-        title: '动态管理，实时监控',
-        description:
-          '实时变更项目动态，具体任务变更情况记录提醒，以便团队把控项目整体进程，制定相应计划。',
+        title: t('produpage.choose.proj_de.title_three'),
+        description:t('produpage.choose.proj_de.desc_three'),
       },
       {
-        title: '关联文件一键归档',
-        description: '项目及相关任务文件自动归档储存，便于之后查阅使用。',
+        title: t('produpage.choose.proj_de.title_four'),
+        description:t('produpage.choose.proj_de.desc_four'),
       },
     ],
     ulClass: 'item4',
   },
   {
-    alt: '全面洞悉任务数据',
+    alt: t('produpage.choose.dash_de.title_one'),
     items: [
-      {
-        title: '全面洞悉任务数据',
-        description:
-          '任务仪表盘内展示任务状态分类统计，便于个人掌握任务进度，合理安排和规划工作，提高工作效率。',
+    {
+        title: t('produpage.choose.dash_de.title_one'),
+        description:t('produpage.choose.dash_de.desc_one'),
       },
     ],
   },
   {
-    alt: '精准掌握时间进度,多款日历视图',
+    alt: t('produpage.choose.calendar_de.title_one'),
     items: [
       {
-        title: '精准掌握时间进度',
-        description:
-          '展现各项工作的日程排期，让工作任务一目了然，更好的平衡工作和生活。',
+        title: t('produpage.choose.calendar_de.title_one'),
+        description:t('produpage.choose.calendar_de.desc_one'),
       },
       {
-        title: '多款日历视图',
-        description:
-          '提供月/周/日等多款日历视图，便捷切换；支持按使用目的创建多个日历，自定义可见范围和颜色标识，让日程分类展示。',
+        title: t('produpage.choose.calendar_de.title_two'),
+        description:t('produpage.choose.calendar_de.desc_two'),
       },
     ],
   },
   {
-    alt: '智能提示，让科技贴近生活',
+    alt: t('produpage.choose.botass_dev.title_one'),
     items: [
       {
-        title: '智能提示，让科技贴近生活',
-        description:
-          '智能机器人可对员工日常签到打卡、任务提醒、推送最新咨询消息等进行服务，帮用户实现有效的工作进度管理及时间规划。',
+        title: t('produpage.choose.botass_de.title_one'),
+        description:t('produpage.choose.botass_de.desc_one'),
       },
       {
-        title: '人工智能，实现与AI实时交流',
-        description:
-          '聪明的小海豚，基于人工智能技术的语言处理工具，能够通过学习和理解人类的语言来进行对话，实时交流，全面掌握各种文字信息，极大提高工作的便捷性。',
+        title: t('produpage.choose.botass_de.title_two'),
+        description:t('produpage.choose.botass_de.desc_two'),
       },
     ],
   },
   {
-    alt: '全面提升层级化组织效能,多功能协助企业管理团队',
+    alt: t('produpage.choose.team_de.title_one'),
     items: [
       {
-        title: '全面提升层级化组织效能',
-        description:
-          '管理人员可在后台设置公司人员架构，形成完整团队形态，便于对项目和相关任务进行分级协同管理。',
+        title: t('produpage.choose.team_de.title_one'),
+        description:t('produpage.choose.team_de.desc_one'),
       },
       {
-        title: '多功能协助企业管理团队',
-        description:
-          '提供日常工作报告编辑汇总，项目及任务数据汇总统计，多种功能协助企业管理团队和项目，提高公司管理效率和管理水平。',
+        title: t('produpage.choose.team_de.title_two'),
+        description:t('produpage.choose.team_de.desc_two'),
       },
     ],
   },
   {
-    alt: '掌控加密密钥，保障安全可靠',
+    alt: t('produpage.choose.e2e_de.title_one'),
     items: [
       {
-        title: '掌控加密密钥，保障安全可靠',
-        description:
-          '使用端到端加密技术，确保用户的数据只能由他们自己解密。这意味着即使黑客入侵了DooTask的服务器，也无法访问用户的数据。',
+        title: t('produpage.choose.e2e_de.title_one'),
+        description:t('produpage.choose.e2e_de.desc_one'),
       },
       {
-        title: '数据分类加密，实现安全同步',
-        description:
-          '使用分类加密技术，用户可以在多个设备间同步其任务和文件，不必担心数据被窃取或篡改。',
+        title: t('produpage.choose.e2e_de.title_two'),
+        description:t('produpage.choose.e2e_de.desc_two'),
       },
     ],
   },
   {
-    alt: '多平台应用',
+    alt: t('produpage.choose.multi_de.title_one'),
     items: [
       {
-        title: '多平台应用',
-        description:
-          '多平台应用支持，随时随地追踪项目进度，同时让你在工作中每一个步骤都能拥有更高效愉悦的体验。',
+        title: t('produpage.choose.multi_de.title_one'),
+        description:t('produpage.choose.multi_de.desc_one'),
       },
     ],
   },
-];
+]);
 
 function selectProductItem(index) {
   currentIndex.value = index;

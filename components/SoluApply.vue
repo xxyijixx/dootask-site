@@ -5,16 +5,16 @@
       <div class="topics-con">
         <div class="topics-layout">
           <div class="topics-tit mb-32" style="width: auto !important">
-            <span class="txt-6007290 topics-h1">帮助您更好地进行协作</span>
+            <span class="txt-6007290 topics-h1">{{ $t('solution.title') }}</span>
           </div>
           <h4 class="txt-4001830 topics-h4 mb-32">
-            DooTask提供了一系列基于不同场景的解决方案，以便您可以快速开始与您的团队或部门合作
+            {{ $t('solution.desc') }}
           </h4>
           <div class="flex-cc topics-btn">
             <span class="mr-24 get-started">
               <!-- <a href="./price.html"> -->
               <NuxtLink to="/price">
-                <button class="btn btn-primary mr-20">开始使用</button>
+                <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
               </NuxtLink>
               <!-- </a> -->
             </span>
@@ -26,10 +26,10 @@
       <div class="bg-style">
         <div class="app-con">
           <div class="app-tit">
-            <h1 class="txt-5004455 app-h1 mb-16">场景应用</h1>
+            <h1 class="txt-5004455 app-h1 mb-16">{{ $t('solution.apply.title') }}</h1>
             <div style="text-align: center">
               <h6 class="txt-4001830 app-h5" style="width: 600px">
-                该产品支持各种应用场景，帮助团队协作
+                {{ $t('solution.apply.desc') }}
               </h6>
             </div>
           </div>
@@ -61,39 +61,36 @@
 import { toRefs } from 'vue';
 
 import { useThemeStore } from '@/stores';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 const { theme, lang } = toRefs(themeStore);
 
 // 场景应用列表
-const sceneApplications = [
+const sceneApplications = computed(() => [
   {
     picSrc: `/img/${theme.value}/${lang.value}_solution_pic1.png`,
-    title: '项目管理',
-    description:
-      '支持多种项目管理模式，如敏捷开发、水晶计划、看板等，适用于各种规模和类型的项目管理。用户可以使用DooTask里的项目管理工具，例如任务分配、进度跟踪、资源分配等来管理整个项目。',
+    title: t('solution.apply.title_one'),
+    description: t('solution.apply.desc_one'),
   },
   {
     picSrc: `/img/${theme.value}/${lang.value}_solution_pic2.png`,
-
-    title: '团队协作',
-    description:
-      'DooTask的丰富实用的工具可以方便团队成员之间的沟通和协作，提高工作效率。例如，团队成员可以使用DooTask里的文档协作工具、在线思维导图、流程图等工具进行协作。',
+    title: t('solution.apply.title_two'),
+    description: t('solution.apply.desc_two'),
   },
   {
     picSrc: `/img/${theme.value}/${lang.value}_solution_pic3.png`,
-
-    title: '数据安全保护',
-    description:
-      'DooTask在消息功能上使用非对称加密技术，确保用户的信息得到最大程度的保护。此外，它还提供了强大的权限管理系统，能够根据不同用户的角色和职责，灵活地设置他们在项目管理中的权限和操作范围。',
+    title: t('solution.apply.title_three'),
+    description: t('solution.apply.desc_three'),
   },
   {
     picSrc: `/img/${theme.value}/solution_pic4.png`,
-    title: '自由定制',
-    description:
-      'DooTask是一款完全开源的工具，用户可以自由修改和定制，避免了商业软件订阅费用带来的额外成本。',
+    title: t('solution.apply.title_four'),
+    description: t('solution.apply.desc_four'),
   },
-];
+]);
 </script>
 
 <style scoped>

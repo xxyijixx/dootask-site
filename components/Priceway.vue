@@ -3,10 +3,10 @@
     <div class="topics-con">
       <div class="topics-layout">
         <div class="topics-tit mb-32">
-          <span class="txt-6007290 topics-h1">选择你的方案</span>
+          <span class="txt-6007290 topics-h1">{{ $t('pricing.title') }}</span>
         </div>
         <h4 class="txt-4001830 topics-h4 mb-64">
-          根据你的企业的规模和需求，有不同的版本可供选择
+          {{ $t('pricing.desc') }}
         </h4>
         <ul class="price-card">
           <li
@@ -93,6 +93,10 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const selectedPlan = ref(null);
 const hoveredPlan = ref(null);

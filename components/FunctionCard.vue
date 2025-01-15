@@ -3,7 +3,7 @@
   <!-- 功能卡片区域 -->
   <article class="card">
     <div class="card-con">
-      <h1 class="txt-5004455 card-h1 mb-80">使用场景</h1>
+      <h1 class="txt-5004455 card-h1 mb-80">{{ $t('homepage.scenarios.title') }}</h1>
       <div class="card-con-layout">
         <ul class="card-ul">
           <li
@@ -46,7 +46,7 @@
 
     <!-- 移动端版本 -->
     <div class="card-con-768">
-      <h1 class="txt-5002228 card-h1 mb-32">使用场景</h1>
+      <h1 class="txt-5002228 card-h1 mb-32">{{ $t('homepage.scenarios.title') }}</h1>
       <div class="card-con-layout">
         <ul class="card-768-ul">
           <li
@@ -69,9 +69,10 @@
 
 <script setup>
 import { ref, computed, toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const themeStore = useThemeStore();
-
 const { theme, lang } = toRefs(themeStore);
 
 const activeCardIndex = ref(0);
@@ -80,66 +81,57 @@ const activeCardIndex = ref(0);
 const currentPicSrc = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
-  return scenarioItems[index].picSrc;
+  return scenarioItems.value[index].picSrc;
 });
 
-const currentTheme = () => {
-  return nuxtApp.$getTheme()
-}
 
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
-  return scenarioItems[index].picAlt;
+  return scenarioItems.value[index].picAlt;
 });
 
 const toggleCard = (index) => {
   activeCardIndex.value = activeCardIndex.value === index ? -1 : index;
 };
 
-const scenarioItems = [
+const scenarioItems = computed(() => [
   {
     icon: '/img/home_icon1.svg',
-    title: '项目管理',
-    description:
-      '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
-    picAlt:
-      '支持多种项目管理模式，适用于各种规模和类型的项目管理，实时掌控项目进度，优化工作流程。',
+    title: t('homepage.scenarios.scen_promana_ti'),
+    description: t('homepage.scenarios.scen_promana_desc'),
+    picAlt: t('homepage.scenarios.scen_promana_desc'),
     picSrc: `/img/${theme.value}/${lang.value}_home_pic2.png`,
   },
   {
     icon: '/img/home_icon2.svg',
-    title: '团队协作',
-    description:
-      '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
-    picAlt:
-      '提供丰富实用的在线文档协作工具，方便团队成员之间的沟通和协作，提高工作效率。',
+    title: t('homepage.scenarios.scen_team_ti'),
+    description: t('homepage.scenarios.scen_team_desc'),
+    picAlt: t('homepage.scenarios.scen_team_desc'),
     picSrc: `/img/${theme.value}/${lang.value}_home_pic3.png`,
   },
   {
     icon: '/img/home_icon3.svg',
-    title: '任务协同',
-    description:
-      '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
-    picAlt:
-      '以任务化的方式让团队的工作井井有条，保证团队协作的高效性和任务分工的明确性。',
+    title: t('homepage.scenarios.scen_task_ti'),
+    description: t('homepage.scenarios.scen_task_desc'),
+    picAlt: t('homepage.scenarios.scen_task_desc'),
     picSrc: `/img/${theme.value}/${lang.value}_home_pic4.png`,
   },
   {
     icon: '/img/home_icon4.svg',
-    title: '绩效衡量',
-    description: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
-    picAlt: '建立可量化的评价标准，数据化呈现工作成效，凝聚核心人才。',
+    title: t('homepage.scenarios.scen_okr_ti'),
+    description: t('homepage.scenarios.scen_okr_desc'),
+    picAlt: t('homepage.scenarios.scen_okr_desc'),
     picSrc: `/img/${theme.value}/${lang.value}_home_pic5.png`,
   },
   {
     icon: '/img/home_icon5.svg',
-    title: '沟通汇报',
-    description: '基于工作场景的即时通讯及共享，实现更好的团队沟通。',
-    picAlt: '基于工作场景的即时通讯和分享，以实现更好的团队沟通。',
+    title: t('homepage.scenarios.scen_communit_ti'),
+    description: t('homepage.scenarios.scen_communit_desc'),
+    picAlt: t('homepage.scenarios.scen_communit_desc'),
     picSrc: `/img/${theme.value}/${lang.value}_home_pic6.png`,
   },
-];
+]);
 
-const mobileScenarioItems = scenarioItems;
+const mobileScenarioItems = computed(() => scenarioItems.value);
 </script>

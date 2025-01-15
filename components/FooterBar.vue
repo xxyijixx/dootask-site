@@ -7,46 +7,46 @@
             <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
             <i class="dootask txt-7002027">DooTask</i>
           </NuxtLink>
-          <i class="txt txt-4001624">帮助团队有效地推进项目，使工作更轻松。</i>
+          <i class="txt txt-4001624">{{ $t('footer.title') }}</i>
         </div>
         <div class="footer-r">
           <ul class="footer-r-ul">
             <li class="footer-r-item">
               <ol class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">链接</li>
+                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.links') }}</li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink class="txt-4001624 txt" to="/product"
-                    >产品</NuxtLink
+                    >{{ $t('footer.product') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink class="txt-4001624 txt" to="/solutions"
-                    >解决方案</NuxtLink
+                    >{{ $t('footer.solution') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink class="txt-4001624 txt" to="/price"
-                    >服务价格</NuxtLink
+                    >{{ $t('footer.pricing') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item">
                   <NuxtLink class="txt-4001624 txt" to="/about"
-                    >关于我们</NuxtLink
+                    >{{ $t('footer.about') }}</NuxtLink
                   >
                 </li>
               </ol>
             </li>
             <li class="footer-r-item">
               <ol class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">支持</li>
+                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.support') }}</li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink class="txt-4001624 txt" to="/download"
-                    >下载中心</NuxtLink
+                    >{{ $t('footer.download') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink class="txt-4001624 txt" to="/help"
-                    >帮助中心</NuxtLink
+                    >{{ $t('footer.help') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item mb-16">
@@ -54,7 +54,7 @@
                     class="txt-4001624 txt"
                     to="/privacy"
                     target="_blank"
-                    >隐私政策</NuxtLink
+                    >{{ $t('footer.privacy') }}</NuxtLink
                   >
                 </li>
                 <li class="footer-ol-item">
@@ -62,14 +62,14 @@
                     class="txt-4001624 txt"
                     href="https://www.dootask.com/docs/index.html"
                     target="_blank"
-                    >API 文档</a
+                    >{{ $t('footer.api_docs') }}</a
                   >
                 </li>
               </ol>
             </li>
             <li class="footer-r-item">
               <ul class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">社区</li>
+                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.community') }}</li>
                 <li class="footer-ol-item">
                   <div class="footer-ol-item mb-16">
                     <i
@@ -86,7 +86,7 @@
                     >
                   </div>
                   <div class="footer-ol-item" id="qq_group">
-                    <i class="txt-4001624 txt">QQ 群</i>
+                    <i class="txt-4001624 txt">{{ $t('footer.QQ') }}</i>
                     <div class="group_code">
                       <img
                         class="code-svg"
@@ -120,6 +120,9 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 

@@ -184,9 +184,7 @@
             v-for="(item, index) in mainMenuItems.slice(2, 5)"
             :key="index"
           >
-            <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{
-              item.text
-            }}</a>
+            <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{item.text}}</a>
           </div>
         </li>
         <li class="drawer-item-c">
@@ -427,23 +425,23 @@ const isDrawerVisible = ref(false);
 const drawerRef = ref<HTMLElement | null>(null);
 
 // 菜单项数据
-const mainMenuItems = [
-  { text: '产品', link: '/product' },
-  { text: '解决方案', link: '/solutions' },
-  { text: '服务价格', link: '/price' },
-  { text: '关于我们', link: '/about' },
-];
+const mainMenuItems = computed(() => [
+  { text: t('navigation.product'), link: '/product' },
+  { text: t('navigation.solution'), link: '/solutions' },
+  { text: t('navigation.pricing'), link: '/price' },
+  { text: t('navigation.about_us'), link: '/about' },
+]);
 
-const supportItems = [
-  { text: '下载中心', link: '/download' },
-  { text: '帮助中心', link: '/help' },
-  { text: '隐私政策', link: '/privacy', target: '_blank' },
+const supportItems = computed(() => [
+  { text: t('navigation.download'), link: '/download' },
+  { text: t('navigation.help_center'), link: '/help' },
+  { text: t('navigation.privacy_policy'), link: '/privacy', target: '_blank' },
   {
-    text: 'API 文档',
+    text: t('navigation.api_docs'),
     link: 'https://www.dootask.com/docs/index.html',
     target: '_blank',
   },
-];
+]);
 
 interface ThemeItem {
   text: string;

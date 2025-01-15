@@ -17,27 +17,27 @@ export default defineNuxtPlugin((nuxtApp) => {
     const lang = localStorage.getItem('lang') || 'en';
     console.log('设置主题', theme);
     // Change images dynamically
-    changeImageSrc('#logo', `/img/${theme}/logo.svg`);
-    changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
-    changeImageSrc('#home_pic2', `/img/${theme}/${lang}_home_pic2.png`);
-    changeImageSrc('#home_pic3', `/img/${theme}/${lang}_home_pic3.png`);
-    changeImageSrc('#home_pic4', `/img/${theme}/${lang}_home_pic4.png`);
-    changeImageSrc('#home_pic5', `/img/${theme}/${lang}_home_pic5.png`);
-    changeImageSrc('#home_pic6', `/img/${theme}/${lang}_home_pic6.png`);
-    changeImageSrc('#solution_pic1', `/img/${theme}/${lang}_solution_pic1.png`);
-    changeImageSrc('#solution_pic2', `/img/${theme}/${lang}_solution_pic2.png`);
-    changeImageSrc('#solution_pic3', `/img/${theme}/${lang}_solution_pic3.png`);
-    changeImageSrc('#dow_pic1', `/img/${theme}/${lang}_dow_pic1.png`);
-    changeImageSrc('#solution_pic4', `/img/${theme}/solution_pic4.png`);
-    changeImageSrc('#about_pic1', `/img/${theme}/about_pic1.png`);
-    changeImageSrc('#home_icon1', `/img/${theme}/home_icon1.png`);
-    changeImageSrc('#home_icon2', `/img/${theme}/home_icon2.png`);
-    changeImageSrc('#home_icon3', `/img/${theme}/home_icon3.png`);
-    changeImageSrc('#home_icon4', `/img/${theme}/home_icon4.png`);
-    changeImageSrc('#home_pic7', `/img/${theme}/home_pic7.svg`);
-    changeImageSrc('#home_pic7_768', `/img/${theme}/home_pic7_768.svg`);
-    changeImageSrc('#help_pic2', `/img/${theme}/help_pic2.png`);
-    changeImageSrc('#help_pic3', `/img/${theme}/help_pic3.png`);
+    // changeImageSrc('#logo', `/img/${theme}/logo.svg`);
+    // changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
+    // changeImageSrc('#home_pic2', `/img/${theme}/${lang}_home_pic2.png`);
+    // changeImageSrc('#home_pic3', `/img/${theme}/${lang}_home_pic3.png`);
+    // changeImageSrc('#home_pic4', `/img/${theme}/${lang}_home_pic4.png`);
+    // changeImageSrc('#home_pic5', `/img/${theme}/${lang}_home_pic5.png`);
+    // changeImageSrc('#home_pic6', `/img/${theme}/${lang}_home_pic6.png`);
+    // changeImageSrc('#solution_pic1', `/img/${theme}/${lang}_solution_pic1.png`);
+    // changeImageSrc('#solution_pic2', `/img/${theme}/${lang}_solution_pic2.png`);
+    // changeImageSrc('#solution_pic3', `/img/${theme}/${lang}_solution_pic3.png`);
+    // changeImageSrc('#dow_pic1', `/img/${theme}/${lang}_dow_pic1.png`);
+    // changeImageSrc('#solution_pic4', `/img/${theme}/solution_pic4.png`);
+    // changeImageSrc('#about_pic1', `/img/${theme}/about_pic1.png`);
+    // changeImageSrc('#home_icon1', `/img/${theme}/home_icon1.png`);
+    // changeImageSrc('#home_icon2', `/img/${theme}/home_icon2.png`);
+    // changeImageSrc('#home_icon3', `/img/${theme}/home_icon3.png`);
+    // changeImageSrc('#home_icon4', `/img/${theme}/home_icon4.png`);
+    // changeImageSrc('#home_pic7', `/img/${theme}/home_pic7.svg`);
+    // changeImageSrc('#home_pic7_768', `/img/${theme}/home_pic7_768.svg`);
+    // changeImageSrc('#help_pic2', `/img/${theme}/help_pic2.png`);
+    // changeImageSrc('#help_pic3', `/img/${theme}/help_pic3.png`);
 
     // Set CSS custom properties for background images and colors
     root.style.setProperty('--bg-pic7-url', `url(/img/${theme}/home_pic7.svg)`);

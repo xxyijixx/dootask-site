@@ -5,7 +5,7 @@
       <ul class="choose-con-ul mb-32">
         <li class="choose-con-item">
           <h1 class="txt-5004455 choose-con-tit">
-            为什么选择我们
+            {{ $t('homepage.whychoose.title') }}
             <svg
               class="arcs2"
               width="312"
@@ -63,8 +63,8 @@
     <!-- 移动端版本 -->
     <div class="choose-con-768">
       <h1 class="txt-5004455 choose-con-tit">
-        为什么选择我们
-        <img class="arcs2" src="/img/arcs.svg" alt="为什么选择我们" />
+        {{ $t('homepage.whychoose.title') }}
+        <img class="arcs2" src="/img/arcs.svg" alt=" $t('homepage.whychoose.title') " />
       </h1>
       <div class="choose-con-768-box">
         <ul
@@ -108,6 +108,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 interface ChooseItem {
   number: string;
@@ -119,36 +122,31 @@ const activeIndex = ref(0);
 const isMobile = ref(false);
 const isTransitioning = ref(true);
 
-const chooseItems = ref<ChooseItem[]>([
+const chooseItems = computed<ChooseItem[]>(() =>[
   {
     number: '01',
-    title: '高效便捷的团队沟通工具',
-    description:
-      '针对项目和任务建立群组，工作问题可及时沟通，促进团队快速协作，提高团队工作效率。',
+    title: t('homepage.whychoose.reason_one_ti'),
+    description: t('homepage.whychoose.reason_one_desc'),
   },
   {
     number: '02',
-    title: '强大易用的协同创作云文档',
-    description:
-      '汇集文档、电子表格、思维笔记等多种在线工具，汇聚企业知识资源于一处，支持多人实时协同编辑，让团队协作更便捷。',
+    title: t('homepage.whychoose.reason_two_ti'),
+    description: t('homepage.whychoose.reason_two_desc'),
   },
   {
     number: '03',
-    title: '便捷多样的项目管理模版',
-    description:
-      '模版满足多种团队协作场景，同时支持自定义模版，满足团队个性化场景管理需求，可直观的查看项目的进展情况，团队协作更方便。',
+    title: t('homepage.whychoose.reason_three_ti'),
+    description: t('homepage.whychoose.reason_three_desc'),
   },
   {
     number: '04',
-    title: '清晰直观的任务日历',
-    description:
-      '通过灵活的任务日历，轻松安排每一天的日程，把任务拆解到每天，让工作目标更清晰，时间分配更合理。',
+    title: t('homepage.whychoose.reason_four_ti'),
+    description: t('homepage.whychoose.reason_four_desc'),
   },
   {
     number: '05',
-    title: '支持多平台应用',
-    description:
-      '多平台应用支持，随时随地追踪项目进度，同时让你在工作中每一个步骤都能拥有更高效愉悦的体验。',
+    title: t('homepage.whychoose.reason_five_ti'),
+    description: t('homepage.whychoose.reason_five_desc'),
   },
 ]);
 

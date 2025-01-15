@@ -22,7 +22,7 @@ export const useThemeStore = defineStore('themeStore', {
     // Function to set the theme
     setTheme(theme: string): void {
       const root = document.documentElement;
-      const lang = localStorage.getItem('lang') || 'zh';
+      const lang = localStorage.getItem('language') || 'zh';
       this.theme = theme;
       this.lang = lang;
       console.log('设置主题9999999', theme);

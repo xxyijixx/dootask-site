@@ -2,7 +2,7 @@
   <!-- 合作公司区域 -->
   <article class="companies">
     <div class="companies-con">
-      <h1 class="companies-h1 txt-4003645">受到许多公司的信任</h1>
+      <h1 class="companies-h1 txt-4003645">{{ $t('homepage.hero.trusted') }}</h1>
       <ul class="companies-ul">
         <li class="companies-ul-item">
           <img
@@ -39,6 +39,7 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const themeStore = useThemeStore();
 

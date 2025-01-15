@@ -14,12 +14,12 @@
     />
     <div class="collaboration-content collaboration-content-zh">
       <h1 class="collaboration-txt txt-5002835 mb-32">
-        开启您的DooTask团队协作
+        {{ $t('homepage.coll.desc') }}
       </h1>
       <div style="display: flex">
         <span class="mr-24 get-started">
           <NuxtLink to="/price">
-            <button class="btn btn-gw mr-20">开始使用</button>
+            <button class="btn btn-gw mr-20">{{ $t('common.get_started') }}</button>
           </NuxtLink>
         </span>
       </div>
@@ -29,6 +29,10 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 

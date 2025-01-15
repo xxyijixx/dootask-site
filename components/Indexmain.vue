@@ -25,19 +25,21 @@
               />
             </svg>
           </span>
-          <span class="txt-6007290 topics-h1">,轻量级任务管理工具</span>
+          <span class="txt-6007290 topics-h1">
+            {{ $t('homepage.hero.subtitle') }}
+          </span>
         </div>
         <h4 class="txt-4001830 topics-h4 mb-32">
-          DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。
+          {{ $t('homepage.hero.description') }}
         </h4>
         <div class="flex-cc topics-btn">
           <span class="mr-24 get-started">
             <NuxtLink to="/price">
-              <button class="btn btn-primary mr-20">开始使用</button>
+              <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
             </NuxtLink>
           </span>
           <a href="https://github.com/kuaifan/dootask/tree/pro" target="_blank">
-            <button class="btn btn-default">私有化部署</button>
+            <button class="btn btn-default">{{ $t('homepage.hero.deployment') }}</button>
           </a>
         </div>
       </div>
@@ -56,8 +58,9 @@
 <script setup lang="ts">
 import { toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
-const { locale } = useI18n();
+const { locale , t } = useI18n();
 const themeStore = useThemeStore();
+
 
 const { theme, lang } = toRefs(themeStore);
 </script>
