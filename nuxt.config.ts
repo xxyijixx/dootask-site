@@ -36,13 +36,10 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n', '@nuxt/content', '@pinia/nuxt'],
   i18n: {
     locales:[
-      { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
-      { code: 'zh', iso: 'zh-CN', file: 'zh.json', name: '简体中文'},
+      { code: 'en', iso: 'en-US', name: 'English' },
+      { code: 'zh', iso: 'zh-CN', name: '简体中文'},
     ],
-    defaultLocale: 'zh', // 设置默认语言为中文
     strategy: 'prefix_except_default', // 语言前缀策略
-    lazy: true, // 启用懒加载
-    langDir: 'locales/', // 语言文件目录
     vueI18n: './i18n.config.ts',
   },
   css: [

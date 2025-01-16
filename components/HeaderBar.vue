@@ -30,7 +30,7 @@
               id="support-txt"
               @click="toggleMenuPopHandle"
             >
-            {{ $t('navigation.support') }}
+              {{ $t('navigation.support') }}
               <img
                 src="/img/vector.svg"
                 alt="支持"
@@ -45,14 +45,14 @@
               :style="isMenuPopVisisble ? 'display: block' : ''"
             >
               <li class="submenu-pop-item" @click="changeMenu()">
-                <NuxtLink class="txt-4001418 txt-sub" to="/download"
-                  >{{ $t('navigation.download') }}</NuxtLink
-                >
+                <NuxtLink class="txt-4001418 txt-sub" to="/download">{{
+                  $t('navigation.download')
+                }}</NuxtLink>
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
-                <a class="txt-4001418 txt-sub" href="http://localhost:5173/"
-                  >{{ $t('navigation.help_center') }}</a
-                >
+                <a class="txt-4001418 txt-sub" href="http://localhost:5173/">{{
+                  $t('navigation.help_center')
+                }}</a>
               </li>
               <li class="submenu-pop-item" @click="changeMenu()">
                 <NuxtLink
@@ -109,10 +109,18 @@
               </li>
             </ul>
           </div>
-          <i class="nav-r-icon" v-if="theme === 'dark'" @click="setTheme('light')">
+          <i
+            class="nav-r-icon"
+            v-if="theme === 'dark'"
+            @click="setTheme('light')"
+          >
             <img src="/img/light.svg" alt="明亮主题" />
           </i>
-          <i class="nav-r-icon" v-if="theme === 'light'" @click="setTheme('dark')">
+          <i
+            class="nav-r-icon"
+            v-if="theme === 'light'"
+            @click="setTheme('dark')"
+          >
             <img src="/img/drak.svg" alt="暗黑主题" />
           </i>
           <a href="https://github.com/kuaifan/dootask" target="_blank">
@@ -123,7 +131,9 @@
           <i class="line-1"></i>
           <span class="get-started">
             <a href="https://www.dootask.com/manage/dashboard">
-              <button class="btn btn-primary">{{ $t('common.try_now') }}</button>
+              <button class="btn btn-primary">
+                {{ $t('common.try_now') }}
+              </button>
             </a>
           </span>
         </div>
@@ -184,7 +194,9 @@
             v-for="(item, index) in mainMenuItems.slice(2, 5)"
             :key="index"
           >
-            <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{item.text}}</a>
+            <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{
+              item.text
+            }}</a>
           </div>
         </li>
         <li class="drawer-item-c">
@@ -266,8 +278,7 @@ const { theme, lang } = toRefs(themeStore);
 const route = useRoute();
 
 // 在 setup 顶部立即调用 useI18n()
-const { t, locale, setLocaleMessage } = useI18n()
-
+const { t, setLocale, setLocaleMessage } = useI18n();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -280,36 +291,13 @@ const isLanguageMenuOpen = ref(false);
 //语言设置
 // 语言切换方法
 const switchLanguage = async (lang: 'zh' | 'en') => {
-  console.log("Switching language to:", lang)
-  themeStore.lang = lang
-  try {
-    
-    // 直接设置语言消息
-    const messages = await import(`~/i18n/locales/${lang}.json`)
-    setLocaleMessage(lang, messages.default)
-    
-    // 更新 locale
-    locale.value = lang
-    
-    // 更新 themeStore
-    themeStore.lang = lang
-    
-    // 保存到 localStorage
-    if (process.client) {
-      localStorage.setItem('language', lang)
-    }
-    
-    // 验证特定的翻译键是否存在
-    console.log("Navigation support translation:", t('navigation.support'))
-    
-    // 强制重新渲染
-    nextTick(() => {
-      // 可以在这里添加一些额外的重新渲染逻辑
-    })
-  } catch (error) {
-    console.error("Error switching language:", error)
-  }
-}
+  console.log('Switching language to:', lang);
+  setLocale(lang);
+  // 更新 themeStore
+  themeStore.lang = lang;
+  // 保存到 localStorage
+  localStorage.setItem('language', lang);
+};
 
 // 背景映射
 const backgroundMap = {
@@ -419,7 +407,6 @@ const changeMenu = (type?: string) => {
   isMenuPopVisisble.value = false;
 };
 
-
 // 状态管理
 const isDrawerVisible = ref(false);
 const drawerRef = ref<HTMLElement | null>(null);
@@ -459,8 +446,8 @@ interface LanguageItem {
 }
 
 const languageItems: LanguageItem[] = [
-{ text: t('common.lang_zh'), value: 'zh' },
-{ text: t('common.lang_en'), value: 'en' }
+  { text: t('common.lang_zh'), value: 'zh' },
+  { text: t('common.lang_en'), value: 'en' },
 ];
 
 const openDrawer = () => {
@@ -475,7 +462,7 @@ const expandMenuHandle = (val: string) => {
   if (val === 'support') {
     isSupportMenuOpen.value = !isSupportMenuOpen.value;
   } else if (val === 'language') {
-    isLanguageMenuOpen.value = !isLanguageMenuOpen.value; 
+    isLanguageMenuOpen.value = !isLanguageMenuOpen.value;
     // 关闭其他可能打开的菜单
     isSupportMenuOpen.value = false;
     isThemeMenuOpen.value = false;
@@ -486,9 +473,7 @@ const expandMenuHandle = (val: string) => {
 
 //语言选择
 const handleSetLocale = (newLocale: 'zh' | 'en') => {
-  switchLanguage(newLocale)
-  // console.log("选择语言", newLocale)
-  // themeStore.lang = newLocale
+  switchLanguage(newLocale);
   isLangPopVisisble.value = false;
 };
 </script>
