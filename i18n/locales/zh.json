@@ -202,11 +202,11 @@
     },
 
     "pricing": {
-        "title": "Choose your plan",
-        "desc": "Different versions are available depending on the size and needs of your business",
+        "title": "选择你的方案",
+        "desc": "根据你的企业的规模和需求，有不同的版本可供选择",
         "plans": {
-            "deploy": "Deploy Now",
-            "communicate": "Contact Us",
+            "deploy": "立即部署",
+            "communicate": "联系我们",
             "custom":"定制咨询",
             "features_first":"支持私有化部署",
             "features_sec":"技术咨询服务",
@@ -216,17 +216,19 @@
             "features_six":"12小时服务响应",
             "free": {
                 "name": "普通版",
-                "price": "月",
+                "price": "¥0",
+                "unit": "/月",
                 "limit":"无人数限制"
             },
             "free_sec": {
                 "name": "专业版",
-                "price": "月",
+                "price": "¥0",
+                "unit": "/月",
                 "limit":"最多3人"
             },
             "pro": {
                 "name": "专业版",
-                "price": "月",
+                "price": "¥18,888",
                 "limit":"无人数限制"
             },
             "enterprise": {
@@ -234,24 +236,100 @@
                 "price": "定制",
                 "limit":"人数可定制"
             }
-        }
+        },
+        "comparetitle":"对比所有计划",
+        "comparedesc":"根据你的企业的规模和需求，有不同的版本可供选择",
+        "features":"特点",
+        "price":"定价",
+        "sysuse":"系统使用",
+        "usernum":"用户数量",
+        "projnum":"项目数量",
+        "tasknum":"任务数量",
+        "offdeply":"离线部署",
+        "unlimit":"无限制",
+        "cusable":"可定制",
+        "official":"官方支持",
+        "support":"支持",
+        "taskcoll":"任务协作",
+        "multiview":"多视图展示",
+        "cuscol":"自定义栏目",
+        "visibset":"可见性设置",
+        "repcyc":"重复周期",
+        "progress":"项目进度",
+        "protemp":"项目模版",
+        "gantchar":"甘特图",
+        "apply":"应用",
+        "appro":"审批中心",
+        "okr":"OKR管理",
+        "bot":"AI机器人",
+        "meeting":"会议",
+        "okrresult":"OKR结果",  
+        "email":"邮件",
+        "apppush":"APP推送",
+        "team":"团队管理",
+        "chat":"聊天",
+        "func":"功能",
+        "linktask":"关联任务",
+        "emo":"表情",
+        "category":"消息分类",
+        "rightclick":"消息右键功能",
+        "meswithout":"消息免打扰",
+        "colorcode":"颜色备注",
+        "custom":"定制咨询",
+        "modaldesc":"如果有任何问题，欢迎使用以下方式与我们联系。",
+        "modalphone":"座机电话：0771-3164099",
+        "modaladdr1":"邮箱地址：service",
+        "modaladdr2":"hitosea.com",
+        "btn":"确定"
+
     },
     "about": {
-        "company_intro": "关于DooTask",
-        "mission": "我们的使命是简化团队协作，提高工作效率",
-        "values": [
-            "用户至上",
-            "持续创新",
-            "开放透明"
-        ]
+        "title": "关于我们的公司",
+        "desc": "专注于网络安全领域，我们致力于为用户提供全方位的网络安全解决方案。",
+        "founded":"公司成立",
+        "expertise":"团队经验",
+        "clientsatis":"客户满意",
+        "profile":{
+            "title":"公司介绍",
+            "desc":"自成立以来，广西海豚有海信息科技有限公司（HITOSEA）一直专注于网络安全领域前沿技术的创新，提供包括边界安全、云安全、数据安全、内网安全在内的网络安全产品和服务，致力于为用户提供更全面、更智能、零干扰的网络安全解决方案，是一家拥有年轻活力的技术公司。"
+        },
+        "scenapply":{
+            "title":"情景应用",
+            "desc":"该产品支持各种应用场景，帮助团队协作",
+            "cardtitle_one":"边缘安全",
+            "cardtitle_two":"云安全",
+            "cardtitle_three":"数据安全",
+            "cardtitle_four":"内联网安全",
+            "cardesc_one":"HITOSEA下一代防火墙、入侵防御/入侵检测系统、云沙箱等产品为用户提供网络边界访问控制、深度攻击检测和APT攻击检测等全面的智能安全保护。",
+            "cardesc_two":"我们提供安全可靠的高防云服务器，解决了服务器面临的主要网络安全风险，缓解了因洪水攻击而导致的业务中断风险，满足了常规安全操作的需要。",
+            "cardesc_three":"数据库审计和数据泄漏保护系统可以保护敏感数据和文件，识别数据和监控操作，阻止内部和外部人员通过网络、电子邮件和其他渠道进行数据盗窃。",
+            "cardesc_four":"网络应用防火墙和网络防篡改系统为应用系统提供了全面的安全保护，有效阻止了网络篡改和攻击等恶意行为的发生。"
+        },
+        "suggest":{
+            "title":"我们希望听到您的意见",
+            "desc":"对价格、计划或产品有疑问吗？请填写表格，我们将与您联系。",
+            "name":"昵称",
+            "name_placeholder":"请输入昵称",
+            "email":"邮箱",
+            "email_placeholder":"请输入邮箱",
+            "mes":"留言",
+            "mes_placeholder":"选填",
+            "btn":"提交"
+        }
+
+        
     },
-    "contact": {
-        "title": "联系我们",
-        "form": {
-            "name": "姓名",
-            "email": "邮箱",
-            "message": "留言",
-            "submit": "提交"
+    "download": {
+        "title": "下载DooTask客户端",
+        "desc":"同时支持iOS、Android、macOS、Windows版本",
+        "scan":"扫描下载",
+        "load":"下载",
+        "other":"其他版本",
+        "log":{
+            "title":"更新日志",
+            "new":"更新",
+            "more":"更多日志"
+            
         }
     },
     "footer": {

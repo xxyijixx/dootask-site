@@ -3,10 +3,10 @@
     <div class="topics-con">
       <div class="topics-layout">
         <div class="topics-tit mb-32">
-          <span class="txt-6005670 topics-h1">下载DooTask客户端</span>
+          <span class="txt-6005670 topics-h1">{{ $t('download.title')}}</span>
         </div>
         <h4 class="txt-4001830 topics-h4 mb-64">
-          同时支持iOS、Android、macOS、Windows版本
+          {{ $t('download.desc')}}
         </h4>
         <ul class="download-ul">
           <li
@@ -37,7 +37,7 @@
                   :src="platform.qrCode"
                   :alt="`扫描下载,${platform.name}`"
                 />
-                <i class="txt-4001624 txt">扫描下载</i>
+                <i class="txt-4001624 txt">{{ $t('download.scan')}}</i>
               </a>
             </template>
 
@@ -65,7 +65,7 @@
                   src="/img/dow_icon.svg"
                   alt="Android,下载"
                 />
-                <i class="txt-4001624 txt">下载</i>
+                <i class="txt-4001624 txt">{{ $t('download.load')}}</i>
               </a>
             </template>
 
@@ -115,7 +115,7 @@
                   src="/img/dow_icon.svg"
                   :alt="`${platform.name},下载`"
                 />
-                <i class="txt-4001624 txt">下载</i>
+                <i class="txt-4001624 txt">{{ $t('download.load')}}</i>
               </a>
             </template>
           </li>
@@ -126,7 +126,7 @@
           href="https://www.dootask.com/desktop/publish/latest"
           target="_blank"
         >
-          <span>其他版本</span>
+          <span>{{ $t('download.other')}}</span>
         </a>
       </div>
     </div>
@@ -135,7 +135,9 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const platforms = ref([
   {
     id: 'ios',

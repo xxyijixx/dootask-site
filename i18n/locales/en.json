@@ -201,59 +201,133 @@
             }
     },
     "pricing": {
-        "title": "选择你的方案",
-        "desc": "根据你的企业的规模和需求，有不同的版本可供选择",
+        "title": "Choose your plan",
+        "desc": "Different versions are available depending on the size and needs of your business",
         "plans": {
-            "deploy": "立即部署",
-            "communicate": "联系我们",
-            "custom":"定制咨询",
-            "features_first":"支持私有化部署",
-            "features_sec":"技术咨询服务",
-            "features_third":"24小时服务响应",
-            "features_forth":"Logo定制",
-            "features_five":"专属客户经理",
-            "features_six":"12小时服务响应",
+            "deploy": "Deploy Now",
+            "communicate": "Contact Us",
+            "custom":"Consult",
+            "features_first":"Support for private deployment",
+            "features_sec":"Technical advisory services",
+            "features_third":"24-hour service response",
+            "features_forth":"Logo customisation",
+            "features_five":"Dedicated Account Manager",
+            "features_six":"12-hour service response",
             "free": {
-                "name": "普通版",
+                "name": "Regular version",
                 "price": "¥0",
-                "unit":"/月",
-                "limit":"无人数限制"
+                "unit":"/month",
+                "limit":"No limit to the number of people"
             },
             "free_sec": {
-                "name": "专业版",
+                "name": "Professional Edition",
                 "price": "¥0",
-                "unit":"/月",
-                "limit":"最多3人"
+                "unit":"/month",
+                "limit":"Up to 3 persons"
             },
             "pro": {
-                "name": "专业版",
+                "name": "Professional Edition",
                 "price": "¥18,888",
-                "limit":"无人数限制"
+                "limit":"No limit to the number of people"
             },
             "enterprise": {
-                "name": "定制版",
-                "price": "定制",
-                "limit":"人数可定制"
+                "name": "Customised version",
+                "price": "Custom",
+                "limit":"Number of people can be customized"
             }
-        }
+        },
+        "comparetitle":"Compare all plans",
+        "comparedesc":"The product supports a variety of application scenarios to help team collaboration",
+        "features":"Feature",
+        "price":"Pricing",
+        "sysuse":"System usage",
+        "usernum":"Number of users",
+        "projnum":"Number of projects",
+        "tasknum":"Number of tasks",
+        "offdeply":"Offline Deployment",
+        "unlimit":"Unlimited",
+        "cusable":"Customizable",
+        "official":"Official Support",
+        "support":"Support",
+        "taskcoll":"Task Collaboration",
+        "multiview":"Multi-view presentation",
+        "cuscol":"Custom column",
+        "visibset":"Visibility setting",
+        "repcyc":"Repetition cycle",
+        "progress":"Project progress",
+        "protemp":"Project templates",
+        "gantchar":"Gantt chart",
+        "apply":"Application",
+        "appro":"Approval center",
+        "okr":"OKR management",
+        "bot":"AI robot",
+        "meeting":"Meeting",
+        "okrresult":"OKR results analysis",  
+        "email":"Email",
+        "apppush":"App Push Notifications",
+        "team":"Team management",
+        "chat":"Chat",
+        "func":"Features",
+        "linktask":"Linked Task",
+        "emo":"Emoji",
+        "category":"Message categorization",
+        "rightclick":"Message Right-Click Functionality",
+        "meswithout":"Message Do Not Disturb",
+        "colorcode":"Color Coding",
+        "custom":"Customised consultancy",
+        "modaldesc":"If you have any questions, please feel free to contact us using the following methods.",
+        "modalphone":"Landline Telephone：0771-3164099",
+        "modaladdr1":"Email Address：service",
+        "modaladdr2":"hitosea.com",
+        "btn":"OK"
     },
 
     "about": {
-        "company_intro": "About DooTask",
-        "mission": "Our mission is to simplify team collaboration and improve work efficiency",
-        "values": [
-            "User First",
-            "Continuous Innovation",
-            "Open and Transparent"
-        ]
+        "title": "About our company",
+        "desc": "Focusing on the field of network security, we are committed to providing users with a full range of network security solutions.",
+        "founded":"Company founded",
+        "expertise":"Team experience",
+        "clientsatis":"Customer staisfaction",
+        "profile":{
+            "title":"Company profile",
+            "desc":"Since its establishment, Guangxi Hitosea Information Technology Co., Ltd.(HITOSEA) has been focusing on the innovation of cutting-edge technologies in the field of network security, providing network security products and services including border security, cloud security, data security, intranet security, and is committed to providing users with comprehensive, smarter, and zero-disturbance network security solutions, and is a dynamic technology company with a young and energetic team."
+        },
+        "scenapply":{
+            "title":"Scenario Application",
+            "desc":"The product supports a variety of application scenarios to help team collaboration",
+            "cardtitle_one":"Edge Security",
+            "cardtitle_two":"Cloud Security",
+            "cardtitle_three":"Data Security",
+            "cardtitle_four":"Intranet Security",
+            "cardesc_one":"HITOSEA next-generation firewall, intrusion prevention/intrusion detection system, cloud sandbox and other products provide users with comprehensive intelligent security protection such as access control to network boundaries, deep attack detection and APT attack detection.",
+            "cardesc_two":"We provide safe and reliable high-proof cloud servers to solve the primary network security risks faced by servers, alleviate the risk of business interruption due to flooding attacks, and meet the needs of regular security operations.",
+            "cardesc_three":"Database audit and data leakage protection system can protect sensitive data and documents, identify data and monitor operations, and block data theft by internal and external personnel through the network, e-mail and other channels.",
+            "cardesc_four":"Web application firewall and web anti-tampering system provide overall security protection for the application system, effectively blocking malicious behaviors such as web tampering and attacks."
+        },
+        "suggest":{
+            "title":"We'd love to hear from you",
+            "desc":"Have questions about pricing, plans or products? Please fill out the form and we will contact you.",
+            "name":"Name",
+            "name_placeholder":"Please enter a nickname",
+            "email":"Email",
+            "email_placeholder":"Please enter your email address",
+            "mes":"Message",
+            "mes_placeholder":"Optional",
+            "btn":"Submit"
+        }
+
+        
     },
-    "contact": {
-        "title": "Contact Us",
-        "form": {
-            "name": "Name",
-            "email": "Email",
-            "message": "Message",
-            "submit": "Submit"
+    "download": {
+        "title": "Download DooTask client",
+        "desc":"Also supports iOS, Android, macOS, Windows versions",
+        "scan":"Download",
+        "load":"Download",
+        "other":"Other Versions",
+        "log":{
+            "title":"Update Log",
+            "new":"update",
+            "more":"More Logs"
         }
     },
     "footer": {

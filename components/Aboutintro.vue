@@ -4,17 +4,17 @@
       <div class="topics-con">
         <div class="topics-layout">
           <div class="topics-tit mb-32">
-            <span class="txt-6007290 topics-h1">关于我们的公司</span>
+            <span class="txt-6007290 topics-h1">{{ $t('about.title') }}</span>
           </div>
           <h4 class="txt-4001830 topics-h4 mb-32">
-            专注于网络安全领域，我们致力于为用户提供全方位的网络安全解决方案。
+            {{ $t('about.desc') }}
           </h4>
           <ul class="company-ul">
             <li class="company-ul-item">
               <h2 ref="yearEl" class="txt-5003636 company-h2 mb-8 company-year">
                 {{ companyYear }}
               </h2>
-              <h6 class="txt-4001624 company-h6">公司成立</h6>
+              <h6 class="txt-4001624 company-h6">{{ $t('about.founded') }}</h6>
             </li>
             <li class="company-ul-item">
               <div class="flex-sc">
@@ -26,7 +26,7 @@
                 </h2>
                 <i class="company-sup">+</i>
               </div>
-              <h6 class="txt-4001624 company-h6">团队经验</h6>
+              <h6 class="txt-4001624 company-h6">{{ $t('about.expertise') }}</h6>
             </li>
             <li class="company-ul-item">
               <div class="flex-sc">
@@ -38,7 +38,7 @@
                 </h2>
                 <i class="company-sup">%</i>
               </div>
-              <h6 class="txt-4001624 company-h6">客户满意</h6>
+              <h6 class="txt-4001624 company-h6">{{ $t('about.clientsatis') }}</h6>
             </li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
           />
           <div class="company-profile-r">
             <h1 class="txt-5004455 company-profile-h1 mb-80">
-              公司介绍
+              {{ $t('about.profile.title') }}
               <svg
                 style="bottom: -15px !important"
                 class="company-profile-arcs"
@@ -78,7 +78,7 @@
               </svg>
             </h1>
             <h6 class="txt-4001830 company-profile-h6">
-              自成立以来，广西海豚有海信息科技有限公司（HITOSEA）一直专注于网络安全领域前沿技术的创新，提供包括边界安全、云安全、数据安全、内网安全在内的网络安全产品和服务，致力于为用户提供更全面、更智能、零干扰的网络安全解决方案，是一家拥有年轻活力的技术公司。
+              {{ $t('about.profile.desc') }}
             </h6>
           </div>
         </div>
@@ -89,6 +89,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, toRefs } from 'vue';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 

@@ -3,9 +3,9 @@
     <div class="footer-t-con">
       <div class="footer-t-layout">
         <div class="footer-t-l">
-          <h1 class="footer-t-h1 mb-56">我们希望听到您的意见</h1>
+          <h1 class="footer-t-h1 mb-56">{{ $t('about.suggest.title')}}</h1>
           <h6 class="footer-t-h6 mb-56">
-            对价格、计划或产品有疑问吗？请填写表格，我们将与您联系。
+            {{ $t('about.suggest.desc')}}
           </h6>
           <div class="footer-t-contact mb-24">
             <img
@@ -27,36 +27,36 @@
         <form class="from" @submit.prevent="sendFormRequest">
           <ul class="from-ul">
             <li class="from-ul-item mb-16">
-              <i class="from-ul-tags mb-8">昵称</i>
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.name')}}</i>
               <input
                 id="username"
                 v-model="username"
                 class="input"
                 type="text"
-                placeholder="请输入昵称"
+                :placeholder="$t('about.suggest.name_placeholder')"
                 required
               />
             </li>
             <li class="from-ul-item mb-16">
-              <i class="from-ul-tags mb-8">邮箱</i>
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.email')}}</i>
               <input
                 id="email"
                 v-model="email"
                 class="input"
                 type="email"
-                placeholder="请输入邮箱"
+                :placeholder="$t('about.suggest.email_placeholder')"
                 required
               />
             </li>
             <li class="from-ul-item mb-16" id="desc_wrap">
-              <i class="from-ul-tags mb-8">留言</i>
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.mes')}}</i>
               <textarea
                 id="desc"
                 v-model="message"
                 class="textarea"
                 cols="3"
                 rows="8"
-                placeholder="选填"
+                :placeholder="$t('about.suggest.mes_placeholder')"
                 maxlength="255"
                 @input="limitCharacters"
               ></textarea>
@@ -76,7 +76,7 @@
                     alt="提交中"
                     src="/img/loading.png"
                   />
-                  提交
+                  {{ $t('about.suggest.btn')}}
                 </button>
               </span>
             </li>
@@ -90,6 +90,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const username = ref('');
 const email = ref('');

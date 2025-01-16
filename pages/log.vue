@@ -11,7 +11,7 @@
         </a>
         <i class="close-drawer" @click="closeLogsDrawer">✕</i>
       </div>
-      <h5 class="logs-h5 mb-16" style="font-weight: 500">更新日志</h5>
+      <h5 class="logs-h5 mb-16" style="font-weight: 500">{{ $t('download.log.title') }}</h5>
       <ul class="logs-l-ul logs-l-768"></ul>
     </div>
     <main>
@@ -21,11 +21,11 @@
           <div class="logs-con">
             <div class="logs-t-768" id="menuBtn-logs" @click="openLogsDrawer">
               <img class="logs-t-prev" src="/img/prev.svg" alt="更新日志" />
-              <i class="logs-t-tit">更新日志</i>
+              <i class="logs-t-tit">{{ $t('download.log.title') }}</i>
             </div>
             <div class="logs-layout">
               <div class="logs-l logs-sticky">
-                <h5 class="logs-h5 mb-16" style="font-weight: 500">更新日志</h5>
+                <h5 class="logs-h5 mb-16" style="font-weight: 500">{{ $t('download.log.title') }}</h5>
                 <ul class="logs-l-ul logs-l-1920" id="help-l-ul">
                   <li
                     v-for="(version, index) in versionLogs"
@@ -33,20 +33,20 @@
                     :class="['l-ul-item', { active: activeTabIndex === index }]"
                     @click="handleNavClick(index)"
                   >
-                    <a class="txt-4001620 txt log-a">v{{ version }} 更新</a>
+                    <a class="txt-4001620 txt log-a">v{{ version }} {{ $t('download.log.new') }}</a>
                   </li>
                 </ul>
                 <ul class="logs-l-ul logs-l-768"></ul>
               </div>
               <div class="logs-r">
-                <h1 class="txt-6003645 logs-h1 mb-36">DooTask更新日志</h1>
+                <h1 class="txt-6003645 logs-h1 mb-36">DooTask {{ $t('download.log.title') }}</h1>
                 <ul class="logs-r-ul">
                   <li
                     v-for="(version, index) in versionLogs"
                     :key="index"
                     :class="['l-ul-item', { active: activeTabIndex === index }]"
                   >
-                    <a class="txt-4001620 txt log-a">{{ version }} 更新</a>
+                    <a class="txt-4001620 txt log-a">{{ version }} {{ $t('download.log.new') }}</a>
                   </li>
                 </ul>
               </div>
@@ -63,6 +63,10 @@ import { ref, onMounted, onUnmounted, watch, nextTick, toRefs } from 'vue';
 import axios from 'axios';
 import markdownIt from 'markdown-it';
 import '@/assets/css/log.css';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 
@@ -126,7 +130,14 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
   }
 };
 
+const updateText = computed(() => t('download.log.new'));
+
+
 const renderLogs = (html) => {
+
+  const instance = getCurrentInstance();
+  const $t = instance.appContext.config.globalProperties.$t;
+  
   nextTick(() => {
     const logsContainer = document.querySelector('.logs-r-ul'); // 右侧日志区域
     const rlog = document.querySelector('.logs-l-1920'); // 左侧导航区域
@@ -182,7 +193,7 @@ const renderLogs = (html) => {
       const rLi = document.createElement('li');
       rLi.className = `l-ul-item ${i == 0 ? 'active' : ''}`;
       rLi.setAttribute('data-id', `section-${i + 1}`);
-      rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]} 更新</a>`;
+      rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]}${updateText.value}</a>`;
 
       const rLi2 = document.createElement('li');
       rLi2.className = `l-ul-item`;
@@ -191,7 +202,7 @@ const renderLogs = (html) => {
         const logsDrawer = document.querySelector('.logs-drawer');
         logsDrawer.classList.remove('open-logs-drawer');
       });
-      rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]} 更新</a>`;
+      rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]}${updateText.value}</a>`;
 
       rlog.appendChild(rLi);
       rlog2.appendChild(rLi2);
@@ -202,7 +213,7 @@ const renderLogs = (html) => {
       li.innerHTML = `
       <ol class="logs-r-ol">
         <li class="txt-4001624 r-ol-item mb-24" id="section-${i + 1}">
-          <h4 class="logs-h4">v${versionsNumbers[i]} 更新</h4>
+          <h4 class="logs-h4">v${versionsNumbers[i]} ${updateText.value}</h4>
         </li>
       </ol>
     `;
@@ -353,6 +364,7 @@ const scrollHandler = () => {
     }
   });
 };
+
 
 // 监听抽屉状态变化
 watch(

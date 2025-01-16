@@ -79,12 +79,12 @@
         <h3>{{ modalTitle }}</h3>
         <br />
         <div class="modal-body">
-          <p>如果有任何问题，欢迎使用以下方式与我们联系。</p>
-          <p>座机电话：0771-3164099</p>
-          <p>邮箱地址：service@hitosea.com</p>
+            <p>{{ $t('pricing.modaldesc') }}</p>
+            <p>{{ $t('pricing.modalphone') }}</p>
+            <p>{{ $t('pricing.modaladdr1') }}@{{ $t('pricing.modaladdr2') }}</p>
         </div>
         <div class="modal-actions">
-          <button @click="closeModal" class="btn-confirm">确定</button>
+          <button @click="closeModal" class="btn-confirm">{{ $t('pricing.btn') }}</button>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 import { useI18n } from 'vue-i18n';
 
@@ -108,99 +108,99 @@ const contactForm = ref({
   message: '',
 });
 
-const pricePlans = reactive([
+const pricePlans = computed(() => [
   {
-    name: '普通版',
+    name: t('pricing.plans.free.name'),
     price: '¥0',
-    priceUnit: '/月',
-    userLimit: '人数无限制',
-    buttonText: '立即部署',
+    priceUnit: t('pricing.plans.free.unit'),
+    userLimit: t('pricing.plans.free.limit'),
+    buttonText: t('pricing.plans.deploy'),
     buttonLink: 'https://github.com/kuaifan/dootask/tree/v0.13.0',
     features: [
       {
         icon: '/img/price_icon1.svg',
-        text: '支持私有化部署',
+        text: t('pricing.plans.features_first'),
       },
     ],
     recommended: false,
   },
   {
-    name: '专业版',
+    name: t('pricing.plans.free_sec.name'),
     price: '¥0',
-    priceUnit: '/月',
-    userLimit: '最多3人',
-    buttonText: '立即部署',
+    priceUnit: t('pricing.plans.free_sec.unit'),
+    userLimit: t('pricing.plans.free_sec.limit'),
+    buttonText: t('pricing.plans.deploy'),
     buttonLink: 'https://github.com/kuaifan/dootask/tree/pro',
     features: [
       {
         icon: '/img/price_icon1.svg',
-        text: '支持私有化部署',
+        text: t('pricing.plans.features_first'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '技术咨询服务',
+        text: t('pricing.plans.features_sec'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '24小时服务响应',
+        text: t('pricing.plans.features_third'),
       },
     ],
     recommended: false,
   },
   {
-    name: '专业版',
+    name: t('pricing.plans.pro.name'),
     price: '¥18,888',
-    userLimit: '人数无限制',
-    buttonText: '联系我们',
+    userLimit:  t('pricing.plans.pro.limit'),
+    buttonText:  t('pricing.plans.communicate'),
     recommended: true,
     features: [
       {
         icon: '/img/price_icon1.svg',
-        text: '支持私有化部署',
+        text: t('pricing.plans.features_first'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '技术咨询服务',
+        text: t('pricing.plans.features_sec'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: 'Logo定制',
+        text: t('pricing.plans.features_forth'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '专属客户经理',
+        text: t('pricing.plans.features_five'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '12小时服务响应',
+        text: t('pricing.plans.features_six'),
       },
     ],
   },
   {
-    name: '定制版',
-    price: '定制',
-    userLimit: '人数可定制',
-    buttonText: '定制咨询',
+    name: t('pricing.plans.enterprise.name'),
+    price: t('pricing.plans.enterprise.price'),
+    userLimit: t('pricing.plans.enterprise.limit'),
+    buttonText: t('pricing.plans.custom'),
     features: [
       {
         icon: '/img/price_icon1.svg',
-        text: '支持私有化部署',
+        text:t('pricing.plans.features_first'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '技术咨询服务',
+        text: t('pricing.plans.features_sec'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: 'Logo定制',
+        text: t('pricing.plans.features_forth'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '专属客户经理',
+        text: t('pricing.plans.features_five'),
       },
       {
         icon: '/img/price_icon1.svg',
-        text: '12小时服务响应',
+        text: t('pricing.plans.features_six'),
       },
     ],
     recommended: false,
@@ -215,7 +215,10 @@ function handlePlanSelect(plan) {
   }
 
   // 打开联系模态框
-  modalTitle.value = plan.buttonText;
+  modalTitle.value = plan.buttonText === t('pricing.plans.communicate')
+  ? t('pricing.plans.communicate') 
+  : t('pricing.custom');
+
   showContactModal.value = true;
 }
 

@@ -2,14 +2,14 @@
   <section class="plans">
     <div class="plans-con">
       <div class="plans-layout">
-        <h2 class="txt-5004455 plans-tit-h2 mb-16">对比所有计划</h2>
+        <h2 class="txt-5004455 plans-tit-h2 mb-16">{{ $t('pricing.comparetitle') }}</h2>
         <h5 class="txt-4001830 plans-tit-h5 mb-80">
-          该产品支持各种应用场景，帮助团队协作
+          {{ $t('pricing.comparedesc') }}
         </h5>
         <ul class="plans-ul-t">
           <div class="price-ceiling">
             <li class="plans-ul-t-item grid-5" style="padding: 20px 24px">
-              <h4 class="txt-5002024 plans-ul-t-item-h4">特点</h4>
+              <h4 class="txt-5002024 plans-ul-t-item-h4">{{ $t('pricing.features') }}</h4>
               <h4
                 v-for="(plan, index) in plans"
                 :key="index"
@@ -21,7 +21,7 @@
           </div>
 
           <li class="plans-ul-t-item grid-5" style="padding: 32px 24px">
-            <h4 class="txt-5001616 plans-ul-t-item-h4">定价</h4>
+            <h4 class="txt-5001616 plans-ul-t-item-h4">{{ $t('pricing.price') }}</h4>
             <div
               v-for="(plan, index) in plans"
               :key="index"
@@ -187,12 +187,12 @@
         <h3>{{ modalTitle }}</h3>
         <br />
         <div class="modal-body">
-          <p>如果有任何问题，欢迎使用以下方式与我们联系。</p>
-          <p>座机电话：0771-3164099</p>
-          <p>邮箱地址：service@hitosea.com</p>
+          <p>{{ $t('pricing.modaldesc') }}</p>
+          <p>{{ $t('pricing.modalphone') }}</p>
+          <p>{{ $t('pricing.modaladdr1') }}@{{ $t('pricing.modaladdr2') }}</p>
         </div>
         <div class="modal-actions">
-          <button @click="closeModal" class="btn-confirm">确定</button>
+          <button @click="closeModal" class="btn-confirm">{{ $t('pricing.btn') }}</button>
         </div>
       </div>
     </div>
@@ -202,122 +202,121 @@
 <script setup>
 import { ref } from 'vue';
 
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 const showContactModal = ref(false);
 const modalTitle = ref('');
-const contactForm = ref({
-  name: '',
-  email: '',
-  message: '',
-});
 
-const plans = [
+const plans = computed(() =>  [
   {
-    name: '普通版',
+    name: t('pricing.plans.free.name'),
     price: '¥0',
-    priceUnit: '/月',
-    buttonText: '立即部署',
+    priceUnit:  t('pricing.plans.free.unit'),
+    buttonText: t('pricing.plans.deploy'),
     buttonLink: 'https://github.com/kuaifan/dootask/tree/v0.13.0',
   },
   {
-    name: '专业版',
+    name: t('pricing.plans.free_sec.name'),
     price: '¥0',
-    priceUnit: '/月',
-    buttonText: '立即部署',
+    priceUnit: t('pricing.plans.free.unit'),
+    buttonText: t('pricing.plans.deploy'),
     buttonLink: 'https://github.com/kuaifan/dootask/tree/pro',
   },
   {
-    name: '专业版',
+    name: t('pricing.plans.pro.name'),
     price: '¥18,888',
-    buttonText: '联系我们',
+    buttonText: t('pricing.plans.communicate'),
   },
   {
-    name: '定制版',
-    price: '定制',
-    buttonText: '定制咨询',
+    name: t('pricing.plans.enterprise.name'),
+    price: t('pricing.plans.enterprise.price'),
+    buttonText:  t('pricing.plans.custom'),
   },
-];
+]);
 
-const compareSections = [
+const compareSections = computed(() => [
   {
-    title: '系统使用',
+    title: t('pricing.sysuse') ,
     items: [
       {
-        name: '用户数量',
-        support: ['无限制', '≤3', '无限制', '可定制'],
+        name: t('pricing.projnum'),
+        support: [ t('pricing.unlimit'), '≤3', t('pricing.unlimit'), t('pricing.cusable')],
       },
       {
-        name: '项目数量',
-        support: ['无限制', '无限制', '无限制', '无限制'],
+        name: t('pricing.projnum'),
+        support: [t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit')],
       },
       {
-        name: '任务数量',
-        support: ['无限制', '无限制', '无限制', '无限制'],
+        name: t('pricing.tasknum'),
+        support: [t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit')],
       },
       {
-        name: '离线部署',
-        support: ['支持', '支持', '官方支持', '官方支持'],
+        name: t('pricing.offdeply'),
+        support: [t('pricing.support'), t('pricing.support'),  t('pricing.official'),  t('pricing.official')],
       },
     ],
   },
   {
-    title: '任务协作',
+    title: t('pricing.taskcoll'),
     items: [
       {
-        name: '多视图展示',
+        name: t('pricing.multiview'),
         support: [true, true, true, true],
       },
       {
-        name: '自定义栏目',
+        name: t('pricing.cuscol'),
         support: [true, true, true, true],
       },
       {
-        name: '可见性设置',
+        name: t('pricing.visibset'),
         support: [false, true, true, true],
       },
       {
-        name: '重复周期',
+        name: t('pricing.repcyc'),
         support: [false, true, true, true],
       },
     ],
   },
   {
-    title: '项目管理',
+    title: t('homepage.scenarios.scen_promana_ti'),
     items: [
       {
-        name: '项目进度',
+        name:  t('pricing.progress'),
         support: [true, true, true, true],
       },
       {
-        name: '项目模板',
+        name: t('pricing.protemp'),
         support: [true, true, true, true],
       },
       {
-        name: '甘特图',
+        name: t('pricing.gantchar'),
         support: [true, true, true, true],
       },
     ],
   },
   {
-    title: '应用',
+    title: t('pricing.apply'),
     items: [
       {
-        name: '审批中心',
+        name: t('pricing.appro'),
         support: [false, true, true, true],
       },
       {
-        name: 'OKR管理',
+        name: t('pricing.okr'),
         support: [false, true, true, true],
       },
       {
-        name: 'AI机器人',
+        name: t('pricing.bot'),
         support: [false, true, true, true],
       },
       {
-        name: '会议',
+        name: t('pricing.meeting'),
         support: [false, true, true, true],
       },
       {
-        name: 'OKR结果分析',
+        name: t('pricing.okrresult'),
         support: [false, true, true, true],
       },
       {
@@ -325,47 +324,53 @@ const compareSections = [
         support: [false, true, true, true],
       },
       {
-        name: '邮件',
+        name: t('pricing.email'),
         support: [true, true, true, true],
       },
       {
-        name: 'APP推送',
+        name: t('pricing.apppush'),
         support: [false, true, true, true],
       },
       {
-        name: '团队管理',
+        name:  t('pricing.team'),
         support: [true, true, true, true],
       },
     ],
   },
   {
-    title: '聊天',
+    title: t('pricing.chat'),
     items: [
       {
-        name: '@功能',
+        name: '@' + t('pricing.func'),
         support: [false, true, true, true],
       },
       {
-        name: '关联任务',
+        name: t('pricing.linktask'),
         support: [false, true, true, true],
       },
       {
-        name: '表情',
+        name: t('pricing.emo'),
+        support: [false, true, true, true],
+      },
+      {
+        name: t('pricing.category'),
+        support: [false, true, true, true],
+      },
+      {
+        name: t('pricing.rightclick'),
+        support: [false, true, true, true],
+      },
+      {
+        name: t('pricing.meswithout'),
+        support: [false, true, true, true],
+      },
+      {
+        name: t('pricing.colorcode'),
         support: [false, true, true, true],
       },
     ],
   },
-];
-
-function handlePlanAction(plan) {
-  if (plan.buttonText === '联系我们') {
-    modalTitle.value = '联系我们';
-    showContactModal.value = true;
-  } else if (plan.buttonText === '定制咨询') {
-    modalTitle.value = '定制咨询';
-    showContactModal.value = true;
-  }
-}
+]);
 
 function handlePlanSelect(plan) {
   // 如果有直接链接，打开链接
@@ -375,7 +380,10 @@ function handlePlanSelect(plan) {
   }
 
   // 打开联系模态框
-  modalTitle.value = plan.buttonText;
+  modalTitle.value = plan.buttonText === t('pricing.plans.communicate')
+  ? t('pricing.plans.communicate') 
+  : t('pricing.custom'); 
+  
   showContactModal.value = true;
 }
 

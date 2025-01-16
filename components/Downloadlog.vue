@@ -3,20 +3,20 @@
     <div class="update-con">
       <div class="update-layout">
         <div class="update-l">
-          <h1 class="txt-4003645 update-h1 mb-36">更新日志</h1>
+          <h1 class="txt-4003645 update-h1 mb-36">{{ $t('download.log.title') }}</h1>
           <ul class="update-ul">
             <li id="releases">
               <template v-for="(release, index) in releases" :key="index">
                 <li class="update-item" @click="handleReleaseClick(index)">
                   <h5 class="txt-4001624 update-h5">
-                    DooTask {{ release.version }} 更新
+                    DooTask {{ release.version }} {{ $t('download.log.new') }}
                   </h5>
                 </li>
               </template>
             </li>
             <li> 
               <a @click="navigateTo('/log')" class="more-item">
-                <h5 class="txt-4001624 more">更多日志</h5>
+                <h5 class="txt-4001624 more">{{ $t('download.log.more') }}</h5>
                 <img class="icon" src="/img/dow_arrow.svg" alt="更多日志" />
               </a>
             </li>
@@ -39,6 +39,10 @@
 import { ref, onMounted, toRefs } from 'vue';
 import axios from 'axios';
 import { navigateTo } from '#app';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const themeStore = useThemeStore();
 
