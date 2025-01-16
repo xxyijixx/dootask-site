@@ -25,7 +25,7 @@ onMounted(() => {
     });
 
     // 加载 Markdown 文件并渲染
-    fetch('./privacy.md')
+    fetch('/privacy.md')
       .then((response) => response.text())
       .then((markdownText) => {
         const htmlText = md.render(markdownText);

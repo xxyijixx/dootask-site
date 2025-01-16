@@ -7,7 +7,7 @@
         <li
           v-for="(item, index) in teamOperations"
           :key="item.title"
-          class="team-ul-item team-ul-item-zh"
+          :class="['team-ul-item', `team-ul-item-${lang}`]"
           :style="{ '--delay': `${index * 0.1}s` }"
           v-show="item.icon && item.title && item.description"
         >
@@ -21,7 +21,13 @@
 </template>
 
 <script setup>
+import { toRefs } from 'vue';
+
+//设置语言动态卡片高度
+const themeStore = useThemeStore();
+const { lang } = toRefs(themeStore);
 import { useI18n } from 'vue-i18n';
+
 
 const { t } = useI18n();
 

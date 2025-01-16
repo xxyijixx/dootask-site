@@ -130,13 +130,10 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
   }
 };
 
-const updateText = computed(() => t('download.log.new'));
-
+// 添加一个响应式的重新渲染方法
+const rerenderLogs = ref(0);
 
 const renderLogs = (html) => {
-
-  const instance = getCurrentInstance();
-  const $t = instance.appContext.config.globalProperties.$t;
   
   nextTick(() => {
     const logsContainer = document.querySelector('.logs-r-ul'); // 右侧日志区域
@@ -180,6 +177,10 @@ const renderLogs = (html) => {
     // 渲染右侧日志条目
     // 通过版本号获取更新内容并渲染
     for (let i = 0; i < versionsNumbers.length; i++) {
+
+      // 直接在这里获取最新的翻译
+      const updateText = t('download.log.new');
+
       const updatesHtml = html
         .split(versionsNumbers[i])[1]
         .split('<h2>')[0]
@@ -193,7 +194,7 @@ const renderLogs = (html) => {
       const rLi = document.createElement('li');
       rLi.className = `l-ul-item ${i == 0 ? 'active' : ''}`;
       rLi.setAttribute('data-id', `section-${i + 1}`);
-      rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]}${updateText.value}</a>`;
+      rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]} ${updateText}</a>`;
 
       const rLi2 = document.createElement('li');
       rLi2.className = `l-ul-item`;
@@ -202,7 +203,7 @@ const renderLogs = (html) => {
         const logsDrawer = document.querySelector('.logs-drawer');
         logsDrawer.classList.remove('open-logs-drawer');
       });
-      rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]}${updateText.value}</a>`;
+      rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]} ${updateText}</a>`;
 
       rlog.appendChild(rLi);
       rlog2.appendChild(rLi2);
@@ -213,7 +214,7 @@ const renderLogs = (html) => {
       li.innerHTML = `
       <ol class="logs-r-ol">
         <li class="txt-4001624 r-ol-item mb-24" id="section-${i + 1}">
-          <h4 class="logs-h4">v${versionsNumbers[i]} ${updateText.value}</h4>
+          <h4 class="logs-h4">v${versionsNumbers[i]} ${updateText}</h4>
         </li>
       </ol>
     `;
@@ -365,23 +366,31 @@ const scrollHandler = () => {
   });
 };
 
-
 // 监听抽屉状态变化
 watch(
-  drawerOpen,
-  (newValue) => {
+  [drawerOpen, lang],
+  ([newDrawerValue, newLangValue], [oldDrawerValue, oldLangValue]) => {
     nextTick(() => {
+      // 处理抽屉状态
       const logsDrawer = document.querySelector('.logs-drawer');
       if (logsDrawer) {
-        if (newValue) {
+        if (newDrawerValue) {
           logsDrawer.classList.add('open-logs-drawer');
         } else {
           logsDrawer.classList.remove('open-logs-drawer');
         }
       }
+
+      // 如果语言发生变化，重新获取并渲染日志
+      if (newLangValue !== oldLangValue) {
+        // 可以添加额外的条件，比如只在特定页面重新渲染
+        if (window.location.pathname.includes('/log')) {
+          fetchLogsData();
+        }
+      }
     });
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 // 生命周期钩子
