@@ -143,7 +143,7 @@
       </div>
     </div>
     <!-- 抽屉导航 -->
-    <div class="drawer" :class="{ 'drawer-open': isDrawerVisible }">
+    <div class="drawer" :class="{ 'open-drawer': isDrawerVisible }">
       <div class="drawer-t mb-36">
         <a href="/" class="logo">
           <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTaskLogo" />
@@ -183,7 +183,7 @@
               <a
                 class="txt-4001620 txt"
                 :href="item.link"
-                target="_blank"
+                :target="item.target || '_self'"
                 @click="closeDrawer"
                 >{{ item.text }}</a
               >
@@ -349,16 +349,6 @@ onMounted(() => {
     }
   });
 
-  // 为小屏幕下的抽屉添加显示与关闭逻辑
-  menuBtn?.addEventListener('click', () => {
-    drawer?.classList.add('open-drawer');
-  });
-
-  window.addEventListener('click', (e) => {
-    if (!drawer?.contains(e.target as Node) && e.target !== menuBtn) {
-      drawer?.classList.remove('open-drawer');
-    }
-  });
 
   showBackground.value = true;
 
