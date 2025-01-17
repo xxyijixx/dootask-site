@@ -75,7 +75,10 @@
 
     <!-- 联系我们模态框 -->
     <div v-if="showContactModal" @click.stop class="modal-overlay">
-      <div class="modal-content" @click.stop>
+      <div 
+        class="modal-content" 
+        :class="{ 'dark-mode-background': theme === 'dark' }"
+        @click.stop>
         <h3>{{ modalTitle }}</h3>
         <br />
         <div class="modal-body">
