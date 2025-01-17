@@ -1266,6 +1266,7 @@ footer {
 .modal-content {
   text-align: left;
   background-color: white;
+  color: #1e1e1e;
   padding: 25px;
   border-radius: 12px;
   max-width: 430px;

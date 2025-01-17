@@ -102,11 +102,8 @@ const selectedPlan = ref(null);
 const hoveredPlan = ref(null);
 const showContactModal = ref(false);
 const modalTitle = ref('');
-const contactForm = ref({
-  name: '',
-  email: '',
-  message: '',
-});
+
+
 
 const pricePlans = computed(() => [
   {
@@ -234,4 +231,5 @@ function closeModal() {
   background: var(--bg-10-url) top left no-repeat;
   background-size: cover;
 }
+
 </style>

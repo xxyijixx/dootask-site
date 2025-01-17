@@ -24,6 +24,7 @@
               >{{ $t('navigation.solution') }}</NuxtLink
             >
           </li>
+          <!-- 支持部分 -->
           <li class="nav-ul-item">
             <i
               class="txt-4001620 txt nav-support"
@@ -44,32 +45,21 @@
               id="submenu-pop"
               :style="isMenuPopVisisble ? 'display: block' : ''"
             >
-              <li class="submenu-pop-item" @click="changeMenu()">
-                <NuxtLink class="txt-4001418 txt-sub" to="/download">{{
-                  $t('navigation.download')
-                }}</NuxtLink>
-              </li>
-              <li class="submenu-pop-item" @click="changeMenu()">
-                <a class="txt-4001418 txt-sub" href="http://localhost:5173/">{{
-                  $t('navigation.help_center')
-                }}</a>
-              </li>
-              <li class="submenu-pop-item" @click="changeMenu()">
-                <NuxtLink
-                  class="txt-4001418 txt-sub"
-                  to="/privacy"
-                  target="_blank"
-                  >{{ $t('navigation.privacy_policy') }}</NuxtLink
-                >
-              </li>
-              <li class="submenu-pop-item" @click="changeMenu()">
-                <a
-                  class="txt-4001418 txt-sub"
-                  href="https://www.dootask.com/docs/index.html"
-                  target="_blank"
-                  >{{ $t('navigation.api_docs') }}</a
-                >
-              </li>
+            <li 
+              v-for="(item, index) in supportItems" 
+              :key="index" 
+              class="submenu-pop-item" 
+              @click="changeMenu()"
+
+            >
+              <a 
+                :href="item.link"
+                :target="item.target || '_self'"
+                class="txt-4001418 txt-sub"
+              >
+                {{ item.text }}
+              </a>
+            </li>
             </ol>
           </li>
           <li class="nav-ul-item">
