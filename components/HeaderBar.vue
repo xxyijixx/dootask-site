@@ -11,7 +11,7 @@
           <li class="nav-ul-item">
             <NuxtLink
               class="txt-4001620 txt nav-product"
-              to="/product"
+              :to="`/${locale}/product`"
               :style="route.path === '/product' ? getTabStyles() : {}"
               >{{ $t('navigation.product') }}</NuxtLink
             >
@@ -19,7 +19,7 @@
           <li class="nav-ul-item">
             <NuxtLink
               class="txt-4001620 txt nav-solutions"
-              to="/solutions"
+              :to="`/${locale}/solutions`"
               :style="route.path === '/solutions' ? getTabStyles() : {}"
               >{{ $t('navigation.solution') }}</NuxtLink
             >
@@ -65,7 +65,7 @@
           <li class="nav-ul-item">
             <NuxtLink
               class="txt-4001620 txt nav-price"
-              to="/price"
+              :to="`/${locale}/price`"
               :style="route.path === '/price' ? getTabStyles() : {}"
               >{{ $t('navigation.pricing') }}</NuxtLink
             >
@@ -73,7 +73,7 @@
           <li class="nav-ul-item">
             <NuxtLink
               class="txt-4001620 txt nav-about"
-              to="/about"
+              :to="`/${locale}/about`"
               :style="route.path === '/about' ? getTabStyles() : {}"
               >{{ $t('navigation.about_us') }}</NuxtLink
             >
@@ -268,7 +268,7 @@ const { theme, lang } = toRefs(themeStore);
 const route = useRoute();
 
 // 在 setup 顶部立即调用 useI18n()
-const { t, setLocale, setLocaleMessage } = useI18n();
+const { t, setLocale,locale, setLocaleMessage } = useI18n();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -290,14 +290,28 @@ const switchLanguage = async (lang: 'zh' | 'en') => {
 };
 
 // 背景映射
-const backgroundMap = {
-  '/': 'var(--bg-1-url)',
-  '/product': 'var(--bg-3-url)',
-  '/download': 'var(--bg-8-url)',
-  '/about': 'var(--bg-11-url)',
-  '/solutions': 'var(--bg-5-url)',
-  '/price': 'var(--bg-10-url)',
-};
+const backgroundMap = computed(() => ({
+  [`/${locale.value}`]: 'var(--bg-1-url)',
+  [`/${locale.value}/product`]: 'var(--bg-3-url)',
+  [`/${locale.value}/download`]: 'var(--bg-8-url)',
+  [`/${locale.value}/about`]: 'var(--bg-11-url)',
+  [`/${locale.value}/solutions`]: 'var(--bg-5-url)',
+  [`/${locale.value}/price`]: 'var(--bg-10-url)',
+}));
+
+// 修改背景获取逻辑
+const getBackgroundUrl = computed(() => {
+  // 优先使用带语言前缀的路径
+  const localizedPath = backgroundMap.value[route.path];
+  
+  // 如果没有找到，尝试使用原始路径作为备选
+  if (localizedPath) {
+    return localizedPath;
+  }
+  
+  // 默认背景
+  return 'var(--bg-1-url)';
+});
 
 // 背景显示状态
 const showBackground = ref(true);
@@ -391,18 +405,29 @@ const changeMenu = (type?: string) => {
 const isDrawerVisible = ref(false);
 const drawerRef = ref<HTMLElement | null>(null);
 
+// 创建带语言前缀的路径
+const localizedRoutes = computed(() => ({
+  product: `/${locale.value}/product`,
+  solutions: `/${locale.value}/solutions`,
+  pricing: `/${locale.value}/price`,
+  about: `/${locale.value}/about`,
+  download: `/${locale.value}/download`,
+  help: `/${locale.value}/help`,
+  privacy: `/${locale.value}/privacy`
+}));
+
 // 菜单项数据
 const mainMenuItems = computed(() => [
-  { text: t('navigation.product'), link: '/product' },
-  { text: t('navigation.solution'), link: '/solutions' },
-  { text: t('navigation.pricing'), link: '/price' },
-  { text: t('navigation.about_us'), link: '/about' },
+  { text: t('navigation.product'), link: localizedRoutes.value.product  },
+  { text: t('navigation.solution'), link: localizedRoutes.value.solutions },
+  { text: t('navigation.pricing'), link: localizedRoutes.value.pricing },
+  { text: t('navigation.about_us'), link: localizedRoutes.value.about },
 ]);
 
 const supportItems = computed(() => [
-  { text: t('navigation.download'), link: '/download' },
-  { text: t('navigation.help_center'), link: '/help' },
-  { text: t('navigation.privacy_policy'), link: '/privacy', target: '_blank' },
+  { text: t('navigation.download'), link: localizedRoutes.value.download },
+  { text: t('navigation.help_center'), link: localizedRoutes.value.help },
+  { text: t('navigation.privacy_policy'), link: localizedRoutes.value.privacy, target: '_blank' },
   {
     text: t('navigation.api_docs'),
     link: 'https://www.dootask.com/docs/index.html',
