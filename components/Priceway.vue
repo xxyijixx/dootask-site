@@ -104,7 +104,6 @@ const showContactModal = ref(false);
 const modalTitle = ref('');
 
 
-
 const pricePlans = computed(() => [
   {
     name: t('pricing.plans.free.name'),

@@ -153,8 +153,8 @@
                 "title_one":"Real-time view of attendance statistics",
                 "title_two":"The ultimate experience in speed clocking",
                 "title_three":"Attendance data visualization and analysis",
-                "desc_one":"View attendance data anytime and anywhere, record the working hours of each team member, including starting time, finishing time, overtime, etc., to achieve goal management and performance management within the enterprise",
-                "desc_two":"The system recognizes and connects to the company's wifi to automatically punch in and out, saying goodbye to queuing and opening cell phone operations, employees no longer forget to punch in and out",
+                "desc_one":"View attendance data anytime and anywhere, record the working hours of each team member, including starting time, finishing time, overtime, etc., to achieve goal management and performance management within the enterprise.",
+                "desc_two":"The system recognizes and connects to the company's wifi to automatically punch in and out, saying goodbye to queuing and opening cell phone operations, employees no longer forget to punch in and out.",
                 "desc_three":"Statistics on attendance, tardiness, early departure, overtime hours and other related data of each team member are generated and visualized in statistical charts. Through these data and charts, enterprise management can gain an in-depth understanding of team members' working conditions and efficiency, and provide a reference basis for subsequent personnel arrangement and performance assessment."
             }
         },
@@ -163,7 +163,7 @@
             "digtitle_fir_one":"",
             "digtitle_sec_one":"Goal setting and tracking, more focused team",
             "digdesc_one":"Help team members set work goals and KPIs, and track and manage them to keep an eye on the progress of tasks in a timely manner.",
-           "digtitle_fir_two":"",
+            "digtitle_fir_two":"",
             "digtitle_sec_two":"Performance evaluation and feedback for more effortless management",
             "digdesc_two":"Support evaluation and feedback of team members' performance, and automatically generate performance reports and statistical charts according to task completion, providing reference basis for subsequent personnel management and performance assessment.",
             "digtitle_fir_three":"",
