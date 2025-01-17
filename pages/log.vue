@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- HeaderBar 部分 -->
-    <HeaderBar></HeaderBar>
     <!-- 更新日志抽屉 -->
     <div class="logs-drawer">
       <div class="drawer-t mb-36">
@@ -403,5 +401,3 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
 </script>
-
-<style></style>
