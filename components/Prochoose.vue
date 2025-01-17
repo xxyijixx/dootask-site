@@ -55,8 +55,7 @@
           v-for="(detail, index) in productDetails"
           :key="index"
           class="details"
-          :class="{ active: index === currentIndex }"
-          :style="{ display: index === currentIndex ? 'block' : 'none' }"
+          :class="{ 'details-active': index === currentIndex }"
         >
           <div
             class="details-con"
@@ -93,7 +92,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, toRefs } from 'vue';
+import { ref, watch, onMounted, toRefs, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -104,6 +103,29 @@ const themeStore = useThemeStore();
 const { theme, lang } = toRefs(themeStore);
 
 const currentIndex = ref(0);
+
+const isMobile = ref(false);
+
+// 检查屏幕尺寸
+const checkMobileView = () => {
+  isMobile.value = window.innerWidth <= 768;
+};
+
+
+onMounted(() => {
+  checkMobileView();
+  window.addEventListener('resize', () => {
+    checkMobileView();
+    startAutoPlay();
+  });
+
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobileView);
+
+});
+
 
 // 监听 currentIndex 更新后，确保 DOM 渲染完成
 watch(
@@ -272,12 +294,15 @@ function selectProductItem(index) {
 
 function prevHandle() {
   currentIndex.value =
-    (currentIndex.value - 1 + productDetails.length) % productDetails.length;
+    (currentIndex.value - 1 + productDetails.value.length) % productDetails.value.length;
+
 }
 
 function nextHandle() {
-  currentIndex.value = (currentIndex.value + 1) % productDetails.length;
+  currentIndex.value = (currentIndex.value + 1) % productDetails.value.length;
+
 }
+
 
 // 动态更改当前激活项的图标
 function getProductIcon(index) {
@@ -286,21 +311,7 @@ function getProductIcon(index) {
     : `/img/product_icons${index}.svg`; // 普通状态下的图标
 }
 
-// 监听 currentIndex 变化
-watch(
-  currentIndex,
-  (newIndex) => {
-    const detailsItems = document.querySelectorAll('.details');
-    detailsItems.forEach((item, index) => {
-      if (index === newIndex) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  },
-  { immediate: true },
-);
+
 </script>
 
 <style scoped>

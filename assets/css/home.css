@@ -229,12 +229,37 @@ section {
   flex-direction: column;
   padding-bottom: 88px;
 }
-.choose-con-768-box {
+.choose-con-768-box{
   position: relative;
   width: calc(100vw);
   overflow: hidden;
   height: 300px;
 }
+
+@media screen and (max-width: 768px) {
+  .choose-con-768-box {
+    position: relative;
+    width: calc(100vw);
+    overflow: hidden;
+    height: 300px; /* 默认中文高度 */
+  }
+
+  /* 英文版本 */
+  html[lang='en'] .choose-con-768-box {
+    height: 350px; /* 增加高度 */
+  }
+
+  /* 移动端文字样式调整 */
+  .card-768-ul .txt-4001524 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 限制2行文字 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+
 .zh_choose_768,
 .en_choose_768 {
   min-height: 257px;

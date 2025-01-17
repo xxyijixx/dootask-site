@@ -258,6 +258,28 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .choose-con-768-box {
+    position: relative;
+    width: calc(100vw);
+    overflow: hidden;
+    height: 300px; /* 默认中文高度 */
+  }
+
+  /* 英文版本 */
+  html[lang='en'] .choose-con-768-box {
+    height: 350px; /* 增加高度 */
+  }
+
+  /* 移动端文字样式调整 */
+  .choose-con-768-item .txt-4001524,
+  .choose-con-768-item .txt-4001624 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* 限制4行文字 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   img {
     max-width: 100% !important;
   }
@@ -266,6 +288,7 @@
   }
   .nav-layout {
     height: 64px !important;
+    margin: 0 0;
   }
   section {
     background: transparent !important;
@@ -398,6 +421,7 @@
   .home_pic7_768 {
     display: block !important;
   }
+
   .choose-con-768 {
     display: flex !important;
   }

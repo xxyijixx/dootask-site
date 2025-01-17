@@ -56,9 +56,7 @@
           >
             <img class="icon" :src="item.icon" :alt="item.title" />
             <h3 class="txt-5001822 card-ul-item-h3 mb-12">{{ item.title }}</h3>
-            <i class="txt-4001524 card-ul-item-txt mb-16">{{
-              item.description
-            }}</i>
+            <i class="txt-4001524 card-ul-item-txt mb-16">{{item.description}}</i>
             <img class="card-pic mb-40" :src="item.picSrc" :alt="item.picAlt" />
           </li>
         </ul>
