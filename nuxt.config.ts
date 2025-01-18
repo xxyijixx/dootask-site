@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     // '~/plugins/global.ts',
     // '~/plugins/toolbar.ts',
     '~/plugins/theme.ts',
-    '~/plugins/i18n.ts'  // 添加 i18n 插件
+    '~/plugins/i18n.ts',  // 添加 i18n 插件
+    '~/plugins/logger.ts' //添加屏蔽控制台warn插件
   ],
   app: {
     head: {
@@ -67,4 +68,5 @@ export default defineNuxtConfig({
   generate: {
     routes: [ '/zh' , '/en' ],  // 生成的语言版本页面
   },
+  
 });
