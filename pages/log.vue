@@ -120,10 +120,18 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
     updatesHtmlText.forEach((update) => {
       const listItem = document.createElement('li');
       listItem.className = 'r-ol-item';
-      listItem.innerHTML = `
-        <i class="dots"></i> ${update}
-      `;
-      container.querySelector('ol').appendChild(listItem);
+      listItem.textContent = update;
+
+      const flexContainer = document.createElement('div');
+      flexContainer.style.display = 'flex';
+      
+      const dotsIcon = document.createElement('i');
+      dotsIcon.className = 'dots';
+      
+      flexContainer.appendChild(dotsIcon);
+      flexContainer.appendChild(listItem);
+      
+      container.querySelector('ol').appendChild(flexContainer);
     });
   }
 };

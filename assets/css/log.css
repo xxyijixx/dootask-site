@@ -98,8 +98,8 @@
   height: 4px;
   display: inline-block;
   position: relative;
-  margin-right: 15px;
-  top: -2px;
+  margin-left: 20px;
+  top: 10px;
   vertical-align: middle;
   background-size: contain;
 }
