@@ -74,11 +74,8 @@
     </div>
 
     <!-- 联系我们模态框 -->
-    <div v-if="showContactModal" @click.stop class="modal-overlay">
-      <div 
-        class="modal-content" 
-        :class="{ 'dark-mode-background': theme === 'dark' }"
-        @click.stop>
+    <div v-if="showContactModal" @click.stop class="modal-overlay" :class="{ dark: theme === 'dark' }">
+      <div class="modal-content" @click.stop >
         <h3>{{ modalTitle }}</h3>
         <br />
         <div class="modal-body">
@@ -96,16 +93,17 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-
 import { useI18n } from 'vue-i18n';
+import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 store 路径
 
 const { t } = useI18n();
+const themeStore = useThemeStore();
+const { theme, lang } = toRefs(themeStore);
 
 const selectedPlan = ref(null);
 const hoveredPlan = ref(null);
 const showContactModal = ref(false);
 const modalTitle = ref('');
-
 
 const pricePlans = computed(() => [
   {
@@ -225,13 +223,13 @@ function handlePlanSelect(plan) {
 function closeModal() {
   showContactModal.value = false;
 }
+
 </script>
 
-<style scoped>
+<style>
 .topics {
   text-align: center;
   background: var(--bg-10-url) top left no-repeat;
   background-size: cover;
 }
-
 </style>

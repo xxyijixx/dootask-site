@@ -182,7 +182,7 @@
     </div>
 
     <!-- 联系我们模态框 -->
-    <div v-if="showContactModal" @click.stop class="modal-overlay">
+    <div v-if="showContactModal" @click.stop class="modal-overlay"  :class="{ dark: theme === 'dark' }">
       <div class="modal-content">
         <h3>{{ modalTitle }}</h3>
         <br />
@@ -203,8 +203,12 @@
 import { ref } from 'vue';
 
 import { useI18n } from 'vue-i18n';
+import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 store 路径
 
 const { t } = useI18n();
+
+const themeStore = useThemeStore();
+const { theme, lang } = toRefs(themeStore);
 
 const showContactModal = ref(false);
 const modalTitle = ref('');

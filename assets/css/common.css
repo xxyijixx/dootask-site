@@ -1260,10 +1260,14 @@ footer {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: background-color 0.3s ease;
 }
 
+
+
 .modal-content {
+  background-color: white; /* 默认的白色背景 */
+  padding: 20px;
+  border-radius: 8px;
   text-align: left;
   background-color: white;
   color: #1e1e1e;
@@ -1280,20 +1284,17 @@ footer {
     /* 右上 */ -4px 4px 8px rgba(151, 151, 151, 0.1); /* 左下 */
 }
 
-/* 暗黑模式下的模态框样式 */
-html.dark .modal-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+.modal-overlay.dark .modal-content {
+  background-color: #333; /* 暗色模式中的白色背景变为深色 */
+  color: white; /* 暗色模式中的文字颜色 */
 }
 
-html.dark .modal-content {
-  background-color: #1e1e1e;
-  color: #cbcbcb;
-  box-shadow:
-    4px 4px 8px rgba(3, 3, 3, 0.1),
-    /* 右下 */ -4px -4px 8px rgba(3, 3, 3, 0.1),
-    /* 左上 */ 4px -4px 8px rgba(3, 3, 3, 0.1),
-    /* 右上 */ -4px 4px 8px rgba(3, 3, 3, 0.1); /* 左下 */
+.modal-body p {
+  color: inherit;
 }
+
+
+
 .modal-actions {
   text-align: right;
 }
