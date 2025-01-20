@@ -268,7 +268,7 @@ const { theme, lang } = toRefs(themeStore);
 const route = useRoute();
 
 // 在 setup 顶部立即调用 useI18n()
-const { t, setLocale,locale, setLocaleMessage } = useI18n();
+const { t, setLocale, locale, setLocaleMessage } = useI18n();
 
 // 抽屉相关状态和方法
 const isDrawerOpen = ref(false);
@@ -278,7 +278,7 @@ const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
 const isLanguageMenuOpen = ref(false);
 
-//语言设置
+
 // 语言切换方法
 const switchLanguage = async (lang: 'zh' | 'en') => {
   console.log('Switching language to:', lang);
@@ -303,15 +303,14 @@ const backgroundMap = computed(() => ({
 const getBackgroundUrl = computed(() => {
   // 优先使用带语言前缀的路径
   const localizedPath = backgroundMap.value[route.path];
-  
   // 如果没有找到，尝试使用原始路径作为备选
   if (localizedPath) {
     return localizedPath;
   }
-  
   // 默认背景
   return 'var(--bg-1-url)';
 });
+
 
 // 背景显示状态
 const showBackground = ref(true);
@@ -426,8 +425,16 @@ const mainMenuItems = computed(() => [
 
 const supportItems = computed(() => [
   { text: t('navigation.download'), link: localizedRoutes.value.download },
-  { text: t('navigation.help_center'), link: localizedRoutes.value.help },
-  { text: t('navigation.privacy_policy'), link: localizedRoutes.value.privacy, target: '_blank' },
+  { 
+    text: t('navigation.help_center'), 
+    link: 'http://localhost:5173/basic/quick-start',
+    target: '_blank',
+  },
+  { 
+    text: t('navigation.privacy_policy'), 
+    link: localizedRoutes.value.privacy, 
+    target: '_blank' 
+  },
   {
     text: t('navigation.api_docs'),
     link: 'https://www.dootask.com/docs/index.html',

@@ -14,22 +14,20 @@
             :key="index"
             class="price-card-item"
             :class="{
-              active: plan.recommended || selectedPlan === plan,
+              'active': selectedPlan === plan,
               'hover-effect': hoveredPlan === plan && selectedPlan !== plan,
             }"
-            :style="{ '--delay': `${index * 0.2}s` }"
+            @click="selectCard(plan)"
           >
             <h4 class="txt-5002025 price-card-h4 mb-24">
               {{ plan.name }}
-              <i v-if="plan.recommended" class="rec-icon">Rec.</i>
+              <i v-if="index === 2" class="rec-icon">Rec.</i>
             </h4>
             <div class="price-card-money mb-12">
               <h2 class="txt-6003645 price-card-h2">
                 {{ plan.price }}
               </h2>
-              <i v-if="plan.priceUnit" class="txt-5001628 price-card-unit">{{
-                plan.priceUnit
-              }}</i>
+              <i v-if="plan.priceUnit" class="txt-5001628 price-card-unit">{{plan.priceUnit}}</i>
             </div>
             <h6 class="txt-4001624 price-card-h6 mb-24" style="height: 48px">
               {{ plan.userLimit }}
@@ -38,7 +36,7 @@
               class="btn btn-green mb-24"
               @click.stop="handlePlanSelect(plan)"
               :class="{
-                'btn-primary': hoveredPlan === plan || selectedPlan === plan,
+                'btn-primary': hoveredPlan === plan ,
                 'btn-selected': selectedPlan === plan,
               }"
             >
@@ -105,7 +103,8 @@ const hoveredPlan = ref(null);
 const showContactModal = ref(false);
 const modalTitle = ref('');
 
-const pricePlans = computed(() => [
+
+const pricePlans = ref([
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',
@@ -119,7 +118,6 @@ const pricePlans = computed(() => [
         text: t('pricing.plans.features_first'),
       },
     ],
-    recommended: false,
   },
   {
     name: t('pricing.plans.free_sec.name'),
@@ -142,14 +140,12 @@ const pricePlans = computed(() => [
         text: t('pricing.plans.features_third'),
       },
     ],
-    recommended: false,
   },
   {
     name: t('pricing.plans.pro.name'),
     price: '¥18,888',
     userLimit:  t('pricing.plans.pro.limit'),
     buttonText:  t('pricing.plans.communicate'),
-    recommended: true,
     features: [
       {
         icon: '/img/price_icon1.svg',
@@ -200,23 +196,42 @@ const pricePlans = computed(() => [
         text: t('pricing.plans.features_six'),
       },
     ],
-    recommended: false,
   },
 ]);
+
+// 设置默认选中第三张卡片
+onMounted(() => {
+  selectedPlan.value = pricePlans.value[2];
+});
+
+const selectCard = (plan) => {
+  // 更新选中的卡片，仅保存选中状态
+  selectedPlan.value = plan;
+};
 
 function handlePlanSelect(plan) {
   // 如果有直接链接，打开链接
   if (plan.buttonLink) {
     window.open(plan.buttonLink, '_blank');
-    return;
+    // return;
   }
 
-  // 打开联系模态框
-  modalTitle.value = plan.buttonText === t('pricing.plans.communicate')
-  ? t('pricing.plans.communicate') 
-  : t('pricing.custom');
+  // 重置所有卡片的 recommended 为 false
+  pricePlans.value.forEach(p => {
+    p.recommended = false;
+  });
 
-  showContactModal.value = true;
+  // 将当前点击的卡片设置为选中状态
+  selectedPlan.value = plan;
+
+  // 对于有通信按钮的卡片，打开模态框
+  if (plan.buttonText === t('pricing.plans.communicate')) {
+    modalTitle.value = t('pricing.plans.communicate');
+    showContactModal.value = true;
+  } else if (plan.buttonText === t('pricing.plans.custom')) {
+    modalTitle.value = t('pricing.custom');
+    showContactModal.value = true;
+  }
 }
 
 // 改进 closeModal 函数

@@ -147,6 +147,7 @@ const renderLogs = (html) => {
     const rlog2 = document.querySelector('.logs-l-ul.logs-l-768'); // 另一组左侧导航区域
     const changelog = document.querySelector('.logs-r-ul'); // 右侧日志区域，存储内容
 
+
     // 清空之前的内容
     logsContainer.innerHTML = '';
     rlog.innerHTML = '';
@@ -403,6 +404,8 @@ watch(
 onMounted(() => {
   fetchLogsData();
   window.addEventListener('scroll', scrollHandler);
+
+  
 });
 
 onUnmounted(() => {

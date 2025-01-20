@@ -22,40 +22,63 @@
   border-radius: 12px;
   cursor: pointer;
 }
-.price-card-item:hover {
+
+/* 未选中卡片的悬停效果 */
+.price-card-item:not(.active):hover {
   border: 1px solid var(--txt-theme-color);
   transform: translateY(-16px);
 }
-.price-animate-box {
-  opacity: 0;
-  transform: translateY(50%);
-  animation: fadeIn 1s ease-in-out forwards var(--delay); /* 应用动画效果 */
-}
-.price-card-item:hover .btn-green {
+
+.price-card-item:not(.active):hover .btn-green {
   background-color: var(--txt-theme-color);
   color: #fff;
 }
-.price-card-h4 {
+
+/* 未选中卡片悬停时h4变绿 */
+.price-card-item:not(.active):hover .price-card-h4 {
+  color: var(--txt-theme-color) !important;
+  transition: color 0.3s ease-in-out;
+}
+
+ .price-card-h4 {
   color: var(--text-color);
   display: flex;
-}
-.price-card-item.active {
-  border: 2px solid var(--txt-theme-color);
+} 
+/* 选中卡片的增强样式 */
+.price-card-item.active,
+.price-card-item.active:hover {
+  border: 2px solid var(--txt-theme-color) !important;
   box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.05);
+  transform: translateY(0) !important;
+  background-color: var(--choose-bg-hover-color) !important;
 }
-.price-card-item.active .btn-green {
-  background-color: var(--txt-theme-color);
-  color: #fff;
+
+.price-card-item.hover-effect {
+  border: 1px solid var(--hover-border-color);
 }
+
+.price-card-item.active .btn-green,
+.price-card-item.active .btn-selected {
+  background-color: var(--txt-theme-color) !important;
+  color: #fff !important;
+}
+
 .price-card-item.active .btn-green:hover {
-  background-color: var(--btn-hover-color);
-  border-color: var(--btn-hover-color);
+  background-color: var(--btn-hover-color) !important;
+  border-color: var(--btn-hover-color) !important;
 }
-.price-card-item.active .price-card-h4 {
-  display: flex;
-  align-items: center;
-  color: var(--txt-theme-color);
+
+.price-card-item.active .price-card-h4,
+.price-card-item.active .txt-5002025 {
+  color: var(--txt-theme-color) !important;
 }
+
+.price-card-item.active .price-card-ol-item {
+  color: var(--text-color);
+}
+
+
+
 .rec-icon {
   display: flex;
   flex-direction: row;
