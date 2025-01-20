@@ -3,7 +3,7 @@
   <header class="head" ref="header">
     <div class="nav" ref="nav">
       <div class="nav-layout">
-        <NuxtLink to="/" class="logo">
+        <NuxtLink :to="`/${locale}`" class="logo">
           <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
           <i class="dootask txt-7002027">DooTask</i>
         </NuxtLink>
