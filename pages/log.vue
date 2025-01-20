@@ -64,6 +64,9 @@ import '@/assets/css/log.css';
 
 import { useI18n } from 'vue-i18n';
 
+const route = useRoute();
+const activeVersion = ref(route.query.version || null); // 获取传递的版本号
+
 const { t } = useI18n();
 
 const themeStore = useThemeStore();
@@ -136,8 +139,45 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
   }
 };
 
-// 添加一个响应式的重新渲染方法
-const rerenderLogs = ref(0);
+//查找目标版本的标题元素
+const findElementByText = (selector, text) => {
+  return Array.from(document.querySelectorAll(selector)).find((el) =>
+    el.textContent.includes(text),
+  );
+};
+
+//滚动对应版本设置
+const scrollToActiveVersion = () => {
+  if (activeVersion.value) {
+    setTimeout(() => { // 目标元素可能已经存在于 DOM 中，但布局尚未完成，使用 setTimeout 延迟执行
+      const targetElement = findElementByText('.logs-r-ul h4', activeVersion.value);
+      console.log("log的h4:",targetElement);
+      if (targetElement) {
+        const offset = 90; // 上偏移量，避免标题被遮挡
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+
+        window.scrollTo({
+          top: targetPosition - offset,
+          behavior: 'smooth',
+        });
+
+        // 高亮左侧导航
+        const logs_tabs = document.querySelector('.logs-l-1920');
+        const logs_tabItems = logs_tabs.querySelectorAll('.l-ul-item');
+        logs_tabItems.forEach((item) => item.classList.remove('active'));
+
+        const targetNavItem = Array.from(logs_tabItems).find((item) =>
+          item.textContent.includes(activeVersion.value),
+        );
+        if (targetNavItem) {
+          targetNavItem.classList.add('active');
+        }
+      }
+    }, 300); // 延迟 1 秒执行
+  }
+};
+
+
 
 const renderLogs = (html) => {
   
@@ -202,6 +242,8 @@ const renderLogs = (html) => {
       rLi.className = `l-ul-item ${i == 0 ? 'active' : ''}`;
       rLi.setAttribute('data-id', `section-${i + 1}`);
       rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]} ${updateText}</a>`;
+      rlog.appendChild(rLi);
+
 
       const rLi2 = document.createElement('li');
       rLi2.className = `l-ul-item`;
@@ -211,8 +253,6 @@ const renderLogs = (html) => {
         logsDrawer.classList.remove('open-logs-drawer');
       });
       rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]} ${updateText}</a>`;
-
-      rlog.appendChild(rLi);
       rlog2.appendChild(rLi2);
 
       // 创建右侧版本内容条目
@@ -230,6 +270,9 @@ const renderLogs = (html) => {
       // 获取并显示更新内容
       getUpdatesFromHtml(updatesHtmlText, li);
     }
+
+    scrollToActiveVersion(); // 滚动到目标版本
+
 
     // 添加点击事件监听器 - 大屏导航
     const tabItems = document.querySelectorAll('.logs-l-1920 .l-ul-item');
@@ -263,6 +306,7 @@ const fetchLogsData = async () => {
     if (cachedLogs) {
       logsData.value = cachedLogs;
       renderLogs(cachedLogs);
+
     } else {
       const response = await axios.get(
         'https://www.dootask.com/api/system/get/updatelog',
@@ -271,6 +315,7 @@ const fetchLogsData = async () => {
       const html = markdownIt().render(markdown);
       setItem('changelog', html);
       renderLogs(html);
+    
     }
   } catch (error) {
     console.error('Error fetching changelog data:', error);
@@ -399,6 +444,8 @@ watch(
   },
   { immediate: true }
 );
+
+
 
 // 生命周期钩子
 onMounted(() => {

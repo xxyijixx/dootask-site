@@ -61,8 +61,14 @@ const getLocalStorageItem = (key) => {
 };
 
 const handleReleaseClick = (index) => {
-  localStorage.setItem('update_log_num', index + 1);
-  navigateTo('/log');
+  console.log('当前版本：',releases.value[index]?.version);
+  const selectedVersion = releases.value[index]?.version;
+  if (selectedVersion) {
+    navigateTo({
+      path: '/log',
+      query: { version: selectedVersion },
+    });
+  }
 };
 
 const fetchReleases = async () => {
