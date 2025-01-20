@@ -142,7 +142,7 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
 //查找目标版本的标题元素
 const findElementByText = (selector, text) => {
   return Array.from(document.querySelectorAll(selector)).find((el) =>
-    el.textContent.trim() === `v${text.trim()} update`, // 精确匹配完整文本
+      el.textContent.trim().startsWith(`v${text.trim()}`), // 匹配以版本号开头
   );
 };
 
