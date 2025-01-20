@@ -65,7 +65,7 @@ import '@/assets/css/log.css';
 import { useI18n } from 'vue-i18n';
 
 const route = useRoute();
-const activeVersion = ref(route.query.version || null); // 获取传递的版本号
+const activeVersion = ref(null);
 
 const { t } = useI18n();
 
@@ -139,19 +139,13 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
   }
 };
 
-//查找目标版本的标题元素
-const findElementByText = (selector, text) => {
-  return Array.from(document.querySelectorAll(selector)).find((el) =>
-      el.textContent.trim().startsWith(`v${text.trim()}`), // 匹配以版本号开头
-  );
-};
 
-//滚动对应版本设置
+// 移除 scrollToActiveVersion 中的版本号相关逻辑
 const scrollToActiveVersion = () => {
-  if (activeVersion.value) {
-    setTimeout(() => { // 目标元素可能已经存在于 DOM 中，但布局尚未完成，使用 setTimeout 延迟执行
-      const targetElement = findElementByText('.logs-r-ul h4', activeVersion.value);
-      console.log("log的h4:",targetElement);
+  if (activeTabIndex.value >= 0) {
+    setTimeout(() => {
+      const targetElement = document.querySelector(`.logs-r-ul li:nth-child(${activeTabIndex.value + 1}) h4`);
+      
       if (targetElement) {
         const offset = 90; // 上偏移量，避免标题被遮挡
         const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
@@ -166,17 +160,14 @@ const scrollToActiveVersion = () => {
         const logs_tabItems = logs_tabs.querySelectorAll('.l-ul-item');
         logs_tabItems.forEach((item) => item.classList.remove('active'));
 
-        const targetNavItem = Array.from(logs_tabItems).find((item) =>
-          item.textContent.includes(activeVersion.value),
-        );
-        if (targetNavItem) {
-          targetNavItem.classList.add('active');
+        // 直接使用 activeTabIndex 高亮
+        if (logs_tabItems[activeTabIndex.value]) {
+          logs_tabItems[activeTabIndex.value].classList.add('active');
         }
       }
-    }, 300); // 延迟 1 秒执行
+    }, 300);
   }
 };
-
 
 
 const renderLogs = (html) => {
@@ -449,8 +440,20 @@ watch(
 
 // 生命周期钩子
 onMounted(() => {
+
+  const storedLogIndex = localStorage.getItem('update_log_num');
+  if (storedLogIndex) {
+    // 转换为数字并减1（因为数组索引从0开始）
+    activeTabIndex.value = parseInt(storedLogIndex, 10) - 1;
+    
+    // 清除 localStorage 中的记录，防止重复使用
+    localStorage.removeItem('update_log_num');
+  }
+
   fetchLogsData();
   window.addEventListener('scroll', scrollHandler);
+
+  
 
   
 });

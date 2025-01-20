@@ -61,14 +61,9 @@ const getLocalStorageItem = (key) => {
 };
 
 const handleReleaseClick = (index) => {
-  console.log('当前版本：',releases.value[index]?.version);
-  const selectedVersion = releases.value[index]?.version;
-  if (selectedVersion) {
-    navigateTo({
-      path: '/log',
-      query: { version: selectedVersion },
-    });
-  }
+  // 直接使用下标跳转到日志页面
+  localStorage.setItem('update_log_num', index + 1);
+  navigateTo('/log');
 };
 
 const fetchReleases = async () => {
