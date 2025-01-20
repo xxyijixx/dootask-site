@@ -34,6 +34,7 @@
         "en": "English"
     },
     "homepage": {
+        "headtitle":"DooTask - The most popular open source project collaboration tool",
         "hero": {
             "title": "Make Team Collaboration Easier",
             "subtitle": ",Lightweight task management tool",
@@ -73,6 +74,7 @@
     },
     
     "produpage": {
+        "headtitle":"Product-DooTask",
         "title":"One product, multiple powerful tools",
         "desc":"The product brings together various document collaboration, online mind mapping, online flowcharting, project management, task distribution, instant IM, document management and other functions",
         "choose": {
@@ -176,6 +178,7 @@
         }
     },
     "solution":{
+        "headtitle":"Soulutions-DooTask",
         "title":"Helping you collaborate better",
         "desc":"DooTask offers a range of solutions based on different scenarios so that you can quickly start collaborating with your team or department",
         "apply":{
@@ -201,6 +204,7 @@
             }
     },
     "pricing": {
+        "headtitle":"Pricing-DooTask",
         "title": "Choose your plan",
         "desc": "Different versions are available depending on the size and needs of your business",
         "plans": {
@@ -283,6 +287,7 @@
     },
 
     "about": {
+        "headtitle":"About Us-DooTask",
         "title": "About our company",
         "desc": "Focusing on the field of network security, we are committed to providing users with a full range of network security solutions.",
         "founded":"Company founded",
@@ -319,6 +324,7 @@
         
     },
     "download": {
+        "headtitle":"Download Center - DooTask",
         "title": "Download DooTask client",
         "desc":"Also supports iOS, Android, macOS, Windows versions",
         "scan":"Download",
@@ -329,6 +335,10 @@
             "new":"update",
             "more":"More Logs"
         }
+    },
+    "log":{
+        "headtitle":"Logs-DooTask",
+        "description":"Lightweight open source online project task management tool to help teams efficiently advance their projects and make work easier."
     },
     "footer": {
         "title":"Helps teams move projects forward efficiently and makes work easier.",

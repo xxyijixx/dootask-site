@@ -73,11 +73,14 @@ const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
 
+
 // 响应式状态
 const logsData = ref([]);
 const drawerOpen = ref(false);
 const activeTabIndex = ref(0); // 当前高亮的导航项索引
 const versionLogs = ref([]); // 存储版本号数据
+
+
 
 // 打开更新日志抽屉
 const openLogsDrawer = () => {
@@ -423,6 +426,20 @@ watch(
           logsDrawer.classList.remove('open-logs-drawer');
         }
       }
+
+      // // 更新头部标题
+      // useHead({
+      //   title: t('log.headtitle'),
+      //   htmlAttrs: {
+      //     lang: locale.value
+      //   },
+      //   meta: [
+      //     { 
+      //       name: 'description', 
+      //       content: t('log.description') || '查看 DooTask 的最新更新日志'
+      //     }
+      //   ]
+      // });
 
       // 如果语言发生变化，重新获取并渲染日志
       if (newLangValue !== oldLangValue) {
