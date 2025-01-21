@@ -25,12 +25,8 @@
               <div class="logs-l logs-sticky">
                 <h5 class="logs-h5 mb-16" style="font-weight: 500">{{ $t('download.log.title') }}</h5>
                 <ul class="logs-l-ul logs-l-1920" id="help-l-ul">
-                  <li
-                    v-for="(version, index) in versionLogs"
-                    :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]"
-                    @click="handleNavClick(index)"
-                  >
+                  <li v-for="(version, index) in versionLogs" :key="index"
+                    :class="['l-ul-item', { active: activeTabIndex === index }]" @click="handleNavClick(index)">
                     <a class="txt-4001620 txt log-a">v{{ version }} {{ $t('download.log.new') }}</a>
                   </li>
                 </ul>
@@ -39,11 +35,8 @@
               <div class="logs-r">
                 <h1 class="txt-6003645 logs-h1 mb-36">DooTask {{ $t('download.log.title') }}</h1>
                 <ul class="logs-r-ul">
-                  <li
-                    v-for="(version, index) in versionLogs"
-                    :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]"
-                  >
+                  <li v-for="(version, index) in versionLogs" :key="index"
+                    :class="['l-ul-item', { active: activeTabIndex === index }]">
                     <a class="txt-4001620 txt log-a">{{ version }} {{ $t('download.log.new') }}</a>
                   </li>
                 </ul>
@@ -67,7 +60,7 @@ import { useI18n } from 'vue-i18n';
 const route = useRoute();
 const activeVersion = ref(null);
 
-const { t } = useI18n();
+const { t , locale} = useI18n();
 
 const themeStore = useThemeStore();
 
@@ -79,8 +72,6 @@ const logsData = ref([]);
 const drawerOpen = ref(false);
 const activeTabIndex = ref(0); // 当前高亮的导航项索引
 const versionLogs = ref([]); // 存储版本号数据
-
-
 
 // 打开更新日志抽屉
 const openLogsDrawer = () => {
@@ -130,13 +121,13 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
 
       const flexContainer = document.createElement('div');
       flexContainer.style.display = 'flex';
-      
+
       const dotsIcon = document.createElement('i');
       dotsIcon.className = 'dots';
-      
+
       flexContainer.appendChild(dotsIcon);
       flexContainer.appendChild(listItem);
-      
+
       container.querySelector('ol').appendChild(flexContainer);
     });
   }
@@ -148,7 +139,7 @@ const scrollToActiveVersion = () => {
   if (activeTabIndex.value >= 0) {
     setTimeout(() => {
       const targetElement = document.querySelector(`.logs-r-ul li:nth-child(${activeTabIndex.value + 1}) h4`);
-      
+
       if (targetElement) {
         const offset = 90; // 上偏移量，避免标题被遮挡
         const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
@@ -174,7 +165,7 @@ const scrollToActiveVersion = () => {
 
 
 const renderLogs = (html) => {
-  
+
   nextTick(() => {
     const logsContainer = document.querySelector('.logs-r-ul'); // 右侧日志区域
     const rlog = document.querySelector('.logs-l-1920'); // 左侧导航区域
@@ -309,7 +300,7 @@ const fetchLogsData = async () => {
       const html = markdownIt().render(markdown);
       setItem('changelog', html);
       renderLogs(html);
-    
+
     }
   } catch (error) {
     console.error('Error fetching changelog data:', error);
@@ -427,20 +418,6 @@ watch(
         }
       }
 
-      // // 更新头部标题
-      // useHead({
-      //   title: t('log.headtitle'),
-      //   htmlAttrs: {
-      //     lang: locale.value
-      //   },
-      //   meta: [
-      //     { 
-      //       name: 'description', 
-      //       content: t('log.description') || '查看 DooTask 的最新更新日志'
-      //     }
-      //   ]
-      // });
-
       // 如果语言发生变化，重新获取并渲染日志
       if (newLangValue !== oldLangValue) {
         // 可以添加额外的条件，比如只在特定页面重新渲染
@@ -454,6 +431,21 @@ watch(
 );
 
 
+// 在组件挂载时设置头部标题
+useHead({
+  title: t('log.headtitle'),
+  htmlAttrs: {
+    lang: locale.value
+  },
+  meta: [
+    {
+      name: 'description',
+      content: t('log.description') || 'DooTask 更新日志'
+    }
+  ]
+})
+
+
 
 // 生命周期钩子
 onMounted(() => {
@@ -462,7 +454,7 @@ onMounted(() => {
   if (storedLogIndex) {
     // 转换为数字并减1（因为数组索引从0开始）
     activeTabIndex.value = parseInt(storedLogIndex, 10) - 1;
-    
+
     // 清除 localStorage 中的记录，防止重复使用
     localStorage.removeItem('update_log_num');
   }
@@ -470,9 +462,6 @@ onMounted(() => {
   fetchLogsData();
   window.addEventListener('scroll', scrollHandler);
 
-  
-
-  
 });
 
 onUnmounted(() => {
