@@ -1,15 +1,13 @@
 <template>
   <div id="cookieConsent" v-if="displayCookieConsent">
     <div>
-      我们使用第一方 cookie
-      来改善您在我们网站上的浏览体验、分析我们的网站流量并了解我们的访问者来自哪里。如果您选择退出，则只会使用绝对必要的
-      cookie。<a :href="`/${locale}/cookie`" id="cookie_a" target="_blank"
-        >我们的 cookie 政策</a
+      {{ t('cookie.content') }}<a :href="`/${locale}/cookie`" id="cookie_a" target="_blank"
+        >{{ t('cookie.link_text')}}</a
       >
     </div>
     <div id="buttonBox">
-      <button id="rejectButton" class="btn btn-primary" @click="handleRejectButtonClick">我拒绝</button>
-      <button id="agreeButton" class="btn btn-primary" @click="handleAgreeButtonClick">允许cookies</button>
+      <button id="rejectButton" class="btn btn-primary" @click="handleRejectButtonClick">{{ t('cookie.reject_btn_text')}}</button>
+      <button id="agreeButton" class="btn btn-primary" @click="handleAgreeButtonClick">{{ t('cookie.agree_btn_text')}}</button>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 const displayCookieConsent = ref(false);
 

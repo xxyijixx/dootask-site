@@ -355,5 +355,14 @@
         "community":"Community",
         "QQ":"QQ group"
 
+    },
+    "cookie": {
+        "content": " We use first party cookies to improve your browsing experience on our website, to analyze our website traffic and to understand where our visitors are coming from. If you choose to opt-out, only strictly necessary cookies will be used.",
+        "agree_btn_text": "Allow cookies",
+        "reject_btn_text":"I decline",
+        "link_text": "Our cookie policy"
+    },
+    "ad": {
+        "dialog_qr_code_tip": "Please scan the QR code to add our WeChat customer service representative for purchase"
     }
 }

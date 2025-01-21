@@ -9,7 +9,7 @@
           <div id="ad-dialog-header-img" class="ad-dialog-header-img"></div>
         </div>
         <div id="ad-dialog-content" class="ad-dialog-content">
-          如需购买请扫码添加微信客服专员
+          {{t('ad.dialog_qr_code_tip')}}
         </div>
         <div class="ad-dialog-footer">
           <button id="ad-dialog-footer-btn" class="ad-dialog-footer-btn">
@@ -414,7 +414,7 @@ definePageMeta({
   layout: 'blank',
 });
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 onMounted(() => {
   fetchAdBanner(locale.value);
