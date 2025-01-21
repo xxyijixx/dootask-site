@@ -74,14 +74,14 @@
                   <div class="footer-ol-item mb-16">
                     <i
                       class="txt-4001624 txt"
-                      onclick="openInNewTab('https://github.com/kuaifan/dootask')"
+                      @click="openInNewTab('https://github.com/kuaifan/dootask')"
                       >Github</i
                     >
                   </div>
                   <div class="footer-ol-item mb-16">
                     <i
                       class="txt-4001624 txt"
-                      onclick="openInNewTab('https://gitee.com/aipaw/dootask')"
+                      @click="openInNewTab('https://gitee.com/aipaw/dootask')"
                       >Gitee</i
                     >
                   </div>
@@ -94,7 +94,7 @@
                         src="/img/qq_code.jpg"
                         alt="群号：546574618"
                       />
-                      <i class="group_num">群号：546574618</i>
+                      <i class="group_num">{{$t('social.group')}}：546574618</i>
                       <i class="lower_triangle"></i>
                     </div>
                   </div>
@@ -121,6 +121,7 @@
 <script setup lang="ts">
 import { ref, computed, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { openInNewTab } from '../utils/common';
 
 const { t } = useI18n();
 

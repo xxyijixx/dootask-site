@@ -366,5 +366,11 @@
     },
     "ad": {
         "dialog_qr_code_tip": "如需购买请扫码添加微信客服专员"
+    },
+    "social": {
+        "group_num": "群号",
+        "wechat": "微信客服",
+        "phone": "服务电话"
     }
+   
 }

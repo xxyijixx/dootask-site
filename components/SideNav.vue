@@ -4,7 +4,7 @@
       <li class="side_toolbar_item" id="side_toolbar_item_phone" @click="handlePhoneClick">
         <i class="toolbar_font font_phone"></i>
         <div class="toolbar_tooltip" id="toolbar_tooltip_phone" v-if="tooltipPhoneVisible">
-          服务电话：0771-3164099
+          {{t('social.phone')}}：0771-3164099
           <div class="tooltip_arrow"></div>
         </div>
       </li>
@@ -37,7 +37,7 @@
         <i class="toolbar_font font_qrcode"></i>
         <div class="toolbar_tooltip" id="toolbar_tooltip_qrcode" v-if="tooltipQrcodeVisible">
           <div class="toolbar_qrcode"></div>
-          <span class="toolbar_qrcode_text"> 微信客服 </span>
+          <span class="toolbar_qrcode_text"> {{t('social.wechat')}} </span>
           <div class="tooltip_arrow"></div>
         </div>
       </li>
@@ -69,10 +69,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-
 import '@/assets/js/googleAds.js';
 import '@/assets/js/googleAnalyze.js';
 import '@/assets/css/side_nav.css';
+
+const { t } = useI18n()
 
 const tooltipPhoneVisible = ref(false);
 const tooltipWhtasappVisible = ref(false);
@@ -106,7 +107,6 @@ const scrollToTop = () => {
 };
 
 const handlePhoneClick = (event: Event) => {
-  console.log("电话")
   event.stopPropagation();
   if (window.gtag) {
     gtag('event', 'click', {

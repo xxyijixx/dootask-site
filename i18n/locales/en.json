@@ -364,5 +364,10 @@
     },
     "ad": {
         "dialog_qr_code_tip": "Please scan the QR code to add our WeChat customer service representative for purchase"
+    },
+    "social": {
+        "group": "Group",
+        "wechat": "WeChat",
+        "phone": "Phone"
     }
 }
