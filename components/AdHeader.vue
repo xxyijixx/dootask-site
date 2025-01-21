@@ -1,7 +1,5 @@
-<!-- 关于我们头部 -->
 <template>
-  <header class="head" ref="header">
-    <slot name="ad"></slot>
+  <header class="head" ref="header" id="ad-header">
     <div class="nav" ref="nav">
       <div class="nav-layout">
         <NuxtLink :to="`/${locale}`" class="logo">
@@ -133,7 +131,6 @@
         </div>
       </div>
     </div>
-    <slot></slot>
     <!-- 抽屉导航 -->
     <div class="drawer" :class="{ 'open-drawer': isDrawerVisible }">
       <div class="drawer-t mb-36">

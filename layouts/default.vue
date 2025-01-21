@@ -1,6 +1,11 @@
 <template>
   <div>
-    <HeaderBar />
+    <HeaderBar>
+      <template #ad>
+        <AdBar />
+      </template>
+    </HeaderBar>
+   
     <slot />
     <FooterBar />
     <SideNav />
