@@ -17,6 +17,8 @@
               'active': selectedPlan === plan,
               'hover-effect': hoveredPlan === plan && selectedPlan !== plan,
             }"
+            @mouseenter="handleMouseEnter(plan)"
+            @mouseleave="handleMouseLeave"
             @click="selectCard(plan)"
           >
             <h4 class="txt-5002025 price-card-h4 mb-24">
@@ -233,6 +235,19 @@ function handlePlanSelect(plan) {
     showContactModal.value = true;
   }
 }
+
+// 鼠标进入卡片时
+const handleMouseEnter = (plan) => {
+  // 直接设置悬停状态，不考虑选中状态
+  hoveredPlan.value = plan;
+};
+
+// 鼠标离开卡片时
+const handleMouseLeave = () => {
+  // 重置悬停状态
+  hoveredPlan.value = null;
+};
+
 
 // 改进 closeModal 函数
 function closeModal() {

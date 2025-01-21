@@ -23,6 +23,23 @@
   cursor: pointer;
 }
 
+/* 悬停效果（无论选中状态） */
+.price-card-item:hover {
+  border: 1px solid var(--txt-theme-color);
+  transform: translateY(-16px);
+}
+
+.price-card-item:hover .btn-green {
+  background-color: var(--txt-theme-color);
+  color: #fff;
+}
+
+.price-card-item:hover .price-card-h4 {
+  color: var(--txt-theme-color) !important;
+  transition: color 0.3s ease-in-out;
+}
+
+
 /* 未选中卡片的悬停效果 */
 .price-card-item:not(.active):hover {
   border: 1px solid var(--txt-theme-color);
@@ -49,12 +66,24 @@
 .price-card-item.active:hover {
   border: 2px solid var(--txt-theme-color) !important;
   box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.05);
-  transform: translateY(0) !important;
+  /* transform: translateY(-16px) !important; */
   background-color: var(--choose-bg-hover-color) !important;
 }
 
 .price-card-item.hover-effect {
   border: 1px solid var(--hover-border-color);
+  transform: translateY(-16px);
+}
+
+.price-card-item.hover-effect .btn-green {
+  background-color: var(--txt-theme-color);
+  color: #fff;
+}
+
+/* 选中卡片的悬停状态 */
+.price-card-item.active.hover-effect {
+  border: 2px solid var(--txt-theme-color) !important;
+  transform: translateY(-16px);
 }
 
 .price-card-item.active .btn-green,
