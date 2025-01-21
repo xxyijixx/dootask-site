@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     './assets/css/about.css',
     './assets/css/ad.css',
     './assets/css/animate.min.css',
-    './assets/css/common.css',
+    // './assets/css/common.css',
     './assets/css/distribution.css',
     // './assets/css/download.css',
     // './assets/css/help.css',

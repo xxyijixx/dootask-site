@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import type { NuxtError } from '#app';
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
   error: Object as () => NuxtError,

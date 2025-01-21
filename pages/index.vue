@@ -1,4 +1,5 @@
 <template>
+  <CookieConsent></CookieConsent>
   <main>
     <!-- 主要区域划分 -->
     <section>
@@ -14,26 +15,30 @@
   </main>
 </template>
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { useThemeStore } from '@/stores/theme'
+import { useI18n } from 'vue-i18n';
+import { useThemeStore } from '@/stores/theme';
 
-const { t, locale } = useI18n()
-const themeStore = useThemeStore()
-const { lang } = toRefs(themeStore)
+const { t, locale } = useI18n();
+const themeStore = useThemeStore();
+const { lang } = toRefs(themeStore);
 
 // 监听语言变化并动态更新 head
-watch(lang, () => {
-  useHead({
-    title: t('homepage.headtitle'),
-    htmlAttrs: {
-      lang: locale.value
-    },
-    meta: [
-      { 
-        name: 'description', 
-        content: t('homepage.hero.description')
-      }
-    ]
-  })
-}, { immediate: true })
+watch(
+  lang,
+  () => {
+    useHead({
+      title: t('homepage.headtitle'),
+      htmlAttrs: {
+        lang: locale.value,
+      },
+      meta: [
+        {
+          name: 'description',
+          content: t('homepage.hero.description'),
+        },
+      ],
+    });
+  },
+  { immediate: true },
+);
 </script>
