@@ -19,12 +19,14 @@ export const useThemeStore = defineStore('themeStore', {
     },
 
     // Function to set the theme
-    setTheme(theme: string): void {
+    setTheme(theme: string, lang?: string): void {
       const root = document.documentElement;
-      const lang = localStorage.getItem('language') || 'zh';
+      console.log("加载语言主题", theme, lang)
+      if(!lang) {
+        lang = localStorage.getItem('language') || 'zh';
+      }
       this.theme = theme;
       this.lang = lang;
-      console.log('设置主题9999999', theme);
       // Change images dynamically
       this.changeImageSrc('#logo', `/img/${theme}/logo.svg`);
       this.changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
@@ -189,12 +191,12 @@ export const useThemeStore = defineStore('themeStore', {
       localStorage.setItem('theme', theme);
     },
 
-    loadTheme(): void {
+    loadTheme(lang?: string): void {
       const theme = localStorage.getItem('theme');
       if (theme == 'dark') {
-        this.setTheme('dark');
+        this.setTheme('dark', lang);
       } else {
-        this.setTheme('light');
+        this.setTheme('light', lang);
       }
     },
   },

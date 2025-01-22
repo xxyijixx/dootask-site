@@ -17,9 +17,10 @@ import { onMounted } from 'vue';
 import '@/assets/css/common.css';
 import '@/assets/css/rem.css';
 const themeStore = useThemeStore();
+const { locale } = useI18n();
 
 onMounted(() => {
-  themeStore.loadTheme();
+  themeStore.loadTheme(locale.value);
 });
 </script>
 

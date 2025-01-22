@@ -731,7 +731,7 @@ function handleDialogAnimate(bool: boolean) {
 
 // 管理动画
 function manageAnimate() {
-  let throttleTimer: Boolean | null = null;
+  let throttleTimer: boolean | null = null;
   const throttle = (callback: Function, time: number) => {
     if (throttleTimer) return;
     throttleTimer = true;
@@ -749,8 +749,8 @@ function manageAnimate() {
   });
 }
 
-const couldAdPlanElAnimate: Record<string, Boolean> = {};
-const couldAdIntroElAnimate: Record<string, Boolean> = {};
+const couldAdPlanElAnimate: Record<string, boolean> = {};
+const couldAdIntroElAnimate: Record<string, boolean> = {};
 
 function detectAdPlanEl() {
   const adPlanEl = document.querySelector('.ad-plan');
@@ -763,7 +763,7 @@ function detectAdPlanEl() {
   }
 
   const _couldAdPlanElAnimate =
-    Object.values(couldAdPlanElAnimate).every(Boolean);
+    Object.values(couldAdPlanElAnimate).every(boolean);
   if (!_couldAdPlanElAnimate) return;
   if (isElementPartiallyInViewport(adPlanEl)) {
     const els = document.querySelectorAll('.plan-item');
@@ -793,7 +793,7 @@ function detectAdIntroEl() {
   }
 
   const _couldAdIntroElAnimate = Object.values(couldAdIntroElAnimate).every(
-    Boolean,
+    boolean,
   );
   if (!_couldAdIntroElAnimate) return;
   if (isElementPartiallyInViewport(adIntroEl)) {

@@ -15,6 +15,7 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                ref="HomeArcsRef"
                 class="home_arc"
                 opacity="0.5"
                 d="M3 20C47.4822 7.1714 170.957 -10.7886 309 20"
@@ -31,7 +32,8 @@
         <li
           v-for="(item, index) in chooseItems.slice(0, 2)"
           :key="index"
-          class="choose-con-item hover home-animate"
+          ref="BoxesRef"
+          class="choose-con-item hover home-animate-box"
           :style="{ '--delay': `${index * 0.1}s` }"
         >
           <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
@@ -47,7 +49,8 @@
         <li
           v-for="(item, index) in chooseItems.slice(2)"
           :key="index"
-          class="choose-con-item hover home-animate"
+          ref="BoxesRef"
+          class="choose-con-item hover home-animate-box"
           :style="{ '--delay': `${(index + 2) * 0.1}s` }"
         >
           <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
@@ -115,6 +118,9 @@ import { ref, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+
+const BoxesRef = ref<NodeListOf<HTMLElement> | null>(null);
+const HomeArcsRef = ref<HTMLElement | null>(null);
 
 interface ChooseItem {
   number: string;
@@ -196,6 +202,25 @@ const stopAutoPlay = () => {
   }
 };
 
+/* 滑动到可视区域执行动画 */
+let timerId = null;
+const animateBoxes = () => {
+  if (BoxesRef.value) {
+    BoxesRef.value.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+        HomeArcsRef.value?.classList.add('arc-animate');
+        timerId = setTimeout(() => {
+          box.classList.remove('home-animate-box');
+          timerId = null;
+        }, 1300);
+      }
+    });
+  }
+};
+
 onMounted(() => {
   checkMobileView();
   window.addEventListener('resize', () => {
@@ -206,11 +231,15 @@ onMounted(() => {
 
   // 如果是移动端，启动自动轮播
   startAutoPlay();
+
+  animateBoxes();
+  window.addEventListener('scroll', animateBoxes);
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobileView);
   stopAutoPlay();
+  window.removeEventListener('scroll', animateBoxes);
 });
 </script>
 
