@@ -39,7 +39,6 @@
   transition: color 0.3s ease-in-out;
 }
 
-
 /* 未选中卡片的悬停效果 */
 .price-card-item:not(.active):hover {
   border: 1px solid var(--txt-theme-color);
@@ -57,10 +56,10 @@
   transition: color 0.3s ease-in-out;
 }
 
- .price-card-h4 {
+.price-card-h4 {
   color: var(--text-color);
   display: flex;
-} 
+}
 /* 选中卡片的增强样式 */
 .price-card-item.active,
 .price-card-item.active:hover {
@@ -105,8 +104,6 @@
 .price-card-item.active .price-card-ol-item {
   color: var(--text-color);
 }
-
-
 
 .rec-icon {
   display: flex;

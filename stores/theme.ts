@@ -18,7 +18,6 @@ export const useThemeStore = defineStore('themeStore', {
       }
     },
 
-
     // Function to set the theme
     setTheme(theme: string): void {
       const root = document.documentElement;

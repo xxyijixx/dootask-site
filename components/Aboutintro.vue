@@ -11,34 +11,41 @@
           </h4>
           <ul class="company-ul">
             <li class="company-ul-item">
-              <h2 ref="yearEl" class="txt-5003636 company-h2 mb-8 company-year">
-                {{ companyYear }}
+              <h2
+                ref="YearRef"
+                class="txt-5003636 company-h2 mb-8 company-year"
+              >
+                2020
               </h2>
               <h6 class="txt-4001624 company-h6">{{ $t('about.founded') }}</h6>
             </li>
             <li class="company-ul-item">
               <div class="flex-sc">
                 <h2
-                  ref="areaEl"
+                  ref="AreaRef"
                   class="txt-5003636 company-h2 mb-8 company-area"
                 >
-                  {{ companyAreaText }}
+                  10
                 </h2>
                 <i class="company-sup">+</i>
               </div>
-              <h6 class="txt-4001624 company-h6">{{ $t('about.expertise') }}</h6>
+              <h6 class="txt-4001624 company-h6">
+                {{ $t('about.expertise') }}
+              </h6>
             </li>
             <li class="company-ul-item">
               <div class="flex-sc">
                 <h2
-                  ref="sizeEl"
+                  ref="SizeRef"
                   class="txt-5003636 company-h2 mb-8 company-size"
                 >
-                  {{ companySize }}
+                  99
                 </h2>
                 <i class="company-sup">%</i>
               </div>
-              <h6 class="txt-4001624 company-h6">{{ $t('about.clientsatis') }}</h6>
+              <h6 class="txt-4001624 company-h6">
+                {{ $t('about.clientsatis') }}
+              </h6>
             </li>
           </ul>
         </div>
@@ -87,12 +94,8 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted, toRefs } from 'vue';
-
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const themeStore = useThemeStore();
 
@@ -102,15 +105,13 @@ const companyYear = ref(999);
 const companyArea = ref(0);
 const companySize = ref(0);
 
-const companyAreaText = ref('0');
+const YearRef = ref<HTMLElement | null>(null);
+const AreaRef = ref<HTMLElement | null>(null);
+const SizeRef = ref<HTMLElement | null>(null);
 
-const yearEl = ref(null);
-const areaEl = ref(null);
-const sizeEl = ref(null);
-
-let yearTimerId = null;
-let areaTimerId = null;
-let sizeTimerId = null;
+let yearTimerId: number | NodeJS.Timeout | undefined = undefined;
+let areaTimerId: number | NodeJS.Timeout | undefined = undefined;
+let sizeTimerId: number | NodeJS.Timeout | undefined = undefined;
 
 const updateYearNumber = () => {
   const increment = Math.ceil((2020 - companyYear.value) / 50);
@@ -118,6 +119,9 @@ const updateYearNumber = () => {
   if (companyYear.value >= 2020) {
     clearInterval(yearTimerId);
     companyYear.value = 2020;
+  }
+  if (YearRef.value) {
+    YearRef.value.textContent = companyYear.value.toString();
   }
 };
 
@@ -127,7 +131,9 @@ const updateAreaNumber = () => {
     clearInterval(areaTimerId);
     companyArea.value = 10;
   }
-  companyAreaText.value = Number(companyArea.value.toFixed(1)).toString();
+  if (AreaRef.value) {
+    AreaRef.value.textContent = Number(companyArea.value.toFixed(1)).toString();
+  }
 };
 
 const updateSizeNumber = () => {
@@ -136,16 +142,20 @@ const updateSizeNumber = () => {
     clearInterval(sizeTimerId);
     companySize.value = 99;
   }
+  if (SizeRef.value) {
+    SizeRef.value.textContent = companySize.value.toString();
+  }
 };
 
 onMounted(() => {
   const isMobile = window.matchMedia(
     'only screen and (max-width: 768px)',
   ).matches;
-
-  yearTimerId = setInterval(updateYearNumber, 1);
-  areaTimerId = setInterval(updateAreaNumber, 1);
-  sizeTimerId = setInterval(updateSizeNumber, 1);
+  if (!isMobile) {
+    yearTimerId = setInterval(updateYearNumber, 1);
+    areaTimerId = setInterval(updateAreaNumber, 1);
+    sizeTimerId = setInterval(updateSizeNumber, 1);
+  }
 });
 
 onUnmounted(() => {
@@ -154,10 +164,6 @@ onUnmounted(() => {
   if (sizeTimerId) clearInterval(sizeTimerId);
 });
 </script>
-
-<style scoped>
-/* You can add any specific scoped styles here if needed */
-</style>
 
 <style scoped>
 .topics {

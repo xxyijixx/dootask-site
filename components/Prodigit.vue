@@ -1,11 +1,12 @@
 <template>
   <article class="performance">
     <div class="performance-con">
-      <h1 class="txt-5004455 performance-h1">{{ $t('produpage.digit.title') }}</h1>
+      <h1 class="txt-5004455 performance-h1">
+        {{ $t('produpage.digit.title') }}
+      </h1>
       <div class="theme-images">
         <img
           class="pic mt-80"
-
           :src="`/img/${theme}/${lang}_product_pic11.png`"
           alt="数字化绩效"
         />
@@ -44,24 +45,24 @@ const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
 
-const performanceItems = computed(() =>[
+const performanceItems = computed(() => [
   {
-    titleFirst: t('produpage.digit.digtitle_fir_one') ,
+    titleFirst: t('produpage.digit.digtitle_fir_one'),
     titleSecond: t('produpage.digit.digtitle_sec_one'),
     description: t('produpage.digit.digdesc_one'),
   },
   {
-    titleFirst: t('produpage.digit.digtitle_fir_two') ,
+    titleFirst: t('produpage.digit.digtitle_fir_two'),
     titleSecond: t('produpage.digit.digtitle_sec_two'),
     description: t('produpage.digit.digdesc_two'),
   },
   {
-    titleFirst: t('produpage.digit.digtitle_fir_three') ,
+    titleFirst: t('produpage.digit.digtitle_fir_three'),
     titleSecond: t('produpage.digit.digtitle_sec_three'),
     description: t('produpage.digit.digdesc_three'),
   },
   {
-    titleFirst: t('produpage.digit.digtitle_fir_four') ,
+    titleFirst: t('produpage.digit.digtitle_fir_four'),
     titleSecond: t('produpage.digit.digtitle_sec_four'),
     description: t('produpage.digit.digdesc_four'),
   },

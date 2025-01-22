@@ -4,7 +4,9 @@
       <div class="topics-con">
         <div class="topics-layout">
           <div class="topics-tit mb-32" style="width: auto !important">
-            <span class="txt-6007290 topics-h1">{{ $t('produpage.title') }}</span>
+            <span class="txt-6007290 topics-h1">{{
+              $t('produpage.title')
+            }}</span>
           </div>
           <h4 class="txt-4001830 topics-h4 mb-32">
             {{ $t('produpage.desc') }}
@@ -13,7 +15,9 @@
             <span class="mr-24 get-started">
               <!-- <a href="./price.html"> -->
               <NuxtLink to="/price">
-                <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
+                <button class="btn btn-primary mr-20">
+                  {{ $t('common.get_started') }}
+                </button>
               </NuxtLink>
 
               <!-- </a> -->
@@ -97,10 +101,9 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-
 const themeStore = useThemeStore();
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const currentIndex = ref(0);
 
@@ -111,21 +114,17 @@ const checkMobileView = () => {
   isMobile.value = window.innerWidth <= 768;
 };
 
-
 onMounted(() => {
   checkMobileView();
   window.addEventListener('resize', () => {
     checkMobileView();
     startAutoPlay();
   });
-
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobileView);
-
 });
-
 
 // 监听 currentIndex 更新后，确保 DOM 渲染完成
 watch(
@@ -158,7 +157,7 @@ const productItems = computed(() => [
   { icon: '/img/product_icons8.svg', title: t('produpage.choose.multi') },
 ]);
 
-const productDetails = computed(() =>[
+const productDetails = computed(() => [
   {
     alt: t('produpage.choose.cocre_de.title_one'),
     items: [
@@ -177,7 +176,7 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.im_de.title_one'),
-        description:t('produpage.choose.im_de.desc_one'),
+        description: t('produpage.choose.im_de.desc_one'),
       },
       {
         title: t('produpage.choose.im_de.title_two'),
@@ -189,7 +188,7 @@ const productDetails = computed(() =>[
       },
       {
         title: t('produpage.choose.im_de.title_four'),
-        description:t('produpage.choose.im_de.desc_four'),
+        description: t('produpage.choose.im_de.desc_four'),
       },
     ],
     ulClass: 'item4',
@@ -199,19 +198,19 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.proj_de.title_one'),
-        description:t('produpage.choose.proj_de.desc_one'),
+        description: t('produpage.choose.proj_de.desc_one'),
       },
       {
         title: t('produpage.choose.proj_de.title_two'),
-        description:t('produpage.choose.proj_de.desc_two'),
+        description: t('produpage.choose.proj_de.desc_two'),
       },
       {
         title: t('produpage.choose.proj_de.title_three'),
-        description:t('produpage.choose.proj_de.desc_three'),
+        description: t('produpage.choose.proj_de.desc_three'),
       },
       {
         title: t('produpage.choose.proj_de.title_four'),
-        description:t('produpage.choose.proj_de.desc_four'),
+        description: t('produpage.choose.proj_de.desc_four'),
       },
     ],
     ulClass: 'item4',
@@ -219,9 +218,9 @@ const productDetails = computed(() =>[
   {
     alt: t('produpage.choose.dash_de.title_one'),
     items: [
-    {
+      {
         title: t('produpage.choose.dash_de.title_one'),
-        description:t('produpage.choose.dash_de.desc_one'),
+        description: t('produpage.choose.dash_de.desc_one'),
       },
     ],
   },
@@ -230,11 +229,11 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.calendar_de.title_one'),
-        description:t('produpage.choose.calendar_de.desc_one'),
+        description: t('produpage.choose.calendar_de.desc_one'),
       },
       {
         title: t('produpage.choose.calendar_de.title_two'),
-        description:t('produpage.choose.calendar_de.desc_two'),
+        description: t('produpage.choose.calendar_de.desc_two'),
       },
     ],
   },
@@ -243,11 +242,11 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.botass_de.title_one'),
-        description:t('produpage.choose.botass_de.desc_one'),
+        description: t('produpage.choose.botass_de.desc_one'),
       },
       {
         title: t('produpage.choose.botass_de.title_two'),
-        description:t('produpage.choose.botass_de.desc_two'),
+        description: t('produpage.choose.botass_de.desc_two'),
       },
     ],
   },
@@ -256,11 +255,11 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.team_de.title_one'),
-        description:t('produpage.choose.team_de.desc_one'),
+        description: t('produpage.choose.team_de.desc_one'),
       },
       {
         title: t('produpage.choose.team_de.title_two'),
-        description:t('produpage.choose.team_de.desc_two'),
+        description: t('produpage.choose.team_de.desc_two'),
       },
     ],
   },
@@ -269,11 +268,11 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.e2e_de.title_one'),
-        description:t('produpage.choose.e2e_de.desc_one'),
+        description: t('produpage.choose.e2e_de.desc_one'),
       },
       {
         title: t('produpage.choose.e2e_de.title_two'),
-        description:t('produpage.choose.e2e_de.desc_two'),
+        description: t('produpage.choose.e2e_de.desc_two'),
       },
     ],
   },
@@ -282,7 +281,7 @@ const productDetails = computed(() =>[
     items: [
       {
         title: t('produpage.choose.multi_de.title_one'),
-        description:t('produpage.choose.multi_de.desc_one'),
+        description: t('produpage.choose.multi_de.desc_one'),
       },
     ],
   },
@@ -294,15 +293,13 @@ function selectProductItem(index) {
 
 function prevHandle() {
   currentIndex.value =
-    (currentIndex.value - 1 + productDetails.value.length) % productDetails.value.length;
-
+    (currentIndex.value - 1 + productDetails.value.length) %
+    productDetails.value.length;
 }
 
 function nextHandle() {
   currentIndex.value = (currentIndex.value + 1) % productDetails.value.length;
-
 }
-
 
 // 动态更改当前激活项的图标
 function getProductIcon(index) {
@@ -310,8 +307,6 @@ function getProductIcon(index) {
     ? `/img/product_icons${index}_h.svg` // 激活状态下的图标
     : `/img/product_icons${index}.svg`; // 普通状态下的图标
 }
-
-
 </script>
 
 <style scoped>

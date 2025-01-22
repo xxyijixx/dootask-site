@@ -3,10 +3,10 @@
     <div class="topics-con">
       <div class="topics-layout">
         <div class="topics-tit mb-32">
-          <span class="txt-6005670 topics-h1">{{ $t('download.title')}}</span>
+          <span class="txt-6005670 topics-h1">{{ $t('download.title') }}</span>
         </div>
         <h4 class="txt-4001830 topics-h4 mb-64">
-          {{ $t('download.desc')}}
+          {{ $t('download.desc') }}
         </h4>
         <ul class="download-ul">
           <li
@@ -19,10 +19,10 @@
           >
             <template v-if="platform.id === 'ios'">
               <a
+                id="ios"
                 class="normal"
                 :href="platform.normalLink"
                 target="_blank"
-                id="ios"
               >
                 <img
                   class="icon mb-8"
@@ -37,16 +37,16 @@
                   :src="platform.qrCode"
                   :alt="`扫描下载,${platform.name}`"
                 />
-                <i class="txt-4001624 txt">{{ $t('download.scan')}}</i>
+                <i class="txt-4001624 txt">{{ $t('download.scan') }}</i>
               </a>
             </template>
 
             <template v-else-if="platform.id === 'android'">
               <a
+                id="Android"
                 class="normal"
                 :href="platform.normalLink"
                 target="_blank"
-                id="Android"
               >
                 <img
                   class="icon mb-8"
@@ -65,7 +65,7 @@
                   src="/img/dow_icon.svg"
                   alt="Android,下载"
                 />
-                <i class="txt-4001624 txt">{{ $t('download.load')}}</i>
+                <i class="txt-4001624 txt">{{ $t('download.load') }}</i>
               </a>
             </template>
 
@@ -115,7 +115,7 @@
                   src="/img/dow_icon.svg"
                   :alt="`${platform.name},下载`"
                 />
-                <i class="txt-4001624 txt">{{ $t('download.load')}}</i>
+                <i class="txt-4001624 txt">{{ $t('download.load') }}</i>
               </a>
             </template>
           </li>
@@ -126,18 +126,16 @@
           href="https://www.dootask.com/desktop/publish/latest"
           target="_blank"
         >
-          <span>{{ $t('download.other')}}</span>
+          <span>{{ $t('download.other') }}</span>
         </a>
       </div>
     </div>
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
 const platforms = ref([
   {
     id: 'ios',
@@ -181,18 +179,18 @@ const isMobile = ref(false);
 const isIos = ref(false);
 const isAndroid = ref(false);
 
-const handleMouseover = (index) => {
+const handleMouseover = (index: number) => {
   if (isIos.value || isAndroid.value) return;
   const downloadItems = document.querySelectorAll('.download-ul-item');
-  downloadItems[index].children[0].style.display = 'none';
-  downloadItems[index].children[1].style.display = 'flex';
+  (downloadItems[index].children[0] as HTMLElement).style.display = 'none';
+  (downloadItems[index].children[1] as HTMLElement).style.display = 'flex';
 };
 
-const handleMouseout = (index) => {
+const handleMouseout = (index: number) => {
   if (isIos.value || isAndroid.value) return;
   const downloadItems = document.querySelectorAll('.download-ul-item');
-  downloadItems[index].children[0].style.display = 'flex';
-  downloadItems[index].children[1].style.display = 'none';
+  (downloadItems[index].children[0] as HTMLElement).style.display = 'flex';
+  (downloadItems[index].children[1] as HTMLElement).style.display = 'none';
 };
 
 onMounted(() => {

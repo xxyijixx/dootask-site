@@ -13,41 +13,45 @@
           <ul class="footer-r-ul">
             <li class="footer-r-item">
               <ol class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.links') }}</li>
-                <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/product"
-                    >{{ $t('footer.product') }}</NuxtLink
-                  >
+                <li class="footer-ol-item txt-5001624 mb-24">
+                  {{ $t('footer.links') }}
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/solutions"
-                    >{{ $t('footer.solution') }}</NuxtLink
-                  >
+                  <NuxtLink class="txt-4001624 txt" to="/product">{{
+                    $t('footer.product')
+                  }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/price"
-                    >{{ $t('footer.pricing') }}</NuxtLink
-                  >
+                  <NuxtLink class="txt-4001624 txt" to="/solutions">{{
+                    $t('footer.solution')
+                  }}</NuxtLink>
+                </li>
+                <li class="footer-ol-item mb-16">
+                  <NuxtLink class="txt-4001624 txt" to="/price">{{
+                    $t('footer.pricing')
+                  }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item">
-                  <NuxtLink class="txt-4001624 txt" to="/about"
-                    >{{ $t('footer.about') }}</NuxtLink
-                  >
+                  <NuxtLink class="txt-4001624 txt" to="/about">{{
+                    $t('footer.about')
+                  }}</NuxtLink>
                 </li>
               </ol>
             </li>
             <li class="footer-r-item">
               <ol class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.support') }}</li>
-                <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/download"
-                    >{{ $t('footer.download') }}</NuxtLink
-                  >
+                <li class="footer-ol-item txt-5001624 mb-24">
+                  {{ $t('footer.support') }}
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/help"
-                    >{{ $t('footer.help') }}</NuxtLink
-                  >
+                  <NuxtLink class="txt-4001624 txt" to="/download">{{
+                    $t('footer.download')
+                  }}</NuxtLink>
+                </li>
+                <li class="footer-ol-item mb-16">
+                  <NuxtLink class="txt-4001624 txt" to="/help">{{
+                    $t('footer.help')
+                  }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink
@@ -69,12 +73,16 @@
             </li>
             <li class="footer-r-item">
               <ul class="footer-r-ol">
-                <li class="footer-ol-item txt-5001624 mb-24">{{ $t('footer.community') }}</li>
+                <li class="footer-ol-item txt-5001624 mb-24">
+                  {{ $t('footer.community') }}
+                </li>
                 <li class="footer-ol-item">
                   <div class="footer-ol-item mb-16">
                     <i
                       class="txt-4001624 txt"
-                      @click="openInNewTab('https://github.com/kuaifan/dootask')"
+                      @click="
+                        openInNewTab('https://github.com/kuaifan/dootask')
+                      "
                       >Github</i
                     >
                   </div>
@@ -85,16 +93,18 @@
                       >Gitee</i
                     >
                   </div>
-                  <div class="footer-ol-item" id="qq_group">
+                  <div id="qq_group" class="footer-ol-item">
                     <i class="txt-4001624 txt">{{ $t('footer.QQ') }}</i>
                     <div class="group_code">
                       <img
-                        class="code-svg"
                         id="home_code"
+                        class="code-svg"
                         src="/img/qq_code.jpg"
                         alt="群号：546574618"
                       />
-                      <i class="group_num">{{$t('social.group')}}：546574618</i>
+                      <i class="group_num"
+                        >{{ $t('social.group') }}：546574618</i
+                      >
                       <i class="lower_triangle"></i>
                     </div>
                   </div>
@@ -105,7 +115,9 @@
         </div>
       </div>
       <div class="txt-4001624 filings footer_copyright">
-        <span> Copyright © 2022-{{year}} DooTask. All rights reserved. </span>
+        <span>
+          Copyright © 2022-{{ year }} DooTask. All rights reserved.
+        </span>
         <div class="footer_beian" style="display: flex">
           <img src="/img/beian.png" alt="" /><span style="padding-left: 3px"
             >桂公网安备 45010802000393号</span
@@ -119,12 +131,12 @@
   </footer>
 </template>
 <script setup lang="ts">
-import { toRefs } from 'vue'
+import { toRefs } from 'vue';
 import { openInNewTab } from '../utils/common';
 
 const themeStore = useThemeStore();
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const year = new Date().getFullYear();
 </script>

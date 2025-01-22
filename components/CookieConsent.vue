@@ -1,13 +1,26 @@
 <template>
-  <div id="cookieConsent" v-if="displayCookieConsent">
+  <div v-if="displayCookieConsent" id="cookieConsent">
     <div>
-      {{ t('cookie.content') }}<a :href="`/${locale}/cookie`" id="cookie_a" target="_blank"
-        >{{ t('cookie.link_text')}}</a
-      >
+      {{ t('cookie.content')
+      }}<a id="cookie_a" :href="`/${locale}/cookie`" target="_blank">{{
+        t('cookie.link_text')
+      }}</a>
     </div>
     <div id="buttonBox">
-      <button id="rejectButton" class="btn btn-primary" @click="handleRejectButtonClick">{{ t('cookie.reject_btn_text')}}</button>
-      <button id="agreeButton" class="btn btn-primary" @click="handleAgreeButtonClick">{{ t('cookie.agree_btn_text')}}</button>
+      <button
+        id="rejectButton"
+        class="btn btn-primary"
+        @click="handleRejectButtonClick"
+      >
+        {{ t('cookie.reject_btn_text') }}
+      </button>
+      <button
+        id="agreeButton"
+        class="btn btn-primary"
+        @click="handleAgreeButtonClick"
+      >
+        {{ t('cookie.agree_btn_text') }}
+      </button>
     </div>
   </div>
 </template>

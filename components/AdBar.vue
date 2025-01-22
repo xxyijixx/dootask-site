@@ -1,11 +1,11 @@
 <template>
-  <div id="ad" class="ad" ref="AdRef" v-if="adDiaplsy">
+  <div v-if="adDiaplsy" id="ad" ref="AdRef" class="ad">
     <div class="ad-content">
       <div class="ad-content-left">
-        <p id="ad-text" class="ad-text" ref="AdTextRef">最新活动</p>
-        <button id="ad-btn" class="ad-btn" ref="AdBtnRef">查看详情</button>
+        <p id="ad-text" ref="AdTextRef" class="ad-text">最新活动</p>
+        <button id="ad-btn" ref="AdBtnRef" class="ad-btn">查看详情</button>
       </div>
-      <div id="ad-close" class="ad-close" ref="AdCloseRef">
+      <div id="ad-close" ref="AdCloseRef" class="ad-close">
         <img src="/img/price_icon2.svg" alt="关闭" />
       </div>
     </div>
@@ -15,14 +15,16 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import '@/assets/css/ad.css';
+import { fetchData, handleError } from '../utils/fetch';
+
 const { locale } = useI18n();
-import { fetchData, handleError} from '../utils/fetch';
+
 onMounted(() => {
-  fetchAdBar(locale.value)
+  fetchAdBar(locale.value);
   // initializeAdBar();
 });
 
-const adDiaplsy = ref(false)
+const adDiaplsy = ref(false);
 
 const AdRef = ref<HTMLElement | null>();
 const AdTextRef = ref<HTMLElement | null>();
@@ -30,7 +32,7 @@ const AdBtnRef = ref<HTMLElement | null>();
 const AdCloseRef = ref<HTMLElement | null>();
 
 // 根据窗口宽度设置广告栏高度
-let adBarHeight = window?.innerWidth <= 768 ? 48 : 64;
+const adBarHeight = window?.innerWidth <= 768 ? 48 : 64;
 const adBarHeightPX = `${adBarHeight}px`;
 
 // 初始化广告栏
@@ -90,7 +92,7 @@ const fetchAdBar = (language: string) => {
 // 更新广告栏内容
 function updateAdBar({ background, text, buttonText }: any) {
   // insertAdBarElement();
-  adDiaplsy.value = true
+  adDiaplsy.value = true;
 
   const adWrapper = AdRef.value;
   if (!adWrapper) return;

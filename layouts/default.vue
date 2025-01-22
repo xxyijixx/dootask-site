@@ -5,7 +5,7 @@
         <AdBar />
       </template>
     </HeaderBar>
-   
+
     <slot />
     <FooterBar />
     <SideNav />
@@ -14,7 +14,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import "@/assets/css/common.css"
+import '@/assets/css/common.css';
+import '@/assets/css/rem.css';
 const themeStore = useThemeStore();
 
 onMounted(() => {

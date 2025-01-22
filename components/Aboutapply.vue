@@ -2,12 +2,14 @@
   <article class="scenario-app">
     <div class="scenario-app-con">
       <div class="scenario-app-layout">
-        <h1 class="txt-5004455 scenario-app-h1 mb-16">{{ $t('about.scenapply.title') }}</h1>
+        <h1 class="txt-5004455 scenario-app-h1 mb-16">
+          {{ $t('about.scenapply.title') }}
+        </h1>
         <h6
           class="txt-4001824 scenario-app-h6 mb-80"
           style="text-align: center"
         >
-        {{ $t('about.scenapply.desc') }}
+          {{ $t('about.scenapply.desc') }}
         </h6>
         <ul class="scenario-app-ul">
           <li
@@ -41,13 +43,12 @@
   </article>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const scenarios = computed(() =>  [
+const scenarios = computed(() => [
   {
     title: t('about.scenapply.cardtitle_one'),
     icon: '/img/about_icon7.svg',
@@ -57,7 +58,7 @@ const scenarios = computed(() =>  [
   {
     title: t('about.scenapply.cardtitle_two'),
     icon: '/img/about_icon8.svg',
-    description:  t('about.scenapply.cardesc_two'),
+    description: t('about.scenapply.cardesc_two'),
     svg: '/img/02.svg',
   },
   {

@@ -1,23 +1,35 @@
 <template>
   <nav class="side_nav">
     <ul class="side_toolbars">
-      <li class="side_toolbar_item" id="side_toolbar_item_phone" @click="handlePhoneClick">
+      <li
+        id="side_toolbar_item_phone"
+        class="side_toolbar_item"
+        @click="handlePhoneClick"
+      >
         <i class="toolbar_font font_phone"></i>
-        <div class="toolbar_tooltip" id="toolbar_tooltip_phone" v-if="tooltipPhoneVisible">
-          {{t('social.phone')}}：0771-3164099
+        <div
+          v-if="tooltipPhoneVisible"
+          id="toolbar_tooltip_phone"
+          class="toolbar_tooltip"
+        >
+          {{ t('social.phone') }}：0771-3164099
           <div class="tooltip_arrow"></div>
         </div>
       </li>
-      <li class="side_toolbar_item" id="side_toolbar_item_whtasapp" @click="handleWhatsappClick">
+      <li
+        id="side_toolbar_item_whtasapp"
+        class="side_toolbar_item"
+        @click="handleWhatsappClick"
+      >
         <i class="toolbar_font font_whatsapp">
           <svg
+            id="mx_n_1714295618589"
             t="1714295618588"
             class="icon"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             p-id="5948"
-            id="mx_n_1714295618589"
             width="24"
             height="24"
           >
@@ -27,25 +39,37 @@
             ></path>
           </svg>
         </i>
-        <div class="toolbar_tooltip" id="toolbar_tooltip_whtasapp" v-if="tooltipWhtasappVisible">
+        <div
+          v-if="tooltipWhtasappVisible"
+          id="toolbar_tooltip_whtasapp"
+          class="toolbar_tooltip"
+        >
           <div class="toolbar_whtasapp"></div>
           <span class="toolbar_qrcode_text"> WhatsApp </span>
           <div class="tooltip_arrow"></div>
         </div>
       </li>
-      <li class="side_toolbar_item" id="side_toolbar_item_qrcode" @click="handleQrcodeClick">
+      <li
+        id="side_toolbar_item_qrcode"
+        class="side_toolbar_item"
+        @click="handleQrcodeClick"
+      >
         <i class="toolbar_font font_qrcode"></i>
-        <div class="toolbar_tooltip" id="toolbar_tooltip_qrcode" v-if="tooltipQrcodeVisible">
+        <div
+          v-if="tooltipQrcodeVisible"
+          id="toolbar_tooltip_qrcode"
+          class="toolbar_tooltip"
+        >
           <div class="toolbar_qrcode"></div>
-          <span class="toolbar_qrcode_text"> {{t('social.wechat')}} </span>
+          <span class="toolbar_qrcode_text"> {{ t('social.wechat') }} </span>
           <div class="tooltip_arrow"></div>
         </div>
       </li>
     </ul>
     <div
-      class="side_to_top"
-      id="back_to_top"
       v-if="showBackTopButton"
+      id="back_to_top"
+      class="side_to_top"
       @click="scrollToTop"
     >
       <div class="side_to_top_wrapper">
@@ -68,12 +92,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import '@/assets/js/googleAds.js';
 import '@/assets/js/googleAnalyze.js';
 import '@/assets/css/side_nav.css';
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const tooltipPhoneVisible = ref(false);
 const tooltipWhtasappVisible = ref(false);
@@ -90,13 +114,13 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
-  window.addEventListener('click', handleClickOutside)
+  window.addEventListener('click', handleClickOutside);
   handleScroll();
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
-  window.removeEventListener('click', handleClickOutside)
+  window.removeEventListener('click', handleClickOutside);
 });
 
 const scrollToTop = () => {
@@ -154,23 +178,35 @@ const handleQrcodeClick = (event: Event) => {
 };
 
 const handleClickOutside = (event: MouseEvent) => {
-  let toolbarPhone = document.getElementById('side_toolbar_item_phone');
-  let tooltipPhone = document.getElementById('toolbar_tooltip_phone');
-  let toolbarWhtasapp = document.getElementById('side_toolbar_item_whtasapp');
-  let tooltipWhtasapp = document.getElementById('toolbar_tooltip_whtasapp');
-  let toolbarQrcode = document.getElementById('side_toolbar_item_qrcode');
-  let tooltipQrcode = document.getElementById('toolbar_tooltip_qrcode');
+  const toolbarPhone = document.getElementById('side_toolbar_item_phone');
+  const tooltipPhone = document.getElementById('toolbar_tooltip_phone');
+  const toolbarWhtasapp = document.getElementById('side_toolbar_item_whtasapp');
+  const tooltipWhtasapp = document.getElementById('toolbar_tooltip_whtasapp');
+  const toolbarQrcode = document.getElementById('side_toolbar_item_qrcode');
+  const tooltipQrcode = document.getElementById('toolbar_tooltip_qrcode');
 
-  if (toolbarPhone && tooltipPhone && !toolbarPhone.contains(event.target as Node)) {
-    tooltipPhoneVisible.value = false
+  if (
+    toolbarPhone &&
+    tooltipPhone &&
+    !toolbarPhone.contains(event.target as Node)
+  ) {
+    tooltipPhoneVisible.value = false;
   }
 
-  if (toolbarWhtasapp && tooltipWhtasapp && !toolbarWhtasapp.contains(event.target as Node)) {
-    tooltipWhtasappVisible.value = false
+  if (
+    toolbarWhtasapp &&
+    tooltipWhtasapp &&
+    !toolbarWhtasapp.contains(event.target as Node)
+  ) {
+    tooltipWhtasappVisible.value = false;
   }
 
-  if (toolbarQrcode && tooltipQrcode && !toolbarQrcode.contains(event.target as Node)) {
-    tooltipQrcodeVisible.value = false
+  if (
+    toolbarQrcode &&
+    tooltipQrcode &&
+    !toolbarQrcode.contains(event.target as Node)
+  ) {
+    tooltipQrcodeVisible.value = false;
   }
 };
 </script>

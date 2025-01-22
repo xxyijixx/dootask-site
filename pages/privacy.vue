@@ -27,7 +27,7 @@ const loadPrivacyPolicy = async () => {
         PrivacyContentRef.value.innerHTML = md.render(markdownText);
       }
     })
-    .catch((error) => {});
+    .catch(() => {});
 };
 
 definePageMeta({

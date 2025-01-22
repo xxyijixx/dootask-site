@@ -3,7 +3,9 @@
   <!-- 功能卡片区域 -->
   <article class="card">
     <div class="card-con">
-      <h1 class="txt-5004455 card-h1 mb-80">{{ $t('homepage.scenarios.title') }}</h1>
+      <h1 class="txt-5004455 card-h1 mb-80">
+        {{ $t('homepage.scenarios.title') }}
+      </h1>
       <div class="card-con-layout">
         <ul class="card-ul">
           <li
@@ -36,8 +38,8 @@
           </li>
         </ul>
         <img
-          class="card-pic"
           id="home_pic2"
+          class="card-pic"
           :src="currentPicSrc"
           :alt="currentPicAlt"
         />
@@ -46,7 +48,9 @@
 
     <!-- 移动端版本 -->
     <div class="card-con-768">
-      <h1 class="txt-5002228 card-h1 mb-32">{{ $t('homepage.scenarios.title') }}</h1>
+      <h1 class="txt-5002228 card-h1 mb-32">
+        {{ $t('homepage.scenarios.title') }}
+      </h1>
       <div class="card-con-layout">
         <ul class="card-768-ul">
           <li
@@ -56,7 +60,9 @@
           >
             <img class="icon" :src="item.icon" :alt="item.title" />
             <h3 class="txt-5001822 card-ul-item-h3 mb-12">{{ item.title }}</h3>
-            <i class="txt-4001524 card-ul-item-txt mb-16">{{item.description}}</i>
+            <i class="txt-4001524 card-ul-item-txt mb-16">{{
+              item.description
+            }}</i>
             <img class="card-pic mb-40" :src="item.picSrc" :alt="item.picAlt" />
           </li>
         </ul>
@@ -65,7 +71,7 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -82,14 +88,13 @@ const currentPicSrc = computed(() => {
   return scenarioItems.value[index].picSrc;
 });
 
-
 const currentPicAlt = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片的 alt
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
   return scenarioItems.value[index].picAlt;
 });
 
-const toggleCard = (index) => {
+const toggleCard = (index: number) => {
   activeCardIndex.value = activeCardIndex.value === index ? -1 : index;
 };
 

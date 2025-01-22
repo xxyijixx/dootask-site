@@ -14,7 +14,7 @@
             :key="index"
             class="price-card-item"
             :class="{
-              'active': selectedPlan === plan,
+              active: selectedPlan === plan,
               'hover-effect': hoveredPlan === plan && selectedPlan !== plan,
             }"
             @mouseenter="handleMouseEnter(plan)"
@@ -29,18 +29,20 @@
               <h2 class="txt-6003645 price-card-h2">
                 {{ plan.price }}
               </h2>
-              <i v-if="plan.priceUnit" class="txt-5001628 price-card-unit">{{plan.priceUnit}}</i>
+              <i v-if="plan.priceUnit" class="txt-5001628 price-card-unit">{{
+                plan.priceUnit
+              }}</i>
             </div>
             <h6 class="txt-4001624 price-card-h6 mb-24" style="height: 48px">
               {{ plan.userLimit }}
             </h6>
             <button
               class="btn btn-green mb-24"
-              @click.stop="handlePlanSelect(plan)"
               :class="{
-                'btn-primary': hoveredPlan === plan ,
+                'btn-primary': hoveredPlan === plan,
                 'btn-selected': selectedPlan === plan,
               }"
+              @click.stop="handlePlanSelect(plan)"
             >
               {{ plan.buttonText }}
             </button>
@@ -74,17 +76,24 @@
     </div>
 
     <!-- 联系我们模态框 -->
-    <div v-if="showContactModal" @click.stop class="modal-overlay" :class="{ dark: theme === 'dark' }">
-      <div class="modal-content" @click.stop >
+    <div
+      v-if="showContactModal"
+      class="modal-overlay"
+      :class="{ dark: theme === 'dark' }"
+      @click.stop
+    >
+      <div class="modal-content" @click.stop>
         <h3>{{ modalTitle }}</h3>
         <br />
         <div class="modal-body">
-            <p>{{ $t('pricing.modaldesc') }}</p>
-            <p>{{ $t('pricing.modalphone') }}</p>
-            <p>{{ $t('pricing.modaladdr1') }}@{{ $t('pricing.modaladdr2') }}</p>
+          <p>{{ $t('pricing.modaldesc') }}</p>
+          <p>{{ $t('pricing.modalphone') }}</p>
+          <p>{{ $t('pricing.modaladdr1') }}@{{ $t('pricing.modaladdr2') }}</p>
         </div>
         <div class="modal-actions">
-          <button @click="closeModal" class="btn-confirm">{{ $t('pricing.btn') }}</button>
+          <button class="btn-confirm" @click="closeModal">
+            {{ $t('pricing.btn') }}
+          </button>
         </div>
       </div>
     </div>
@@ -92,19 +101,18 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 store 路径
 
 const { t } = useI18n();
 const themeStore = useThemeStore();
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const selectedPlan = ref(null);
 const hoveredPlan = ref(null);
 const showContactModal = ref(false);
 const modalTitle = ref('');
-
 
 const pricePlans = ref([
   {
@@ -146,8 +154,8 @@ const pricePlans = ref([
   {
     name: t('pricing.plans.pro.name'),
     price: '¥18,888',
-    userLimit:  t('pricing.plans.pro.limit'),
-    buttonText:  t('pricing.plans.communicate'),
+    userLimit: t('pricing.plans.pro.limit'),
+    buttonText: t('pricing.plans.communicate'),
     features: [
       {
         icon: '/img/price_icon1.svg',
@@ -179,7 +187,7 @@ const pricePlans = ref([
     features: [
       {
         icon: '/img/price_icon1.svg',
-        text:t('pricing.plans.features_first'),
+        text: t('pricing.plans.features_first'),
       },
       {
         icon: '/img/price_icon1.svg',
@@ -219,7 +227,7 @@ function handlePlanSelect(plan) {
   }
 
   // 重置所有卡片的 recommended 为 false
-  pricePlans.value.forEach(p => {
+  pricePlans.value.forEach((p) => {
     p.recommended = false;
   });
 
@@ -248,12 +256,10 @@ const handleMouseLeave = () => {
   hoveredPlan.value = null;
 };
 
-
 // 改进 closeModal 函数
 function closeModal() {
   showContactModal.value = false;
 }
-
 </script>
 
 <style>

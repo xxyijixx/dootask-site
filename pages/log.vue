@@ -9,7 +9,9 @@
         </a>
         <i class="close-drawer" @click="closeLogsDrawer">✕</i>
       </div>
-      <h5 class="logs-h5 mb-16" style="font-weight: 500">{{ $t('download.log.title') }}</h5>
+      <h5 class="logs-h5 mb-16" style="font-weight: 500">
+        {{ $t('download.log.title') }}
+      </h5>
       <ul class="logs-l-ul logs-l-768"></ul>
     </div>
     <main>
@@ -17,27 +19,42 @@
         <!-- 主内容区 -->
         <article class="logs">
           <div class="logs-con">
-            <div class="logs-t-768" id="menuBtn-logs" @click="openLogsDrawer">
+            <div id="menuBtn-logs" class="logs-t-768" @click="openLogsDrawer">
               <img class="logs-t-prev" src="/img/prev.svg" alt="更新日志" />
               <i class="logs-t-tit">{{ $t('download.log.title') }}</i>
             </div>
             <div class="logs-layout">
               <div class="logs-l logs-sticky">
-                <h5 class="logs-h5 mb-16" style="font-weight: 500">{{ $t('download.log.title') }}</h5>
-                <ul class="logs-l-ul logs-l-1920" id="help-l-ul">
-                  <li v-for="(version, index) in versionLogs" :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]" @click="handleNavClick(index)">
-                    <a class="txt-4001620 txt log-a">v{{ version }} {{ $t('download.log.new') }}</a>
+                <h5 class="logs-h5 mb-16" style="font-weight: 500">
+                  {{ $t('download.log.title') }}
+                </h5>
+                <ul id="help-l-ul" class="logs-l-ul logs-l-1920">
+                  <li
+                    v-for="(version, index) in versionLogs"
+                    :key="index"
+                    :class="['l-ul-item', { active: activeTabIndex === index }]"
+                    @click="handleNavClick(index)"
+                  >
+                    <a class="txt-4001620 txt log-a"
+                      >v{{ version }} {{ $t('download.log.new') }}</a
+                    >
                   </li>
                 </ul>
                 <ul class="logs-l-ul logs-l-768"></ul>
               </div>
               <div class="logs-r">
-                <h1 class="txt-6003645 logs-h1 mb-36">DooTask {{ $t('download.log.title') }}</h1>
+                <h1 class="txt-6003645 logs-h1 mb-36">
+                  DooTask {{ $t('download.log.title') }}
+                </h1>
                 <ul class="logs-r-ul">
-                  <li v-for="(version, index) in versionLogs" :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]">
-                    <a class="txt-4001620 txt log-a">{{ version }} {{ $t('download.log.new') }}</a>
+                  <li
+                    v-for="(version, index) in versionLogs"
+                    :key="index"
+                    :class="['l-ul-item', { active: activeTabIndex === index }]"
+                  >
+                    <a class="txt-4001620 txt log-a"
+                      >{{ version }} {{ $t('download.log.new') }}</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -57,15 +74,11 @@ import '@/assets/css/log.css';
 
 import { useI18n } from 'vue-i18n';
 
-const route = useRoute();
-const activeVersion = ref(null);
-
-const { t , locale} = useI18n();
+const { t, locale } = useI18n();
 
 const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
-
 
 // 响应式状态
 const logsData = ref([]);
@@ -133,16 +146,18 @@ const getUpdatesFromHtml = (updatesHtmlText, container) => {
   }
 };
 
-
 // 移除 scrollToActiveVersion 中的版本号相关逻辑
 const scrollToActiveVersion = () => {
   if (activeTabIndex.value >= 0) {
     setTimeout(() => {
-      const targetElement = document.querySelector(`.logs-r-ul li:nth-child(${activeTabIndex.value + 1}) h4`);
+      const targetElement = document.querySelector(
+        `.logs-r-ul li:nth-child(${activeTabIndex.value + 1}) h4`,
+      );
 
       if (targetElement) {
         const offset = 90; // 上偏移量，避免标题被遮挡
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top + window.scrollY;
 
         window.scrollTo({
           top: targetPosition - offset,
@@ -163,15 +178,12 @@ const scrollToActiveVersion = () => {
   }
 };
 
-
 const renderLogs = (html) => {
-
   nextTick(() => {
     const logsContainer = document.querySelector('.logs-r-ul'); // 右侧日志区域
     const rlog = document.querySelector('.logs-l-1920'); // 左侧导航区域
     const rlog2 = document.querySelector('.logs-l-ul.logs-l-768'); // 另一组左侧导航区域
     const changelog = document.querySelector('.logs-r-ul'); // 右侧日志区域，存储内容
-
 
     // 清空之前的内容
     logsContainer.innerHTML = '';
@@ -209,7 +221,6 @@ const renderLogs = (html) => {
     // 渲染右侧日志条目
     // 通过版本号获取更新内容并渲染
     for (let i = 0; i < versionsNumbers.length; i++) {
-
       // 直接在这里获取最新的翻译
       const updateText = t('download.log.new');
 
@@ -228,7 +239,6 @@ const renderLogs = (html) => {
       rLi.setAttribute('data-id', `section-${i + 1}`);
       rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]} ${updateText}</a>`;
       rlog.appendChild(rLi);
-
 
       const rLi2 = document.createElement('li');
       rLi2.className = `l-ul-item`;
@@ -257,7 +267,6 @@ const renderLogs = (html) => {
     }
 
     scrollToActiveVersion(); // 滚动到目标版本
-
 
     // 添加点击事件监听器 - 大屏导航
     const tabItems = document.querySelectorAll('.logs-l-1920 .l-ul-item');
@@ -291,7 +300,6 @@ const fetchLogsData = async () => {
     if (cachedLogs) {
       logsData.value = cachedLogs;
       renderLogs(cachedLogs);
-
     } else {
       const response = await axios.get(
         'https://www.dootask.com/api/system/get/updatelog',
@@ -300,7 +308,6 @@ const fetchLogsData = async () => {
       const html = markdownIt().render(markdown);
       setItem('changelog', html);
       renderLogs(html);
-
     }
   } catch (error) {
     console.error('Error fetching changelog data:', error);
@@ -427,29 +434,25 @@ watch(
       }
     });
   },
-  { immediate: true }
+  { immediate: true },
 );
-
 
 // 在组件挂载时设置头部标题
 useHead({
   title: t('log.headtitle'),
   htmlAttrs: {
-    lang: locale.value
+    lang: locale.value,
   },
   meta: [
     {
       name: 'description',
-      content: t('log.description') || 'DooTask 更新日志'
-    }
-  ]
-})
-
-
+      content: t('log.description') || 'DooTask 更新日志',
+    },
+  ],
+});
 
 // 生命周期钩子
 onMounted(() => {
-
   const storedLogIndex = localStorage.getItem('update_log_num');
   if (storedLogIndex) {
     // 转换为数字并减1（因为数组索引从0开始）
@@ -461,7 +464,6 @@ onMounted(() => {
 
   fetchLogsData();
   window.addEventListener('scroll', scrollHandler);
-
 });
 
 onUnmounted(() => {

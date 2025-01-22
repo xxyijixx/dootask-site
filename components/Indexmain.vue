@@ -35,18 +35,22 @@
         <div class="flex-cc topics-btn">
           <span class="mr-24 get-started">
             <NuxtLink to="/price">
-              <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
+              <button class="btn btn-primary mr-20">
+                {{ $t('common.get_started') }}
+              </button>
             </NuxtLink>
           </span>
           <a href="https://github.com/kuaifan/dootask/tree/pro" target="_blank">
-            <button class="btn btn-default">{{ $t('homepage.hero.deployment') }}</button>
+            <button class="btn btn-default">
+              {{ $t('homepage.hero.deployment') }}
+            </button>
           </a>
         </div>
       </div>
       <div class="ten_img">
         <img
-          class="home-pic"
           id="home_pic"
+          class="home-pic"
           :src="`/img/${theme}/${lang}_home_pic1.png`"
           alt="DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。"
         />
@@ -57,10 +61,8 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue';
-import { useI18n } from 'vue-i18n';
-const { locale , t } = useI18n();
-const themeStore = useThemeStore();
 
+const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
 </script>

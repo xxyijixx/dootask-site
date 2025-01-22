@@ -2,14 +2,18 @@
   <section class="plans">
     <div class="plans-con">
       <div class="plans-layout">
-        <h2 class="txt-5004455 plans-tit-h2 mb-16">{{ $t('pricing.comparetitle') }}</h2>
+        <h2 class="txt-5004455 plans-tit-h2 mb-16">
+          {{ $t('pricing.comparetitle') }}
+        </h2>
         <h5 class="txt-4001830 plans-tit-h5 mb-80">
           {{ $t('pricing.comparedesc') }}
         </h5>
         <ul class="plans-ul-t">
           <div class="price-ceiling">
             <li class="plans-ul-t-item grid-5" style="padding: 20px 24px">
-              <h4 class="txt-5002024 plans-ul-t-item-h4">{{ $t('pricing.features') }}</h4>
+              <h4 class="txt-5002024 plans-ul-t-item-h4">
+                {{ $t('pricing.features') }}
+              </h4>
               <h4
                 v-for="(plan, index) in plans"
                 :key="index"
@@ -21,7 +25,9 @@
           </div>
 
           <li class="plans-ul-t-item grid-5" style="padding: 32px 24px">
-            <h4 class="txt-5001616 plans-ul-t-item-h4">{{ $t('pricing.price') }}</h4>
+            <h4 class="txt-5001616 plans-ul-t-item-h4">
+              {{ $t('pricing.price') }}
+            </h4>
             <div
               v-for="(plan, index) in plans"
               :key="index"
@@ -182,7 +188,12 @@
     </div>
 
     <!-- 联系我们模态框 -->
-    <div v-if="showContactModal" @click.stop class="modal-overlay"  :class="{ dark: theme === 'dark' }">
+    <div
+      v-if="showContactModal"
+      class="modal-overlay"
+      :class="{ dark: theme === 'dark' }"
+      @click.stop
+    >
       <div class="modal-content">
         <h3>{{ modalTitle }}</h3>
         <br />
@@ -192,7 +203,9 @@
           <p>{{ $t('pricing.modaladdr1') }}@{{ $t('pricing.modaladdr2') }}</p>
         </div>
         <div class="modal-actions">
-          <button @click="closeModal" class="btn-confirm">{{ $t('pricing.btn') }}</button>
+          <button class="btn-confirm" @click="closeModal">
+            {{ $t('pricing.btn') }}
+          </button>
         </div>
       </div>
     </div>
@@ -208,16 +221,16 @@ import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 stor
 const { t } = useI18n();
 
 const themeStore = useThemeStore();
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const showContactModal = ref(false);
 const modalTitle = ref('');
 
-const plans = computed(() =>  [
+const plans = computed(() => [
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',
-    priceUnit:  t('pricing.plans.free.unit'),
+    priceUnit: t('pricing.plans.free.unit'),
     buttonText: t('pricing.plans.deploy'),
     buttonLink: 'https://github.com/kuaifan/dootask/tree/v0.13.0',
   },
@@ -236,29 +249,49 @@ const plans = computed(() =>  [
   {
     name: t('pricing.plans.enterprise.name'),
     price: t('pricing.plans.enterprise.price'),
-    buttonText:  t('pricing.plans.custom'),
+    buttonText: t('pricing.plans.custom'),
   },
 ]);
 
 const compareSections = computed(() => [
   {
-    title: t('pricing.sysuse') ,
+    title: t('pricing.sysuse'),
     items: [
       {
         name: t('pricing.projnum'),
-        support: [ t('pricing.unlimit'), '≤3', t('pricing.unlimit'), t('pricing.cusable')],
+        support: [
+          t('pricing.unlimit'),
+          '≤3',
+          t('pricing.unlimit'),
+          t('pricing.cusable'),
+        ],
       },
       {
         name: t('pricing.projnum'),
-        support: [t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit')],
+        support: [
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+        ],
       },
       {
         name: t('pricing.tasknum'),
-        support: [t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit'), t('pricing.unlimit')],
+        support: [
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+          t('pricing.unlimit'),
+        ],
       },
       {
         name: t('pricing.offdeply'),
-        support: [t('pricing.support'), t('pricing.support'),  t('pricing.official'),  t('pricing.official')],
+        support: [
+          t('pricing.support'),
+          t('pricing.support'),
+          t('pricing.official'),
+          t('pricing.official'),
+        ],
       },
     ],
   },
@@ -287,7 +320,7 @@ const compareSections = computed(() => [
     title: t('homepage.scenarios.scen_promana_ti'),
     items: [
       {
-        name:  t('pricing.progress'),
+        name: t('pricing.progress'),
         support: [true, true, true, true],
       },
       {
@@ -336,7 +369,7 @@ const compareSections = computed(() => [
         support: [false, true, true, true],
       },
       {
-        name:  t('pricing.team'),
+        name: t('pricing.team'),
         support: [true, true, true, true],
       },
     ],
@@ -384,10 +417,11 @@ function handlePlanSelect(plan) {
   }
 
   // 打开联系模态框
-  modalTitle.value = plan.buttonText === t('pricing.plans.communicate')
-  ? t('pricing.plans.communicate') 
-  : t('pricing.custom'); 
-  
+  modalTitle.value =
+    plan.buttonText === t('pricing.plans.communicate')
+      ? t('pricing.plans.communicate')
+      : t('pricing.custom');
+
   showContactModal.value = true;
 }
 

@@ -3,13 +3,13 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'blank',
-});
-
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import MarkdownIt from 'markdown-it';
+
+definePageMeta({
+  layout: 'blank',
+});
 
 const { locale } = useI18n();
 
@@ -23,8 +23,8 @@ const loadContent = () => {
     .then((markdownText) => {
       const md = new MarkdownIt();
       if (CookieContentRef.value) {
-        document.body.style.margin = '20px'
-        document.body.style.fontFamily = 'Arial, sans-serif'
+        document.body.style.margin = '20px';
+        document.body.style.fontFamily = 'Arial, sans-serif';
         CookieContentRef.value.innerHTML = md.render(markdownText);
       }
     });
@@ -35,19 +35,22 @@ onMounted(async () => {
 });
 
 useHead({
-  title: computed(() => locale.value === 'zh' ? 'Cookie Policy - DooTask' : 'Cookie Policy - DooTask'),
+  title: computed(() =>
+    locale.value === 'zh'
+      ? 'Cookie Policy - DooTask'
+      : 'Cookie Policy - DooTask',
+  ),
   meta: [
     {
       name: 'description',
-      content: computed(() => 
-        locale.value === 'zh' 
-          ? 'DooTask是一款轻量级的开源在线项目任务管理工具' 
-          : 'DooTask is a lightweight open-source online project task management tool'
-      )
-    }
-  ]
+      content: computed(() =>
+        locale.value === 'zh'
+          ? 'DooTask是一款轻量级的开源在线项目任务管理工具'
+          : 'DooTask is a lightweight open-source online project task management tool',
+      ),
+    },
+  ],
 });
 </script>
 
-<style>
-</style>
+<style></style>

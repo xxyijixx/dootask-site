@@ -6,10 +6,10 @@
       <ul class="team-ul mt-80">
         <li
           v-for="(item, index) in teamOperations"
+          v-show="item.icon && item.title && item.description"
           :key="item.title"
           :class="['team-ul-item', `team-ul-item-${lang}`]"
           :style="{ '--delay': `${index * 0.1}s` }"
-          v-show="item.icon && item.title && item.description"
         >
           <img class="team-icon mb-24" :src="item.icon" :alt="item.title" />
           <h4 class="txt-5002025 app-h4 mb-16">{{ item.title }}</h4>
@@ -22,16 +22,15 @@
 
 <script setup>
 import { toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 //设置语言动态卡片高度
 const themeStore = useThemeStore();
 const { lang } = toRefs(themeStore);
-import { useI18n } from 'vue-i18n';
-
 
 const { t } = useI18n();
 
-const teamOperations =  computed(() => [
+const teamOperations = computed(() => [
   {
     icon: '/img/solution_icon1.svg',
     title: t('solution.team.title_one'),

@@ -47,7 +47,7 @@ const message = computed(() => {
 </script>
 
 <style>
-body{
+body {
   width: 100%;
   height: 100vh;
   margin: 0;

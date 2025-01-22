@@ -64,7 +64,11 @@
     <div class="choose-con-768">
       <h1 class="txt-5004455 choose-con-tit">
         {{ $t('homepage.whychoose.title') }}
-        <img class="arcs2" src="/img/arcs.svg" alt=" $t('homepage.whychoose.title') " />
+        <img
+          class="arcs2"
+          src="/img/arcs.svg"
+          alt=" $t('homepage.whychoose.title') "
+        />
       </h1>
       <div class="choose-con-768-box">
         <ul
@@ -122,7 +126,7 @@ const activeIndex = ref(0);
 const isMobile = ref(false);
 const isTransitioning = ref(true);
 
-const chooseItems = computed<ChooseItem[]>(() =>[
+const chooseItems = computed<ChooseItem[]>(() => [
   {
     number: '01',
     title: t('homepage.whychoose.reason_one_ti'),
@@ -149,13 +153,6 @@ const chooseItems = computed<ChooseItem[]>(() =>[
     description: t('homepage.whychoose.reason_five_desc'),
   },
 ]);
-
-// 创建包含首尾克隆的轮播数组
-const carouselItems = computed(() => {
-  const firstItem = chooseItems.value[0];
-  const lastItem = chooseItems.value[chooseItems.value.length - 1];
-  return [lastItem, ...chooseItems.value, firstItem];
-});
 
 // 检查屏幕尺寸
 const checkMobileView = () => {

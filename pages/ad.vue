@@ -9,7 +9,7 @@
           <div id="ad-dialog-header-img" class="ad-dialog-header-img"></div>
         </div>
         <div id="ad-dialog-content" class="ad-dialog-content">
-          {{t('ad.dialog_qr_code_tip')}}
+          {{ t('ad.dialog_qr_code_tip') }}
         </div>
         <div class="ad-dialog-footer">
           <button id="ad-dialog-footer-btn" class="ad-dialog-footer-btn">
@@ -697,10 +697,10 @@ function handleAdBannerSelfHostButton({
     Object.assign(selfHostButtonEl.style, getStyle(style));
   }
 }
-function lockBodyScroll(bool: Boolean) {
+function lockBodyScroll(bool: boolean) {
   document.body.style.overflowY = bool ? 'hidden' : 'auto';
 }
-function handleDialogAnimate(bool: Boolean) {
+function handleDialogAnimate(bool: boolean) {
   const dialogEl = document.querySelector('.ad-dialog');
   if (!dialogEl) return;
 

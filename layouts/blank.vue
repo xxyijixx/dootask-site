@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 const themeStore = useThemeStore();
 
 onMounted(() => {
@@ -13,6 +13,4 @@ onMounted(() => {
 });
 </script>
 
-<style>
-
-</style>
+<style></style>

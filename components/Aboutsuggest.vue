@@ -3,9 +3,9 @@
     <div class="footer-t-con">
       <div class="footer-t-layout">
         <div class="footer-t-l">
-          <h1 class="footer-t-h1 mb-56">{{ $t('about.suggest.title')}}</h1>
+          <h1 class="footer-t-h1 mb-56">{{ $t('about.suggest.title') }}</h1>
           <h6 class="footer-t-h6 mb-56">
-            {{ $t('about.suggest.desc')}}
+            {{ $t('about.suggest.desc') }}
           </h6>
           <div class="footer-t-contact mb-24">
             <img
@@ -27,7 +27,7 @@
         <form class="from" @submit.prevent="sendFormRequest">
           <ul class="from-ul">
             <li class="from-ul-item mb-16">
-              <i class="from-ul-tags mb-8">{{ $t('about.suggest.name')}}</i>
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.name') }}</i>
               <input
                 id="username"
                 v-model="username"
@@ -38,7 +38,7 @@
               />
             </li>
             <li class="from-ul-item mb-16">
-              <i class="from-ul-tags mb-8">{{ $t('about.suggest.email')}}</i>
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.email') }}</i>
               <input
                 id="email"
                 v-model="email"
@@ -48,8 +48,8 @@
                 required
               />
             </li>
-            <li class="from-ul-item mb-16" id="desc_wrap">
-              <i class="from-ul-tags mb-8">{{ $t('about.suggest.mes')}}</i>
+            <li id="desc_wrap" class="from-ul-item mb-16">
+              <i class="from-ul-tags mb-8">{{ $t('about.suggest.mes') }}</i>
               <textarea
                 id="desc"
                 v-model="message"
@@ -76,7 +76,7 @@
                     alt="提交中"
                     src="/img/loading.png"
                   />
-                  {{ $t('about.suggest.btn')}}
+                  {{ $t('about.suggest.btn') }}
                 </button>
               </span>
             </li>
@@ -87,12 +87,9 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue';
 import axios from 'axios';
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const username = ref('');
 const email = ref('');
@@ -138,7 +135,7 @@ const sendFormRequest = async () => {
       silence: 'no',
     };
 
-    const response = await axios.post(url, data, { headers });
+    await axios.post(url, data, { headers });
 
     // 重置表单
     username.value = '';
@@ -146,7 +143,7 @@ const sendFormRequest = async () => {
     message.value = '';
 
     alert('提交成功！');
-  } catch (error) {
+  } catch (error: any) {
     alert(error.message || '提交失败，请重试');
   } finally {
     isSubmitting.value = false;

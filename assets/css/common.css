@@ -1262,8 +1262,6 @@ footer {
   z-index: 1000;
 }
 
-
-
 .modal-content {
   background-color: white; /* 默认的白色背景 */
   padding: 20px;
@@ -1292,8 +1290,6 @@ footer {
 .modal-body p {
   color: inherit;
 }
-
-
 
 .modal-actions {
   text-align: right;

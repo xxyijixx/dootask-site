@@ -1,373 +1,369 @@
 {
-    "common": {
-        "lang_zh": "中文",
-        "lang_en": "English",
-        "title": "DooTask - Collaborative Project Management Tool",
-        "description": "Simple and efficient team collaboration and project management platform",
-        "try_now": "Try Now",
-        "get_started": "Get Started",
-        "learn_more": "Learn More",
-        "features": "Features",
-        "solutions": "Solutions"
+  "common": {
+    "lang_zh": "中文",
+    "lang_en": "English",
+    "title": "DooTask - Collaborative Project Management Tool",
+    "description": "Simple and efficient team collaboration and project management platform",
+    "try_now": "Try Now",
+    "get_started": "Get Started",
+    "learn_more": "Learn More",
+    "features": "Features",
+    "solutions": "Solutions"
+  },
+  "navigation": {
+    "home": "Home",
+    "product": "Product",
+    "solution": "Solutions",
+    "pricing": "Pricing",
+    "about_us": "About Us",
+    "support": "Support",
+    "download": "Download Center",
+    "help_center": "Help Center",
+    "privacy_policy": "Privacy Policy",
+    "api_docs": "API Document",
+    "try_now": "Try Now",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  },
+  "language": {
+    "zh": "中文",
+    "en": "English"
+  },
+  "homepage": {
+    "headtitle": "DooTask - The most popular open source project collaboration tool",
+    "hero": {
+      "title": "Make Team Collaboration Easier",
+      "subtitle": ",Lightweight task management tool",
+      "description": "Lightweight open source online project task management tool to help teams efficiently advance their projects and make work easier.",
+      "deployment": "Self Hosting",
+      "trusted": "Trusted by many companies"
     },
-    "navigation": {
-        "home": "Home",
-        "product": "Product",
-        "solution": "Solutions",
-        "pricing": "Pricing",
-        "about_us": "About Us",
-        "support": "Support",
-        "download": "Download Center",
-        "help_center": "Help Center",
-        "privacy_policy": "Privacy Policy",
-        "api_docs": "API Document",
-        "try_now": "Try Now",
-        "language": "Language",
-        "theme": "Theme"
+    "scenarios": {
+      "title": "Our Features you cab get",
+      "scen_promana_ti": "Project Management",
+      "scen_promana_desc": "Support a variety of project management modes, suitable for all sizes and types of project management, real-time control of project progress, optimize work.",
+      "scen_team_ti": "Teamwork",
+      "scen_team_desc": "Provide rich and practical online document collaboration tools to facilitate communication and collaboration among team members and improve work efficiency.",
+      "scen_task_ti": "Task Synergy",
+      "scen_task_desc": "A task-oriented approach keeps the team's work organized and ensures efficient teamwork and a clear division of tasks.",
+      "scen_okr_ti": "Performance Measurement",
+      "scen_okr_desc": "Establishing quantifiable evaluation standards, data presentation of work effectiveness, and cohesion of core talents.",
+      "scen_communit_ti": "Communication Report",
+      "scen_communit_desc": "Instant messaging and sharing based on work scenarios for better team communication."
     },
-    "theme": {
-        "light": "Light Mode",
-        "dark": "Dark Mode"
+    "whychoose": {
+      "title": "Why Choose Us",
+      "reason_one_ti": "Efficient and convenient team communication tools",
+      "reason_one_desc": "Establish groups for projects and tasks, work issues can be communicated in a timely manner to promote rapid teamwork and improve team efficiency.",
+      "reason_two_ti": "Powerful and easy-to-use collaborative document creation",
+      "reason_two_desc": "It brings together a variety of online tools such as documents, spreadsheets, thinking notes, etc., bringing together corporate knowledge resources in one  place and supporting real-time collaborative editing by multiple people, making teamwork more convenient.",
+      "reason_three_ti": "Convenient and diverse project management templates",
+      "reason_three_desc": "Template to meet a variety of team collaboration scenarios, while  supporting custom templates to meet the team's personalized scenario management needs, you can intuitively view the progress of the project, team collaboration more convenient.",
+      "reason_four_ti": "Clear and intuitive task calendar",
+      "reason_four_desc": "Easily schedule each day with a flexible task calendar that breaks down tasks to each day, allowing for clearer work goals and more reasonable time allocation.",
+      "reason_five_ti": "Support for multi-platform applications",
+      "reason_five_desc": " With multi-platform application support, you can track the progress of your project anytime, anywhere while having a more efficient and enjoyable experience at every step of your work."
     },
-    "language": {
-        "zh": "中文",
-        "en": "English"
-    },
-    "homepage": {
-        "headtitle":"DooTask - The most popular open source project collaboration tool",
-        "hero": {
-            "title": "Make Team Collaboration Easier",
-            "subtitle": ",Lightweight task management tool",
-            "description": "Lightweight open source online project task management tool to help teams efficiently advance their projects and make work easier.",
-            "deployment": "Self Hosting",
-            "trusted": "Trusted by many companies"
-        },
-        "scenarios": {
-            "title": "Our Features you cab get",
-            "scen_promana_ti": "Project Management",
-            "scen_promana_desc": "Support a variety of project management modes, suitable for all sizes and types of project management, real-time control of project progress, optimize work.",
-            "scen_team_ti": "Teamwork",
-            "scen_team_desc": "Provide rich and practical online document collaboration tools to facilitate communication and collaboration among team members and improve work efficiency.",
-            "scen_task_ti": "Task Synergy",
-            "scen_task_desc": "A task-oriented approach keeps the team's work organized and ensures efficient teamwork and a clear division of tasks.",
-            "scen_okr_ti": "Performance Measurement",
-            "scen_okr_desc": "Establishing quantifiable evaluation standards, data presentation of work effectiveness, and cohesion of core talents.",
-            "scen_communit_ti": "Communication Report",
-            "scen_communit_desc": "Instant messaging and sharing based on work scenarios for better team communication."
-        },
-        "whychoose": {
-            "title": "Why Choose Us",
-            "reason_one_ti": "Efficient and convenient team communication tools",
-            "reason_one_desc":"Establish groups for projects and tasks, work issues can be communicated in a timely manner to promote rapid teamwork and improve team efficiency.",
-            "reason_two_ti": "Powerful and easy-to-use collaborative document creation",
-            "reason_two_desc":"It brings together a variety of online tools such as documents, spreadsheets, thinking notes, etc., bringing together corporate knowledge resources in one  place and supporting real-time collaborative editing by multiple people, making teamwork more convenient.",
-            "reason_three_ti": "Convenient and diverse project management templates",
-            "reason_three_desc":"Template to meet a variety of team collaboration scenarios, while  supporting custom templates to meet the team's personalized scenario management needs, you can intuitively view the progress of the project, team collaboration more convenient.",
-            "reason_four_ti": "Clear and intuitive task calendar",
-            "reason_four_desc":"Easily schedule each day with a flexible task calendar that breaks down tasks to each day, allowing for clearer work goals and more reasonable time allocation.",
-            "reason_five_ti": "Support for multi-platform applications",
-            "reason_five_desc":" With multi-platform application support, you can track the progress of your project anytime, anywhere while having a more efficient and enjoyable experience at every step of your work."            
-        },
-        "coll":{
-            "desc":"Turn on your DooTask team collaboration"
-        }
-    },
-    
-    "produpage": {
-        "headtitle":"Product-DooTask",
-        "title":"One product, multiple powerful tools",
-        "desc":"The product brings together various document collaboration, online mind mapping, online flowcharting, project management, task distribution, instant IM, document management and other functions",
-        "choose": {
-            "cocre":"Co-creation",
-            "im":"Instant Messaging",
-            "proj":"Project Mgmt",
-            "dash":"Task Dashboard",
-            "calendar":"Task Calendar",
-            "botass":"Bot Assistant",
-            "team":"Team Mgmt",
-            "e2e":"End-to-End Encryption",
-            "multi":"Multi-platform",
-            "cocre_de":{
-                "title_one":"Teamwork without boundaries",
-                "desc_one":"Bring together a variety of online tools such as documents, spreadsheets, thinking notes, etc., bringing together enterprise knowledge resources in one place and supporting real-time collaborative editing by multiple people, making teamwork more convenient.",
-                "title_two":"No more document silos",
-                "desc_two":"Multiple file formats support, internal team file sharing, controllable file permissions, historical version tracking, etc. to facilitate file collaboration and discussion among team members and improve work efficiency."
-            },
-            "im_de":{
-                "title_one":"Focused communication, efficient communication",
-                "desc_one":"Establishing groups for projects and tasks, the instant IM function can help team members communicate with each other in real time, add comments, attachments, reminders, etc. in task cards to promote fast team collaboration and improve team work efficiency.",
-                "title_two":"Messages must reach communication without hindrance",
-                "desc_two":"Messages support checking read and unread, and unread messages are notified to each other through official emails for efficient communication.",
-                "title_three":"Cloud synchronization for unrestricted access to historical information",
-                "desc_three":"Information is synchronized at multiple ends without loss. New employees join the organization, support to view chat history messages, seamless integration into the team.",
-                "title_four":"Attend meetings anytime, anywhere",
-                "desc_four":"Using communication group video conferencing, project staff can participate in meetings anytime and anywhere to enhance the convenience of online meetings and ensure that the entire meeting is secure and controlled and orderly."
-            },
-            "proj_de":{
-                "title_one":"Multi-style management templates",
-                "desc_one":"Templates to meet a variety of team collaboration scenarios, while supporting custom templates to meet the team's personalized scenario management needs, you can intuitively view the progress of the project, team collaboration more convenient.",
-                "title_two":"Project-based office, action visualization",
-                "desc_two":"Use multiple views such as Kanban boards, tables, and lists to make the overall project visible at a glance; members can filter, sort, and group tasks flexibly to give priority to what's important and stay focused.",
-                "title_three":"Dynamic management, real-time monitoring",
-                "desc_three":"Real-time changes to project dynamics, specific task changes are recorded and reminded so that the team can control the overall project process and make corresponding plans.",
-                "title_four":"One-click archiving of associated documents",
-                "desc_four":"Project and related task files are automatically archived and stored for easy access later."
-            },
-            "dash_de":{
-                "title_one":"Comprehensive insight into task data",
-                "desc_one":"The task dashboard shows task status classification statistics, which makes it easy for individuals to grasp task progress, rationalize and plan work, and improve work efficiency."
-            },
-            "calendar_de":{
-                "title_one":"Accurate Timeline",
-                "desc_one":"Show the schedule scheduling of each task, so that you can see the work tasks at a glance and better balance work and life.",
-                "title_two":"Multiple calendar views",
-                "desc_two":"Provide multiple calendar views such as month/week/day, easy to switch; support to create multiple calendars by purpose of use, customize the visible range and color markers, let the schedule classified display."
-            },
-            "botass_de":{
-                "title_one":"Smart tips to bring technology closer to life",
-                "desc_one":"Intelligent robots can serve employees' daily check-in and clock-in, task reminders, and pushing the latest consultation messages, helping users achieve effective work progress management and time planning.",
-                "title_two":"Artificial intelligence, realizing real-time communication with AI",
-                "desc_two":"The smart little dolphin, a language processing tool based on artificial intelligence technology, is able to carry out dialogues and real-time communication by learning and understanding human language, and comprehensively grasp all kinds of text information, greatly improving the convenience of work."
-            },
-            "team_de":{
-                "title_one":"Fully enhance hierarchical organizational effectiveness",
-                "desc_one":"Managers can set the company personnel structure in the background to form a complete team form, which facilitates hierarchical and collaborative management of projects and related tasks.",
-                "title_two":"Multi-functional assistance for enterprise management teams",
-                "desc_two":"Provide daily work report editing summary, project and task data summary statistics, a variety of functions to assist enterprises to manage teams and projects, improve the company's management efficiency and management level."
-            },
-            "e2e_de":{
-                "title_one":"Control encryption keys for security and safety",
-                "desc_one":"Using end-to-end encryption ensures that users' data can only be decrypted by them. This means that even if hackers break into DooTask's servers, they cannot access users' data.",
-                "title_two":"Data classification encryption for secure synchronization",
-                "desc_two":"Using categorical encryption, users can synchronize their tasks and files across multiple devices without fear of data theft or tampering."
-            },
-            "multi_de":{
-                "title_one":"Multi-Platform Applications",
-                "desc_one":"Multi-platform application support allows you to track project progress anytime, anywhere, while making every step of your work a more efficient and enjoyable experience."
-            }
-        },
-        "org":{
-            "title":"Organizational Management",
-            "desc":"Unified management of internal and external work, real-time view statistics,transparent goals, visible progress, controllable performance",
-            "tips":"Clocking in to work successfully",
-            "checkin":"Attendance Check-in",
-            "org_list":{
-                "title_one":"Real-time view of attendance statistics",
-                "title_two":"The ultimate experience in speed clocking",
-                "title_three":"Attendance data visualization and analysis",
-                "desc_one":"View attendance data anytime and anywhere, record the working hours of each team member, including starting time, finishing time, overtime, etc., to achieve goal management and performance management within the enterprise.",
-                "desc_two":"The system recognizes and connects to the company's wifi to automatically punch in and out, saying goodbye to queuing and opening cell phone operations, employees no longer forget to punch in and out.",
-                "desc_three":"Statistics on attendance, tardiness, early departure, overtime hours and other related data of each team member are generated and visualized in statistical charts. Through these data and charts, enterprise management can gain an in-depth understanding of team members' working conditions and efficiency, and provide a reference basis for subsequent personnel arrangement and performance assessment."
-            }
-        },
-        "digit":{
-            "title":"Digital Performance",
-            "digtitle_fir_one":"",
-            "digtitle_sec_one":"Goal setting and tracking, more focused team",
-            "digdesc_one":"Help team members set work goals and KPIs, and track and manage them to keep an eye on the progress of tasks in a timely manner.",
-            "digtitle_fir_two":"",
-            "digtitle_sec_two":"Performance evaluation and feedback for more effortless management",
-            "digdesc_two":"Support evaluation and feedback of team members' performance, and automatically generate performance reports and statistical charts according to task completion, providing reference basis for subsequent personnel management and performance assessment.",
-            "digtitle_fir_three":"",
-            "digtitle_sec_three":"Visual analysis of data, more intuitive results",
-            "digdesc_three":"Data such as task completion, teamwork efficiency and individual performance are transformed into intuitive and easy-to-understand charts and data analysis to better understand team members' performance and performance status, and to provide targeted training and guidance.",
-            "digtitle_fir_four":"",
-            "digtitle_sec_four":"Personalized service",
-            "digdesc_four":"Users can customize performance appraisal indicators and report content and analysis according to their own needs and business processes to better match the actual work needs of team members and the specific business situation of the company."
-
-        }
-    },
-    "solution":{
-        "headtitle":"Soulutions-DooTask",
-        "title":"Helping you collaborate better",
-        "desc":"DooTask offers a range of solutions based on different scenarios so that you can quickly start collaborating with your team or department",
-        "apply":{
-                "title":"Scenario Application",
-                "desc":"The product supports a variety of application scenarios to help team collaboration",
-                "title_one":"Project Management",
-                "title_two":"Team Collaboration",
-                "title_three":"Data Security Protection",
-                "title_four":"Free Customization",
-                "desc_one":"Support a variety of project management models, such as Agile Development, Crystal Planning, Kanban, etc., for all sizes and types of project management. Users can use the project management tools in DooTask, such as task assignment, progress tracking, resource allocation, etc. to manage the whole project.",
-                "desc_two":"DooTask's rich and useful tools can facilitate communication and collaboration among team members and improve work efficiency. For example, team members can use the document collaboration tools, online mind maps, flowcharts and other tools in DooTask to collaborate.",
-                "desc_three":"DooTask uses asymmetric encryption technology in its messaging function to ensure maximum protection of users' information. In addition, it also provides a powerful permission management system that enables flexible setting of permissions and scope of operations for different users in project management according to their roles and responsibilities.",
-                "desc_four":"DooTask is a completely open source tool that allows users to freely modify and customize it, avoiding the extra costs associated with commercial software subscription fees."
-            },
-        "team":{
-                "title":"Team Operations",
-                "title_one":"Corporate Management",
-                "title_two":"Product Management",
-                "title_three":"Corporate Management",
-                "desc_one":"Helping enterprises to their corporate goals, connecting goals, key results and individual work, and jointly promoting strategy implementation and goal achievement;Through co-creation, share the progress, completion status, and schedule of all corporate work, promote information flow, allow all staff to access key information of projects, follow up in time, and promote cross-departmental collaboration.",
-                "desc_two":"Customize the workflow of the product development process, assign tasks to different roles at different stages, and promote the product development process; Uniform archiving of each completed project and task history data, which is convenient to recall or discuss at any time, forming a closed loop of knowledge precipitation to reuse.",
-                "desc_three":"Get multi-dimensional corporate data through data visualization statistical reports to get a comprehensive understanding of employee performance and make performance evaluation more objective and fair; use announcements to release notices, arrange company activities, convey corporate decisions, facilitate the shaping of corporate culture, and make employees more engaged."
-            }
-    },
-    "pricing": {
-        "headtitle":"Pricing-DooTask",
-        "title": "Choose your plan",
-        "desc": "Different versions are available depending on the size and needs of your business",
-        "plans": {
-            "deploy": "Deploy Now",
-            "communicate": "Contact Us",
-            "custom":"Consult",
-            "features_first":"Support for private deployment",
-            "features_sec":"Technical advisory services",
-            "features_third":"24-hour service response",
-            "features_forth":"Logo customisation",
-            "features_five":"Dedicated Account Manager",
-            "features_six":"12-hour service response",
-            "free": {
-                "name": "Regular version",
-                "price": "¥0",
-                "unit":"/month",
-                "limit":"No limit to the number of people"
-            },
-            "free_sec": {
-                "name": "Professional Edition",
-                "price": "¥0",
-                "unit":"/month",
-                "limit":"Up to 3 persons"
-            },
-            "pro": {
-                "name": "Professional Edition",
-                "price": "¥18,888",
-                "limit":"No limit to the number of people"
-            },
-            "enterprise": {
-                "name": "Customised version",
-                "price": "Custom",
-                "limit":"Number of people can be customized"
-            }
-        },
-        "comparetitle":"Compare all plans",
-        "comparedesc":"The product supports a variety of application scenarios to help team collaboration",
-        "features":"Feature",
-        "price":"Pricing",
-        "sysuse":"System usage",
-        "usernum":"Number of users",
-        "projnum":"Number of projects",
-        "tasknum":"Number of tasks",
-        "offdeply":"Offline Deployment",
-        "unlimit":"Unlimited",
-        "cusable":"Customizable",
-        "official":"Official Support",
-        "support":"Support",
-        "taskcoll":"Task Collaboration",
-        "multiview":"Multi-view presentation",
-        "cuscol":"Custom column",
-        "visibset":"Visibility setting",
-        "repcyc":"Repetition cycle",
-        "progress":"Project progress",
-        "protemp":"Project templates",
-        "gantchar":"Gantt chart",
-        "apply":"Application",
-        "appro":"Approval center",
-        "okr":"OKR management",
-        "bot":"AI robot",
-        "meeting":"Meeting",
-        "okrresult":"OKR results analysis",  
-        "email":"Email",
-        "apppush":"App Push Notifications",
-        "team":"Team management",
-        "chat":"Chat",
-        "func":"Features",
-        "linktask":"Linked Task",
-        "emo":"Emoji",
-        "category":"Message categorization",
-        "rightclick":"Message Right-Click Functionality",
-        "meswithout":"Message Do Not Disturb",
-        "colorcode":"Color Coding",
-        "custom":"Customised consultancy",
-        "modaldesc":"If you have any questions, please feel free to contact us using the following methods.",
-        "modalphone":"Landline Telephone：0771-3164099",
-        "modaladdr1":"Email Address：service",
-        "modaladdr2":"hitosea.com",
-        "btn":"OK"
-    },
-
-    "about": {
-        "headtitle":"About Us-DooTask",
-        "title": "About our company",
-        "desc": "Focusing on the field of network security, we are committed to providing users with a full range of network security solutions.",
-        "founded":"Company founded",
-        "expertise":"Team experience",
-        "clientsatis":"Customer staisfaction",
-        "profile":{
-            "title":"Company profile",
-            "desc":"Since its establishment, Guangxi Hitosea Information Technology Co., Ltd.(HITOSEA) has been focusing on the innovation of cutting-edge technologies in the field of network security, providing network security products and services including border security, cloud security, data security, intranet security, and is committed to providing users with comprehensive, smarter, and zero-disturbance network security solutions, and is a dynamic technology company with a young and energetic team."
-        },
-        "scenapply":{
-            "title":"Scenario Application",
-            "desc":"The product supports a variety of application scenarios to help team collaboration",
-            "cardtitle_one":"Edge Security",
-            "cardtitle_two":"Cloud Security",
-            "cardtitle_three":"Data Security",
-            "cardtitle_four":"Intranet Security",
-            "cardesc_one":"HITOSEA next-generation firewall, intrusion prevention/intrusion detection system, cloud sandbox and other products provide users with comprehensive intelligent security protection such as access control to network boundaries, deep attack detection and APT attack detection.",
-            "cardesc_two":"We provide safe and reliable high-proof cloud servers to solve the primary network security risks faced by servers, alleviate the risk of business interruption due to flooding attacks, and meet the needs of regular security operations.",
-            "cardesc_three":"Database audit and data leakage protection system can protect sensitive data and documents, identify data and monitor operations, and block data theft by internal and external personnel through the network, e-mail and other channels.",
-            "cardesc_four":"Web application firewall and web anti-tampering system provide overall security protection for the application system, effectively blocking malicious behaviors such as web tampering and attacks."
-        },
-        "suggest":{
-            "title":"We'd love to hear from you",
-            "desc":"Have questions about pricing, plans or products? Please fill out the form and we will contact you.",
-            "name":"Name",
-            "name_placeholder":"Please enter a nickname",
-            "email":"Email",
-            "email_placeholder":"Please enter your email address",
-            "mes":"Message",
-            "mes_placeholder":"Optional",
-            "btn":"Submit"
-        }
-
-        
-    },
-    "download": {
-        "headtitle":"Download Center - DooTask",
-        "title": "Download DooTask client",
-        "desc":"Also supports iOS, Android, macOS, Windows versions",
-        "scan":"Download",
-        "load":"Download",
-        "other":"Other Versions",
-        "log":{
-            "title":"Update Log",
-            "new":"update",
-            "more":"More Logs"
-        }
-    },
-    "log":{
-        "headtitle":"Logs-DooTask",
-        "description":"Lightweight open source online project task management tool to help teams efficiently advance their projects and make work easier."
-    },
-    "footer": {
-        "title":"Helps teams move projects forward efficiently and makes work easier.",
-        "links": "Links",
-        "product": "Product",
-        "solution":"Solutions",
-        "pricing": "Pricing",
-        "about": "About Us",
-        "support": "Support",
-        "download": "Download Center",
-        "help": "Help Center",
-        "privacy": "Privacy Policy",
-        "api_docs":"API Document",
-        "community":"Community",
-        "QQ":"QQ group"
-
-    },
-    "cookie": {
-        "content": " We use first party cookies to improve your browsing experience on our website, to analyze our website traffic and to understand where our visitors are coming from. If you choose to opt-out, only strictly necessary cookies will be used.",
-        "agree_btn_text": "Allow cookies",
-        "reject_btn_text":"I decline",
-        "link_text": "Our cookie policy"
-    },
-    "ad": {
-        "dialog_qr_code_tip": "Please scan the QR code to add our WeChat customer service representative for purchase"
-    },
-    "social": {
-        "group": "Group",
-        "wechat": "WeChat",
-        "phone": "Phone"
+    "coll": {
+      "desc": "Turn on your DooTask team collaboration"
     }
+  },
+
+  "produpage": {
+    "headtitle": "Product-DooTask",
+    "title": "One product, multiple powerful tools",
+    "desc": "The product brings together various document collaboration, online mind mapping, online flowcharting, project management, task distribution, instant IM, document management and other functions",
+    "choose": {
+      "cocre": "Co-creation",
+      "im": "Instant Messaging",
+      "proj": "Project Mgmt",
+      "dash": "Task Dashboard",
+      "calendar": "Task Calendar",
+      "botass": "Bot Assistant",
+      "team": "Team Mgmt",
+      "e2e": "End-to-End Encryption",
+      "multi": "Multi-platform",
+      "cocre_de": {
+        "title_one": "Teamwork without boundaries",
+        "desc_one": "Bring together a variety of online tools such as documents, spreadsheets, thinking notes, etc., bringing together enterprise knowledge resources in one place and supporting real-time collaborative editing by multiple people, making teamwork more convenient.",
+        "title_two": "No more document silos",
+        "desc_two": "Multiple file formats support, internal team file sharing, controllable file permissions, historical version tracking, etc. to facilitate file collaboration and discussion among team members and improve work efficiency."
+      },
+      "im_de": {
+        "title_one": "Focused communication, efficient communication",
+        "desc_one": "Establishing groups for projects and tasks, the instant IM function can help team members communicate with each other in real time, add comments, attachments, reminders, etc. in task cards to promote fast team collaboration and improve team work efficiency.",
+        "title_two": "Messages must reach communication without hindrance",
+        "desc_two": "Messages support checking read and unread, and unread messages are notified to each other through official emails for efficient communication.",
+        "title_three": "Cloud synchronization for unrestricted access to historical information",
+        "desc_three": "Information is synchronized at multiple ends without loss. New employees join the organization, support to view chat history messages, seamless integration into the team.",
+        "title_four": "Attend meetings anytime, anywhere",
+        "desc_four": "Using communication group video conferencing, project staff can participate in meetings anytime and anywhere to enhance the convenience of online meetings and ensure that the entire meeting is secure and controlled and orderly."
+      },
+      "proj_de": {
+        "title_one": "Multi-style management templates",
+        "desc_one": "Templates to meet a variety of team collaboration scenarios, while supporting custom templates to meet the team's personalized scenario management needs, you can intuitively view the progress of the project, team collaboration more convenient.",
+        "title_two": "Project-based office, action visualization",
+        "desc_two": "Use multiple views such as Kanban boards, tables, and lists to make the overall project visible at a glance; members can filter, sort, and group tasks flexibly to give priority to what's important and stay focused.",
+        "title_three": "Dynamic management, real-time monitoring",
+        "desc_three": "Real-time changes to project dynamics, specific task changes are recorded and reminded so that the team can control the overall project process and make corresponding plans.",
+        "title_four": "One-click archiving of associated documents",
+        "desc_four": "Project and related task files are automatically archived and stored for easy access later."
+      },
+      "dash_de": {
+        "title_one": "Comprehensive insight into task data",
+        "desc_one": "The task dashboard shows task status classification statistics, which makes it easy for individuals to grasp task progress, rationalize and plan work, and improve work efficiency."
+      },
+      "calendar_de": {
+        "title_one": "Accurate Timeline",
+        "desc_one": "Show the schedule scheduling of each task, so that you can see the work tasks at a glance and better balance work and life.",
+        "title_two": "Multiple calendar views",
+        "desc_two": "Provide multiple calendar views such as month/week/day, easy to switch; support to create multiple calendars by purpose of use, customize the visible range and color markers, let the schedule classified display."
+      },
+      "botass_de": {
+        "title_one": "Smart tips to bring technology closer to life",
+        "desc_one": "Intelligent robots can serve employees' daily check-in and clock-in, task reminders, and pushing the latest consultation messages, helping users achieve effective work progress management and time planning.",
+        "title_two": "Artificial intelligence, realizing real-time communication with AI",
+        "desc_two": "The smart little dolphin, a language processing tool based on artificial intelligence technology, is able to carry out dialogues and real-time communication by learning and understanding human language, and comprehensively grasp all kinds of text information, greatly improving the convenience of work."
+      },
+      "team_de": {
+        "title_one": "Fully enhance hierarchical organizational effectiveness",
+        "desc_one": "Managers can set the company personnel structure in the background to form a complete team form, which facilitates hierarchical and collaborative management of projects and related tasks.",
+        "title_two": "Multi-functional assistance for enterprise management teams",
+        "desc_two": "Provide daily work report editing summary, project and task data summary statistics, a variety of functions to assist enterprises to manage teams and projects, improve the company's management efficiency and management level."
+      },
+      "e2e_de": {
+        "title_one": "Control encryption keys for security and safety",
+        "desc_one": "Using end-to-end encryption ensures that users' data can only be decrypted by them. This means that even if hackers break into DooTask's servers, they cannot access users' data.",
+        "title_two": "Data classification encryption for secure synchronization",
+        "desc_two": "Using categorical encryption, users can synchronize their tasks and files across multiple devices without fear of data theft or tampering."
+      },
+      "multi_de": {
+        "title_one": "Multi-Platform Applications",
+        "desc_one": "Multi-platform application support allows you to track project progress anytime, anywhere, while making every step of your work a more efficient and enjoyable experience."
+      }
+    },
+    "org": {
+      "title": "Organizational Management",
+      "desc": "Unified management of internal and external work, real-time view statistics,transparent goals, visible progress, controllable performance",
+      "tips": "Clocking in to work successfully",
+      "checkin": "Attendance Check-in",
+      "org_list": {
+        "title_one": "Real-time view of attendance statistics",
+        "title_two": "The ultimate experience in speed clocking",
+        "title_three": "Attendance data visualization and analysis",
+        "desc_one": "View attendance data anytime and anywhere, record the working hours of each team member, including starting time, finishing time, overtime, etc., to achieve goal management and performance management within the enterprise.",
+        "desc_two": "The system recognizes and connects to the company's wifi to automatically punch in and out, saying goodbye to queuing and opening cell phone operations, employees no longer forget to punch in and out.",
+        "desc_three": "Statistics on attendance, tardiness, early departure, overtime hours and other related data of each team member are generated and visualized in statistical charts. Through these data and charts, enterprise management can gain an in-depth understanding of team members' working conditions and efficiency, and provide a reference basis for subsequent personnel arrangement and performance assessment."
+      }
+    },
+    "digit": {
+      "title": "Digital Performance",
+      "digtitle_fir_one": "",
+      "digtitle_sec_one": "Goal setting and tracking, more focused team",
+      "digdesc_one": "Help team members set work goals and KPIs, and track and manage them to keep an eye on the progress of tasks in a timely manner.",
+      "digtitle_fir_two": "",
+      "digtitle_sec_two": "Performance evaluation and feedback for more effortless management",
+      "digdesc_two": "Support evaluation and feedback of team members' performance, and automatically generate performance reports and statistical charts according to task completion, providing reference basis for subsequent personnel management and performance assessment.",
+      "digtitle_fir_three": "",
+      "digtitle_sec_three": "Visual analysis of data, more intuitive results",
+      "digdesc_three": "Data such as task completion, teamwork efficiency and individual performance are transformed into intuitive and easy-to-understand charts and data analysis to better understand team members' performance and performance status, and to provide targeted training and guidance.",
+      "digtitle_fir_four": "",
+      "digtitle_sec_four": "Personalized service",
+      "digdesc_four": "Users can customize performance appraisal indicators and report content and analysis according to their own needs and business processes to better match the actual work needs of team members and the specific business situation of the company."
+    }
+  },
+  "solution": {
+    "headtitle": "Soulutions-DooTask",
+    "title": "Helping you collaborate better",
+    "desc": "DooTask offers a range of solutions based on different scenarios so that you can quickly start collaborating with your team or department",
+    "apply": {
+      "title": "Scenario Application",
+      "desc": "The product supports a variety of application scenarios to help team collaboration",
+      "title_one": "Project Management",
+      "title_two": "Team Collaboration",
+      "title_three": "Data Security Protection",
+      "title_four": "Free Customization",
+      "desc_one": "Support a variety of project management models, such as Agile Development, Crystal Planning, Kanban, etc., for all sizes and types of project management. Users can use the project management tools in DooTask, such as task assignment, progress tracking, resource allocation, etc. to manage the whole project.",
+      "desc_two": "DooTask's rich and useful tools can facilitate communication and collaboration among team members and improve work efficiency. For example, team members can use the document collaboration tools, online mind maps, flowcharts and other tools in DooTask to collaborate.",
+      "desc_three": "DooTask uses asymmetric encryption technology in its messaging function to ensure maximum protection of users' information. In addition, it also provides a powerful permission management system that enables flexible setting of permissions and scope of operations for different users in project management according to their roles and responsibilities.",
+      "desc_four": "DooTask is a completely open source tool that allows users to freely modify and customize it, avoiding the extra costs associated with commercial software subscription fees."
+    },
+    "team": {
+      "title": "Team Operations",
+      "title_one": "Corporate Management",
+      "title_two": "Product Management",
+      "title_three": "Corporate Management",
+      "desc_one": "Helping enterprises to their corporate goals, connecting goals, key results and individual work, and jointly promoting strategy implementation and goal achievement;Through co-creation, share the progress, completion status, and schedule of all corporate work, promote information flow, allow all staff to access key information of projects, follow up in time, and promote cross-departmental collaboration.",
+      "desc_two": "Customize the workflow of the product development process, assign tasks to different roles at different stages, and promote the product development process; Uniform archiving of each completed project and task history data, which is convenient to recall or discuss at any time, forming a closed loop of knowledge precipitation to reuse.",
+      "desc_three": "Get multi-dimensional corporate data through data visualization statistical reports to get a comprehensive understanding of employee performance and make performance evaluation more objective and fair; use announcements to release notices, arrange company activities, convey corporate decisions, facilitate the shaping of corporate culture, and make employees more engaged."
+    }
+  },
+  "pricing": {
+    "headtitle": "Pricing-DooTask",
+    "title": "Choose your plan",
+    "desc": "Different versions are available depending on the size and needs of your business",
+    "plans": {
+      "deploy": "Deploy Now",
+      "communicate": "Contact Us",
+      "custom": "Consult",
+      "features_first": "Support for private deployment",
+      "features_sec": "Technical advisory services",
+      "features_third": "24-hour service response",
+      "features_forth": "Logo customisation",
+      "features_five": "Dedicated Account Manager",
+      "features_six": "12-hour service response",
+      "free": {
+        "name": "Regular version",
+        "price": "¥0",
+        "unit": "/month",
+        "limit": "No limit to the number of people"
+      },
+      "free_sec": {
+        "name": "Professional Edition",
+        "price": "¥0",
+        "unit": "/month",
+        "limit": "Up to 3 persons"
+      },
+      "pro": {
+        "name": "Professional Edition",
+        "price": "¥18,888",
+        "limit": "No limit to the number of people"
+      },
+      "enterprise": {
+        "name": "Customised version",
+        "price": "Custom",
+        "limit": "Number of people can be customized"
+      }
+    },
+    "comparetitle": "Compare all plans",
+    "comparedesc": "The product supports a variety of application scenarios to help team collaboration",
+    "features": "Feature",
+    "price": "Pricing",
+    "sysuse": "System usage",
+    "usernum": "Number of users",
+    "projnum": "Number of projects",
+    "tasknum": "Number of tasks",
+    "offdeply": "Offline Deployment",
+    "unlimit": "Unlimited",
+    "cusable": "Customizable",
+    "official": "Official Support",
+    "support": "Support",
+    "taskcoll": "Task Collaboration",
+    "multiview": "Multi-view presentation",
+    "cuscol": "Custom column",
+    "visibset": "Visibility setting",
+    "repcyc": "Repetition cycle",
+    "progress": "Project progress",
+    "protemp": "Project templates",
+    "gantchar": "Gantt chart",
+    "apply": "Application",
+    "appro": "Approval center",
+    "okr": "OKR management",
+    "bot": "AI robot",
+    "meeting": "Meeting",
+    "okrresult": "OKR results analysis",
+    "email": "Email",
+    "apppush": "App Push Notifications",
+    "team": "Team management",
+    "chat": "Chat",
+    "func": "Features",
+    "linktask": "Linked Task",
+    "emo": "Emoji",
+    "category": "Message categorization",
+    "rightclick": "Message Right-Click Functionality",
+    "meswithout": "Message Do Not Disturb",
+    "colorcode": "Color Coding",
+    "custom": "Customised consultancy",
+    "modaldesc": "If you have any questions, please feel free to contact us using the following methods.",
+    "modalphone": "Landline Telephone：0771-3164099",
+    "modaladdr1": "Email Address：service",
+    "modaladdr2": "hitosea.com",
+    "btn": "OK"
+  },
+
+  "about": {
+    "headtitle": "About Us-DooTask",
+    "title": "About our company",
+    "desc": "Focusing on the field of network security, we are committed to providing users with a full range of network security solutions.",
+    "founded": "Company founded",
+    "expertise": "Team experience",
+    "clientsatis": "Customer staisfaction",
+    "profile": {
+      "title": "Company profile",
+      "desc": "Since its establishment, Guangxi Hitosea Information Technology Co., Ltd.(HITOSEA) has been focusing on the innovation of cutting-edge technologies in the field of network security, providing network security products and services including border security, cloud security, data security, intranet security, and is committed to providing users with comprehensive, smarter, and zero-disturbance network security solutions, and is a dynamic technology company with a young and energetic team."
+    },
+    "scenapply": {
+      "title": "Scenario Application",
+      "desc": "The product supports a variety of application scenarios to help team collaboration",
+      "cardtitle_one": "Edge Security",
+      "cardtitle_two": "Cloud Security",
+      "cardtitle_three": "Data Security",
+      "cardtitle_four": "Intranet Security",
+      "cardesc_one": "HITOSEA next-generation firewall, intrusion prevention/intrusion detection system, cloud sandbox and other products provide users with comprehensive intelligent security protection such as access control to network boundaries, deep attack detection and APT attack detection.",
+      "cardesc_two": "We provide safe and reliable high-proof cloud servers to solve the primary network security risks faced by servers, alleviate the risk of business interruption due to flooding attacks, and meet the needs of regular security operations.",
+      "cardesc_three": "Database audit and data leakage protection system can protect sensitive data and documents, identify data and monitor operations, and block data theft by internal and external personnel through the network, e-mail and other channels.",
+      "cardesc_four": "Web application firewall and web anti-tampering system provide overall security protection for the application system, effectively blocking malicious behaviors such as web tampering and attacks."
+    },
+    "suggest": {
+      "title": "We'd love to hear from you",
+      "desc": "Have questions about pricing, plans or products? Please fill out the form and we will contact you.",
+      "name": "Name",
+      "name_placeholder": "Please enter a nickname",
+      "email": "Email",
+      "email_placeholder": "Please enter your email address",
+      "mes": "Message",
+      "mes_placeholder": "Optional",
+      "btn": "Submit"
+    }
+  },
+  "download": {
+    "headtitle": "Download Center - DooTask",
+    "title": "Download DooTask client",
+    "desc": "Also supports iOS, Android, macOS, Windows versions",
+    "scan": "Download",
+    "load": "Download",
+    "other": "Other Versions",
+    "log": {
+      "title": "Update Log",
+      "new": "update",
+      "more": "More Logs"
+    }
+  },
+  "log": {
+    "headtitle": "Logs-DooTask",
+    "description": "Lightweight open source online project task management tool to help teams efficiently advance their projects and make work easier."
+  },
+  "footer": {
+    "title": "Helps teams move projects forward efficiently and makes work easier.",
+    "links": "Links",
+    "product": "Product",
+    "solution": "Solutions",
+    "pricing": "Pricing",
+    "about": "About Us",
+    "support": "Support",
+    "download": "Download Center",
+    "help": "Help Center",
+    "privacy": "Privacy Policy",
+    "api_docs": "API Document",
+    "community": "Community",
+    "QQ": "QQ group"
+  },
+  "cookie": {
+    "content": " We use first party cookies to improve your browsing experience on our website, to analyze our website traffic and to understand where our visitors are coming from. If you choose to opt-out, only strictly necessary cookies will be used.",
+    "agree_btn_text": "Allow cookies",
+    "reject_btn_text": "I decline",
+    "link_text": "Our cookie policy"
+  },
+  "ad": {
+    "dialog_qr_code_tip": "Please scan the QR code to add our WeChat customer service representative for purchase"
+  },
+  "social": {
+    "group": "Group",
+    "wechat": "WeChat",
+    "phone": "Phone"
+  }
 }

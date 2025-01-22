@@ -8,11 +8,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   plugins: [
-    // '~/plugins/global.ts',
-    // '~/plugins/toolbar.ts',
-    '~/plugins/theme.ts',
-    '~/plugins/i18n.ts',  // 添加 i18n 插件
-    '~/plugins/logger.ts' //添加屏蔽控制台warn插件
+    // '~/plugins/theme.ts',
+    // '~/plugins/i18n.ts',  // 添加 i18n 插件
+    // '~/plugins/logger.ts' //添加屏蔽控制台warn插件
   ],
   app: {
     head: {
@@ -34,11 +32,11 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/i18n', '@nuxt/content', '@pinia/nuxt'],
+  modules: ['@nuxtjs/i18n', '@nuxt/content', '@pinia/nuxt', '@nuxt/eslint'],
   i18n: {
-    locales:[
+    locales: [
       { code: 'en', iso: 'en-US', name: 'English' },
-      { code: 'zh', iso: 'zh-CN', name: '简体中文'},
+      { code: 'zh', iso: 'zh-CN', name: '简体中文' },
     ],
     strategy: 'prefix_except_default', // 语言前缀策略
     vueI18n: './i18n.config.ts',
@@ -55,7 +53,7 @@ export default defineNuxtConfig({
     // './assets/css/log.css',
     './assets/css/price.css',
     './assets/css/privacy.css',
-    './assets/css/rem.css',
+    // './assets/css/rem.css',
     './assets/css/side_nav.css',
     './assets/css/solution.css',
     './assets/css/product.css', // 添加 product.css
@@ -66,7 +64,7 @@ export default defineNuxtConfig({
     },
   },
   generate: {
-    routes: [ '/zh' , '/en' ],  // 生成的语言版本页面
+    routes: ['/zh', '/en'], // 生成的语言版本页面
   },
-  
+  eslint: {},
 });

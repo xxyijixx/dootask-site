@@ -5,7 +5,9 @@
       <div class="topics-con">
         <div class="topics-layout">
           <div class="topics-tit mb-32" style="width: auto !important">
-            <span class="txt-6007290 topics-h1">{{ $t('solution.title') }}</span>
+            <span class="txt-6007290 topics-h1">{{
+              $t('solution.title')
+            }}</span>
           </div>
           <h4 class="txt-4001830 topics-h4 mb-32">
             {{ $t('solution.desc') }}
@@ -14,7 +16,9 @@
             <span class="mr-24 get-started">
               <!-- <a href="./price.html"> -->
               <NuxtLink to="/price">
-                <button class="btn btn-primary mr-20">{{ $t('common.get_started') }}</button>
+                <button class="btn btn-primary mr-20">
+                  {{ $t('common.get_started') }}
+                </button>
               </NuxtLink>
               <!-- </a> -->
             </span>
@@ -26,7 +30,9 @@
       <div class="bg-style">
         <div class="app-con">
           <div class="app-tit">
-            <h1 class="txt-5004455 app-h1 mb-16">{{ $t('solution.apply.title') }}</h1>
+            <h1 class="txt-5004455 app-h1 mb-16">
+              {{ $t('solution.apply.title') }}
+            </h1>
             <div style="text-align: center">
               <h6 class="txt-4001830 app-h5" style="width: 600px">
                 {{ $t('solution.apply.desc') }}
@@ -42,8 +48,8 @@
             >
               <div class="app-bg-box">
                 <img
-                  class="app-bg"
                   :id="`solution_pic${index + 1}`"
+                  class="app-bg"
                   :src="item.picSrc"
                   :alt="item.title"
                 />

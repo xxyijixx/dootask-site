@@ -1,8 +1,8 @@
 <!-- 关于我们头部 -->
 <template>
-  <header class="head" ref="header">
+  <header ref="header" class="head">
     <slot name="ad"></slot>
-    <div class="nav" ref="nav">
+    <div ref="nav" class="nav">
       <div class="nav-layout">
         <NuxtLink :to="`/${locale}`" class="logo">
           <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
@@ -28,39 +28,38 @@
           <!-- 支持部分 -->
           <li class="nav-ul-item">
             <i
-              class="txt-4001620 txt nav-support"
               id="support-txt"
+              class="txt-4001620 txt nav-support"
               @click="toggleMenuPopHandle"
             >
               {{ $t('navigation.support') }}
               <img
+                id="drop-down-svg"
                 src="/img/vector.svg"
                 alt="支持"
                 class="nav-vector"
-                id="drop-down-svg"
                 :style="isMenuPopVisisble ? 'transform: rotate(180deg)' : ''"
               />
             </i>
             <ol
-              class="submenu-pop"
               id="submenu-pop"
+              class="submenu-pop"
               :style="isMenuPopVisisble ? 'display: block' : ''"
             >
-            <li 
-              v-for="(item, index) in supportItems" 
-              :key="index" 
-              class="submenu-pop-item" 
-              @click="changeMenu()"
-
-            >
-              <a 
-                :href="item.link"
-                :target="item.target || '_self'"
-                class="txt-4001418 txt-sub"
+              <li
+                v-for="(item, index) in supportItems"
+                :key="index"
+                class="submenu-pop-item"
+                @click="changeMenu()"
               >
-                {{ item.text }}
-              </a>
-            </li>
+                <a
+                  :href="item.link"
+                  :target="item.target || '_self'"
+                  class="txt-4001418 txt-sub"
+                >
+                  {{ item.text }}
+                </a>
+              </li>
             </ol>
           </li>
           <li class="nav-ul-item">
@@ -81,15 +80,15 @@
           </li>
         </ul>
         <div class="nav-r">
-          <div class="lang" id="lang-img">
+          <div id="lang-img" class="lang">
             <img
               src="/img/lang-select.svg"
               alt="语言切换"
               @click="showLangPopHandle"
             />
             <ul
-              class="lang-pop"
               id="lang-pop"
+              class="lang-pop"
               :style="{ display: isLangPopVisisble ? 'block' : 'none' }"
             >
               <li class="lang-pop-item" @click="switchLanguage('zh')">
@@ -101,15 +100,15 @@
             </ul>
           </div>
           <i
-            class="nav-r-icon"
             v-if="theme === 'dark'"
+            class="nav-r-icon"
             @click="setTheme('light')"
           >
             <img src="/img/light.svg" alt="明亮主题" />
           </i>
           <i
-            class="nav-r-icon"
             v-if="theme === 'light'"
+            class="nav-r-icon"
             @click="setTheme('dark')"
           >
             <img src="/img/drak.svg" alt="暗黑主题" />
@@ -146,9 +145,9 @@
       <ul class="drawer-ul">
         <li class="drawer-item-t mb-16">
           <div
-            class="drawer-item"
             v-for="(item, index) in mainMenuItems.slice(0, 2)"
             :key="index"
+            class="drawer-item"
           >
             <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{
               item.text
@@ -158,19 +157,19 @@
             <i class="txt-4001620 txt">
               {{ $t('navigation.support') }}
               <img
+                id="drawer-down-support-svg"
                 src="/img/vector.svg"
                 class="nav-vector"
                 alt="支持"
-                id="drawer-down-support-svg"
                 :style="isSupportMenuOpen ? 'transform: rotate(180deg)' : ''"
               />
             </i>
           </div>
-          <ol class="drawer-active" v-show="isSupportMenuOpen" id="support">
+          <ol v-show="isSupportMenuOpen" id="support" class="drawer-active">
             <div
-              class="drawer-item"
               v-for="(item, index) in supportItems"
               :key="index"
+              class="drawer-item"
             >
               <a
                 class="txt-4001620 txt"
@@ -182,9 +181,9 @@
             </div>
           </ol>
           <div
-            class="drawer-item"
             v-for="(item, index) in mainMenuItems.slice(2, 5)"
             :key="index"
+            class="drawer-item"
           >
             <a class="txt-4001620 txt" :href="item.link" @click="closeDrawer">{{
               item.text
@@ -203,11 +202,11 @@
               />
             </i>
           </div>
-          <ol class="drawer-active" v-show="isThemeMenuOpen" id="theme">
+          <ol v-show="isThemeMenuOpen" id="theme" class="drawer-active">
             <div
-              class="drawer-item"
               v-for="(item, index) in themeItems"
               :key="index"
+              class="drawer-item"
             >
               <a class="txt-4001620 txt" @click="setTheme(item.value)">{{
                 item.text
@@ -229,14 +228,14 @@
             </i>
           </div>
           <ol
+            id="language"
             class="drawer-active"
             :style="{ display: isLanguageMenuOpen ? 'block' : 'none' }"
-            id="language"
           >
             <div
-              class="drawer-item"
               v-for="(item, index) in languageItems"
               :key="index"
+              class="drawer-item"
             >
               <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{
                 item.text
@@ -258,28 +257,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick, toRefs } from 'vue';
+import { ref, computed, onMounted, onUnmounted, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 const themeStore = useThemeStore();
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 // 获取当前路由信息
 const route = useRoute();
 
 // 在 setup 顶部立即调用 useI18n()
-const { t, setLocale, locale, setLocaleMessage } = useI18n();
+const { t, setLocale, locale } = useI18n();
 
 // 抽屉相关状态和方法
-const isDrawerOpen = ref(false);
+// const isDrawerOpen = ref(false);
 
 //控制菜单三个选项的展开
 const isSupportMenuOpen = ref(false);
 const isThemeMenuOpen = ref(false);
 const isLanguageMenuOpen = ref(false);
-
 
 // 语言切换方法
 const switchLanguage = async (lang: 'zh' | 'en') => {
@@ -290,29 +288,6 @@ const switchLanguage = async (lang: 'zh' | 'en') => {
   // 保存到 localStorage
   localStorage.setItem('language', lang);
 };
-
-// 背景映射
-const backgroundMap = computed(() => ({
-  [`/${locale.value}`]: 'var(--bg-1-url)',
-  [`/${locale.value}/product`]: 'var(--bg-3-url)',
-  [`/${locale.value}/download`]: 'var(--bg-8-url)',
-  [`/${locale.value}/about`]: 'var(--bg-11-url)',
-  [`/${locale.value}/solutions`]: 'var(--bg-5-url)',
-  [`/${locale.value}/price`]: 'var(--bg-10-url)',
-}));
-
-// 修改背景获取逻辑
-const getBackgroundUrl = computed(() => {
-  // 优先使用带语言前缀的路径
-  const localizedPath = backgroundMap.value[route.path];
-  // 如果没有找到，尝试使用原始路径作为备选
-  if (localizedPath) {
-    return localizedPath;
-  }
-  // 默认背景
-  return 'var(--bg-1-url)';
-});
-
 
 // 背景显示状态
 const showBackground = ref(true);
@@ -326,8 +301,6 @@ const getTabStyles = () => {
 };
 
 onMounted(() => {
-  const menuBtn = document.getElementById('menuBtn');
-  const drawer = document.querySelector('.drawer');
   const supportTxt = document.getElementById('support-txt');
   const submenuPop = document.getElementById('submenu-pop');
   const langImg = document.getElementById('lang-img');
@@ -353,7 +326,6 @@ onMounted(() => {
       isLangPopVisisble.value = false;
     }
   });
-
 
   showBackground.value = true;
 
@@ -398,13 +370,13 @@ const toggleMenuPopHandle = () => {
   isMenuPopVisisble.value = !isMenuPopVisisble.value;
 };
 
-const changeMenu = (type?: string) => {
+const changeMenu = () => {
   isMenuPopVisisble.value = false;
 };
 
 // 状态管理
 const isDrawerVisible = ref(false);
-const drawerRef = ref<HTMLElement | null>(null);
+// const drawerRef = ref<HTMLElement | null>(null);
 
 // 创建带语言前缀的路径
 const localizedRoutes = computed(() => ({
@@ -414,12 +386,12 @@ const localizedRoutes = computed(() => ({
   about: `/${locale.value}/about`,
   download: `/${locale.value}/download`,
   help: `/${locale.value}/help`,
-  privacy: `/${locale.value}/privacy`
+  privacy: `/${locale.value}/privacy`,
 }));
 
 // 菜单项数据
 const mainMenuItems = computed(() => [
-  { text: t('navigation.product'), link: localizedRoutes.value.product  },
+  { text: t('navigation.product'), link: localizedRoutes.value.product },
   { text: t('navigation.solution'), link: localizedRoutes.value.solutions },
   { text: t('navigation.pricing'), link: localizedRoutes.value.pricing },
   { text: t('navigation.about_us'), link: localizedRoutes.value.about },
@@ -427,15 +399,15 @@ const mainMenuItems = computed(() => [
 
 const supportItems = computed(() => [
   { text: t('navigation.download'), link: localizedRoutes.value.download },
-  { 
-    text: t('navigation.help_center'), 
+  {
+    text: t('navigation.help_center'),
     link: 'http://localhost:5173/basic/quick-start',
     target: '_blank',
   },
-  { 
-    text: t('navigation.privacy_policy'), 
-    link: localizedRoutes.value.privacy, 
-    target: '_blank' 
+  {
+    text: t('navigation.privacy_policy'),
+    link: localizedRoutes.value.privacy,
+    target: '_blank',
   },
   {
     text: t('navigation.api_docs'),

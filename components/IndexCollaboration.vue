@@ -19,7 +19,9 @@
       <div style="display: flex">
         <span class="mr-24 get-started">
           <NuxtLink to="/price">
-            <button class="btn btn-gw mr-20">{{ $t('common.get_started') }}</button>
+            <button class="btn btn-gw mr-20">
+              {{ $t('common.get_started') }}
+            </button>
           </NuxtLink>
         </span>
       </div>
@@ -29,10 +31,6 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue';
-
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const themeStore = useThemeStore();
 

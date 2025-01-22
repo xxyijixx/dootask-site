@@ -3,7 +3,9 @@
     <div class="update-con">
       <div class="update-layout">
         <div class="update-l">
-          <h1 class="txt-4003645 update-h1 mb-36">{{ $t('download.log.title') }}</h1>
+          <h1 class="txt-4003645 update-h1 mb-36">
+            {{ $t('download.log.title') }}
+          </h1>
           <ul class="update-ul">
             <li id="releases">
               <template v-for="(release, index) in releases" :key="index">
@@ -14,8 +16,8 @@
                 </li>
               </template>
             </li>
-            <li> 
-              <a @click="navigateTo('/log')" class="more-item">
+            <li>
+              <a class="more-item" @click="navigateTo('/log')">
                 <h5 class="txt-4001624 more">{{ $t('download.log.more') }}</h5>
                 <img class="icon" src="/img/dow_arrow.svg" alt="更多日志" />
               </a>
@@ -24,8 +26,8 @@
         </div>
         <div class="update-r">
           <img
-            class="update-r-svg"
             id="dow_pic1"
+            class="update-r-svg"
             :src="`/img/${theme}/${lang}_dow_pic1.png`"
             alt="DooTask,下载中心"
           />
@@ -35,23 +37,26 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, toRefs } from 'vue';
 import axios from 'axios';
 import { navigateTo } from '#app';
-
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const themeStore = useThemeStore();
 
 const { theme, lang } = toRefs(themeStore);
 
-const releases = ref([]);
+interface ReleaseVersion {
+  version: string;
+  link: string;
+}
 
-const getLocalStorageItem = (key) => {
-  const record = JSON.parse(localStorage.getItem(key));
+const releases = ref<ReleaseVersion[]>([]);
+
+const getLocalStorageItem = (key: string) => {
+  const index = localStorage.getItem(key);
+  if (!index) return null;
+  const record = JSON.parse(index);
   if (!record) return null;
   if (new Date().getTime() > record.expired) {
     localStorage.removeItem(key);
@@ -60,9 +65,9 @@ const getLocalStorageItem = (key) => {
   return record.value;
 };
 
-const handleReleaseClick = (index) => {
+const handleReleaseClick = (index: number) => {
   // 直接使用下标跳转到日志页面
-  localStorage.setItem('update_log_num', index + 1);
+  localStorage.setItem('update_log_num', (index + 1).toString());
   navigateTo('/log');
 };
 
