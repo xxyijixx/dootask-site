@@ -46,35 +46,42 @@ const message = computed(() => {
 });
 </script>
 
-<style scoped>
+<style>
+body{
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 .error-page {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f9f9f9;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 微软雅黑, Arial, sans-serif;
 }
 
-.error-content {
+.error-page .error-content {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.code {
+.error-page .code {
   font-size: 2rem;
   color: #374151;
 }
 
-.separator {
+.error-page .separator {
   width: 1px;
   height: 2rem;
   background-color: #d1d5db;
 }
 
-.message {
+.error-page .message {
   font-size: 1.25rem;
   color: #4b5563;
 }

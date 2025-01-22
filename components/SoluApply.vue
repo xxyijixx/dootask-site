@@ -60,7 +60,6 @@
 <script setup>
 import { toRefs } from 'vue';
 
-import { useThemeStore } from '@/stores';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
