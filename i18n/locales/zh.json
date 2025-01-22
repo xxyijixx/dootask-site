@@ -73,7 +73,7 @@
     }
   },
   "produpage": {
-    "headtitle": "产品-DooTask",
+    "headtitle": "产品 - DooTask",
     "title": "一个产品，多种强大的工具",
     "desc": "该产品汇集了各种文档协作、在线思维导图、在线流程图、项目管理、任务分配、即时IM、文档管理等功能。",
     "choose": {
@@ -176,7 +176,7 @@
     }
   },
   "solution": {
-    "headtitle": "解决方案-DooTask",
+    "headtitle": "解决方案 - DooTask",
     "title": "帮助您更好地进行协作",
     "desc": "DooTask提供了一系列基于不同场景的解决方案，以便您可以快速开始与您的团队或部门合作",
     "apply": {
@@ -203,7 +203,7 @@
   },
 
   "pricing": {
-    "headtitle": "服务价格-DooTask",
+    "headtitle": "服务价格 - DooTask",
     "title": "选择你的方案",
     "desc": "根据你的企业的规模和需求，有不同的版本可供选择",
     "plans": {
@@ -285,7 +285,7 @@
     "btn": "确定"
   },
   "about": {
-    "headtitle": "关于我们-DooTask",
+    "headtitle": "关于我们 - DooTask",
     "title": "关于我们的公司",
     "desc": "专注于网络安全领域，我们致力于为用户提供全方位的网络安全解决方案。",
     "founded": "公司成立",
@@ -320,7 +320,7 @@
     }
   },
   "download": {
-    "headtitle": "下载中心-DooTask",
+    "headtitle": "下载中心 - DooTask",
     "title": "下载DooTask客户端",
     "desc": "同时支持iOS、Android、macOS、Windows版本",
     "scan": "扫描下载",
@@ -333,7 +333,7 @@
     }
   },
   "log": {
-    "headtitle": "更新日志-DooTask",
+    "headtitle": "更新日志 - DooTask",
     "description": "DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。"
   },
   "footer": {

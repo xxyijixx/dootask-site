@@ -21,9 +21,9 @@ export const useThemeStore = defineStore('themeStore', {
     // Function to set the theme
     setTheme(theme: string, lang?: string): void {
       const root = document.documentElement;
-      console.log("加载语言主题", theme, lang)
+      // console.log("加载语言主题", theme, lang)
       if(!lang) {
-        lang = localStorage.getItem('language') || 'zh';
+        lang = localStorage.getItem('language') || this.lang || 'zh';
       }
       this.theme = theme;
       this.lang = lang;

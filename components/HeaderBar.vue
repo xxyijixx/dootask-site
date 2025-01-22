@@ -100,14 +100,14 @@
             </ul>
           </div>
           <i
-            v-if="theme === 'dark'"
+            v-show="theme === 'dark'"
             class="nav-r-icon"
             @click="setTheme('light')"
           >
             <img src="/img/light.svg" alt="明亮主题" />
           </i>
           <i
-            v-if="theme === 'light'"
+            v-show="theme === 'light'"
             class="nav-r-icon"
             @click="setTheme('dark')"
           >

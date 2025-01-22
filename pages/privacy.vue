@@ -37,16 +37,6 @@ definePageMeta({
 
 onMounted(loadPrivacyPolicy);
 
-// 监听语言变化并重新加载
-watch(
-  locale,
-  (newLocale, oldLocale) => {
-    console.log(`Language changed from ${oldLocale} to ${newLocale}`);
-    loadPrivacyPolicy();
-  },
-  { immediate: true },
-);
-
 // 动态设置页面元数据
 useHead({
   title: computed(() =>

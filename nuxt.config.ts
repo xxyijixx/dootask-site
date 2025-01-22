@@ -65,12 +65,9 @@ export default defineNuxtConfig({
     ],
   },
   css: [
-    './assets/css/about.css',
-    './assets/css/animate.min.css',
     './assets/css/distribution.css',
     './assets/css/home.css',
     './assets/css/price.css',
-    './assets/css/privacy.css',
     './assets/css/side_nav.css',
     './assets/css/solution.css',
     './assets/css/product.css', // 添加 product.css

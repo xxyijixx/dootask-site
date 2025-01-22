@@ -409,6 +409,7 @@
 import { useI18n } from 'vue-i18n';
 import '@/assets/css/ad.css';
 import '@/assets/css/common.css';
+import '@/assets/css/animate.min.css'
 import Qs from 'qs';
 definePageMeta({
   layout: 'blank',
@@ -763,7 +764,7 @@ function detectAdPlanEl() {
   }
 
   const _couldAdPlanElAnimate =
-    Object.values(couldAdPlanElAnimate).every(boolean);
+    Object.values(couldAdPlanElAnimate).every(Boolean);
   if (!_couldAdPlanElAnimate) return;
   if (isElementPartiallyInViewport(adPlanEl)) {
     const els = document.querySelectorAll('.plan-item');
@@ -793,7 +794,7 @@ function detectAdIntroEl() {
   }
 
   const _couldAdIntroElAnimate = Object.values(couldAdIntroElAnimate).every(
-    boolean,
+    Boolean,
   );
   if (!_couldAdIntroElAnimate) return;
   if (isElementPartiallyInViewport(adIntroEl)) {
