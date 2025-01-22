@@ -93,9 +93,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import '@/assets/js/googleAds.js';
-import '@/assets/js/googleAnalyze.js';
+// import '@/assets/js/googleAds.js';
+// import '@/assets/js/googleAnalyze.js';
 import '@/assets/css/side_nav.css';
+
+const { gtag } = useGtag();
 
 const { t } = useI18n();
 
@@ -132,12 +134,12 @@ const scrollToTop = () => {
 
 const handlePhoneClick = (event: Event) => {
   event.stopPropagation();
-  if (window.gtag) {
-    gtag('event', 'click', {
-      event_category: 'button',
-      event_label: 'right_side_toolbar_phone',
-    });
-  }
+  // if (window.gtag) {
+  gtag('event', 'click', {
+    event_category: 'button',
+    event_label: 'right_side_toolbar_phone',
+  });
+  // }
   tooltipPhoneVisible.value = !tooltipPhoneVisible.value;
   tooltipWhtasappVisible.value = false;
   tooltipQrcodeVisible.value = false;
@@ -153,12 +155,12 @@ const handlePhoneClick = (event: Event) => {
 
 const handleWhatsappClick = (event: Event) => {
   event.stopPropagation();
-  if (window.gtag) {
-    gtag('event', 'click', {
-      event_category: 'button',
-      event_label: 'right_side_toolbar_Whtasapp',
-    });
-  }
+  // if (window.gtag) {
+  gtag('event', 'click', {
+    event_category: 'button',
+    event_label: 'right_side_toolbar_Whtasapp',
+  });
+  // }
   tooltipWhtasappVisible.value = !tooltipWhtasappVisible.value;
   tooltipPhoneVisible.value = false;
   tooltipQrcodeVisible.value = false;
@@ -166,12 +168,12 @@ const handleWhatsappClick = (event: Event) => {
 
 const handleQrcodeClick = (event: Event) => {
   event.stopPropagation();
-  if (window.gtag) {
-    gtag('event', 'click', {
-      event_category: 'button',
-      event_label: 'right_side_toolbar_WeChat',
-    });
-  }
+  // if (window.gtag) {
+  gtag('event', 'click', {
+    event_category: 'button',
+    event_label: 'right_side_toolbar_WeChat',
+  });
+  // }
   tooltipQrcodeVisible.value = !tooltipQrcodeVisible.value;
   tooltipPhoneVisible.value = false;
   tooltipWhtasappVisible.value = false;

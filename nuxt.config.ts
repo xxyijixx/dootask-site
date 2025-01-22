@@ -32,7 +32,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/i18n', '@nuxt/content', '@pinia/nuxt', '@nuxt/eslint'],
+  modules: [
+    '@nuxtjs/i18n',
+    '@nuxt/content',
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+    'nuxt-gtag',
+  ],
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', name: 'English' },
@@ -41,19 +47,30 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default', // 语言前缀策略
     vueI18n: './i18n.config.ts',
   },
+  gtag: {
+    enabled: true,
+    tags: [
+      {
+        id: 'G-PE77P6491J', // Google Analytics ID
+        config: {
+          anonymize_ip: true, // 例如：匿名化 IP 地址
+        },
+      },
+      {
+        id: 'AW-16660800396', // Google Ads ID
+        config: {
+          // 可以添加 Google Ads 相关的配置
+        },
+      },
+    ],
+  },
   css: [
     './assets/css/about.css',
-    // './assets/css/ad.css',
     './assets/css/animate.min.css',
-    // './assets/css/common.css',
     './assets/css/distribution.css',
-    // './assets/css/download.css',
-    // './assets/css/help.css',
     './assets/css/home.css',
-    // './assets/css/log.css',
     './assets/css/price.css',
     './assets/css/privacy.css',
-    // './assets/css/rem.css',
     './assets/css/side_nav.css',
     './assets/css/solution.css',
     './assets/css/product.css', // 添加 product.css
