@@ -208,9 +208,9 @@
               :key="index"
               class="drawer-item"
             >
-              <a class="txt-4001620 txt" @click="setTheme(item.value)">{{
+              <i class="txt-4001620 txt" @click="setTheme(item.value)">{{
                 item.text
-              }}</a>
+              }}</i>
             </div>
           </ol>
         </li>
@@ -237,9 +237,9 @@
               :key="index"
               class="drawer-item"
             >
-              <a class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{
+              <i class="txt-4001620 txt" @click="handleSetLocale(item.value)">{{
                 item.text
-              }}</a>
+              }}</i>
             </div>
           </ol>
         </li>

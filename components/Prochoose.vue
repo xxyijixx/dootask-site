@@ -19,8 +19,6 @@
                   {{ $t('common.get_started') }}
                 </button>
               </NuxtLink>
-
-              <!-- </a> -->
             </span>
           </div>
         </div>

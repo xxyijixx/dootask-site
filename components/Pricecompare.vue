@@ -42,22 +42,25 @@
                 }}</i>
               </div>
               <span class="plans-ul-b-item-btn">
-                <a
-                  v-if="plan.buttonLink"
-                  :href="plan.buttonLink"
-                  target="_blank"
-                >
-                  <button class="btn btn-primary">
+                <ClientOnly>
+                  <a
+                    v-if="plan.buttonLink"
+                    :href="plan.buttonLink"
+                    target="_blank"
+                  >
+                    <button class="btn btn-primary">
+                      {{ plan.buttonText }}
+                    </button>
+                  </a>
+
+                  <button
+                    v-else
+                    class="btn btn-primary"
+                    @click="handlePlanSelect(plan)"
+                  >
                     {{ plan.buttonText }}
                   </button>
-                </a>
-                <button
-                  v-else
-                  class="btn btn-primary"
-                  @click="handlePlanSelect(plan)"
-                >
-                  {{ plan.buttonText }}
-                </button>
+                </ClientOnly>
               </span>
             </div>
           </li>
@@ -82,9 +85,9 @@
                     {{ item.name }}
                   </h6>
                   <template v-for="(plan, planIndex) in plans" :key="planIndex">
-                    <span v-if="typeof item.support[planIndex] === 'string'">
+                    <h6 v-if="typeof item.support[planIndex] === 'string'" class="txt-4001616 plans-ol-item-h6">
                       {{ item.support[planIndex] }}
-                    </span>
+                    </h6>
                     <img
                       v-else-if="item.support[planIndex]"
                       class="plans-ol-item-icon"
