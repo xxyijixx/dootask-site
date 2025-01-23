@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 更新日志抽屉 -->
-    <div class="logs-drawer">
+    <div class="logs-drawer" :class="{ 'open-logs-drawer': drawerOpen }">
       <div class="drawer-t mb-36">
         <a href="/zh/index.html" class="logo">
           <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
@@ -12,15 +12,31 @@
       <h5 class="logs-h5 mb-16" style="font-weight: 500">
         {{ $t('download.log.title') }}
       </h5>
-      <ul class="logs-l-ul logs-l-768"></ul>
+      <ul class="logs-l-ul logs-l-768">
+        <li
+          v-for="(versionNumber, index) in versionsNumbers"
+          :key="index"
+          :data-id="`section-${index + 1}`"
+          class="l-ul-item"
+          @click="
+            () => {
+              closeLogsDrawer(), handleNavClick(index);
+            }
+          "
+        >
+          <a class="txt-4001620 txt"
+            >v{{ versionNumber }} {{ t('download.log.new') }}</a
+          >
+        </li>
+      </ul>
     </div>
     <main>
       <section>
         <!-- 主内容区 -->
         <article class="logs">
           <div class="logs-con">
-            <div id="menuBtn-logs" class="logs-t-768" @click="openLogsDrawer">
-              <img class="logs-t-prev" src="/img/prev.svg" alt="更新日志" />
+            <div class="logs-t-768" @click="openLogsDrawer">
+              <img class="logs-t-prev" src="/img/prev.svg" alt="logs" />
               <i class="logs-t-tit">{{ $t('download.log.title') }}</i>
             </div>
             <div class="logs-layout">
@@ -28,33 +44,53 @@
                 <h5 class="logs-h5 mb-16" style="font-weight: 500">
                   {{ $t('download.log.title') }}
                 </h5>
-                <ul id="help-l-ul" class="logs-l-ul logs-l-1920">
+                <ul ref="LogsLULRef" class="logs-l-ul logs-l-1920">
                   <li
-                    v-for="(version, index) in versionLogs"
+                    v-for="(versionNumber, index) in versionsNumbers"
                     :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]"
+                    :data-id="`section-${index + 1}`"
+                    class="l-ul-item"
+                    :class="{ active: index === activeTabIndex }"
                     @click="handleNavClick(index)"
                   >
                     <a class="txt-4001620 txt log-a"
-                      >v{{ version }} {{ $t('download.log.new') }}</a
+                      >v{{ versionNumber }} {{ t('download.log.new') }}</a
                     >
                   </li>
                 </ul>
                 <ul class="logs-l-ul logs-l-768"></ul>
               </div>
-              <div class="logs-r">
+              <div id="google_translate_element" class="logs-r">
                 <h1 class="txt-6003645 logs-h1 mb-36">
                   DooTask {{ $t('download.log.title') }}
                 </h1>
                 <ul class="logs-r-ul">
                   <li
-                    v-for="(version, index) in versionLogs"
+                    v-for="(updateLog, index) in updateLogs"
                     :key="index"
-                    :class="['l-ul-item', { active: activeTabIndex === index }]"
+                    class="r-ul-item mb-36"
                   >
-                    <a class="txt-4001620 txt log-a"
-                      >{{ version }} {{ $t('download.log.new') }}</a
-                    >
+                    <ol class="logs-r-ol">
+                      <li
+                        :id="`section-${index + 1}`"
+                        class="txt-4001624 r-ol-item mb-24"
+                      >
+                        <h4 class="logs-h4">
+                          v{{ updateLog.versionNumber }}
+                          {{ t('download.log.new') }}
+                        </h4>
+                      </li>
+                      <div
+                        v-for="(
+                          htmlText, itemIndex
+                        ) in updateLog.updatesHtmlText"
+                        :key="itemIndex"
+                        style="display: flex"
+                      >
+                        <i class="dots"></i>
+                        <li class="r-ol-item">{{ htmlText }}</li>
+                      </div>
+                    </ol>
                   </li>
                 </ul>
               </div>
@@ -66,8 +102,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick, toRefs } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted, nextTick, toRefs } from 'vue';
 import axios from 'axios';
 import markdownIt from 'markdown-it';
 import '@/assets/css/log.css';
@@ -78,35 +114,40 @@ const { t, locale } = useI18n();
 
 const themeStore = useThemeStore();
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
+
+// ul列表Ref
+const LogsLULRef = ref<HTMLElement | null>(null);
 
 // 响应式状态
 const logsData = ref([]);
 const drawerOpen = ref(false);
 const activeTabIndex = ref(0); // 当前高亮的导航项索引
-const versionLogs = ref([]); // 存储版本号数据
+
+const versionsNumbers = ref<string[]>([]);
+const updateLogs = ref<
+  Array<{
+    versionNumber: string;
+    updateText: string;
+    updatesHtmlText: string[];
+  }>
+>([]);
 
 // 打开更新日志抽屉
 const openLogsDrawer = () => {
-  nextTick(() => {
-    const logsDrawer = document.querySelector('.logs-drawer');
-    logsDrawer.classList.add('open-logs-drawer');
-    drawerOpen.value = true;
-  });
+  drawerOpen.value = true;
 };
 
 // 关闭更新日志抽屉
 const closeLogsDrawer = () => {
-  nextTick(() => {
-    const logsDrawer = document.querySelector('.logs-drawer');
-    logsDrawer.classList.remove('open-logs-drawer');
-    drawerOpen.value = false;
-  });
+  drawerOpen.value = false;
 };
 
 // 从 localStorage 获取缓存的数据
-const getItem = (key) => {
-  const record = JSON.parse(localStorage.getItem(key));
+const getItem = (key: string) => {
+  const data = localStorage.getItem(key);
+  if (!data) return;
+  const record = JSON.parse(data);
   if (!record) return null;
   if (new Date().getTime() > record.expired) {
     localStorage.removeItem(key);
@@ -116,34 +157,12 @@ const getItem = (key) => {
 };
 
 // 将数据存入 localStorage
-const setItem = (key, value) => {
+const setItem = (key: string, value: string) => {
   const record = {
     expired: new Date().getTime() + 30 * 60 * 1000, // 30分钟过期
     value,
   };
   localStorage.setItem(key, JSON.stringify(record));
-};
-
-// 获取更新内容的方法
-const getUpdatesFromHtml = (updatesHtmlText, container) => {
-  if (Array.isArray(updatesHtmlText) && updatesHtmlText.length > 0) {
-    updatesHtmlText.forEach((update) => {
-      const listItem = document.createElement('li');
-      listItem.className = 'r-ol-item';
-      listItem.textContent = update;
-
-      const flexContainer = document.createElement('div');
-      flexContainer.style.display = 'flex';
-
-      const dotsIcon = document.createElement('i');
-      dotsIcon.className = 'dots';
-
-      flexContainer.appendChild(dotsIcon);
-      flexContainer.appendChild(listItem);
-
-      container.querySelector('ol').appendChild(flexContainer);
-    });
-  }
 };
 
 // 移除 scrollToActiveVersion 中的版本号相关逻辑
@@ -153,7 +172,6 @@ const scrollToActiveVersion = () => {
       const targetElement = document.querySelector(
         `.logs-r-ul li:nth-child(${activeTabIndex.value + 1}) h4`,
       );
-
       if (targetElement) {
         const offset = 90; // 上偏移量，避免标题被遮挡
         const targetPosition =
@@ -163,34 +181,13 @@ const scrollToActiveVersion = () => {
           top: targetPosition - offset,
           behavior: 'smooth',
         });
-
-        // 高亮左侧导航
-        const logs_tabs = document.querySelector('.logs-l-1920');
-        const logs_tabItems = logs_tabs.querySelectorAll('.l-ul-item');
-        logs_tabItems.forEach((item) => item.classList.remove('active'));
-
-        // 直接使用 activeTabIndex 高亮
-        if (logs_tabItems[activeTabIndex.value]) {
-          logs_tabItems[activeTabIndex.value].classList.add('active');
-        }
       }
     }, 300);
   }
 };
 
-const renderLogs = (html) => {
+const renderLogs = (html: string) => {
   nextTick(() => {
-    const logsContainer = document.querySelector('.logs-r-ul'); // 右侧日志区域
-    const rlog = document.querySelector('.logs-l-1920'); // 左侧导航区域
-    const rlog2 = document.querySelector('.logs-l-ul.logs-l-768'); // 另一组左侧导航区域
-    const changelog = document.querySelector('.logs-r-ul'); // 右侧日志区域，存储内容
-
-    // 清空之前的内容
-    logsContainer.innerHTML = '';
-    rlog.innerHTML = '';
-    rlog2.innerHTML = '';
-    changelog.innerHTML = '';
-
     // 解析渲染后的 HTML 结构
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
@@ -200,7 +197,7 @@ const renderLogs = (html) => {
     const ulTags = Array.from(doc.querySelectorAll('ul')).slice(0, 15); // 只取前 15 个 <ul>
 
     // 合并并按出现的顺序排列这些标签
-    const sections = [];
+    const sections: HTMLElement[] = [];
     const maxLength = Math.max(h2Tags.length, ulTags.length);
 
     for (let i = 0; i < maxLength; i++) {
@@ -209,8 +206,9 @@ const renderLogs = (html) => {
     }
 
     // 提取所有 <h2> 标签中的版本号，并限制最多提取前 15 个版本号
-    const versions = html.match(/<h2>(.*?)<\/h2>/g)?.slice(0, 15) || [];
-    const versionsNumbers = versions.map(
+    const versions: string[] =
+      html.match(/<h2>(.*?)<\/h2>/g)?.slice(0, 15) || [];
+    versionsNumbers.value = versions.map(
       (str) =>
         str
           .replace(/<\/?h2>/g, '')
@@ -220,76 +218,23 @@ const renderLogs = (html) => {
 
     // 渲染右侧日志条目
     // 通过版本号获取更新内容并渲染
-    for (let i = 0; i < versionsNumbers.length; i++) {
-      // 直接在这里获取最新的翻译
-      const updateText = t('download.log.new');
+    updateLogs.value = versionsNumbers.value.map((versionNumber) => {
+      const updateText = t('download.log.new'); // 这里直接使用翻译字符串
+      const updatesHtmlText =
+        html
+          .split(versionNumber)[1]
+          .split('<h2>')[0]
+          .match(/<li>(.*?)<\/li>/g)
+          ?.map((str) => str.split('<li>')[1].split('</li>')[0]) || [];
 
-      const updatesHtml = html
-        .split(versionsNumbers[i])[1]
-        .split('<h2>')[0]
-        .match(/<li>(.*?)<\/li>/g);
-
-      const updatesHtmlText = updatesHtml.map(
-        (str) => str.split('<li>')[1].split('</li>')[0],
-      );
-
-      // 创建右侧日志条目
-      const rLi = document.createElement('li');
-      rLi.className = `l-ul-item ${i == 0 ? 'active' : ''}`;
-      rLi.setAttribute('data-id', `section-${i + 1}`);
-      rLi.innerHTML = `<a class="txt-4001620 txt log-a">v${versionsNumbers[i]} ${updateText}</a>`;
-      rlog.appendChild(rLi);
-
-      const rLi2 = document.createElement('li');
-      rLi2.className = `l-ul-item`;
-      rLi2.setAttribute('data-id', `section-${i + 1}`);
-      rLi2.addEventListener('click', function () {
-        const logsDrawer = document.querySelector('.logs-drawer');
-        logsDrawer.classList.remove('open-logs-drawer');
-      });
-      rLi2.innerHTML = `<a class="txt-4001620 txt">v${versionsNumbers[i]} ${updateText}</a>`;
-      rlog2.appendChild(rLi2);
-
-      // 创建右侧版本内容条目
-      const li = document.createElement('li');
-      li.className = 'r-ul-item mb-36';
-      li.innerHTML = `
-      <ol class="logs-r-ol">
-        <li class="txt-4001624 r-ol-item mb-24" id="section-${i + 1}">
-          <h4 class="logs-h4">v${versionsNumbers[i]} ${updateText}</h4>
-        </li>
-      </ol>
-    `;
-      changelog.appendChild(li);
-
-      // 获取并显示更新内容
-      getUpdatesFromHtml(updatesHtmlText, li);
-    }
-
-    scrollToActiveVersion(); // 滚动到目标版本
-
-    // 添加点击事件监听器 - 大屏导航
-    const tabItems = document.querySelectorAll('.logs-l-1920 .l-ul-item');
-    tabItems.forEach((item, index) => {
-      item.addEventListener('click', () => handleNavClick(index));
+      return {
+        versionNumber,
+        updateText,
+        updatesHtmlText,
+      };
     });
 
-    // 添加点击事件监听器 - 小屏抽屉导航
-    const drawerContainer = document.querySelector('.logs-l-768');
-    if (drawerContainer) {
-      const drawerTabItems = drawerContainer.querySelectorAll('.l-ul-item');
-      drawerTabItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          handleNavClick(index);
-          // 关闭抽屉
-          const logsDrawer = document.querySelector('.logs-drawer');
-          if (logsDrawer) {
-            logsDrawer.classList.remove('open-logs-drawer');
-            drawerOpen.value = false;
-          }
-        });
-      });
-    }
+    scrollToActiveVersion(); // 滚动到目标版本
   });
 };
 
@@ -314,26 +259,19 @@ const fetchLogsData = async () => {
 
     // 提供默认日志
     const defaultLogs = `## [1.0.0]
-      - 初始版本发布
-      - 基础功能上线`;
+           - 初始版本发布
+           - 基础功能上线`;
     const html = markdownIt().render(defaultLogs);
     renderLogs(html);
   }
 };
 
 // 点击左侧导航项时触发
-const handleNavClick = (index) => {
-  const logs_tabs = document.querySelector('.logs-l-1920');
-  const logs_tabItems = logs_tabs.querySelectorAll('.l-ul-item');
-
-  // 移除所有激活状态
-  logs_tabItems.forEach((item) => item.classList.remove('active'));
-
-  // 给当前点击项添加激活状态
-  logs_tabItems[index].classList.add('active');
+const handleNavClick = (index: number) => {
+  activeTabIndex.value = index;
 
   // 获取对应的内容元素
-  const id = logs_tabItems[index].getAttribute('data-id');
+  const id = 'section-' + (activeTabIndex.value + 1).toString();
   const content = document.getElementById(id);
 
   if (content) {
@@ -346,8 +284,8 @@ const handleNavClick = (index) => {
       behavior: 'smooth',
     });
     // 处理左侧导航栏滚动
-    const ulElement = document.getElementById('help-l-ul');
-    const liElement = logs_tabItems[index];
+    const ulElement = LogsLULRef.value;
+    const liElement = content;
 
     if (ulElement && liElement) {
       const liHeight = liElement.offsetHeight;
@@ -369,27 +307,23 @@ const handleNavClick = (index) => {
 
 // 监听滚动，更新导航高亮
 const scrollHandler = () => {
-  const logs_tabs = document.querySelector('.logs-l-1920');
-  const logs_tabItems = logs_tabs.querySelectorAll('.l-ul-item');
-  const sections = Array.from(document.querySelectorAll('h4'));
+  const sections: HTMLHeadingElement[] = Array.from(
+    document.querySelectorAll('h4'),
+  );
 
   // 获取当前滚动位置
   const currentScrollPosition = window.scrollY;
 
   // 遍历所有标题元素
   sections.forEach((section, index) => {
-    const sectionTop = section.offsetParent.offsetTop;
+    const sectionTop = section.getBoundingClientRect().top;
 
     if (sectionTop <= currentScrollPosition + 100) {
-      // 移除所有激活状态
-      logs_tabItems.forEach((item) => item.classList.remove('active'));
-
-      // 给对应的菜单项设置激活状态
-      logs_tabItems[index]?.classList.add('active');
+      const id = 'section-' + (index + 1).toString();
 
       // 处理左侧导航栏滚动
-      const ulElement = document.getElementById('help-l-ul');
-      const liElement = logs_tabItems[index];
+      const ulElement = LogsLULRef.value;
+      const liElement = document.getElementById(id);
 
       if (ulElement && liElement) {
         const liHeight = liElement.offsetHeight;
@@ -409,33 +343,6 @@ const scrollHandler = () => {
     }
   });
 };
-
-// 监听抽屉状态变化
-watch(
-  [drawerOpen, lang],
-  ([newDrawerValue, newLangValue], [oldDrawerValue, oldLangValue]) => {
-    nextTick(() => {
-      // 处理抽屉状态
-      const logsDrawer = document.querySelector('.logs-drawer');
-      if (logsDrawer) {
-        if (newDrawerValue) {
-          logsDrawer.classList.add('open-logs-drawer');
-        } else {
-          logsDrawer.classList.remove('open-logs-drawer');
-        }
-      }
-
-      // 如果语言发生变化，重新获取并渲染日志
-      if (newLangValue !== oldLangValue) {
-        // 可以添加额外的条件，比如只在特定页面重新渲染
-        if (window.location.pathname.includes('/log')) {
-          fetchLogsData();
-        }
-      }
-    });
-  },
-  { immediate: true },
-);
 
 // 在组件挂载时设置头部标题
 useHead({
@@ -470,3 +377,9 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
 </script>
+
+<style>
+.logs-l-ul {
+  height: calc(100% - 36px);
+}
+</style>

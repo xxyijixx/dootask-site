@@ -8,7 +8,16 @@
           </h1>
           <ul class="update-ul">
             <li id="releases">
-              <template v-for="(release, index) in releases" :key="index">
+              <template v-if="loading">
+                <li v-for="index in 5" :key="index" class="loading-item">
+                  <div class="skeleton-text"></div>
+                </li>
+              </template>
+              <template
+                v-for="(release, index) in releases"
+                v-else
+                :key="index"
+              >
                 <li class="update-item" @click="handleReleaseClick(index)">
                   <h5 class="txt-4001624 update-h5">
                     DooTask {{ release.version }} {{ $t('download.log.new') }}
@@ -16,7 +25,7 @@
                 </li>
               </template>
             </li>
-            <li>
+            <li v-show="!loading">
               <a class="more-item" @click="navigateTo('/log')">
                 <h5 class="txt-4001624 more">{{ $t('download.log.more') }}</h5>
                 <img class="icon" src="/img/dow_arrow.svg" alt="更多日志" />
@@ -52,6 +61,7 @@ interface ReleaseVersion {
 }
 
 const releases = ref<ReleaseVersion[]>([]);
+const loading = ref(false);
 
 const getLocalStorageItem = (key: string) => {
   const index = localStorage.getItem(key);
@@ -72,6 +82,7 @@ const handleReleaseClick = (index: number) => {
 };
 
 const fetchReleases = async () => {
+  loading.value = true;
   try {
     const url = 'https://www.dootask.com/api/system/get/updatelog';
     const response = await axios.get(url);
@@ -94,6 +105,7 @@ const fetchReleases = async () => {
       expired: new Date().getTime() + 30 * 60 * 1000,
     };
     localStorage.setItem('logs_dowmload_zh', JSON.stringify(record));
+    loading.value = false;
   } catch (error) {
     console.error('Failed to fetch releases:', error);
   }
@@ -104,9 +116,39 @@ onMounted(() => {
   const cachedReleases = getLocalStorageItem('logs_dowmload_zh');
 
   if (cachedReleases) {
+    loading.value = true;
+
     releases.value = cachedReleases;
+    loading.value = false;
   } else {
     fetchReleases();
   }
 });
 </script>
+
+<style scoped>
+.loading-item {
+  background: #f0f0f0;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  padding: 16px 0;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+</style>
