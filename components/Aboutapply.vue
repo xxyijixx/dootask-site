@@ -15,7 +15,8 @@
           <li
             v-for="(scenario, index) in scenarios"
             :key="index"
-            class="scenario-app-ul-item mb-32"
+            ref="AboutAnimateBoxRef"
+            class="scenario-app-ul-item mb-32 about-animate-box"
             :style="`--delay: ${index * 0.1}s`"
           >
             <i class="scenario-app-icon-bg mb-24">
@@ -45,7 +46,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
+import { throttle } from '../utils/debounceThrottle';
 
+const AboutAnimateBoxRef = ref<NodeListOf<HTMLElement> | null>(null);
 const { t } = useI18n();
 
 const scenarios = computed(() => [
@@ -74,4 +78,29 @@ const scenarios = computed(() => [
     svg: '/img/04.svg',
   },
 ]);
+
+/* 滑动到可视区域执行动画 */
+const animateBoxes = () => {
+  const boxes = AboutAnimateBoxRef.value;
+  if (boxes) {
+    boxes.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+        setTimeout(() => {
+          box.classList.remove("about-animate-box");
+        }, 1200);
+      }
+    });
+  }
+};
+const throttleAnimateBoxes = throttle(animateBoxes, 50);
+onMounted(() => {
+  window.addEventListener('scroll', throttleAnimateBoxes);
+  animateBoxes();
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', throttleAnimateBoxes);
+});
 </script>

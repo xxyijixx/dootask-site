@@ -8,6 +8,8 @@
           v-for="(item, index) in teamOperations"
           v-show="item.icon && item.title && item.description"
           :key="item.title"
+          ref="SolutionsAnimateBoxRef"
+          class="solutions-animate-box"
           :class="['team-ul-item', `team-ul-item-${lang}`]"
           :style="{ '--delay': `${index * 0.1}s` }"
         >
@@ -20,15 +22,18 @@
   </article>
 </template>
 
-<script setup>
-import { toRefs } from 'vue';
+<script setup lang="ts">
+import { toRefs, onMounted, ref, onBeforeUnmount } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { throttle } from '../utils/debounceThrottle';
 
 //设置语言动态卡片高度
 const themeStore = useThemeStore();
 const { lang } = toRefs(themeStore);
 
 const { t } = useI18n();
+
+const SolutionsAnimateBoxRef = ref<NodeListOf<HTMLElement> | null>(null);
 
 const teamOperations = computed(() => [
   {
@@ -47,4 +52,30 @@ const teamOperations = computed(() => [
     description: t('solution.team.desc_three'),
   },
 ]);
+
+const animateBoxes = () => {
+  if (SolutionsAnimateBoxRef.value) {
+    SolutionsAnimateBoxRef.value.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+
+      // 判断元素是否进入视口
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+        setTimeout(() => {
+          box.classList.remove('solutions-animate-box');
+        }, 1200);
+      }
+    });
+  }
+};
+const throttleAnimateBoxes = throttle(animateBoxes, 50);
+onMounted(() => {
+  window.addEventListener('scroll', throttleAnimateBoxes);
+  animateBoxes(); //
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', throttleAnimateBoxes);
+});
 </script>

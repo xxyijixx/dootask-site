@@ -261,7 +261,7 @@ const compareSections = computed(() => [
     title: t('pricing.sysuse'),
     items: [
       {
-        name: t('pricing.projnum'),
+        name: t('pricing.usernum'),
         support: [
           t('pricing.unlimit'),
           '≤3',

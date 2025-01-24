@@ -15,7 +15,8 @@
           <li
             v-for="(item, index) in manageItems.slice(0, 2)"
             :key="index"
-            class="manage-ul-item mb-32"
+            ref="ProductAnimateBoxRef"
+            class="manage-ul-item mb-32 product-animate-box"
             :style="{ '--delay': `${index * 0.1}s` }"
           >
             <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
@@ -33,7 +34,8 @@
           <li
             v-for="(item, index) in manageItems.slice(2)"
             :key="index"
-            class="manage-ul-item mb-32"
+            ref="ProductAnimateBoxRef"
+            class="manage-ul-item mb-32 product-animate-box"
             :style="{ '--delay': `${index * 0.1}s` }"
           >
             <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
@@ -69,11 +71,15 @@
   </article>
 </template>
 
-<script setup>
-import { toRefs } from 'vue';
+<script setup lang="ts">
+import { toRefs, onMounted, ref, onBeforeUnmount } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import { throttle } from '../utils/debounceThrottle';
+
 const { t } = useI18n();
+
+const ProductAnimateBoxRef = ref<NodeListOf<HTMLElement> | null>(null);
 
 const themeStore = useThemeStore();
 
@@ -96,4 +102,26 @@ const manageItems = computed(() => [
     description: t('produpage.org.org_list.desc_three'),
   },
 ]);
+
+/* 滑动到可视区域执行动画 */
+const animateBoxes = () => {
+  const boxes = ProductAnimateBoxRef.value;
+  if (boxes) {
+    boxes.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+      }
+    });
+  }
+};
+const throttleAnimateBoxes = throttle(animateBoxes, 50);
+onMounted(() => {
+  window.addEventListener('scroll', throttleAnimateBoxes);
+  animateBoxes();
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', throttleAnimateBoxes);
+});
 </script>

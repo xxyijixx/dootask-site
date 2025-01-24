@@ -16,7 +16,8 @@
         <li
           v-for="(item, index) in performanceItems"
           :key="index"
-          class="performance-ul-item"
+          ref="ProductAnimateBox2Ref"
+          class="performance-ul-item product-animate-box2"
           :style="{ '--delay': `${index * 0.1}s` }"
         >
           <i class="icon mb-24"></i>
@@ -35,13 +36,16 @@
   </article>
 </template>
 
-<script setup>
-import { toRefs } from 'vue';
+<script setup lang="ts">
+import { toRefs, onMounted, ref, onBeforeUnmount } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { throttle } from '../utils/debounceThrottle';
 
 const { t } = useI18n();
 
 const themeStore = useThemeStore();
+
+const ProductAnimateBox2Ref = ref<NodeListOf<HTMLElement> | null>(null);
 
 const { theme, lang } = toRefs(themeStore);
 
@@ -67,4 +71,26 @@ const performanceItems = computed(() => [
     description: t('produpage.digit.digdesc_four'),
   },
 ]);
+
+/* 滑动到可视区域执行动画 */
+const animateBoxes = () => {
+  const boxes = ProductAnimateBox2Ref.value;
+  if (boxes) {
+    boxes.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+      }
+    });
+  }
+};
+const throttleAnimateBoxes = throttle(animateBoxes, 50);
+onMounted(() => {
+  window.addEventListener('scroll', throttleAnimateBoxes);
+  animateBoxes();
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', throttleAnimateBoxes);
+});
 </script>

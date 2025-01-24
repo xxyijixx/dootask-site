@@ -8,18 +8,17 @@
         <h4 class="txt-4001830 topics-h4 mb-64">
           {{ $t('pricing.desc') }}
         </h4>
-        <ul class="price-card">
+        <ul ref="PriceCardRef" class="price-card">
           <li
             v-for="(plan, index) in pricePlans"
             :key="index"
-            class="price-card-item"
+            ref="PriceCardItemRef"
+            class="price-card-item price-animate-box"
             :class="{
-              active: selectedPlan === plan,
-              'hover-effect': hoveredPlan === plan && selectedPlan !== plan,
+              active: selectedPlanIndex === index,
             }"
-            @mouseenter="handleMouseEnter(plan)"
-            @mouseleave="handleMouseLeave"
-            @click="selectCard(plan)"
+            :style="{ '--delay': `${index * 0.1}s` }"
+            @click="selectCard(index)"
           >
             <h4 class="txt-5002025 price-card-h4 mb-24">
               {{ plan.name }}
@@ -39,10 +38,10 @@
             <button
               class="btn btn-green mb-24"
               :class="{
-                'btn-primary': hoveredPlan === plan,
-                'btn-selected': selectedPlan === plan,
+                'btn-primary': hoveredPlanIndex === index,
+                'btn-selected': selectedPlanIndex === index,
               }"
-              @click.stop="handlePlanSelect(plan)"
+              @click.stop="handlePlanSelect(index)"
             >
               {{ plan.buttonText }}
             </button>
@@ -51,19 +50,11 @@
                 v-for="(feature, featureIndex) in plan.features"
                 :key="featureIndex"
                 class="price-card-ol-item mb-12"
-                :class="{
-                  'feature-highlight':
-                    hoveredPlan === plan || selectedPlan === plan,
-                }"
               >
                 <img
                   class="icon mr-12"
                   :src="feature.icon"
                   :alt="feature.text"
-                  :class="{
-                    'icon-selected':
-                      hoveredPlan === plan || selectedPlan === plan,
-                  }"
                 />
                 <h6 class="txt-4001624 price-card-h6">
                   {{ feature.text }}
@@ -100,21 +91,36 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 store 路径
+import { useI18n } from 'vue-i18n'; // 假设你的主题管理 store 路径
 
 const { t } = useI18n();
 const themeStore = useThemeStore();
 const { theme } = toRefs(themeStore);
 
-const selectedPlan = ref(null);
-const hoveredPlan = ref(null);
+const selectedPlanIndex = ref(2);
+const hoveredPlanIndex = ref(-1);
 const showContactModal = ref(false);
 const modalTitle = ref('');
 
-const pricePlans = ref([
+const PriceCardRef = ref<HTMLElement | null>(null);
+const PriceCardItemRef = ref<NodeListOf<HTMLElement> | null>(null);
+
+interface PricePlan {
+  name: string;
+  price: string;
+  priceUnit?: string;
+  userLimit: string;
+  buttonText: string;
+  buttonLink?: string;
+  features: {
+    icon: string;
+    text: string;
+  }[];
+  recommended?: boolean;
+}
+const pricePlans = ref<PricePlan[]>([
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',
@@ -209,21 +215,17 @@ const pricePlans = ref([
   },
 ]);
 
-// 设置默认选中第三张卡片
-onMounted(() => {
-  selectedPlan.value = pricePlans.value[2];
-});
-
-const selectCard = (plan) => {
+const selectCard = (index: number) => {
   // 更新选中的卡片，仅保存选中状态
-  selectedPlan.value = plan;
+  selectedPlanIndex.value = index;
 };
 
-function handlePlanSelect(plan) {
+function handlePlanSelect(index: number) {
+  const pricePlan = pricePlans.value[index];
+
   // 如果有直接链接，打开链接
-  if (plan.buttonLink) {
-    window.open(plan.buttonLink, '_blank');
-    // return;
+  if (pricePlan.buttonLink) {
+    window.open(pricePlan.buttonLink, '_blank');
   }
 
   // 重置所有卡片的 recommended 为 false
@@ -232,34 +234,47 @@ function handlePlanSelect(plan) {
   });
 
   // 将当前点击的卡片设置为选中状态
-  selectedPlan.value = plan;
+  selectCard(index);
 
   // 对于有通信按钮的卡片，打开模态框
-  if (plan.buttonText === t('pricing.plans.communicate')) {
+  if (pricePlan.buttonText === t('pricing.plans.communicate')) {
     modalTitle.value = t('pricing.plans.communicate');
     showContactModal.value = true;
-  } else if (plan.buttonText === t('pricing.plans.custom')) {
+  } else if (pricePlan.buttonText === t('pricing.plans.custom')) {
     modalTitle.value = t('pricing.custom');
     showContactModal.value = true;
   }
 }
 
-// 鼠标进入卡片时
-const handleMouseEnter = (plan) => {
-  // 直接设置悬停状态，不考虑选中状态
-  hoveredPlan.value = plan;
-};
-
-// 鼠标离开卡片时
-const handleMouseLeave = () => {
-  // 重置悬停状态
-  hoveredPlan.value = null;
-};
-
 // 改进 closeModal 函数
 function closeModal() {
   showContactModal.value = false;
 }
+
+/* 滑动到可视区域执行动画 */
+const animateBoxes = () => {
+  const boxes = PriceCardItemRef.value;
+  if (boxes) {
+    boxes.forEach((box) => {
+      const boxTop = box.getBoundingClientRect().top;
+      const boxBottom = box.getBoundingClientRect().bottom;
+      if (boxTop < window.innerHeight && boxBottom > 0) {
+        box.classList.add('animate');
+        setTimeout(() => {
+          box.classList.remove('price-animate-box');
+        }, 120000);
+      }
+    });
+  }
+};
+const throttleAnimateBoxes = throttle(animateBoxes, 50);
+onMounted(() => {
+  window.addEventListener('scroll', throttleAnimateBoxes);
+  animateBoxes();
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', throttleAnimateBoxes);
+});
 </script>
 
 <style>

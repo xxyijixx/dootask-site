@@ -9,7 +9,7 @@
               $t('solution.title')
             }}</span>
           </div>
-          <h4 class="txt-4001830 topics-h4 mb-32">
+          <h4 class="txt-4001830 topics-h4 mb-32" style="width: auto !important">
             {{ $t('solution.desc') }}
           </h4>
           <div class="flex-cc topics-btn">
