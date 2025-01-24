@@ -407,8 +407,10 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/ad.css';
 import '@/assets/css/common.css';
+import '@/assets/css/rem.css';
+import '@/assets/css/ad.css';
+import '@/assets/css/home.css'
 import '@/assets/css/animate.min.css'
 import Qs from 'qs';
 definePageMeta({

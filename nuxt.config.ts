@@ -66,11 +66,11 @@ export default defineNuxtConfig({
   },
   css: [
     './assets/css/distribution.css',
-    './assets/css/home.css',
-    './assets/css/price.css',
-    './assets/css/side_nav.css',
-    './assets/css/solution.css',
-    './assets/css/product.css', // 添加 product.css
+    // './assets/css/home.css',
+    // './assets/css/price.css',
+    // './assets/css/side_nav.css',
+    // './assets/css/solution.css',
+    // './assets/css/product.css', // 添加 product.css
   ],
   router: {
     options: {

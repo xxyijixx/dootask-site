@@ -9,7 +9,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n';
-
+import '@/assets/css/solution.css'
 const { t, locale } = useI18n();
 // const themeStore = useThemeStore();
 // const { lang } = toRefs(themeStore);
