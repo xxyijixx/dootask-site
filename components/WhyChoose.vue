@@ -73,7 +73,12 @@
           alt=" $t('homepage.whychoose.title') "
         />
       </h1>
-      <div class="choose-con-768-box">
+      <div 
+        class="choose-con-768-box"
+        @touchstart="handleTouchStart" 
+        @touchmove="handleTouchMove" 
+        @touchend="handleTouchEnd"
+      >
         <ul
           class="choose-con-768-ul"
           :style="{
@@ -114,13 +119,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
 const BoxesRef = ref<NodeListOf<HTMLElement> | null>(null);
 const HomeArcsRef = ref<HTMLElement | null>(null);
+
+
+const touchStartX = ref(0);
+const touchMoveX = ref(0);
+const touchTranslateX = ref(0);
+const itemWidth = ref(0);
+
 
 interface ChooseItem {
   number: string;
@@ -201,6 +213,59 @@ const stopAutoPlay = () => {
     autoPlayTimer = null;
   }
 };
+
+
+//手动滑动卡片功能
+const handleTouchStart = (event: TouchEvent) => {
+  if (!isMobile.value) return;
+  touchStartX.value = event.touches[0].clientX;
+  stopAutoPlay(); // 用户开始触摸时停止自动播放
+};
+
+const handleTouchMove = (event: TouchEvent) => {
+  if (!isMobile.value) return;
+  touchMoveX.value = event.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  if (!isMobile.value) return;
+  
+  const touchDiff = touchStartX.value - touchMoveX.value;
+  const threshold = 50; // 触发滑动的最小距离
+
+  if (Math.abs(touchDiff) > threshold) {
+    if (touchDiff > 0 && activeIndex.value < chooseItems.value.length - 1) {
+      // 向左滑动，切换到下一张
+      activeIndex.value++;
+    } else if (touchDiff < 0 && activeIndex.value > 0) {
+      // 向右滑动，切换到上一张
+      activeIndex.value--;
+    }
+  }
+
+  // 重新启动自动播放
+  startAutoPlay();
+};
+
+onMounted(() => {
+  checkMobileView();
+  window.addEventListener('resize', () => {
+    checkMobileView();
+    // 调整窗口大小时重新启动自动播放
+    startAutoPlay();
+  });
+
+  // 组件挂载时启动自动播放
+  startAutoPlay();
+
+  // 添加滚动监听器以触发动画
+  animateBoxes();
+  window.addEventListener('scroll', animateBoxes);
+});
+
+
+
+
 
 /* 滑动到可视区域执行动画 */
 let timerId = null;
