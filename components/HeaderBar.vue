@@ -421,10 +421,10 @@ interface ThemeItem {
   value: 'light' | 'dark';
 }
 
-const themeItems: ThemeItem[] = [
-  { text: 'Light', value: 'light' },
-  { text: 'Dark', value: 'dark' },
-];
+const themeItems = computed(() => [
+  { text: t('theme.light'), value: 'light' },
+  { text: t('theme.dark'), value: 'dark' },
+]);
 
 interface LanguageItem {
   text: string;
