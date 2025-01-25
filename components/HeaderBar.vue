@@ -13,7 +13,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-product"
               :to="`/${locale}/product`"
-              :style="route.path === '/product' ? getTabStyles() : {}"
+              :style="route.path.startsWith(`/${locale}/product`) ? getTabStyles() : {}"
               >{{ $t('navigation.product') }}</NuxtLink
             >
           </li>
@@ -21,7 +21,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-solutions"
               :to="`/${locale}/solutions`"
-              :style="route.path === '/solutions' ? getTabStyles() : {}"
+              :style="route.path.startsWith(`/${locale}/solutions`)? getTabStyles() : {}"
               >{{ $t('navigation.solution') }}</NuxtLink
             >
           </li>
@@ -66,7 +66,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-price"
               :to="`/${locale}/price`"
-              :style="route.path === '/price' ? getTabStyles() : {}"
+              :style="route.path.startsWith(`/${locale}/price`) ? getTabStyles() : {}"
               >{{ $t('navigation.pricing') }}</NuxtLink
             >
           </li>
@@ -74,7 +74,7 @@
             <NuxtLink
               class="txt-4001620 txt nav-about"
               :to="`/${locale}/about`"
-              :style="route.path === '/about' ? getTabStyles() : {}"
+              :style="route.path.startsWith(`/${locale}/about`) ? getTabStyles() : {}"
               >{{ $t('navigation.about_us') }}</NuxtLink
             >
           </li>
