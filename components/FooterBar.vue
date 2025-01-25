@@ -3,7 +3,7 @@
     <div class="footer-con">
       <div class="footer-layout">
         <div class="footer-l">
-          <NuxtLink to="/" class="logo">
+          <NuxtLink :to="`/${locale}`" class="logo">
             <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
             <i class="dootask txt-7002027">DooTask</i>
           </NuxtLink>
@@ -17,22 +17,22 @@
                   {{ $t('footer.links') }}
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/product">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/product`">{{
                     $t('footer.product')
                   }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/solutions">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/solutions`">{{
                     $t('footer.solution')
                   }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/price">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/price`">{{
                     $t('footer.pricing')
                   }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item">
-                  <NuxtLink class="txt-4001624 txt" to="/about">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/about`">{{
                     $t('footer.about')
                   }}</NuxtLink>
                 </li>
@@ -44,19 +44,19 @@
                   {{ $t('footer.support') }}
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/download">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/download`">{{
                     $t('footer.download')
                   }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
-                  <NuxtLink class="txt-4001624 txt" to="/help">{{
+                  <NuxtLink class="txt-4001624 txt" :to="`/${locale}/help`">{{
                     $t('footer.help')
                   }}</NuxtLink>
                 </li>
                 <li class="footer-ol-item mb-16">
                   <NuxtLink
                     class="txt-4001624 txt"
-                    to="/privacy"
+                    :to="`/${locale}/privacy`"
                     target="_blank"
                     >{{ $t('footer.privacy') }}</NuxtLink
                   >
@@ -133,8 +133,11 @@
 <script setup lang="ts">
 import { toRefs } from 'vue';
 import { openInNewTab } from '../utils/common';
+import { useI18n } from 'vue-i18n';
 
 const themeStore = useThemeStore();
+
+const { locale } = useI18n();
 
 const { theme } = toRefs(themeStore);
 

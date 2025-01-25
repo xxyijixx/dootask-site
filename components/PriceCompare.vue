@@ -219,7 +219,7 @@
 import { ref } from 'vue';
 
 import { useI18n } from 'vue-i18n';
-import { useThemeStore } from '@/stores/theme'; // 假设你的主题管理 store 路径
+
 
 const { t } = useI18n();
 

@@ -261,6 +261,7 @@ import { ref, computed, onMounted, onUnmounted, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
+
 const themeStore = useThemeStore();
 
 const { theme } = toRefs(themeStore);
@@ -416,10 +417,7 @@ const supportItems = computed(() => [
   },
 ]);
 
-interface ThemeItem {
-  text: string;
-  value: 'light' | 'dark';
-}
+
 
 const themeItems = computed(() => [
   { text: t('theme.light'), value: 'light' },
