@@ -231,7 +231,7 @@
       "pro": {
         "name": "专业版",
         "price": "¥18,888",
-        "limit": "无人数限制"
+        "limit": "人数无限制"
       },
       "enterprise": {
         "name": "定制版",
