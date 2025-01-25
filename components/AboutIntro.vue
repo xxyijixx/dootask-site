@@ -50,7 +50,7 @@
           </ul>
         </div>
       </div>
-    </div>
+
 
     <article class="company-profile">
       <div class="company-profile-con">
@@ -91,6 +91,7 @@
         </div>
       </div>
     </article>
+  </div>
   </div>
 </template>
 

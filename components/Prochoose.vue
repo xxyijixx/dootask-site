@@ -31,8 +31,13 @@
             <img src="/img/prev.svg" alt="一个产品，多种强大的工具" />
           </i>
         </li>
+        <li v-if="isMobile" class="prooduct-list-item active top">
+          <img class="icon" :src="getProductIcon(currentIndex)" :alt="productItems[currentIndex].title" />
+          <h3 class="txt-4002025 txt">{{ productItems[currentIndex].title }}</h3>
+        </li>
         <li
           v-for="(item, index) in productItems"
+          v-else
           :key="index"
           class="prooduct-list-item"
           :class="{
@@ -46,6 +51,7 @@
           <img class="icon" :src="getProductIcon(index)" :alt="item.title" />
           <h3 class="txt-4002025 txt">{{ item.title }}</h3>
         </li>
+        
         <li>
           <i class="next" @click="nextHandle">
             <img src="/img/next.svg" alt="一个产品，多种强大的工具" />
@@ -57,23 +63,21 @@
           v-for="(detail, index) in productDetails"
           :key="index"
           class="details"
-          :class="{ 'details-active': index === currentIndex }"
+          :class="{ 'active': index === currentIndex }"
         >
           <div
             class="details-con"
-            :class="`${detail.items ? detail.items.length : 1}`"
           >
             <img
               class="pic"
               :src="`/img/${theme}/product_pic${index + 1}.svg`"
               :alt="detail.alt"
             />
-            <ul class="details-ul" :class="detail.ulClass">
+            <ul class="details-ul">
               <li
                 v-for="(item, itemIndex) in detail.items"
                 :key="itemIndex"
                 class="details-ul-item"
-                :class="item.class"
               >
                 <h1 class="txt-7003645 serial-number mb-24">
                   {{ itemIndex + 1 < 10 ? `0${itemIndex + 1}` : itemIndex + 1 }}
@@ -93,8 +97,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, watch, onMounted, toRefs, nextTick } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted, toRefs, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -116,7 +120,7 @@ onMounted(() => {
   checkMobileView();
   window.addEventListener('resize', () => {
     checkMobileView();
-    startAutoPlay();
+    // startAutoPlay();
   });
 });
 
@@ -125,23 +129,23 @@ onUnmounted(() => {
 });
 
 // 监听 currentIndex 更新后，确保 DOM 渲染完成
-watch(
-  currentIndex,
-  async (newIndex) => {
-    // 等待 DOM 渲染完成
-    await nextTick();
+// watch(
+//   currentIndex,
+//   async (newIndex) => {
+//     // 等待 DOM 渲染完成
+//     await nextTick();
 
-    const detailsItems = document.querySelectorAll('.details');
-    detailsItems.forEach((item, index) => {
-      if (index === newIndex) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  },
-  { immediate: true },
-);
+//     const detailsItems = document.querySelectorAll('.details');
+//     detailsItems.forEach((item, index) => {
+//       if (index === newIndex) {
+//         item.style.display = 'block';
+//       } else {
+//         item.style.display = 'none';
+//       }
+//     });
+//   },
+//   { immediate: true },
+// );
 
 const productItems = computed(() => [
   { icon: '/img/product_icons0_h.svg', title: t('produpage.choose.cocre') },
