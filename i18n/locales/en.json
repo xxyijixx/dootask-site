@@ -328,7 +328,7 @@
     "load": "Download",
     "other": "Other Versions",
     "log": {
-      "title": "Update Log",
+      "title": "Logs",
       "new": "update",
       "more": "More Logs"
     }
