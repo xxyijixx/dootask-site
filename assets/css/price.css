@@ -31,7 +31,7 @@
 
 .price-animate-box {
   opacity: 0;
-  transform: translateY(-10%);
+  transform: translateY(50%);
   animation: fadeIn 1s ease-in-out forwards var(--delay); /* 应用动画效果 */
 }
 
@@ -57,10 +57,10 @@
 }
 
 /* 未选中卡片悬停时h4变绿 */
-.price-card-item:not(.active):hover .price-card-h4 {
+/* .price-card-item:not(.active):hover .price-card-h4 {
   color: var(--txt-theme-color) !important;
   transition: color 0.3s ease-in-out;
-}
+} */
 
 .price-card-h4 {
   color: var(--text-color);
