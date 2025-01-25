@@ -49,7 +49,11 @@
             </div>
           </li>
         </ul>
-        <div class="manage-svg" :style="{ '--delay': '0.2s' }">
+        <div
+          ref="ProductAnimateBoxDivRef"
+          class="manage-svg product-animate-box"
+          :style="{ '--delay': '0.2s' }"
+        >
           <img
             class="manage-bg"
             :src="`/img/${theme}/product_pic10.svg`"
@@ -80,6 +84,7 @@ import { throttle } from '../utils/debounceThrottle';
 const { t } = useI18n();
 
 const ProductAnimateBoxRef = ref<NodeListOf<HTMLElement> | null>(null);
+const ProductAnimateBoxDivRef = ref<HTMLElement | null>(null);
 
 const themeStore = useThemeStore();
 
@@ -106,6 +111,7 @@ const manageItems = computed(() => [
 /* 滑动到可视区域执行动画 */
 const animateBoxes = () => {
   const boxes = ProductAnimateBoxRef.value;
+  const boxDiv = ProductAnimateBoxDivRef.value;
   if (boxes) {
     boxes.forEach((box) => {
       const boxTop = box.getBoundingClientRect().top;
@@ -114,6 +120,13 @@ const animateBoxes = () => {
         box.classList.add('animate');
       }
     });
+  }
+  if (boxDiv) {
+    const boxTop = boxDiv.getBoundingClientRect().top;
+    const boxBottom = boxDiv.getBoundingClientRect().bottom;
+    if (boxTop < window.innerHeight && boxBottom > 0) {
+      boxDiv.classList.add('animate');
+    }
   }
 };
 const throttleAnimateBoxes = throttle(animateBoxes, 50);
