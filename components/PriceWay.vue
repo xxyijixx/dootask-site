@@ -13,9 +13,10 @@
             v-for="(plan, index) in pricePlans"
             :key="index"
             ref="PriceCardItemRef"
-            class="price-card-item price-animate-box"
+            class="price-card-item"
             :class="{
               active: selectedPlanIndex === index,
+              'price-animate-box': !animateLoaded
             }"
             :style="{ '--delay': `${index * 0.1}s` }"
             @click="selectCard(index)"
@@ -103,6 +104,7 @@ const selectedPlanIndex = ref(2);
 const hoveredPlanIndex = ref(-1);
 const showContactModal = ref(false);
 const modalTitle = ref('');
+const animateLoaded = ref(false)
 
 const PriceCardRef = ref<HTMLElement | null>(null);
 const PriceCardItemRef = ref<NodeListOf<HTMLElement> | null>(null);
@@ -261,8 +263,8 @@ const animateBoxes = () => {
       if (boxTop < window.innerHeight && boxBottom > 0) {
         box.classList.add('animate');
         setTimeout(() => {
-          box.classList.remove('price-animate-box');
-        }, 120000);
+          animateLoaded.value = true
+        }, 1200);
       }
     });
   }
