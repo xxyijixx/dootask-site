@@ -62,7 +62,7 @@
               </div>
               <div id="google_translate_element" class="logs-r">
                 <h1 class="txt-6003645 logs-h1 mb-36">
-                  DooTask Update Log
+                  {{ $t('download.log.headline') }}
                 </h1>
                 <ul class="logs-r-ul">
                   <li

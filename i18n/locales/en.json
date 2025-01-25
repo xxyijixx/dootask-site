@@ -329,6 +329,7 @@
     "other": "Other Versions",
     "log": {
       "title": "Logs",
+      "headline": "Dootask Update Log",
       "new": "update",
       "more": "More Logs"
     }
