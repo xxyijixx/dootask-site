@@ -34,4 +34,5 @@ useHead({
 // 向父组件传递组件
 const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
 setHeaderContent(h(SuloTopics));
+
 </script>
