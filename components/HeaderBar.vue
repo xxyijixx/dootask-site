@@ -386,7 +386,7 @@ const localizedRoutes = computed(() => ({
   pricing: `/${locale.value}/price`,
   about: `/${locale.value}/about`,
   download: `/${locale.value}/download`,
-  help: `/${locale.value}/help`,
+  // help: `/${locale.value}/help`,
   privacy: `/${locale.value}/privacy`,
 }));
 

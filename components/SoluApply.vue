@@ -1,31 +1,6 @@
 <!-- 解决方案-场景应用 -->
 <template>
   <div>
-    <div class="topics">
-      <div class="topics-con">
-        <div class="topics-layout">
-          <div class="topics-tit mb-32" style="width: auto !important">
-            <span class="txt-6007290 topics-h1">{{
-              $t('solution.title')
-            }}</span>
-          </div>
-          <h4 class="txt-4001830 topics-h4 mb-32" style="width: auto !important">
-            {{ $t('solution.desc') }}
-          </h4>
-          <div class="flex-cc topics-btn">
-            <span class="mr-24 get-started">
-              <!-- <a href="./price.html"> -->
-              <NuxtLink to="/price">
-                <button class="btn btn-primary mr-20">
-                  {{ $t('common.get_started') }}
-                </button>
-              </NuxtLink>
-              <!-- </a> -->
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
     <article class="app">
       <div class="bg-style">
         <div class="app-con">
@@ -97,11 +72,3 @@ const sceneApplications = computed(() => [
   },
 ]);
 </script>
-
-<style scoped>
-.topics {
-  text-align: center;
-  background: var(--bg-5-url) top center no-repeat;
-  background-size: cover;
-}
-</style>

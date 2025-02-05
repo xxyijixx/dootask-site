@@ -1,6 +1,6 @@
 /* 头部样式 */
 .about-page {
-  .about_green_bg {
+  &.about_green_bg {
     background: var(--bg-11-url) top right no-repeat;
   }
   .head {

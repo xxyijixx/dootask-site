@@ -32,8 +32,14 @@
           </i>
         </li>
         <li v-if="isMobile" class="prooduct-list-item active top">
-          <img class="icon" :src="getProductIcon(currentIndex)" :alt="productItems[currentIndex].title" />
-          <h3 class="txt-4002025 txt">{{ productItems[currentIndex].title }}</h3>
+          <img
+            class="icon"
+            :src="getProductIcon(currentIndex)"
+            :alt="productItems[currentIndex].title"
+          />
+          <h3 class="txt-4002025 txt">
+            {{ productItems[currentIndex].title }}
+          </h3>
         </li>
         <li
           v-for="(item, index) in productItems"
@@ -51,7 +57,7 @@
           <img class="icon" :src="getProductIcon(index)" :alt="item.title" />
           <h3 class="txt-4002025 txt">{{ item.title }}</h3>
         </li>
-        
+
         <li>
           <i class="next" @click="nextHandle">
             <img src="/img/next.svg" alt="一个产品，多种强大的工具" />
@@ -63,11 +69,9 @@
           v-for="(detail, index) in productDetails"
           :key="index"
           class="details"
-          :class="{ 'active': index === currentIndex }"
+          :class="{ active: index === currentIndex }"
         >
-          <div
-            class="details-con"
-          >
+          <div class="details-con">
             <img
               class="pic"
               :src="`/img/${theme}/product_pic${index + 1}.svg`"
@@ -311,10 +315,4 @@ function getProductIcon(index: number) {
 }
 </script>
 
-<style scoped>
-.topics {
-  text-align: center;
-  background: var(--bg-3-url) top left no-repeat;
-  background-size: cover;
-}
-</style>
+<style scoped></style>

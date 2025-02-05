@@ -4,7 +4,7 @@
     <main>
       <!-- 主要区域划分 -->
       <section>
-        <IndexMain />
+        <!-- <IndexMain /> -->
         <!-- 合作公司区域 -->
         <IndexCompanies />
         <!-- 功能卡片区域 -->
@@ -16,9 +16,10 @@
     </main>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import '@/assets/scss/home.scss';
+import IndexMain from '@/components/IndexMain.vue';
 const { t, locale } = useI18n();
 
 definePageMeta({
@@ -37,4 +38,7 @@ useHead({
     },
   ],
 });
+// 向父组件传递组件
+const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+setHeaderContent(h(IndexMain));
 </script>

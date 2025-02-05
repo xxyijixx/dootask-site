@@ -1,7 +1,7 @@
 <template>
   <main>
     <section>
-      <AboutIntro />
+      <!-- <AboutIntro /> -->
       <AboutApply />
       <AboutSuggest />
     </section>
@@ -9,13 +9,15 @@
 </template>
 
 <script setup lang="ts">
+import { inject, h } from 'vue'
 import { useI18n } from 'vue-i18n';
 import '@/assets/scss/about.scss';
+import AboutIntro from '@/components/AboutIntro.vue';
 
 const { t, locale } = useI18n();
 
 definePageMeta({
-    layoutClass: 'about-page',
+    layoutClass: 'about-page about_green_bg',
 })
 
 useHead({
@@ -30,4 +32,7 @@ useHead({
     },
   ],
 });
+
+const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+setHeaderContent(h(AboutIntro));
 </script>
