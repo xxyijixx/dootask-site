@@ -71,13 +71,13 @@
           class="details"
           :class="{ active: index === currentIndex }"
         >
-          <div class="details-con">
+          <div class="details-con" :class="{ 'details-con-item4': detail.lg }">
             <img
               class="pic"
               :src="`/img/${theme}/product_pic${index + 1}.svg`"
               :alt="detail.alt"
             />
-            <ul class="details-ul">
+            <ul class="details-ul" :class="{'item4': detail.lg}">
               <li
                 v-for="(item, itemIndex) in detail.items"
                 :key="itemIndex"
@@ -95,6 +95,31 @@
               </li>
             </ul>
           </div>
+          <ul v-if="detail.lg" class="details-ul-1280 item4-1280">
+            <li class="details-ul-item mb-40">
+              <img
+                :src="`/img/${theme}/product_pic${index + 1}.svg`"
+                class="pic"
+                :class="`theme_${theme}`"
+                :alt="detail.alt"
+              />
+            </li>
+            <li
+              v-for="(item, itemIndex) in detail.items"
+              :key="itemIndex"
+              class="details-ul-item"
+            >
+              <h1 class="txt-7003645 serial-number mb-24">
+                {{ itemIndex + 1 < 10 ? `0${itemIndex + 1}` : itemIndex + 1 }}
+              </h1>
+              <h5 class="txt-5002025 mb-16 choose-con-item-h5">
+                {{ item.title }}
+              </h5>
+              <h6 class="txt-4001624 choose-con-item-h6">
+                {{ item.description }}
+              </h6>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -176,6 +201,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.cocre_de.desc_two'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.im_de.title_one'),
@@ -197,7 +223,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.im_de.desc_four'),
       },
     ],
-    ulClass: 'item4',
+    lg: true,
   },
   {
     alt: t('produpage.choose.proj_de.title_one'),
@@ -219,7 +245,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.proj_de.desc_four'),
       },
     ],
-    ulClass: 'item4',
+    lg: true,
   },
   {
     alt: t('produpage.choose.dash_de.title_one'),
@@ -229,6 +255,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.dash_de.desc_one'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.calendar_de.title_one'),
@@ -242,6 +269,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.calendar_de.desc_two'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.botass_dev.title_one'),
@@ -255,6 +283,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.botass_de.desc_two'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.team_de.title_one'),
@@ -268,6 +297,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.team_de.desc_two'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.e2e_de.title_one'),
@@ -281,6 +311,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.e2e_de.desc_two'),
       },
     ],
+    lg: false,
   },
   {
     alt: t('produpage.choose.multi_de.title_one'),
@@ -290,6 +321,7 @@ const productDetails = computed(() => [
         description: t('produpage.choose.multi_de.desc_one'),
       },
     ],
+    lg: false,
   },
 ]);
 
