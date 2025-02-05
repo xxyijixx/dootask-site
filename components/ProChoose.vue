@@ -58,6 +58,8 @@
           </i>
         </li>
       </ul>
+      
+
       <ul class="prooduct-ul">
         <li
           v-for="(detail, index) in productDetails"
@@ -67,6 +69,7 @@
         >
           <div
             class="details-con"
+            :class="{ 'item4': detail.items.length === 4 }"
           >
             <img
               class="pic"
@@ -93,6 +96,8 @@
           </div>
         </li>
       </ul>
+
+
     </div>
   </div>
 </template>
