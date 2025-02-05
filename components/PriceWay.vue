@@ -122,7 +122,7 @@ interface PricePlan {
   }[];
   recommended?: boolean;
 }
-const pricePlans = ref<PricePlan[]>([
+const pricePlans = computed(():PricePlan[] => [
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',

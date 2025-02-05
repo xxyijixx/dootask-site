@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <main>
-      <ProChoose></ProChoose>
+      <!-- <ProChoose></ProChoose> -->
       <ProManage></ProManage>
       <ProDigit></ProDigit>
     </main>
