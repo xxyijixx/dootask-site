@@ -356,7 +356,7 @@ const showLangPopHandle = (e: Event) => {
 };
 
 // 设置主题
-const setTheme = (newTheme: 'light' | 'dark') => {
+const setTheme = (newTheme: 'light' | 'dark' | string) => {
   try {
     themeStore.setTheme(newTheme);
   } catch (error) {

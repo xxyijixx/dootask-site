@@ -10,7 +10,11 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/product.css'
+import '@/assets/scss/product.scss'
+
+definePageMeta({
+    layoutClass: 'product-page',
+})
 
 const { t, locale } = useI18n();
 

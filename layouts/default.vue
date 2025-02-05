@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="layoutClass">
     <HeaderBar>
       <template #ad>
         <AdBar />
@@ -13,11 +13,19 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import '@/assets/css/common.css';
-import '@/assets/css/rem.css';
+import { onMounted, computed } from 'vue';
+import '@/assets/scss/common.scss';
+import '@/assets/scss/rem.scss';
+
+const route = useRoute();
+const layoutClass = computed(() => {
+  return route.meta.layoutClass || '';
+});
+
 const themeStore = useThemeStore();
 const { locale } = useI18n();
+
+
 
 onMounted(() => {
   themeStore.loadTheme(locale.value);

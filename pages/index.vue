@@ -18,8 +18,12 @@
 </template>
 <script setup>
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/home.css'
+import '@/assets/scss/home.scss';
 const { t, locale } = useI18n();
+
+definePageMeta({
+  layoutClass: 'home-page',
+});
 
 useHead({
   title: t('homepage.headtitle'),

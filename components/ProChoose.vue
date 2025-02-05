@@ -289,7 +289,7 @@ const productDetails = computed(() => [
   },
 ]);
 
-function selectProductItem(index) {
+function selectProductItem(index: number) {
   currentIndex.value = index;
 }
 
@@ -304,7 +304,7 @@ function nextHandle() {
 }
 
 // 动态更改当前激活项的图标
-function getProductIcon(index) {
+function getProductIcon(index: number) {
   return index === currentIndex.value
     ? `/img/product_icons${index}_h.svg` // 激活状态下的图标
     : `/img/product_icons${index}.svg`; // 普通状态下的图标

@@ -8,11 +8,15 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/about.css';
+import '@/assets/scss/about.scss';
 
 const { t, locale } = useI18n();
+
+definePageMeta({
+    layoutClass: 'about-page',
+})
 
 useHead({
   title: t('about.headtitle'),
