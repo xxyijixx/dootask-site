@@ -16,7 +16,7 @@
             class="price-card-item"
             :class="{
               active: selectedPlanIndex === index,
-              'price-animate-box': !animateLoaded
+              'price-animate-box': !animateLoaded,
             }"
             :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
             @click="selectCard(index)"
@@ -104,7 +104,7 @@ const selectedPlanIndex = ref(2);
 const hoveredPlanIndex = ref(-1);
 const showContactModal = ref(false);
 const modalTitle = ref('');
-const animateLoaded = ref(false)
+const animateLoaded = ref(false);
 
 const PriceCardRef = ref<HTMLElement | null>(null);
 const PriceCardItemRef = ref<NodeListOf<HTMLElement> | null>(null);
@@ -122,7 +122,7 @@ interface PricePlan {
   }[];
   recommended?: boolean;
 }
-const pricePlans = computed(():PricePlan[] => [
+const pricePlans = computed((): PricePlan[] => [
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',
@@ -257,16 +257,18 @@ function closeModal() {
 const animateBoxes = () => {
   const boxes = PriceCardItemRef.value;
   if (boxes) {
-    boxes.forEach((box) => {
-      const boxTop = box.getBoundingClientRect().top;
-      const boxBottom = box.getBoundingClientRect().bottom;
-      if (boxTop < window.innerHeight && boxBottom > 0) {
-        box.classList.add('animate');
-        setTimeout(() => {
-          animateLoaded.value = true
-        }, 1200);
-      }
-    });
+    setTimeout(() => {
+      boxes.forEach((box) => {
+        const boxTop = box.getBoundingClientRect().top;
+        const boxBottom = box.getBoundingClientRect().bottom;
+        if (boxTop < window.innerHeight && boxBottom > 0) {
+          box.classList.add('animate');
+          setTimeout(() => {
+            animateLoaded.value = true;
+          }, 1200);
+        }
+      });
+    }, 1000);
   }
 };
 const throttleAnimateBoxes = throttle(animateBoxes, 50);
