@@ -7,32 +7,18 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { inject, h } from 'vue'
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/solution.css'
-const { t, locale } = useI18n();
-// const themeStore = useThemeStore();
-// const { lang } = toRefs(themeStore);
+import '@/assets/scss/solution.scss'
+import SuloTopics from '@/components/SuloTopics.vue';
 
-// 监听语言变化并动态更新 head
-// watch(
-//   lang,
-//   () => {
-//     useHead({
-//       title: t('solution.headtitle'),
-//       htmlAttrs: {
-//         lang: locale.value,
-//       },
-//       meta: [
-//         {
-//           name: 'description',
-//           content: t('solution.desc'),
-//         },
-//       ],
-//     });
-//   },
-//   { immediate: true },
-// );
+definePageMeta({
+    layoutClass: 'solution-page',
+})
+
+const { t, locale } = useI18n();
+
 useHead({
   title: t('solution.headtitle'),
   htmlAttrs: {
@@ -45,16 +31,8 @@ useHead({
     },
   ],
 });
-// useSeoMeta({
-//   title: t('solution.headtitle'),
-//   htmlAttrs: {
-//     lang: locale.value,
-//   },
-//   meta: [
-//     {
-//       name: 'description',
-//       content: t('solution.desc'),
-//     },
-//   ],
-// });
+// 向父组件传递组件
+const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+setHeaderContent(h(SuloTopics));
+
 </script>

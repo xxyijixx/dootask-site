@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <CookieConsent></CookieConsent>
 
     <div class="ad-dialog">
@@ -407,11 +407,11 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import '@/assets/css/common.css';
-import '@/assets/css/rem.css';
-import '@/assets/css/ad.css';
-import '@/assets/css/home.css'
-import '@/assets/css/animate.min.css'
+import '@/assets/scss/common.scss';
+import '@/assets/scss/rem.scss';
+import '@/assets/scss/ad.scss';
+import '@/assets/scss/home.scss';
+import '@/assets/css/animate.min.css';
 import Qs from 'qs';
 definePageMeta({
   layout: 'blank',

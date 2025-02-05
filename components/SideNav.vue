@@ -93,9 +93,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-// import '@/assets/js/googleAds.js';
-// import '@/assets/js/googleAnalyze.js';
-import '@/assets/css/side_nav.css';
+import '@/assets/scss/side_nav.scss';
 
 const { gtag } = useGtag();
 

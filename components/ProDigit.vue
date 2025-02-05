@@ -18,7 +18,7 @@
           :key="index"
           ref="ProductAnimateBox2Ref"
           class="performance-ul-item product-animate-box2"
-          :style="{ '--delay': `${index * 0.1}s` }"
+          :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
         >
           <i class="icon mb-24"></i>
           <h5 class="txt-5002025 performance-h5 mb-4">

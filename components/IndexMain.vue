@@ -68,9 +68,5 @@ const { theme, lang } = toRefs(themeStore);
 </script>
 
 <style scoped>
-.topics {
-  text-align: center;
-  background: var(--bg-1-url) center left no-repeat;
-  background-size: cover;
-}
+
 </style>

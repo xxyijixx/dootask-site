@@ -18,7 +18,7 @@
               active: selectedPlanIndex === index,
               'price-animate-box': !animateLoaded
             }"
-            :style="{ '--delay': `${index * 0.1}s` }"
+            :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
             @click="selectCard(index)"
           >
             <h4 class="txt-5002025 price-card-h4 mb-24">
@@ -122,7 +122,7 @@ interface PricePlan {
   }[];
   recommended?: boolean;
 }
-const pricePlans = ref<PricePlan[]>([
+const pricePlans = computed(():PricePlan[] => [
   {
     name: t('pricing.plans.free.name'),
     price: '¥0',
@@ -278,11 +278,3 @@ onBeforeUnmount(() => {
   window.removeEventListener('scroll', throttleAnimateBoxes);
 });
 </script>
-
-<style>
-.topics {
-  text-align: center;
-  background: var(--bg-10-url) top left no-repeat;
-  background-size: cover;
-}
-</style>

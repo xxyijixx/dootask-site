@@ -106,9 +106,13 @@
 import { ref, onMounted, onUnmounted, nextTick, toRefs } from 'vue';
 import axios from 'axios';
 import markdownIt from 'markdown-it';
-import '@/assets/css/log.css';
+import '@/assets/scss/log.scss';
 
 import { useI18n } from 'vue-i18n';
+
+definePageMeta({
+    layoutClass: 'log-page',
+})
 
 const { t, locale } = useI18n();
 
@@ -376,6 +380,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
+
+// 置空头部组件
+const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+setHeaderContent(null);
 </script>
 
 <style>

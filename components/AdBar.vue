@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import '@/assets/css/ad.css';
+import '@/assets/scss/ad.scss';
 import { fetchData, handleError } from '../utils/fetch';
 
 const { locale } = useI18n();

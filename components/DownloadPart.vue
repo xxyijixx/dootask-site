@@ -1,5 +1,5 @@
 <template>
-  <article class="topics">
+  <div class="topics">
     <div class="topics-con">
       <div class="topics-layout">
         <div class="topics-tit mb-32">
@@ -130,7 +130,7 @@
         </a>
       </div>
     </div>
-  </article>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -234,9 +234,5 @@ onUnmounted(() => {
 </style>
 
 <style scoped>
-.topics {
-  text-align: center;
-  background: var(--bg-8-url) top left no-repeat;
-  background-size: cover;
-}
+
 </style>

@@ -34,7 +34,7 @@
           :key="index"
           ref="BoxesRef"
           class="choose-con-item hover home-animate-box"
-          :style="{ '--delay': `${index * 0.1}s` }"
+          :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
         >
           <h1 class="txt-7003645 serial-number mb-24">{{ item.number }}</h1>
           <h5 class="txt-5002025 mb-16 choose-con-item-h5">

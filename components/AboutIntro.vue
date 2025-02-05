@@ -50,8 +50,7 @@
           </ul>
         </div>
       </div>
-
-
+    </div>
     <article class="company-profile">
       <div class="company-profile-con">
         <div class="company-profile-layout">
@@ -91,7 +90,6 @@
         </div>
       </div>
     </article>
-  </div>
   </div>
 </template>
 
@@ -167,9 +165,5 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.topics {
-  text-align: center;
-  background: var(--bg-11-url) top right no-repeat;
-  background-size: cover;
-}
+
 </style>

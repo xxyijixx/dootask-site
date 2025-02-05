@@ -11,7 +11,7 @@
           ref="SolutionsAnimateBoxRef"
           class="solutions-animate-box"
           :class="['team-ul-item', `team-ul-item-${lang}`]"
-          :style="{ '--delay': `${index * 0.1}s` }"
+          :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
         >
           <img class="team-icon mb-24" :src="item.icon" :alt="item.title" />
           <h4 class="txt-5002025 app-h4 mb-16">{{ item.title }}</h4>
