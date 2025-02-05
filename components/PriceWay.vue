@@ -18,7 +18,7 @@
               active: selectedPlanIndex === index,
               'price-animate-box': !animateLoaded
             }"
-            :style="{ '--delay': `${index * 0.1}s` }"
+            :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
             @click="selectCard(index)"
           >
             <h4 class="txt-5002025 price-card-h4 mb-24">

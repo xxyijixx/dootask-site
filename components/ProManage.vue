@@ -17,7 +17,7 @@
             :key="index"
             ref="ProductAnimateBoxRef"
             class="manage-ul-item mb-32 product-animate-box"
-            :style="{ '--delay': `${index * 0.1}s` }"
+            :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
           >
             <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
             <div class="manage-tit">
@@ -36,7 +36,7 @@
             :key="index"
             ref="ProductAnimateBoxRef"
             class="manage-ul-item mb-32 product-animate-box"
-            :style="{ '--delay': `${index * 0.1}s` }"
+            :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
           >
             <img class="manage-icon mr-16" :src="item.icon" :alt="item.title" />
             <div class="manage-tit">

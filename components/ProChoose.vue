@@ -51,7 +51,7 @@
             top: index < 5,
             bot: index >= 5,
           }"
-          :style="{ '--delay': `${index * 0.1}s` }"
+          :style="{ '--delay': `${(index * 0.1).toFixed(1)}s` }"
           @click="selectProductItem(index)"
         >
           <img class="icon" :src="getProductIcon(index)" :alt="item.title" />
