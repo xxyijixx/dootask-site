@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="home-page ad-page">
     <CookieConsent></CookieConsent>
 
     <div class="ad-dialog">
@@ -416,7 +416,7 @@ import Qs from 'qs';
 definePageMeta({
   layout: 'blank',
 });
-defineOgImageComponent('NuxtSeo')
+defineOgImageComponent('NuxtSeo');
 const { locale, t } = useI18n();
 
 onMounted(() => {
