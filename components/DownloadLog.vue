@@ -97,7 +97,7 @@ const fetchReleases = async () => {
 
     releases.value = versions.slice(0, 5).map((version) => ({
       version,
-      link: '../zh/log.html',
+      link: '/zh/log',
     }));
 
     const record = {

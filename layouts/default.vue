@@ -18,7 +18,12 @@ import { onMounted, computed, provide, type VNode } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
 
+<<<<<<< HEAD
 const isPageReady = ref(false); // 控制 layout 是否渲染
+=======
+defineOgImageComponent('NuxtSeo')
+
+>>>>>>> 2cbd4bc8902ab6bfa9207a5bfcad14a9f16dce74
 const route = useRoute();
 const layoutClass = computed(() => {
   return route.meta.layoutClass || '';
@@ -28,7 +33,7 @@ const headerClass = computed(() => {
 });
 
 const headerContent = ref<VNode | null>(null);
-const setHeaderContent = (component: VNode) => {
+const setHeaderContent = (component: VNode | null) => {
   headerContent.value = component;
 };
 

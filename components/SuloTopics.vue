@@ -10,13 +10,11 @@
         </h4>
         <div class="flex-cc topics-btn">
           <span class="mr-24 get-started">
-            <!-- <a href="./price.html"> -->
-            <NuxtLink to="/price">
+            <NuxtLink :to="`/${locale}/price`">
               <button class="btn btn-primary mr-20">
                 {{ $t('common.get_started') }}
               </button>
             </NuxtLink>
-            <!-- </a> -->
           </span>
         </div>
       </div>
@@ -24,5 +22,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+const { locale } = useI18n();
+
+</script>
 

@@ -3,7 +3,7 @@
     <!-- 更新日志抽屉 -->
     <div class="logs-drawer" :class="{ 'open-logs-drawer': drawerOpen }">
       <div class="drawer-t mb-36">
-        <a href="/zh/index.html" class="logo">
+        <a :href="`/${locale}`" class="logo">
           <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
           <i class="dootask txt-7002027">DooTask</i>
         </a>
@@ -383,7 +383,7 @@ onUnmounted(() => {
 
 // 置空头部组件
 const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
-setHeaderContent(null);
+setHeaderContent?.(null);
 </script>
 
 <style>
