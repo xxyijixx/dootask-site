@@ -7,7 +7,7 @@
       <component :is="headerContent" v-if="headerContent" />
     </HeaderBar>
 
-    <slot />
+    <NuxtPage />
     <FooterBar />
     <SideNav />
   </div>
@@ -24,7 +24,7 @@ const layoutClass = computed(() => {
 });
 const headerClass = computed(() => {
   return route.meta.headerClass || '';
-})
+});
 
 const headerContent = ref<VNode | null>(null);
 const setHeaderContent = (component: VNode) => {
