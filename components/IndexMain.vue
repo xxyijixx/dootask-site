@@ -2,7 +2,7 @@
   <div class="topics">
     <div class="topics-con">
       <div class="topics-layout">
-        <div class="topics-tit mb-32" style="width: auto !important">
+        <div class="topics-tit mb-32">
           <span class="txt-6007290 topics-h1-green">
             DooTask
             <svg
@@ -29,7 +29,7 @@
             {{ $t('homepage.hero.subtitle') }}
           </span>
         </div>
-        <h4 class="txt-4001830 topics-h4 mb-32">
+        <h4 class="txt-4001830 topics-h4 mb-32" style="width: auto !important">
           {{ $t('homepage.hero.description') }}
         </h4>
         <div class="flex-cc topics-btn">
