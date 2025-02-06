@@ -73,7 +73,7 @@
               </h4>
               <div class="flex-cc topics-btn">
                 <div id="ad-banner-sign-up-button">
-                  <a href="./price.html">
+                  <a :href="`/${locale}/price`">
                     <button class="btn btn-primary">免费注册</button>
                   </a>
                 </div>
@@ -416,7 +416,7 @@ import Qs from 'qs';
 definePageMeta({
   layout: 'blank',
 });
-
+defineOgImageComponent('NuxtSeo')
 const { locale, t } = useI18n();
 
 onMounted(() => {

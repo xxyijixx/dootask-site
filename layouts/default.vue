@@ -18,6 +18,8 @@ import { onMounted, computed, provide, type VNode } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
 
+defineOgImageComponent('NuxtSeo')
+
 const route = useRoute();
 const layoutClass = computed(() => {
   return route.meta.layoutClass || '';
@@ -27,7 +29,7 @@ const headerClass = computed(() => {
 });
 
 const headerContent = ref<VNode | null>(null);
-const setHeaderContent = (component: VNode) => {
+const setHeaderContent = (component: VNode | null) => {
   headerContent.value = component;
 };
 

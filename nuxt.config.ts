@@ -37,8 +37,28 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@pinia/nuxt',
     '@nuxt/eslint',
+    '@nuxtjs/seo',
     'nuxt-gtag',
   ],
+  // SEO配置
+  site: {
+    url: 'http://localhost:3000',
+    name: 'DooTask',
+    defaultLocale: 'zh',
+    cacheMaxAgeSeconds: 24 * 3600, // 缓存时间设置为24小时
+    autoLastmod: true
+  },
+  robots: {
+    disallow: ['/cookie', '/privacy', '/ad']
+  },
+  sitemap: {
+    cacheMaxAgeSeconds: 3600, // 缓存时间设置为1小时
+  },
+  ogImage: {
+    defaults: {
+      renderer: 'chromium'
+    }
+  },
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', name: 'English' },

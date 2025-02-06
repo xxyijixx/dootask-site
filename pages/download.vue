@@ -28,11 +28,11 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: t('download.description'),
+      content: t('download.desc'),
     },
   ],
 });
 // 向父组件传递组件
 const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
-setHeaderContent(h(DownloadPart));
+setHeaderContent?.(h(DownloadPart));
 </script>

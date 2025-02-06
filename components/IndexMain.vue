@@ -34,7 +34,7 @@
         </h4>
         <div class="flex-cc topics-btn">
           <span class="mr-24 get-started">
-            <NuxtLink to="/price">
+            <NuxtLink :to="`/${locale}/price`">
               <button class="btn btn-primary mr-20">
                 {{ $t('common.get_started') }}
               </button>
@@ -61,6 +61,8 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue';
+
+const { locale } = useI18n();
 
 const themeStore = useThemeStore();
 

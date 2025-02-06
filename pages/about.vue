@@ -28,7 +28,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: t('about.description'),
+      content: t('about.desc'),
     },
   ],
 });
@@ -37,5 +37,5 @@ useHead({
 const setHeaderContent = inject<((component: VNode) => void) | undefined>(
   'setHeaderContent',
 );
-setHeaderContent(h(AboutIntro));
+setHeaderContent?.(h(AboutIntro));
 </script>
