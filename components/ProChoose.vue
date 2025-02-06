@@ -3,12 +3,12 @@
     <div class="topics">
       <div class="topics-con">
         <div class="topics-layout">
-          <div class="topics-tit mb-32" style="width: auto !important">
+          <div class="topics-tit mb-32">
             <span class="txt-6007290 topics-h1">{{
               $t('produpage.title')
             }}</span>
           </div>
-          <h4 class="txt-4001830 topics-h4 mb-32">
+          <h4 class="txt-4001830 topics-h4 mb-32" style="width: auto !important">
             {{ $t('produpage.desc') }}
           </h4>
           <div class="flex-cc topics-btn">
@@ -100,7 +100,6 @@
               <img
                 :src="`/img/${theme}/product_pic${index + 1}.svg`"
                 class="pic"
-                :class="`theme_${theme}`"
                 :alt="detail.alt"
               />
             </li>
