@@ -1,5 +1,5 @@
 <template>
-  <div :class="layoutClass">
+  <div v-show="isPageReady" :class="layoutClass">
     <HeaderBar :class="headerClass">
       <template #ad>
         <AdBar />
@@ -18,6 +18,7 @@ import { onMounted, computed, provide, type VNode } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
 
+const isPageReady = ref(false); // 控制 layout 是否渲染
 const route = useRoute();
 const layoutClass = computed(() => {
   return route.meta.layoutClass || '';
@@ -37,8 +38,10 @@ provide('setHeaderContent', setHeaderContent);
 const themeStore = useThemeStore();
 const { locale } = useI18n();
 
+
 onMounted(() => {
   themeStore.loadTheme(locale.value);
+  isPageReady.value = true; // 页面加载完成后才显示 layout
 });
 </script>
 

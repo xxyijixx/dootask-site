@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 
+
 interface ThemeStore {
   theme: string;
   lang: string;
@@ -28,36 +29,36 @@ export const useThemeStore = defineStore('themeStore', {
       this.theme = theme;
       this.lang = lang;
       // Change images dynamically
-      this.changeImageSrc('#logo', `/img/${theme}/logo.svg`);
-      this.changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
-      this.changeImageSrc('#home_pic2', `/img/${theme}/${lang}_home_pic2.png`);
-      this.changeImageSrc('#home_pic3', `/img/${theme}/${lang}_home_pic3.png`);
-      this.changeImageSrc('#home_pic4', `/img/${theme}/${lang}_home_pic4.png`);
-      this.changeImageSrc('#home_pic5', `/img/${theme}/${lang}_home_pic5.png`);
-      this.changeImageSrc('#home_pic6', `/img/${theme}/${lang}_home_pic6.png`);
-      this.changeImageSrc(
-        '#solution_pic1',
-        `/img/${theme}/${lang}_solution_pic1.png`,
-      );
-      this.changeImageSrc(
-        '#solution_pic2',
-        `/img/${theme}/${lang}_solution_pic2.png`,
-      );
-      this.changeImageSrc(
-        '#solution_pic3',
-        `/img/${theme}/${lang}_solution_pic3.png`,
-      );
-      this.changeImageSrc('#dow_pic1', `/img/${theme}/${lang}_dow_pic1.png`);
-      this.changeImageSrc('#solution_pic4', `/img/${theme}/solution_pic4.png`);
-      this.changeImageSrc('#about_pic1', `/img/${theme}/about_pic1.png`);
-      this.changeImageSrc('#home_icon1', `/img/${theme}/home_icon1.png`);
-      this.changeImageSrc('#home_icon2', `/img/${theme}/home_icon2.png`);
-      this.changeImageSrc('#home_icon3', `/img/${theme}/home_icon3.png`);
-      this.changeImageSrc('#home_icon4', `/img/${theme}/home_icon4.png`);
-      this.changeImageSrc('#home_pic7', `/img/${theme}/home_pic7.svg`);
-      this.changeImageSrc('#home_pic7_768', `/img/${theme}/home_pic7_768.svg`);
-      this.changeImageSrc('#help_pic2', `/img/${theme}/help_pic2.png`);
-      this.changeImageSrc('#help_pic3', `/img/${theme}/help_pic3.png`);
+      // this.changeImageSrc('#logo', `/img/${theme}/logo.svg`);
+      // this.changeImageSrc('#home_pic', `/img/${theme}/${lang}_home_pic1.png`);
+      // this.changeImageSrc('#home_pic2', `/img/${theme}/${lang}_home_pic2.png`);
+      // this.changeImageSrc('#home_pic3', `/img/${theme}/${lang}_home_pic3.png`);
+      // this.changeImageSrc('#home_pic4', `/img/${theme}/${lang}_home_pic4.png`);
+      // this.changeImageSrc('#home_pic5', `/img/${theme}/${lang}_home_pic5.png`);
+      // this.changeImageSrc('#home_pic6', `/img/${theme}/${lang}_home_pic6.png`);
+      // this.changeImageSrc(
+      //   '#solution_pic1',
+      //   `/img/${theme}/${lang}_solution_pic1.png`,
+      // );
+      // this.changeImageSrc(
+      //   '#solution_pic2',
+      //   `/img/${theme}/${lang}_solution_pic2.png`,
+      // );
+      // this.changeImageSrc(
+      //   '#solution_pic3',
+      //   `/img/${theme}/${lang}_solution_pic3.png`,
+      // );
+      // this.changeImageSrc('#dow_pic1', `/img/${theme}/${lang}_dow_pic1.png`);
+      // this.changeImageSrc('#solution_pic4', `/img/${theme}/solution_pic4.png`);
+      // this.changeImageSrc('#about_pic1', `/img/${theme}/about_pic1.png`);
+      // this.changeImageSrc('#home_icon1', `/img/${theme}/home_icon1.png`);
+      // this.changeImageSrc('#home_icon2', `/img/${theme}/home_icon2.png`);
+      // this.changeImageSrc('#home_icon3', `/img/${theme}/home_icon3.png`);
+      // this.changeImageSrc('#home_icon4', `/img/${theme}/home_icon4.png`);
+      // this.changeImageSrc('#home_pic7', `/img/${theme}/home_pic7.svg`);
+      // this.changeImageSrc('#home_pic7_768', `/img/${theme}/home_pic7_768.svg`);
+      // this.changeImageSrc('#help_pic2', `/img/${theme}/help_pic2.png`);
+      // this.changeImageSrc('#help_pic3', `/img/${theme}/help_pic3.png`);
 
       // Set CSS custom properties for background images and colors
       root.style.setProperty(
@@ -192,6 +193,7 @@ export const useThemeStore = defineStore('themeStore', {
     },
 
     loadTheme(lang?: string): void {
+      
       const theme = localStorage.getItem('theme');
       if (theme == 'dark') {
         this.setTheme('dark', lang);
