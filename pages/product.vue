@@ -1,11 +1,9 @@
 <template>
-  <ClientOnly>
     <main>
       <!-- <ProChoose></ProChoose> -->
       <ProManage></ProManage>
       <ProDigit></ProDigit>
     </main>
-  </ClientOnly>
 </template>
 
 <script setup lang="ts">

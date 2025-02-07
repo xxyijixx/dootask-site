@@ -1,12 +1,10 @@
 <template>
-  <ClientOnly>
     <main>
       <section>
         <!-- <PriceWay></PriceWay> -->
         <PriceCompare></PriceCompare>
       </section>
     </main>
-  </ClientOnly>
 </template>
 
 <script setup lang="ts">

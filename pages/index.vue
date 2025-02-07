@@ -1,6 +1,7 @@
 <template>
   <div>
     <CookieConsent></CookieConsent>
+    <ClientOnly>
     <main>
       <!-- 主要区域划分 -->
       <section>
@@ -14,6 +15,7 @@
         <IndexCollaboration />
       </section>
     </main>
+  </ClientOnly>
   </div>
 </template>
 <script setup lang="ts">

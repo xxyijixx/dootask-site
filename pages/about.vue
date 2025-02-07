@@ -2,8 +2,8 @@
   <main>
     <section>
       <!-- <AboutIntro /> -->
-      <AboutApply />
-      <AboutSuggest />
+        <AboutApply />
+        <AboutSuggest />
     </section>
   </main>
 </template>

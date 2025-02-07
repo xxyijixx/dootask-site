@@ -11,10 +11,10 @@ export default defineNuxtConfig({
     // '~/plugins/theme.ts',
     // '~/plugins/i18n.ts',  // 添加 i18n 插件
     // '~/plugins/logger.ts' //添加屏蔽控制台warn插件
-    // '~/plugins/theme-styles.ts',
-    // '~/plugins/theme-plu.ts',
+    '~/plugins/theme.client.ts'
     
   ],
+  css: ['~/assets/css/theme.css'],
   app: {
     head: {
       title: 'DooTask - 协作项目管理工具',
@@ -62,7 +62,6 @@ export default defineNuxtConfig({
       // ],
     },
   },
-
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/content',

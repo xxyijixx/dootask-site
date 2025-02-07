@@ -1,22 +1,16 @@
 <template>
   <div :class="layoutClass">
-    
     <HeaderBar :class="headerClass">
       <template #ad>
-        <ClientOnly>
           <AdBar />
-        </ClientOnly>
       </template>
-        <ClientOnly>
           <component :is="headerContent" v-if="headerContent" />
-        </ClientOnly>
     </HeaderBar>
-
-    <NuxtPage  />
-      <ClientOnly>
-        <FooterBar />
-      </ClientOnly>
-    <SideNav />
+    <ClientOnly>
+      <NuxtPage  />
+      <FooterBar />
+      <SideNav />
+    </ClientOnly>
   </div>
 </template>
 
@@ -24,6 +18,9 @@
 import { onMounted, computed, provide, type VNode } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
+import useTheme from '@/composables/useTheme.ts';
+
+useTheme();
 
 defineOgImageComponent('NuxtSeo')
 
