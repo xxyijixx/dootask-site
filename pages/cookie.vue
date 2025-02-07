@@ -11,7 +11,7 @@ definePageMeta({
   layout: 'blank',
 });
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 
 const CookieContentRef = ref<HTMLElement | null>();
 // 使用 i18n 替代 themeStore
@@ -48,6 +48,10 @@ useHead({
           ? 'DooTask是一款轻量级的开源在线项目任务管理工具'
           : 'DooTask is a lightweight open-source online project task management tool',
       ),
+    },
+    {
+      name: 'keywords',
+      content: t('seo.keywords'),
     },
   ],
 });

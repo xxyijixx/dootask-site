@@ -25,11 +25,11 @@ export default defineNuxtConfig({
           hid: 'description',
           name: 'description',
           content:
-            'DooTask - 简单高效的团队协作与项目管理平台，助力企业提升工作效率',
+            'DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。',
         },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#ffffff' },
-        { name: 'keywords', content: '项目管理, 团队协作, 工作流, 效率工具' },
+        { name: 'keywords', content: '中国 DooTask 开源在线项目 任务管理工具 任务管理 轻量级 海豚有海 团队协作' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }],
       // htmlAttrs: {
@@ -71,6 +71,9 @@ export default defineNuxtConfig({
     'nuxt-gtag',
   ],
   // SEO配置
+  seo: {
+    
+  },  
   site: {
     url: 'http://localhost:3000',
     name: 'DooTask',

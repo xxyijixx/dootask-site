@@ -1,4 +1,5 @@
 // 防抖函数
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => void>(
   fn: T,
   delay: number,
@@ -13,6 +14,7 @@ export function debounce<T extends (...args: any[]) => void>(
 }
 
 // 节流函数
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function throttle<T extends (...args: any[]) => void>(
   fn: T,
   delay: number,

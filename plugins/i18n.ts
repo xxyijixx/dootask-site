@@ -1,4 +1,5 @@
 export default defineNuxtPlugin((nuxtApp) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const i18n: any = nuxtApp.$i18n;
   const router = useRouter();
 
