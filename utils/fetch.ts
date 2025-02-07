@@ -1,6 +1,6 @@
 // 通用数据获取函数
-export const fetchData = (url: string) => {
-  return fetch(url).then((response) => response.json());
+export const fetchData = <T>(url: string): Promise<T> => {
+  return fetch(url).then((response) => response.json() as T);
 };
 
 // 错误处理函数

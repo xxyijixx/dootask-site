@@ -413,6 +413,18 @@ import '@/assets/scss/ad.scss';
 import '@/assets/scss/home.scss';
 import '@/assets/css/animate.min.css';
 import Qs from 'qs';
+import type {
+  AdBannerResponse,
+  PricingPlansResponse,
+  WhyChooseDooTaskResponse,
+  TitlePart,
+  ThemedButton,
+  BannerDescription,
+  MediaData,
+  Plan,
+  Feature,
+  IntroCard,
+} from '../types/ad';
 definePageMeta({
   layout: 'blank',
 });
@@ -463,7 +475,9 @@ function fetchAdBanner(language: string) {
     },
   );
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-banner?${query}`;
-  fetchData(apiUrl).then(handleAdBannerResponse).catch(handleError);
+  fetchData<AdBannerResponse>(apiUrl)
+    .then(handleAdBannerResponse)
+    .catch(handleError);
 }
 
 // 获取广告计划数据
@@ -487,7 +501,7 @@ function fetchAdPlan(language: string) {
     },
   });
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-plan?${query}`;
-  fetchData(apiUrl).then(handleAdPlanResponse).catch(handleError);
+  fetchData<PricingPlansResponse>(apiUrl).then(handleAdPlanResponse).catch(handleError);
 }
 
 // 获取广告介绍数据
@@ -514,25 +528,24 @@ function fetchAdIntro(language: string) {
     },
   });
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-intro?${query}`;
-  fetchData(apiUrl).then(handleAdIntroResponse).catch(handleError);
+  fetchData<WhyChooseDooTaskResponse>(apiUrl).then(handleAdIntroResponse).catch(handleError);
 }
 
 // 处理广告banner响应
-function handleAdBannerResponse(response: any) {
+function handleAdBannerResponse(response: AdBannerResponse) {
   // 在此实现广告banner处理逻辑
   try {
+    const banner = response.data;
     const {
-      data: {
-        attributes: {
-          title,
-          description,
-          background,
-          underline,
-          signUpButton,
-          selfHostButton,
-        },
+      attributes: {
+        title,
+        description,
+        background,
+        underline,
+        signUpButton,
+        selfHostButton,
       },
-    } = response;
+    } = banner;
     handleAdBannerTitle(title);
     handleAdBannerDescription(description);
     handleAdBannerBackground(background);
@@ -544,12 +557,6 @@ function handleAdBannerResponse(response: any) {
   }
 }
 
-interface TitleItem {
-  key: 'part1' | 'part2' | 'part3';
-  text: string;
-  style?: Record<string, string>;
-}
-
 interface TitleText {
   [key: string]: {
     text: string;
@@ -557,10 +564,10 @@ interface TitleText {
   };
 }
 
-function handleAdBannerTitle(title: TitleItem[] | string) {
+function handleAdBannerTitle(title: TitlePart[] | string) {
   const titleText: TitleText = {};
   if (Array.isArray(title)) {
-    title.forEach((item: TitleItem) => {
+    title.forEach((item: TitlePart) => {
       titleText[item.key] = { text: item.text, style: item.style };
     });
   }
@@ -588,25 +595,7 @@ function handleAdBannerTitle(title: TitleItem[] | string) {
   }
 }
 
-interface Description {
-  text: string;
-  style?: Record<string, string>;
-}
-
-interface Link {
-  label: string;
-  href: string;
-  target?: string;
-  slug?: string;
-}
-
-interface SignUpButton {
-  theme?: string;
-  style?: Record<string, string>;
-  link: Link;
-}
-
-function handleAdBannerDescription(description: Description): void {
+function handleAdBannerDescription(description: BannerDescription): void {
   const descriptionText = {
     text: description.text,
     style: description.style,
@@ -624,7 +613,7 @@ function handleAdBannerDescription(description: Description): void {
   }
 }
 
-function handleAdBannerBackground(background: any): void {
+function handleAdBannerBackground(background: { data: MediaData }): void {
   const backgroundUrl = getMediaUrl(background);
   const adBannerEl = document.getElementById('ad-banner');
 
@@ -633,7 +622,7 @@ function handleAdBannerBackground(background: any): void {
   }
 }
 
-function handleAdBannerUnderline(underline: any): void {
+function handleAdBannerUnderline(underline: { data: MediaData }): void {
   const underlineUrl = getMediaUrl(underline);
   const adBannerTitleUnderlineEl = document.getElementById(
     'ad-banner-title-underline',
@@ -644,10 +633,9 @@ function handleAdBannerUnderline(underline: any): void {
 }
 
 function handleAdBannerSignUpButton({
-  theme,
   style,
-  link: { label, href, target, slug },
-}: SignUpButton): void {
+  link: { label, href, target },
+}: ThemedButton): void {
   const signUpButtonEl = document.getElementById('ad-banner-sign-up-button');
   if (signUpButtonEl) {
     signUpButtonEl.innerHTML = `
@@ -663,10 +651,9 @@ function handleAdBannerSignUpButton({
 }
 
 function handleAdBannerSelfHostButton({
-  theme,
   style,
-  link: { label, href, target, slug },
-}: any) {
+  link: { label, href, target },
+}: ThemedButton) {
   const selfHostButtonEl = document.getElementById(
     'ad-banner-self-host-button',
   );
@@ -735,7 +722,7 @@ function handleDialogAnimate(bool: boolean) {
 // 管理动画
 function manageAnimate() {
   let throttleTimer: boolean | null = null;
-  const throttle = (callback: Function, time: number) => {
+  const throttle = (callback: ()=>void, time: number) => {
     if (throttleTimer) return;
     throttleTimer = true;
     setTimeout(() => {
@@ -839,7 +826,7 @@ function isElementOutOfViewport(el: Element | null) {
 }
 
 // 处理广告计划响应
-function handleAdPlanResponse(response: any) {
+function handleAdPlanResponse(response: PricingPlansResponse) {
   // 在此实现广告计划处理逻辑
   try {
     const {
@@ -855,21 +842,21 @@ function handleAdPlanResponse(response: any) {
   }
 }
 
-function handleAdPlanTitle(title: any) {
+function handleAdPlanTitle(title: string) {
   const planTitleEl = document.getElementById('ad-plan-title');
   if (planTitleEl && title) {
     planTitleEl.textContent = title;
   }
 }
 
-function handleAdPlanDescription(description: any) {
+function handleAdPlanDescription(description: string) {
   const planDescriptionEl = document.getElementById('ad-plan-description');
   if (planDescriptionEl && description) {
     planDescriptionEl.textContent = description;
   }
 }
 
-async function handleAdPlanPlans(plans: any) {
+async function handleAdPlanPlans(plans: Plan[]) {
   const planContentEl = document.getElementById('ad-plan-content');
   if (planContentEl && Array.isArray(plans)) {
     const prevPlanItems = planContentEl.querySelectorAll('.plan-item');
@@ -919,7 +906,7 @@ async function handleAdPlanPlans(plans: any) {
           <div class="plan-item-description">
               <ul class="plan-item-description-list">
                 ${plan.features
-                  .map((feature: any) => {
+                  .map((feature: Feature) => {
                     const iconUrl = feature.icon.data
                       ? getMediaUrl(feature.icon)
                       : '/img/ad/checked.svg';
@@ -971,7 +958,7 @@ async function handleAdPlanPlans(plans: any) {
 }
 
 // 处理广告介绍响应
-function handleAdIntroResponse(response: any) {
+function handleAdIntroResponse(response: WhyChooseDooTaskResponse) {
   try {
     const {
       data: {
@@ -993,14 +980,14 @@ function handleAdIntroTitle(title: string) {
   }
 }
 
-function handleAdIntroDescription(description: any) {
+function handleAdIntroDescription(description: string) {
   const introDescriptionEl = document.getElementById('ad-intro-description');
   if (introDescriptionEl && description) {
     introDescriptionEl.textContent = description;
   }
 }
 
-async function handleAdIntroIntros(intros: any) {
+async function handleAdIntroIntros(intros: IntroCard[]) {
   const introContentEl = document.getElementById('ad-intro-content');
   if (introContentEl && Array.isArray(intros)) {
     const prevIntroItems = introContentEl.querySelectorAll('.ad-intro-item');
