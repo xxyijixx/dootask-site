@@ -91,313 +91,8 @@
         </div>
       </HeaderBar>
       <main>
-        <section class="ad-plan">
-          <div class="section-wrapper">
-            <!-- <div class="section-title animate__animated animate__fadeInDown animate__fast animate__delay-1s">
-            <span id="ad-plan-title"> 9月双重钜惠来袭！ </span>
-          </div>
-          <div class="section-description animate__animated animate__fadeInDown animate__fast animate__delay-1s">
-            <span id="ad-plan-description"> 让生活变轻松，让工作变高效 </span>
-          </div> -->
-            <div id="ad-plan-content" class="section-content">
-              <div class="plan-item animate__animated">
-                <div class="plan-item-title">
-                  <span>免费版</span>
-                </div>
-                <div class="plan-item-price">
-                  <span class="plan-item-price-current price">
-                    0
-                    <span class="plan-item-price-payment"> /月 </span>
-                  </span>
-                  <span class="plan-item-price-original"> 最多3人 </span>
-                </div>
-                <div class="plan-item-button">
-                  <a>
-                    <button class="btn-primary">立即部署</button>
-                  </a>
-                </div>
-                <div class="plan-item-description">
-                  <ul class="plan-item-description-list">
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        支持私有化部署
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        技术咨询服务
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        专属运营客服
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        12小时服务响应
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="plan-item active animate__animated">
-                <div class="plan-item-tag">最受欢迎</div>
-                <div class="plan-item-title">
-                  <span>10人专业版</span>
-                </div>
-                <div class="plan-item-price">
-                  <span class="plan-item-price-current price">
-                    ￥5,800
-                    <span class="plan-item-price-payment"> </span>
-                  </span>
-                  <span class="plan-item-price-original price"> ¥8,800 </span>
-                </div>
-                <div class="plan-item-button">
-                  <a>
-                    <button class="btn-primary">立即购买</button>
-                  </a>
-                </div>
-                <div class="plan-item-description">
-                  <ul class="plan-item-description-list">
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        支持私有化部署
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        技术咨询服务
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        专属运营客服
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        12小时服务响应
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img src="/img/ad/checked.svg" alt="undefined" />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        赠1年免费技术维护
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="plan-item animate__animated">
-                <div class="plan-item-tag">热销</div>
-                <div class="plan-item-title">
-                  <span>无限专业版</span>
-                </div>
-                <div class="plan-item-price">
-                  <span class="plan-item-price-current price">
-                    ¥16,800
-                    <span class="plan-item-price-payment"> </span>
-                  </span>
-                  <span class="plan-item-price-original price"> ¥18,888 </span>
-                </div>
-                <div class="plan-item-button">
-                  <a>
-                    <button class="btn-primary">立即购买</button>
-                  </a>
-                </div>
-                <div class="plan-item-description">
-                  <ul class="plan-item-description-list">
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        支持私有化部署
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        技术咨询服务
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        LOGO定制
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        专属运营客服
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        12小时服务响应
-                      </span>
-                    </li>
-
-                    <li class="plan-item-description-item">
-                      <i class="plan-item-description-item-icon">
-                        <img
-                          src="https://cms.hitosea.com/uploads/plan_checked_ea40b42593.svg"
-                          alt="undefined"
-                        />
-                      </i>
-                      <span class="plan-item-description-item-content">
-                        赠1年免费技术维护
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="ad-intro">
-          <div class="section-wrapper">
-            <div
-              class="section-title animate__animated animate__fadeInDown animate__fast animate__delay-1s"
-            >
-              <span id="ad-intro-title"> 为何选择DooTask？ </span>
-            </div>
-            <div
-              class="section-description animate__animated animate__fadeInDown animate__fast animate__delay-1s"
-            >
-              <span id="ad-intro-description"> &nbsp; </span>
-            </div>
-            <div id="ad-intro-content" class="section-content">
-              <div class="ad-intro-item">
-                <div class="ad-intro-item-header">
-                  <img src="/img/ad/intro-card-head.png" alt="head" />
-                </div>
-                <div class="ad-intro-item-image">
-                  <img src="/img/ad/intro-card-img01.svg" alt="img" />
-                </div>
-                <div class="ad-intro-item-title">
-                  <span> 项目管理 </span>
-                </div>
-                <div class="ad-intro-item-description">
-                  <span
-                    >支持多种项目管理模式，如敏捷开发、水晶计划、看板等，适用于各种规模和类型的项目管理。用户可以使用DooTask里的项目管理工具，例如任务分配、进度跟踪、资源分配等来管理整个项目。
-                  </span>
-                </div>
-              </div>
-              <div class="ad-intro-item">
-                <div class="ad-intro-item-header">
-                  <img src="/img/ad/intro-card-head.png" alt="head" />
-                </div>
-                <div class="ad-intro-item-image">
-                  <img src="/img/ad/intro-card-img02.svg" alt="img" />
-                </div>
-                <div class="ad-intro-item-title">
-                  <span> 团队协作 </span>
-                </div>
-                <div class="ad-intro-item-description">
-                  <span
-                    >DooTask的丰富实用的工具可以方便团队成员之间的沟通和协作，提高工作效率。例如，团队成员可以使用DooTask里的文档协作工具、在线思维导图、流程图等工具进行协作。
-                  </span>
-                </div>
-              </div>
-              <div class="ad-intro-item">
-                <div class="ad-intro-item-header">
-                  <img src="/img/ad/intro-card-head.png" alt="head" />
-                </div>
-                <div class="ad-intro-item-image">
-                  <img src="/img/ad/intro-card-img03.svg" alt="img" />
-                </div>
-                <div class="ad-intro-item-title">
-                  <span> 数据安全保护 </span>
-                </div>
-                <div class="ad-intro-item-description">
-                  <span
-                    >DooTask在消息功能上使用非对称加密技术，确保用户的信息得到最大程度的保护。此外，它还提供了强大的权限管理系统，能够根据不同用户的角色和职责，灵活地设置他们在项目管理中的权限和操作范围。
-                  </span>
-                </div>
-              </div>
-              <div class="ad-intro-item">
-                <div class="ad-intro-item-header">
-                  <img src="/img/ad/intro-card-head.png" alt="head" />
-                </div>
-                <div class="ad-intro-item-image">
-                  <img src="/img/ad/intro-card-img04.svg" alt="img" />
-                </div>
-                <div class="ad-intro-item-title">
-                  <span> 自由定制 </span>
-                </div>
-                <div class="ad-intro-item-description">
-                  <span
-                    >DooTask是一款完全开源的工具，用户可以自由修改和定制，避免了商业软件订阅费用带来的额外成本。
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AdPlan />
+        <AdIntro />
       </main>
       <FooterBar class="ad-footer"></FooterBar>
       <SideNav></SideNav>
@@ -501,7 +196,9 @@ function fetchAdPlan(language: string) {
     },
   });
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-plan?${query}`;
-  fetchData<PricingPlansResponse>(apiUrl).then(handleAdPlanResponse).catch(handleError);
+  fetchData<PricingPlansResponse>(apiUrl)
+    .then(handleAdPlanResponse)
+    .catch(handleError);
 }
 
 // 获取广告介绍数据
@@ -528,7 +225,9 @@ function fetchAdIntro(language: string) {
     },
   });
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-intro?${query}`;
-  fetchData<WhyChooseDooTaskResponse>(apiUrl).then(handleAdIntroResponse).catch(handleError);
+  fetchData<WhyChooseDooTaskResponse>(apiUrl)
+    .then(handleAdIntroResponse)
+    .catch(handleError);
 }
 
 // 处理广告banner响应
@@ -722,7 +421,7 @@ function handleDialogAnimate(bool: boolean) {
 // 管理动画
 function manageAnimate() {
   let throttleTimer: boolean | null = null;
-  const throttle = (callback: ()=>void, time: number) => {
+  const throttle = (callback: () => void, time: number) => {
     if (throttleTimer) return;
     throttleTimer = true;
     setTimeout(() => {

@@ -12,7 +12,7 @@
 import { inject, h } from 'vue';
 import { useI18n } from 'vue-i18n';
 import '@/assets/scss/about.scss';
-import AboutIntro from '@/components/AboutIntro.vue';
+import AboutIntro from '../components/AboutIntro.vue';
 
 const { t, locale } = useI18n();
 
@@ -33,13 +33,12 @@ useHead({
     {
       name: 'keywords',
       content: t('seo.keywords'),
-    }
+    },
   ],
 });
 
 // 向父组件传递组件
-const setHeaderContent = inject<((component: VNode) => void) | undefined>(
-  'setHeaderContent',
-);
+const setHeaderContent =
+  inject<(component: VNode | null) => void>('setHeaderContent');
 setHeaderContent?.(h(AboutIntro));
 </script>

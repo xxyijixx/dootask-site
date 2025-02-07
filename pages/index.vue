@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import '@/assets/scss/home.scss';
-import IndexMain from '@/components/IndexMain.vue';
+import IndexMain from '../components/IndexMain.vue';
 const { t, locale } = useI18n();
 
 definePageMeta({
@@ -39,12 +39,12 @@ useHead({
     {
       name: 'keywords',
       content: t('seo.keywords'),
-    }
+    },
   ],
 });
 // 向父组件传递组件
-const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+const setHeaderContent =
+  inject<(component: VNode | null) => void>('setHeaderContent');
 
 setHeaderContent?.(h(IndexMain));
-
 </script>

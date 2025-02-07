@@ -1,3 +1,5 @@
+import type { MediaData } from '../types/ad'
+
 // 通用数据获取函数
 export const fetchData = <T>(url: string): Promise<T> => {
   return fetch(url).then((response) => response.json() as T);
@@ -8,14 +10,8 @@ export const handleError = (error: Error) => {
   console.error('获取数据时出错:', error);
 };
 
-// export const getStyle = (style: any) => {
-//   if (!style) return null;
-//   return Object.keys(style)
-//     .map((key) => `${key}: ${style[key]}`)
-//     .join('; ');
-// };
 
-export const getStyle = (style: any) => {
+export const getStyle = (style: Record<string, string>) => {
   if (!style) return null;
   const styleObject: Record<string, string> = {};
   Object.keys(style).forEach((key) => {
@@ -24,7 +20,7 @@ export const getStyle = (style: any) => {
   return styleObject;
 };
 
-export const getMediaUrl = (media: any) => {
+export const getMediaUrl = (media: {data: MediaData | null}) => {
   if (!media?.data?.attributes?.url) {
     return '';
   }

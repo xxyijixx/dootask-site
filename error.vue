@@ -9,11 +9,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { NuxtError } from '#app';
+// import type { NuxtError } from '#app';
 import { computed } from 'vue';
 
 const props = defineProps({
-  error: Object as () => NuxtError,
+  error: {
+    type: Object,
+    required: true,
+  },
 });
 
 const message = computed(() => {

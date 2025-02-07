@@ -111,8 +111,8 @@ import '@/assets/scss/log.scss';
 import { useI18n } from 'vue-i18n';
 
 definePageMeta({
-    layoutClass: 'log-page',
-})
+  layoutClass: 'log-page',
+});
 
 const { t, locale } = useI18n();
 
@@ -359,6 +359,10 @@ useHead({
       name: 'description',
       content: t('log.description') || 'DooTask 更新日志',
     },
+    {
+      name: 'keywords',
+      content: t('seo.keywords'),
+    },
   ],
 });
 
@@ -382,7 +386,8 @@ onUnmounted(() => {
 });
 
 // 置空头部组件
-const setHeaderContent = inject<((component: VNode) => void) | undefined>("setHeaderContent");
+const setHeaderContent =
+  inject<(component: VNode | null) => void>('setHeaderContent');
 setHeaderContent?.(null);
 </script>
 

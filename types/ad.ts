@@ -124,15 +124,13 @@ export interface TitlePart {
   id: number;
   text: string;
   key: string;
-  style: {
-    color: string;
-  };
+  style: Record<string, string>
 }
 
 export interface ThemedButton {
   id: number;
   theme: string;
-  style: null;
+  style: Record<string, string>;
   link: {
     id: number;
     label: string;
@@ -176,9 +174,7 @@ export interface BannerDescription {
   id: number;
   text: string;
   key: string;
-  style: {
-    color: string;
-  };
+  style: Record<string, string>
 }
 
 

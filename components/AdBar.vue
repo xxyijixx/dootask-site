@@ -82,7 +82,8 @@ function adjustNavPosition(direction: string) {
 // 获取广告栏数据
 const fetchAdBar = (language: string) => {
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-bar?locale=${language}&populate[0]=background`;
-  fetchData(apiUrl)
+  
+  fetchData<any>(apiUrl)
     .then(({ data: { attributes } }) => {
       updateAdBar(attributes);
     })
