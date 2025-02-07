@@ -36,6 +36,10 @@ useHead({
       name: 'description',
       content: t('homepage.hero.description'),
     },
+    {
+      name: 'keywords',
+      content: t('seo.keywords'),
+    }
   ],
 });
 // 向父组件传递组件

@@ -30,6 +30,10 @@ useHead({
       name: 'description',
       content: t('about.desc'),
     },
+    {
+      name: 'keywords',
+      content: t('seo.keywords'),
+    }
   ],
 });
 
