@@ -1,17 +1,22 @@
 <template>
   <div :class="layoutClass">
-    <ClientOnly>
+    
     <HeaderBar :class="headerClass">
       <template #ad>
-        <AdBar />
+        <ClientOnly>
+          <AdBar />
+        </ClientOnly>
       </template>
-      <component :is="headerContent" v-if="headerContent" />
+        <ClientOnly>
+          <component :is="headerContent" v-if="headerContent" />
+        </ClientOnly>
     </HeaderBar>
 
     <NuxtPage  />
-    <FooterBar />
+      <ClientOnly>
+        <FooterBar />
+      </ClientOnly>
     <SideNav />
-  </ClientOnly>
   </div>
 </template>
 
