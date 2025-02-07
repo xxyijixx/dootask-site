@@ -15,6 +15,7 @@ import SuloTopics from '../components/SuloTopics.vue';
 
 definePageMeta({
   layoutClass: 'solution-page',
+  topicsName: 'solution',
 });
 
 const { t, locale } = useI18n();

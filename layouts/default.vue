@@ -2,27 +2,35 @@
   <div :class="layoutClass">
     <HeaderBar :class="headerClass">
       <template #ad>
-          <AdBar />
+        <AdBar />
       </template>
-          <component :is="headerContent" v-if="headerContent" />
+      <!-- <component :is="headerContent" v-if="headerContent" /> -->
+       <template #default>
+          <IndexMain v-if="topicsName === 'index'"/>
+          <PriceWay v-else-if="topicsName === 'price'"/>
+          <ProChoose v-else-if="topicsName === 'product'"/>
+          <SuloTopics v-else-if="topicsName === 'solution'"/>
+          <DownloadPart v-else-if="topicsName === 'download'"/>
+          <AboutIntro v-else-if="topicsName === 'about'"/>
+       </template>
     </HeaderBar>
-    <ClientOnly>
-      <NuxtPage  />
-      <FooterBar />
-      <SideNav />
-    </ClientOnly>
+    <!-- <ClientOnly> -->
+    <NuxtPage />
+    <FooterBar v-if="isFooterReady"/>
+    <SideNav />
+    <!-- </ClientOnly> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, computed, provide, type VNode } from 'vue';
+import { onMounted, computed } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
 import useTheme from '@/composables/useTheme.ts';
 
 useTheme();
 
-defineOgImageComponent('NuxtSeo')
+defineOgImageComponent('NuxtSeo');
 
 const route = useRoute();
 const layoutClass = computed(() => {
@@ -31,21 +39,19 @@ const layoutClass = computed(() => {
 const headerClass = computed(() => {
   return route.meta.headerClass || '';
 });
-
-const headerContent = ref<VNode | null>(null);
-const setHeaderContent = (component: VNode | null) => {
-  headerContent.value = component;
-};
-
-// 使用 provide 传递方法
-provide('setHeaderContent', setHeaderContent);
+const topicsName = computed(() => {
+  return route.meta.topicsName || '';
+})
 
 const themeStore = useThemeStore();
 const { locale } = useI18n();
-
-
+// 控制脚部是否渲染
+const isFooterReady = ref(false);
 onMounted(() => {
   themeStore.loadTheme(locale.value);
+  nextTick(() => {
+    isFooterReady.value = true;
+  });
 });
 </script>
 

@@ -385,10 +385,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
 });
 
-// 置空头部组件
-const setHeaderContent =
-  inject<(component: VNode | null) => void>('setHeaderContent');
-setHeaderContent?.(null);
 </script>
 
 <style>

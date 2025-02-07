@@ -11,13 +11,13 @@
 
 <script setup lang="ts">
 import '@/assets/scss/download.scss';
-import DownloadPart from '../components/DownloadPart.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
 
 definePageMeta({
   layoutClass: 'download-page',
+  topicsName: 'download',
 });
 
 useHead({
@@ -36,8 +36,4 @@ useHead({
     },
   ],
 });
-// 向父组件传递组件
-const setHeaderContent =
-  inject<(component: VNode | null) => void>('setHeaderContent');
-setHeaderContent?.(h(DownloadPart));
 </script>

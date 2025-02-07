@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div v-show="isHeaderContentReady">
     <CookieConsent></CookieConsent>
-    <ClientOnly>
+    <!-- <ClientOnly> -->
     <main>
       <!-- 主要区域划分 -->
       <section>
@@ -15,7 +15,7 @@
         <IndexCollaboration />
       </section>
     </main>
-  </ClientOnly>
+  <!-- </ClientOnly> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -26,6 +26,7 @@ const { t, locale } = useI18n();
 
 definePageMeta({
   layoutClass: 'home-page',
+  topicsName: 'index'
 });
 
 useHead({
@@ -49,4 +50,11 @@ const setHeaderContent =
   inject<(component: VNode | null) => void>('setHeaderContent');
 
 setHeaderContent?.(h(IndexMain));
+// 添加一个 ref 用于控制子组件的渲染
+const isHeaderContentReady = ref(false);
+
+// 使用 nextTick 确保父组件传递内容后再渲染子组件
+nextTick(() => {
+  isHeaderContentReady.value = true;
+});
 </script>

@@ -9,15 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject, h } from 'vue';
 import { useI18n } from 'vue-i18n';
 import '@/assets/scss/about.scss';
-import AboutIntro from '../components/AboutIntro.vue';
 
 const { t, locale } = useI18n();
 
 definePageMeta({
   layoutClass: 'about-page about_green_bg',
+  topicsName: 'about',
 });
 
 useHead({
@@ -37,8 +36,4 @@ useHead({
   ],
 });
 
-// 向父组件传递组件
-const setHeaderContent =
-  inject<(component: VNode | null) => void>('setHeaderContent');
-setHeaderContent?.(h(AboutIntro));
 </script>

@@ -7,14 +7,8 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  plugins: [
-    // '~/plugins/theme.ts',
-    // '~/plugins/i18n.ts',  // 添加 i18n 插件
-    // '~/plugins/logger.ts' //添加屏蔽控制台warn插件
-    '~/plugins/theme.client.ts'
-    
-  ],
-  css: ['~/assets/css/theme.css'],
+  plugins: [],
+  css: ['~/assets/scss/theme.scss'],
   app: {
     head: {
       title: 'DooTask - 协作项目管理工具',

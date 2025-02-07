@@ -1,8 +1,0 @@
-/* assets/css/theme.css */
-[data-theme="dark"] {
-    --bg-color: #1E1E1E;
-  }
-  [data-theme="light"] {
-    --bg-color: #fff;
-  }
-  

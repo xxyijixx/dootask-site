@@ -8,11 +8,12 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import ProChoose from '../components/ProChoose.vue'
+// import ProChoose from '../components/ProChoose.vue'
 import '@/assets/scss/product.scss';
 definePageMeta({
   layoutClass: 'product-page',
   headerClass: 'product',
+  topicsName: 'product',
 });
 
 const { t, locale } = useI18n();
@@ -30,7 +31,8 @@ useHead({
   ],
 });
 // 向父组件传递组件
-const setHeaderContent =
-  inject<(component: VNode | null) => void>('setHeaderContent');
-setHeaderContent?.(h(ProChoose));
+// const setHeaderContent =
+//   inject<(component: VNode | null) => void>('setHeaderContent');
+// setHeaderContent?.(h(ProChoose));
+
 </script>
