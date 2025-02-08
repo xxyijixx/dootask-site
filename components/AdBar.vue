@@ -3,7 +3,7 @@
     <div class="ad-content">
       <div class="ad-content-left">
         <p id="ad-text" ref="AdTextRef" class="ad-text">最新活动</p>
-        <button id="ad-btn" ref="AdBtnRef" class="ad-btn">查看详情</button>
+        <button id="ad-btn" ref="AdBtnRef" class="ad-btn" @click="goToAdPage">查看详情</button>
       </div>
       <div id="ad-close" ref="AdCloseRef" class="ad-close">
         <img src="/img/price_icon2.svg" alt="关闭" />
@@ -116,5 +116,11 @@ function updateAdBar({ background, text, buttonText }: BannerBarAttributes) {
   }
 
   initializeAdBar();
+}
+const router = useRouter()
+
+const goToAdPage = () => {
+  // 跳转到主页
+  router.push(`/${locale.value}/ad`)
 }
 </script>
