@@ -210,6 +210,20 @@ export interface LocalizationData {
   attributes: LocalizationBaseAttributes;
 }
 
+// 展示栏属性接口
+export interface BannerBarAttributes {
+  text: string;
+  buttonText: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  background: {
+    data: MediaData;
+  };
+}
+
+
 // Banner本地化属性
 export interface BannerLocalization {
   id: number;
@@ -230,7 +244,14 @@ export interface AdBanner {
   };
 }
 
+// 展示栏接口
+export interface BannerBar {
+  id: number;
+  attributes: BannerBarAttributes;
+}
+
 // API响应类型
 export type WhyChooseDooTaskResponse = ApiResponse<WhyChooseDooTask>;
 export type PricingPlansResponse = ApiResponse<PricingPlans>;
 export type AdBannerResponse = ApiResponse<AdBanner>;
+export type BannerBarResponse = ApiResponse<BannerBar>;

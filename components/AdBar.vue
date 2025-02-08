@@ -1,5 +1,5 @@
 <template>
-  <div v-if="adDiaplsy" id="ad" ref="AdRef" class="ad">
+  <div v-show="adDiaplsy" id="ad" ref="AdRef" class="ad ad-page">
     <div class="ad-content">
       <div class="ad-content-left">
         <p id="ad-text" ref="AdTextRef" class="ad-text">最新活动</p>
@@ -16,7 +16,7 @@
 import { onMounted } from 'vue';
 import '@/assets/scss/ad.scss';
 import { fetchData, handleError } from '../utils/fetch';
-
+import type { BannerBarResponse, BannerBarAttributes } from '../types/ad'
 const { locale } = useI18n();
 
 onMounted(() => {
@@ -83,7 +83,7 @@ function adjustNavPosition(direction: string) {
 const fetchAdBar = (language: string) => {
   const apiUrl = `https://cms.hitosea.com/api/doo-task-ad-bar?locale=${language}&populate[0]=background`;
   
-  fetchData<any>(apiUrl)
+  fetchData<BannerBarResponse>(apiUrl)
     .then(({ data: { attributes } }) => {
       updateAdBar(attributes);
     })
@@ -91,13 +91,14 @@ const fetchAdBar = (language: string) => {
 };
 
 // 更新广告栏内容
-function updateAdBar({ background, text, buttonText }: any) {
+function updateAdBar({ background, text, buttonText }: BannerBarAttributes) {
   // insertAdBarElement();
   adDiaplsy.value = true;
-
+  
   const adWrapper = AdRef.value;
+  console.log("更新广告栏内ss容", adWrapper)
   if (!adWrapper) return;
-
+  console.log("更新广告栏内容")
   // 设置背景图片
   const backgroundUrl = background?.data?.attributes?.url;
   if (backgroundUrl) {
