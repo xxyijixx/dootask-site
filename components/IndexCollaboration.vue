@@ -4,13 +4,13 @@
       id="home_pic7"
       class="home_pic7"
       :src="`/img/${theme}/home_pic7.svg`"
-      alt="开启您的DooTask团队协作"
+      :alt="$t('homepage.coll.desc')"
     />
     <img
       id="home_pic7_768"
       class="home_pic7_768"
       :src="`/img/${theme}/home_pic7_768.svg`"
-      alt="开启您的DooTask团队协作"
+      :alt="$t('homepage.coll.desc')"
     />
     <div class="collaboration-content collaboration-content-zh">
       <h1 class="collaboration-txt txt-5002835 mb-32">

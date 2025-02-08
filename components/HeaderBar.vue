@@ -36,7 +36,7 @@
               <img
                 id="drop-down-svg"
                 src="/img/vector.svg"
-                alt="支持"
+                :alt="$t('navigation.support')"
                 class="nav-vector"
                 :style="isMenuPopVisisble ? 'transform: rotate(180deg)' : ''"
               />
@@ -83,7 +83,7 @@
           <div id="lang-img" class="lang">
             <img
               src="/img/lang-select.svg"
-              alt="语言切换"
+              :alt="$t('navigation.lang_switch')"
               @click="showLangPopHandle"
             />
             <ul
@@ -104,14 +104,14 @@
             class="nav-r-icon"
             @click="setTheme('light')"
           >
-            <img src="/img/light.svg" alt="明亮主题" />
+            <img src="/img/light.svg" :alt="$t('theme.light')" />
           </i>
           <i
             v-show="theme === 'light'"
             class="nav-r-icon"
             @click="setTheme('dark')"
           >
-            <img src="/img/drak.svg" alt="暗黑主题" />
+            <img src="/img/drak.svg" :alt="$t('theme.dark')" />
           </i>
           <a href="https://github.com/kuaifan/dootask" target="_blank">
             <i class="nav-r-icon">
@@ -128,7 +128,7 @@
           </span>
         </div>
         <div class="menuBtn" @click="openDrawer">
-          <img id="menuBtn" :src="`/img/menu.svg`" alt="菜单" />
+          <img id="menuBtn" :src="`/img/menu.svg`" :alt="$t('navigation.menu')" />
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
                 id="drawer-down-support-svg"
                 src="/img/vector.svg"
                 class="nav-vector"
-                alt="支持"
+                :alt="$t('navigation.support')"
                 :style="isSupportMenuOpen ? 'transform: rotate(180deg)' : ''"
               />
             </i>
@@ -196,7 +196,7 @@
               {{ $t('navigation.theme') }}
               <img
                 src="/img/vector.svg"
-                alt="主题"
+                :alt="$t('navigation.theme')"
                 class="nav-vector"
                 :style="isThemeMenuOpen ? 'transform: rotate(180deg)' : ''"
               />
@@ -221,7 +221,7 @@
               {{ $t('navigation.language') }}
               <img
                 src="/img/vector.svg"
-                alt="语言"
+                :alt="$t('navigation.language')"
                 class="nav-vector"
                 :style="isLanguageMenuOpen ? 'transform: rotate(180deg)' : ''"
               />

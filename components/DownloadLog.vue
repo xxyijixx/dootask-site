@@ -28,7 +28,7 @@
             <li v-show="!loading">
               <a class="more-item" @click="navigateTo('/log')">
                 <h5 class="txt-4001624 more">{{ $t('download.log.more') }}</h5>
-                <img class="icon" src="/img/dow_arrow.svg" alt="更多日志" />
+                <img class="icon" src="/img/dow_arrow.svg" :alt="$t('download.log.more')" />
               </a>
             </li>
           </ul>
@@ -38,7 +38,7 @@
             id="dow_pic1"
             class="update-r-svg"
             :src="`/img/${theme}/${lang}_dow_pic1.png`"
-            alt="DooTask,下载中心"
+            :alt="$t('download.alttips')"
           />
         </div>
       </div>

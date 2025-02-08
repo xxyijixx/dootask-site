@@ -26,7 +26,9 @@
     "api_docs": "API Document",
     "try_now": "Try Now",
     "language": "Language",
-    "theme": "Theme"
+    "lang_switch": "Language switching",
+    "theme": "Theme",
+    "menu": "menu"
   },
   "theme": {
     "light": "Light Mode",
@@ -297,7 +299,8 @@
     "clientsatis": "Customer staisfaction",
     "profile": {
       "title": "Company profile",
-      "desc": "Since its establishment, Guangxi Hitosea Information Technology Co., Ltd.(HITOSEA) has been focusing on the innovation of cutting-edge technologies in the field of network security, providing network security products and services including border security, cloud security, data security, intranet security, and is committed to providing users with comprehensive, smarter, and zero-disturbance network security solutions, and is a dynamic technology company with a young and energetic team."
+      "desc": "Since its establishment, Guangxi Hitosea Information Technology Co., Ltd.(HITOSEA) has been focusing on the innovation of cutting-edge technologies in the field of network security, providing network security products and services including border security, cloud security, data security, intranet security, and is committed to providing users with comprehensive, smarter, and zero-disturbance network security solutions, and is a dynamic technology company with a young and energetic team.",
+      "alt":"Guangxi Dolphin Have Sea Information Technology Company, HITOSEA, Dolphin Have Sea, Guangxi Dolphin Have Sea"
     },
     "scenapply": {
       "title": "Scenario Application",
@@ -320,7 +323,10 @@
       "email_placeholder": "Please enter your email address",
       "mes": "Message",
       "mes_placeholder": "Optional",
-      "btn": "Submit"
+      "btn": "Submit",
+      "phone_alt":"Contact Mobile:13471168831",
+      "email_alt":"Contact Email",
+      "sub_alt":"Submitted"
     }
   },
   "download": {
@@ -330,6 +336,7 @@
     "scan": "Download",
     "load": "Download",
     "other": "Other Versions",
+    "alttips":"DooTask, Download Centre",
     "log": {
       "title": "Logs",
       "headline": "Dootask Update Log",
@@ -354,7 +361,8 @@
     "privacy": "Privacy Policy",
     "api_docs": "API Document",
     "community": "Community",
-    "QQ": "QQ group"
+    "QQ": "QQ group",
+    "QQ_alt":"group number：546574618"
   },
   "cookie": {
     "content": " We use first party cookies to improve your browsing experience on our website, to analyze our website traffic and to understand where our visitors are coming from. If you choose to opt-out, only strictly necessary cookies will be used.",

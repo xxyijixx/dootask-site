@@ -98,7 +98,7 @@
                         id="home_code"
                         class="code-svg"
                         src="/img/qq_code.jpg"
-                        alt="群号：546574618"
+                        :alt="$t('footer.QQ_alt')"
                       />
                       <i class="group_num"
                         >{{ $t('social.group') }}：546574618</i

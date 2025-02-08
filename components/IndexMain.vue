@@ -52,8 +52,8 @@
           id="home_pic"
           class="home-pic"
           :src="`/img/${theme}/${lang}_home_pic1.png`"
-          alt="DooTask是一款轻量级的开源在线项目任务管理工具，提供各类文档协作工具、在线思维导图、在线流程图、项目管理、任务分发、即时IM，文件管理等工具。助力团队高效推进项目，让工作更简单。"
-        />
+          :alt="$t('homepage.hero.description')"
+          />
       </div>
     </div>
   </div>

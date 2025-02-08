@@ -57,8 +57,9 @@
           <img
             class="company-profile-l"
             :src="`/img/${theme}/about_pic1.png`"
-            alt="广西海豚有海信息科技公司,HITOSEA,海豚有海,广西海豚有海"
+            :alt="$t('about.profile.alt')"
           />
+          
           <div class="company-profile-r">
             <h1 class="txt-5004455 company-profile-h1 mb-80">
               {{ $t('about.profile.title') }}

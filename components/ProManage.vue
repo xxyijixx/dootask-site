@@ -57,11 +57,11 @@
           <img
             class="manage-bg"
             :src="`/img/${theme}/product_pic10.svg`"
-            alt="顺利打卡上班"
+            :alt="$t('produpage.org.tips')"
           />
 
           <div class="manage-tips">
-            <img src="/img/product_icon1.svg" alt="出勤签到" />
+            <img src="/img/product_icon1.svg" :alt="$t('produpage.org.checkin')" />
             <i class="manage-tips-txt txt-4001822">{{
               $t('produpage.org.tips')
             }}</i>

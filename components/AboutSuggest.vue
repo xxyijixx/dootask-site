@@ -11,7 +11,7 @@
             <img
               class="footer-t-contact-icon mr-12"
               src="/img/about_icon1.svg"
-              alt="联系手机,13471168831"
+              :alt="$t('about.suggest.phone_alt') "
             />
             <h6 class="footer-t-contact-h6">0771-3164099</h6>
           </div>
@@ -19,7 +19,7 @@
             <img
               class="footer-t-contact-icon mr-12"
               src="/img/about_icon2.svg"
-              alt="邮箱,service@hitosea.com"
+              :alt="$t('about.suggest.email_alt') + `: service@hitosea.com`"
             />
             <h6 class="footer-t-contact-h6">service@hitosea.com</h6>
           </div>
@@ -73,7 +73,7 @@
                   <img
                     v-if="isSubmitting"
                     id="submitLoading"
-                    alt="提交中"
+                    :alt="$t('about.suggest.sub_alt')"
                     src="/img/loading.png"
                   />
                   {{ $t('about.suggest.btn') }}

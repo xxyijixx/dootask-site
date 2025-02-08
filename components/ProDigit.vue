@@ -8,7 +8,7 @@
         <img
           class="pic mt-80"
           :src="`/img/${theme}/${lang}_product_pic11.png`"
-          alt="数字化绩效"
+          :alt="$t('produpage.digit.title')"
         />
       </div>
 

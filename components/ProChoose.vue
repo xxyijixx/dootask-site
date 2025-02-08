@@ -27,7 +27,7 @@
       <ul class="prooduct-list">
         <li>
           <i class="prev" @click="prevHandle">
-            <img src="/img/prev.svg" alt="一个产品，多种强大的工具" />
+            <img src="/img/prev.svg" :alt="$t('produpage.title')" />
           </i>
         </li>
         <li v-if="isMobile" class="prooduct-list-item active top">
@@ -59,7 +59,7 @@
 
         <li>
           <i class="next" @click="nextHandle">
-            <img src="/img/next.svg" alt="一个产品，多种强大的工具" />
+            <img src="/img/next.svg" :alt="$t('produpage.title')" />
           </i>
         </li>
       </ul>
