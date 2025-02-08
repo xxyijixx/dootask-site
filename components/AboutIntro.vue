@@ -54,9 +54,10 @@
     <article class="company-profile">
       <div class="company-profile-con">
         <div class="company-profile-layout">
-          <img
+          <ClientDynamicImage
             class="company-profile-l"
             :src="`/img/${theme}/about_pic1.png`"
+            :default-src="`/img/light/about_pic1.png`"
             :alt="$t('about.profile.alt')"
           />
           

@@ -71,9 +71,10 @@
           :class="{ active: index === currentIndex }"
         >
           <div class="details-con" :class="{ 'details-con-item4': detail.lg }">
-            <img
+            <ClientDynamicImage
               class="pic"
               :src="`/img/${theme}/product_pic${index + 1}.svg`"
+              :default-src="`/img/light/product_pic${index + 1}.svg`"
               :alt="detail.alt"
             />
             <ul class="details-ul" :class="{'item4': detail.lg}">
@@ -96,8 +97,9 @@
           </div>
           <ul v-if="detail.lg" class="details-ul-1280 item4-1280">
             <li class="details-ul-item mb-40">
-              <img
+              <ClientDynamicImage
                 :src="`/img/${theme}/product_pic${index + 1}.svg`"
+                :default-src="`/img/light/product_pic${index + 1}.svg`"
                 class="pic"
                 :alt="detail.alt"
               />
@@ -270,7 +272,7 @@ const productDetails = computed(() => [
     lg: false,
   },
   {
-    alt: t('produpage.choose.botass_dev.title_one'),
+    alt: t('produpage.choose.botass_de.title_one'),
     items: [
       {
         title: t('produpage.choose.botass_de.title_one'),

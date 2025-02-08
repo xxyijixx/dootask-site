@@ -1,15 +1,17 @@
 <template>
   <article class="collaboration">
-    <img
+    <ClientDynamicImage
       id="home_pic7"
       class="home_pic7"
       :src="`/img/${theme}/home_pic7.svg`"
+      :default-src="`/img/light/home_pic7.svg`"
       :alt="$t('homepage.coll.desc')"
     />
-    <img
+    <ClientDynamicImage
       id="home_pic7_768"
       class="home_pic7_768"
       :src="`/img/${theme}/home_pic7_768.svg`"
+      :default-src="`/img/light/home_pic7_768.svg`"
       :alt="$t('homepage.coll.desc')"
     />
     <div class="collaboration-content collaboration-content-zh">

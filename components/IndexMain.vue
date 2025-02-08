@@ -48,10 +48,11 @@
         </div>
       </div>
       <div class="ten_img">
-        <img
+        <ClientDynamicImage
           id="home_pic"
           class="home-pic"
-          :src="`/img/${theme}/${lang}_home_pic1.png`"
+          :src="`/img/${theme}/${locale}_home_pic1.png`"
+          :default-src="`/img/light/${locale}_home_pic1.png`"
           :alt="$t('homepage.hero.description')"
           />
       </div>
@@ -66,7 +67,7 @@ const { locale } = useI18n();
 
 const themeStore = useThemeStore();
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 </script>
 
 <style scoped>

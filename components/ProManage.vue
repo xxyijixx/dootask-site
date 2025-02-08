@@ -54,10 +54,11 @@
           class="manage-svg product-animate-box"
           :style="{ '--delay': '0.2s' }"
         >
-          <img
+          <ClientDynamicImage
             class="manage-bg"
             :src="`/img/${theme}/product_pic10.svg`"
             :alt="$t('produpage.org.tips')"
+            :default-src="`/img/light/product_pic10.svg`"
           />
 
           <div class="manage-tips">

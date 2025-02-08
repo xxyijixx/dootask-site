@@ -5,9 +5,10 @@
         {{ $t('produpage.digit.title') }}
       </h1>
       <div class="theme-images">
-        <img
+        <ClientDynamicImage
           class="pic mt-80"
-          :src="`/img/${theme}/${lang}_product_pic11.png`"
+          :src="`/img/${theme}/${locale}_product_pic11.png`"
+          :default-src="`/img/light/${locale}_product_pic11.png`"
           :alt="$t('produpage.digit.title')"
         />
       </div>
@@ -41,13 +42,13 @@ import { toRefs, onMounted, ref, onBeforeUnmount } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { throttle } from '../utils/debounceThrottle';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const themeStore = useThemeStore();
 
 const ProductAnimateBox2Ref = ref<NodeListOf<HTMLElement> | null>(null);
 
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const performanceItems = computed(() => [
   {

@@ -37,10 +37,11 @@
             </div>
           </li>
         </ul>
-        <img
+        <ClientDynamicImage
           id="home_pic2"
           class="card-pic"
           :src="currentPicSrc"
+          :default-src="currentDefaultPicSrc"
           :alt="currentPicAlt"
         />
       </div>
@@ -63,7 +64,7 @@
             <i class="txt-4001524 card-ul-item-txt mb-16">{{
               item.description
             }}</i>
-            <img class="card-pic mb-40" :src="item.picSrc" :alt="item.picAlt" />
+            <ClientDynamicImage class="card-pic mb-40" :src="item.picSrc" :default-src="item.defaultPicSrc" :alt="item.picAlt" />
           </li>
         </ul>
       </div>
@@ -75,9 +76,9 @@
 import { ref, computed, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const themeStore = useThemeStore();
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 const activeCardIndex = ref(0);
 
@@ -86,6 +87,12 @@ const currentPicSrc = computed(() => {
   // 如果 activeCardIndex 为 -1，默认使用第一个图片
   const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
   return scenarioItems.value[index].picSrc;
+});
+
+const currentDefaultPicSrc = computed(() => {
+  // 如果 activeCardIndex 为 -1，默认使用第一个图片
+  const index = activeCardIndex.value === -1 ? 0 : activeCardIndex.value;
+  return scenarioItems.value[index].defaultPicSrc;
 });
 
 const currentPicAlt = computed(() => {
@@ -104,35 +111,40 @@ const scenarioItems = computed(() => [
     title: t('homepage.scenarios.scen_promana_ti'),
     description: t('homepage.scenarios.scen_promana_desc'),
     picAlt: t('homepage.scenarios.scen_promana_desc'),
-    picSrc: `/img/${theme.value}/${lang.value}_home_pic2.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_home_pic2.png`,
+    defaultPicSrc: `/img/light/${locale.value}_home_pic2.png`,
   },
   {
     icon: '/img/home_icon2.svg',
     title: t('homepage.scenarios.scen_team_ti'),
     description: t('homepage.scenarios.scen_team_desc'),
     picAlt: t('homepage.scenarios.scen_team_desc'),
-    picSrc: `/img/${theme.value}/${lang.value}_home_pic3.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_home_pic3.png`,
+    defaultPicSrc: `/img/light/${locale.value}_home_pic3.png`,
   },
   {
     icon: '/img/home_icon3.svg',
     title: t('homepage.scenarios.scen_task_ti'),
     description: t('homepage.scenarios.scen_task_desc'),
     picAlt: t('homepage.scenarios.scen_task_desc'),
-    picSrc: `/img/${theme.value}/${lang.value}_home_pic4.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_home_pic4.png`,
+    defaultPicSrc: `/img/light/${locale.value}_home_pic4.png`,
   },
   {
     icon: '/img/home_icon4.svg',
     title: t('homepage.scenarios.scen_okr_ti'),
     description: t('homepage.scenarios.scen_okr_desc'),
     picAlt: t('homepage.scenarios.scen_okr_desc'),
-    picSrc: `/img/${theme.value}/${lang.value}_home_pic5.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_home_pic5.png`,
+    defaultPicSrc: `/img/light/${locale.value}_home_pic5.png`,
   },
   {
     icon: '/img/home_icon5.svg',
     title: t('homepage.scenarios.scen_communit_ti'),
     description: t('homepage.scenarios.scen_communit_desc'),
     picAlt: t('homepage.scenarios.scen_communit_desc'),
-    picSrc: `/img/${theme.value}/${lang.value}_home_pic6.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_home_pic6.png`,
+    defaultPicSrc: `/img/light/${locale.value}_home_pic6.png`,
   },
 ]);
 

@@ -5,30 +5,28 @@
         <AdBar />
       </template>
       <!-- <component :is="headerContent" v-if="headerContent" /> -->
-       <template #default>
-          <IndexMain v-if="topicsName === 'index'"/>
-          <PriceWay v-else-if="topicsName === 'price'"/>
-          <ProChoose v-else-if="topicsName === 'product'"/>
-          <SuloTopics v-else-if="topicsName === 'solution'"/>
-          <DownloadPart v-else-if="topicsName === 'download'"/>
-          <AboutIntro v-else-if="topicsName === 'about'"/>
-       </template>
+      <template #default>
+        <IndexMain v-if="topicsName === 'index'" />
+        <PriceWay v-else-if="topicsName === 'price'" />
+        <ProChoose v-else-if="topicsName === 'product'" />
+        <SuloTopics v-else-if="topicsName === 'solution'" />
+        <DownloadPart v-else-if="topicsName === 'download'" />
+        <AboutIntro v-else-if="topicsName === 'about'" />
+      </template>
     </HeaderBar>
     <!-- <ClientOnly> -->
     <NuxtPage />
-    <FooterBar v-if="isFooterReady"/>
+    <FooterBar v-if="isFooterReady" />
     <SideNav />
     <!-- </ClientOnly> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, computed } from 'vue';
+import { onBeforeMount, computed } from 'vue';
 import '@/assets/scss/common.scss';
 import '@/assets/scss/rem.scss';
-import useTheme from '@/composables/useTheme.ts';
 
-useTheme();
 
 defineOgImageComponent('NuxtSeo');
 
@@ -41,13 +39,13 @@ const headerClass = computed(() => {
 });
 const topicsName = computed(() => {
   return route.meta.topicsName || '';
-})
+});
 
 const themeStore = useThemeStore();
 const { locale } = useI18n();
 // 控制脚部是否渲染
 const isFooterReady = ref(false);
-onMounted(() => {
+onBeforeMount(() => {
   themeStore.loadTheme(locale.value);
   nextTick(() => {
     isFooterReady.value = true;
