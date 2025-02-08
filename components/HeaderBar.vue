@@ -5,7 +5,7 @@
     <div ref="nav" class="nav">
       <div class="nav-layout">
         <NuxtLink :to="`/${locale}`" class="logo">
-          <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
+          <ClientDynamicImage id="logo" :src="`/img/${theme}/logo.svg`" :default-src="`/img/light/logo.svg`" alt="DooTask,Logo" />
           <i class="dootask txt-7002027">DooTask</i>
         </NuxtLink>
         <ul class="nav-ul">
@@ -137,7 +137,7 @@
     <div class="drawer" :class="{ 'open-drawer': isDrawerVisible }">
       <div class="drawer-t mb-36">
         <a href="/" class="logo">
-          <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTaskLogo" />
+          <ClientDynamicImage id="logo" :src="`/img/${theme}/logo.svg`" :default-src="`/img/light/logo.svg`" alt="DooTaskLogo" />
           <i class="dootask txt-7002027">DooTask</i>
         </a>
         <i class="close-drawer" @click="closeDrawer">✕</i>

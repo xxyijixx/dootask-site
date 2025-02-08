@@ -4,7 +4,7 @@
       <div class="footer-layout">
         <div class="footer-l">
           <NuxtLink :to="`/${locale}`" class="logo">
-            <img id="logo" :src="`/img/${theme}/logo.svg`" alt="DooTask,Logo" />
+            <ClientDynamicImage id="logo" :src="`/img/${theme}/logo.svg`" :default-src="`/img/light/logo.svg`" alt="DooTask,Logo" />
             <i class="dootask txt-7002027">DooTask</i>
           </NuxtLink>
           <i class="txt txt-4001624">{{ $t('footer.title') }}</i>

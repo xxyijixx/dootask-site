@@ -42,7 +42,7 @@
                 }}</i>
               </div>
               <span class="plans-ul-b-item-btn">
-                <ClientOnly>
+                <!-- <ClientOnly> -->
                   <a
                     v-if="plan.buttonLink"
                     :href="plan.buttonLink"
@@ -60,7 +60,7 @@
                   >
                     {{ plan.buttonText }}
                   </button>
-                </ClientOnly>
+                <!-- </ClientOnly> -->
               </span>
             </div>
           </li>

@@ -1,15 +1,17 @@
 <template>
   <article class="collaboration">
-    <img
+    <ClientDynamicImage
       id="home_pic7"
       class="home_pic7"
       :src="`/img/${theme}/home_pic7.svg`"
+      :default-src="`/img/light/home_pic7.svg`"
       alt="开启您的DooTask团队协作"
     />
-    <img
+    <ClientDynamicImage
       id="home_pic7_768"
       class="home_pic7_768"
       :src="`/img/${theme}/home_pic7_768.svg`"
+      :default-src="`/img/light/home_pic7_768.svg`"
       alt="开启您的DooTask团队协作"
     />
     <div class="collaboration-content collaboration-content-zh">

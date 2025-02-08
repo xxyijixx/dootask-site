@@ -22,10 +22,11 @@
               :class="{ 'mb-48': index < sceneApplications.length - 1 }"
             >
               <div class="app-bg-box">
-                <img
+                <ClientDynamicImage
                   :id="`solution_pic${index + 1}`"
                   class="app-bg"
                   :src="item.picSrc"
+                  :default-src="item.defaultPicSrc"
                   :alt="item.title"
                 />
               </div>
@@ -43,30 +44,34 @@ import { toRefs } from 'vue';
 
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const themeStore = useThemeStore();
-const { theme, lang } = toRefs(themeStore);
+const { theme } = toRefs(themeStore);
 
 // 场景应用列表
 const sceneApplications = computed(() => [
   {
-    picSrc: `/img/${theme.value}/${lang.value}_solution_pic1.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_solution_pic1.png`,
+    defaultPicSrc: `/img/light/${locale.value}_solution_pic1.png`,
     title: t('solution.apply.title_one'),
     description: t('solution.apply.desc_one'),
   },
   {
-    picSrc: `/img/${theme.value}/${lang.value}_solution_pic2.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_solution_pic2.png`,
+    defaultPicSrc: `/img/light/${locale.value}_solution_pic2.png`,
     title: t('solution.apply.title_two'),
     description: t('solution.apply.desc_two'),
   },
   {
-    picSrc: `/img/${theme.value}/${lang.value}_solution_pic3.png`,
+    picSrc: `/img/${theme.value}/${locale.value}_solution_pic3.png`,
+    defaultPicSrc: `/img/light/${locale.value}_solution_pic3.png`,
     title: t('solution.apply.title_three'),
     description: t('solution.apply.desc_three'),
   },
   {
     picSrc: `/img/${theme.value}/solution_pic4.png`,
+    defaultPicSrc: `/img/light/solution_pic4.png`,
     title: t('solution.apply.title_four'),
     description: t('solution.apply.desc_four'),
   },

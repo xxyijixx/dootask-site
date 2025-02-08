@@ -34,10 +34,11 @@
           </ul>
         </div>
         <div class="update-r">
-          <img
+          <ClientDynamicImage
             id="dow_pic1"
             class="update-r-svg"
             :src="`/img/${theme}/${lang}_dow_pic1.png`"
+            :default-src="`/img/light/zh_dow_pic1.png`"
             alt="DooTask,下载中心"
           />
         </div>
@@ -82,7 +83,7 @@ const handleReleaseClick = (index: number) => {
 };
 
 const fetchReleases = async () => {
-  loading.value = true;
+  // loading.value = true;
   try {
     const url = 'https://www.dootask.com/api/system/get/updatelog';
     const response = await axios.get(url);
