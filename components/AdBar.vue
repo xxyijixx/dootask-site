@@ -21,7 +21,6 @@ const { locale } = useI18n();
 
 onMounted(() => {
   fetchAdBar(locale.value);
-  // initializeAdBar();
 });
 
 const adDiaplsy = ref(false);
@@ -96,9 +95,7 @@ function updateAdBar({ background, text, buttonText }: BannerBarAttributes) {
   adDiaplsy.value = true;
   
   const adWrapper = AdRef.value;
-  console.log("更新广告栏内ss容", adWrapper)
   if (!adWrapper) return;
-  console.log("更新广告栏内容")
   // 设置背景图片
   const backgroundUrl = background?.data?.attributes?.url;
   if (backgroundUrl) {
@@ -117,7 +114,22 @@ function updateAdBar({ background, text, buttonText }: BannerBarAttributes) {
 
   initializeAdBar();
 }
-const router = useRouter()
+
+const route = useRoute();
+const router = useRouter();
+
+// 监听语言变化
+watch(locale, (newLocale) => {
+  fetchAdBar(newLocale);
+});
+
+// 监听路由变化
+watch(
+  () => route.path,
+  () => {
+    fetchAdBar(locale.value);
+  }
+);
 
 const goToAdPage = () => {
   // 跳转到主页
