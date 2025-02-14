@@ -402,7 +402,7 @@ const supportItems = computed(() => [
   { text: t('navigation.download'), link: localizedRoutes.value.download },
   {
     text: t('navigation.help_center'),
-    link: 'http://localhost:5173/basic/quick-start',
+    link: 'https://help.dootask.com',
     target: '_blank',
   },
   {
