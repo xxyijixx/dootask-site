@@ -95,6 +95,8 @@ const themeStore = useThemeStore();
 
 const { theme } = toRefs(themeStore);
 
+const isMobile = ref(false);
+
 // ul列表Ref
 const LogsLULRef = ref<HTMLElement | null>(null);
 
@@ -120,6 +122,11 @@ const openLogsDrawer = () => {
 // 关闭更新日志抽屉
 const closeLogsDrawer = () => {
   drawerOpen.value = false;
+};
+
+// 检查屏幕尺寸
+const checkMobileView = () => {
+  isMobile.value = window.innerWidth <= 768;
 };
 
 // 从 localStorage 获取缓存的数据
@@ -253,14 +260,24 @@ const adjustLogPageHeight = () => {
 
     if (adBar && adBar.style.display !== 'none' && logPage) {
       // 如果广告条存在且可见，向下调整 30px
-      logPage.style.marginTop = '150px';
+        if(isMobile.value) {
+         // 直接设置行内样式，优先级最高
+          logPage.setAttribute('style', 'margin-top: 120px !important');
+        } else {
+          
+          logPage.style.marginTop = '150px';
+        }
+    
     } else if (logPage) {
-      // 如果广告条不存在或不可见，重置高度
-      logPage.style.marginTop = '90px';
+          // 如果广告条不存在或不可见，重置高度
+          logPage.setAttribute('style', 'margin-top: 90px');
     }
+
+
   });
 };
 
+// 调整日志导航栏位置
 const adjustStickyNavPosition = () => {
   const adBar = document.getElementById('ad');
   const logsStickyEl = document.querySelector('.logs-sticky') as HTMLElement;
@@ -285,7 +302,6 @@ const adjustStickyNavPosition = () => {
     }
   });
 };
-
 
 //公共滚动方法
 const adjustNavBarScroll = (ulElement: HTMLElement, liElement: HTMLElement) => {
@@ -323,6 +339,7 @@ const scrollToSection = (index: number, smooth = true) => {
   }
 };
 
+// 保证元素不为空时才执行回调
 const safelyExecute = <T,>(
   element: T | null,
   callback: (el: T) => void
@@ -430,7 +447,6 @@ const restoreScrollState = () => {
   }
 };
 
-
 // 在组件挂载时设置头部标题
 useHead({
   title: t('log.headtitle'),
@@ -471,6 +487,12 @@ onMounted(() => {
       attributeFilter: ['style']
     });
   }
+  checkMobileView();
+  window.addEventListener('resize', () => {
+    checkMobileView();
+    // startAutoPlay();
+  });
+
   setTimeout(() => {
     fetchLogsData().then(() => {
       adjustStickyNavPosition();
@@ -486,7 +508,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandler);
   window.removeEventListener('beforeunload', saveScrollState);
 });
-
 </script>
 
 <style>
