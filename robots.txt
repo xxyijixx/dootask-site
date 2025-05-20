@@ -10,5 +10,5 @@ Disallow: /ad
 Disallow: /en/ad
 Disallow: /zh/ad
 
-Sitemap: https://dootask-site100.keli.vip/sitemap_index.xml
+Sitemap: https://www.dootask.com/sitemap_index.xml
 # END nuxt-robots

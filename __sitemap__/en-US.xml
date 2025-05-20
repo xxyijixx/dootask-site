@@ -1,178 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/__sitemap__/style.xsl"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://dootask-site100.keli.vip/en</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/" />
+        <loc>https://www.dootask.com/en</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/" />
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_icon1.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_icon1.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_icon2.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_icon2.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_icon3.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_icon3.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_icon4.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_icon4.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/home_icon1.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/home_icon1.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/vector.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/vector.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/home_icon2.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/home_icon2.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/home_icon3.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/home_icon3.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/home_icon4.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/home_icon4.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/home_icon5.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/home_icon5.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_home_pic2.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_home_pic2.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_home_pic3.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_home_pic3.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_home_pic4.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_home_pic4.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_home_pic5.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_home_pic5.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_home_pic6.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_home_pic6.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/arcs.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/arcs.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_pic7.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_pic7.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/home_pic7_768.svg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://dootask-site100.keli.vip/en/about</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/about" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/about" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/about" />
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon7.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/01.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon8.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/02.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon9.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/03.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon10.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/04.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon1.svg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/about_icon2.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/light/home_pic7_768.svg</image:loc>
         </image:image>
     </url>
     <url>
-        <loc>https://dootask-site100.keli.vip/en/download</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/download" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/download" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/download" />
+        <loc>https://www.dootask.com/en/about</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/about" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/about" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/about" />
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/dow_arrow.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/about_icon7.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/zh_dow_pic1.png</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://dootask-site100.keli.vip/en/log</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/log" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/log" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/log" />
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/prev.svg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://dootask-site100.keli.vip/en/price</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/price" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/price" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/price" />
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/price_icon1.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/01.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/price_icon2.svg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://dootask-site100.keli.vip/en/product</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/product" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/product" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/product" />
-        <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/product_subtract.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/about_icon8.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/product_pic10.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/02.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/product_icon1.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/about_icon9.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_product_pic11.png</image:loc>
+            <image:loc>https://www.dootask.com/img/03.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/about_icon10.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/04.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/about_icon1.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/about_icon2.svg</image:loc>
         </image:image>
     </url>
     <url>
-        <loc>https://dootask-site100.keli.vip/en/solutions</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://dootask-site100.keli.vip/en/solutions" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dootask-site100.keli.vip/solutions" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://dootask-site100.keli.vip/solutions" />
+        <loc>https://www.dootask.com/en/download</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/download" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/download" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/download" />
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_solution_pic1.png</image:loc>
+            <image:loc>https://www.dootask.com/img/dow_arrow.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_solution_pic2.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/zh_dow_pic1.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://www.dootask.com/en/log</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/log" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/log" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/log" />
+    </url>
+    <url>
+        <loc>https://www.dootask.com/en/price</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/price" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/price" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/price" />
+        <image:image>
+            <image:loc>https://www.dootask.com/img/price_icon1.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/en_solution_pic3.png</image:loc>
+            <image:loc>https://www.dootask.com/img/price_icon2.svg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://www.dootask.com/en/product</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/product" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/product" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/product" />
+        <image:image>
+            <image:loc>https://www.dootask.com/img/product_subtract.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/light/solution_pic4.png</image:loc>
+            <image:loc>https://www.dootask.com/img/light/product_pic10.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/solution_icon1.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/product_icon1.svg</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/solution_icon2.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_product_pic11.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://www.dootask.com/en/solutions</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.dootask.com/en/solutions" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.dootask.com/solutions" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dootask.com/solutions" />
+        <image:image>
+            <image:loc>https://www.dootask.com/img/light/en_solution_pic1.png</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://dootask-site100.keli.vip/img/solution_icon3.svg</image:loc>
+            <image:loc>https://www.dootask.com/img/light/en_solution_pic2.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/light/en_solution_pic3.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/light/solution_pic4.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/solution_icon1.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/solution_icon2.svg</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.dootask.com/img/solution_icon3.svg</image:loc>
         </image:image>
     </url>
 </urlset>
-<!-- XML Sitemap generated by @nuxtjs/sitemap v7.2.4 at 2025-02-18T10:46:04.013Z -->
+<!-- XML Sitemap generated by @nuxtjs/sitemap v7.2.4 at 2025-05-20T03:41:46.365Z -->
