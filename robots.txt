@@ -1,0 +1,14 @@
+# START nuxt-robots (indexable)
+User-agent: *
+Disallow: /cookie
+Disallow: /en/cookie
+Disallow: /zh/cookie
+Disallow: /privacy
+Disallow: /en/privacy
+Disallow: /zh/privacy
+Disallow: /ad
+Disallow: /en/ad
+Disallow: /zh/ad
+
+Sitemap: https://www.dootask.com/sitemap_index.xml
+# END nuxt-robots
