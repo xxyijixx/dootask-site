@@ -1,1 +1,0 @@
-import{d as n,u as a,o as s,b as c,e as r,m,ar as _}from"./B1v-N6Dw.js";import{u}from"./CGGGQTv8.js";const h=n({__name:"blank",setup(l){const e=u(),{locale:o}=a();return s(()=>{e.loadTheme(o.value)}),(p,d)=>{const t=_;return c(),r("div",null,[m(t)])}}});export{h as default};
