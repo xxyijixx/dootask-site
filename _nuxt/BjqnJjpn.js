@@ -1,0 +1,1 @@
+function u(e,n){let t;return function(...o){t&&clearTimeout(t),t=setTimeout(()=>{e(...o)},n)}}function c(e,n){let t=0;return function(...o){const i=new Date().getTime();i-t>n&&(t=i,e(...o))}}export{u as d,c as t};
