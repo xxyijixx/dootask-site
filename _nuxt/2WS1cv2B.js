@@ -1,0 +1,1 @@
+import{d as t,u as a,o as s,b as c,e as m,m as _,aq as r}from"./CxNFoWNX.js";import{u}from"./C-ugpPdX.js";import"./Dd7jSQZi.js";const h=t({__name:"blank",setup(l){const{loadTheme:e}=u(),{locale:o}=a();return s(()=>{e(o.value)}),(p,d)=>{const n=r;return c(),m("div",null,[_(n)])}}});export{h as default};
